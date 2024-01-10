@@ -4,7 +4,9 @@ import com.example.JumpExpo.DTO.admin.schedule.EmpForm;
 import com.example.JumpExpo.DTO.admin.schedule.FairForm;
 import com.example.JumpExpo.DTO.admin.schedule.RecForm;
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
+import com.example.JumpExpo.Entity.etc.ExpoCalenderInfo;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
+import com.example.JumpExpo.Repository.etc.ExpoCalenderInfoRepository;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class ScheduleController {
+
+    @Autowired
+    ExpoCalenderInfoRepository expoCalenderInfoRepository;
 
     @Autowired
     SchInsetExpoRepository schInsetExpoRepository;
@@ -158,6 +163,10 @@ public class ScheduleController {
         
         //박람회 이름
         model.addAttribute("ExpoNames",ExpoName);
+
+        List<ExpoCalenderInfo> info = expoCalenderInfoRepository.getInfo();
+        log.info(info.toString());
+        model.addAttribute("EInfo",info);
 
         return "admin/schedule/ScheduleCalender";
     }
