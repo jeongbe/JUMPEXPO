@@ -8,14 +8,14 @@
 
     <body>
 
-    <div class="s_header" th:replace="~{admin/header/EmployapplyHeader :: employapplyheader}"></div>
+    <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
     <div class="s_header" th:replace="~{admin/side/EmployapplySide :: employapplyside}"></div>
 
     <div>
         <span class="span_title">공고 심사</span>
         <div class="header_a">
-            <p class="p_1"><a th:href="@{/admin/show/employapply}" style="color: #EA8874;">심사전 공고 보기</a></p>
-            <p class="p_2"><a th:href="@{/admin/show/disemployapply}">심사완료 공고 보기</a></p>
+            <p class="p_1"><a th:href="@{/admin/show/employapply}">심사전 공고 보기</a></p>
+            <p class="p_2"><a th:href="@{/admin/show/disemployapply}" style="color: #EA8874;">심사완료 공고 보기</a></p>
         </div>
 
         <table>
@@ -29,12 +29,15 @@
             <!-- 10개 데이터당 한 페이지 -->
             <tr th:each="list, iterStat : ${reqList}">
                 <td class="td_number" th:text="${iterStat.index + 1}">1</td>
-                <td>예일 회사</td>
-                <td th:text="${list.emnot_title}">프론트앤드 개발자 구인</td>
+                <td>회사명</td>
+                <td>
+                    <a th:href="@{'/admin/show/employapply/' + ${list.emnot_code}}" th:text="${list.emnot_title}"></a>
+                </td>
                 <td th:text="${list.emnot_date}">2024-01-05</td>
                 <td class="td_judge">
-                    <span th:if="${list.recog_check == 0}">심사중</span>
+                    <span th:if="${list.recog_check == 0}">심사전</span>
                     <span th:if="${list.recog_check == 1}">심사완료</span>
+                    <span th:if="${list.recog_check == 2}">심사완료</span>
                 </td>
             </tr>
         </table>

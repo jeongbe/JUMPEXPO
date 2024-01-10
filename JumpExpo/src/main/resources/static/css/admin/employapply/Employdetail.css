@@ -1,0 +1,145 @@
+*{
+margin: 0 auto;
+}
+
+body {
+width: 1100px;
+}
+
+.body_data{
+display: flex;
+}
+
+.span_title{
+position: fixed;
+top: 90px;
+left: 577px;
+font-size: 20px;
+font-weight: bold;
+color: #374658;
+}
+
+.header_a {
+display: inline-block;
+position: fixed;
+top: 150px;
+left: 578px;
+}
+
+table,
+th,
+td {
+border: 1px solid #bbbbbb;
+border-collapse: collapse;
+/* text-align: left; */
+}
+
+.body_table{
+display: flex;
+position: fixed;
+left: 580px;
+top: 180px;
+}
+
+.body_table2{
+display: flex;
+
+position: fixed;
+left: 580px;
+top: 450px;
+}
+
+.p_1{
+font-size: 26px;
+font-weight: bold;
+color: #374658;
+position: absolute;
+bottom: 20px;
+width: 1000px;
+}
+
+.p_2{
+display: inline-block;
+font-size: 14px;
+font-weight: bold;
+color: #374658;
+}
+
+.p_3{
+display: inline-block;
+font-size: 14px;
+font-weight: bold;
+color: #374658;
+}
+
+.company_logo{
+width: 250px;
+height: 250px;
+text-align: center;
+
+}
+
+.semi_title{
+width: 130px;
+text-align: center;
+background-color: #eeeeee;
+font-size: 15px;
+font-weight: bold;
+color: #414141;
+}
+
+.semi_body{
+width: 186px;
+padding-left: 8px;
+font-size: 15px;
+color: #414141;
+}
+
+.semi_body2{
+width: 160px;
+height: 30px;
+padding-left: 8px;
+font-size: 14px;
+color: #414141;
+}
+
+.smart_editor_content{
+    word-break:break-all;
+    /* border: 1px solid #000; */
+    border-bottom: 2px solid #a8a8a8;
+    position: fixed;
+    top: 520px;
+    left: 580px;
+    width: 873px;
+    padding: 20px;
+}
+
+.apply_button {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.apply_button form {
+    display: inline-block;
+    margin-right: 5px; /* 버튼 사이 간격 조절 */
+}
+
+.apply_button button {
+    background-color: #374658;
+    color: white;
+    width: 150px;
+    height: 30px;
+    border: 0;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.header_b {
+    display: inline-block;
+    position: fixed;
+    top: 90px;
+    left: 878px;
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+}

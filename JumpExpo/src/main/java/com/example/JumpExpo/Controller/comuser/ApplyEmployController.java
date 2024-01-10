@@ -31,7 +31,7 @@ public class ApplyEmployController {
         log.info(form.toString());
 
         ApplyEmploy data = form.toEnttiy();
-        // 디폴트 비승인 값 0 고정
+        // 디폴트 값 0 고정 > 비승인시 1, 승인시 1로 변경예정
         data.setRecog_check(0);
         ApplyEmploy save = applyEmployRepository.save(data);
         log.info(save.toString());

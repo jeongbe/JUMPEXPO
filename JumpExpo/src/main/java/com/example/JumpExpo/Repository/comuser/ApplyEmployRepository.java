@@ -12,18 +12,30 @@ import java.util.ArrayList;
 @Repository
 public interface ApplyEmployRepository extends JpaRepository<ApplyEmploy, Integer> {
 
-//    @Query(value = "select *\n" +
-//            "from apply_employ" +
-//            "where recog_check = 0", nativeQuery = true)
-//    ArrayList<ApplyEmploy> AllreqEmployList();
-
     @Query(value = "SELECT *\n" +
             "FROM apply_employ\n" +
             "WHERE recog_check = 0;", nativeQuery = true)
         ArrayList<ApplyEmploy> AllreqEmployList();
 
-    @Query(value = "select *\n" +
-            "from apply_employ\n" +
-            "where recog_check = 1", nativeQuery = true)
+    @Query(value = "SELECT *\n" +
+            "FROM apply_employ\n" +
+            "WHERE recog_check = 1 OR recog_check = 2;\n", nativeQuery = true)
     ArrayList<ApplyEmploy> AlldisreqEmployList();
+
+    //2024.01.10 박은채
+//    @Query(value = "SELECT *\n" +
+//            "FROM apply_employ\n" +
+//            "INNER JOIN comuser ON apply_employ.com_code = comuser.com_code\n" +
+//            "WHERE recog_check = 0;", nativeQuery = true)
+//    ArrayList<ApplyEmploy> AllreqEmployList();
+//
+//    @Query(value = "SELECT *\n" +
+//            "FROM apply_employ\n" +
+//            "INNER JOIN comuser ON apply_employ.com_code = comuser.com_code\n" +
+//            "WHERE recog_check = 1;", nativeQuery = true)
+//    ArrayList<ApplyEmploy> AlldisreqEmployList();
+
+    @Query(value = "select *\n" +
+            "from apply_employ", nativeQuery = true)
+    ArrayList<ApplyEmploy> Alllist();
 }
