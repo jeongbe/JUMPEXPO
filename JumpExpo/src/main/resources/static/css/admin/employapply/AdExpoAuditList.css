@@ -1,0 +1,103 @@
+* {
+margin: 0 auto;
+}
+
+body {
+width: 950px;
+}
+
+.body_title {
+display: flex;
+justify-content: space-between;
+}
+
+.body_title > span:first-child {
+font-size: 40px;
+font-weight: bold;
+}
+
+.body_title > span:last-child {
+font-size: 20px;
+margin-top: 30px;
+margin-right: 90px;
+font-weight: bold;
+}
+
+.body_title > span {
+margin: 0px;
+}
+
+.content {
+margin-top: 20px;
+height: 655px;
+/* background-color: aqua; */
+/* background-color: aquamarine; */
+}
+
+.expo-info-box {
+margin-top: 10px;
+display: flex;
+}
+
+.cont-img {
+margin: 0px;
+margin-left: 30px;
+/* margin-top: 20px; */
+background-color: bisque;
+width: 220px;
+height: 100px;
+}
+
+.expo-info {
+margin: 0px;
+/* background-color: yellowgreen; */
+margin-left: 40px;
+}
+
+.period-box2 {
+display: flex;
+}
+
+.period-box2 > p:nth-child(1)::after {
+content: ' ~ ';
+/* background-color: azure; */
+}
+
+.period-box2 > p:nth-child(2) {
+margin-left: 5px;
+}
+
+.period-box2 > p:nth-child(3)::before {
+content: ' | ';
+}
+
+.period-box2 > p:nth-child(3) {
+margin-left: 10px;
+}
+
+.period-box2 > p:nth-child(3)::after {
+content: ' ~ ';
+}
+
+.period-box2 > p:nth-child(4) {
+margin-left: 5px;
+}
+
+.expo-name {
+font-size: 25px;
+font-weight: bold;
+}
+
+.line {
+margin-top: 20px;
+border: 1px solid #ccc;
+}
+
+.com_count {
+margin: 0px;
+margin-top: 30px;
+margin-left: 190px;
+font-size: 25px;
+font-weight: bold;
+color: #374658;
+}

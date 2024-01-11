@@ -1,10 +1,7 @@
 package com.example.JumpExpo.DTO.admin.schedule;
 
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class FairForm {
 
     int FExpoCode;

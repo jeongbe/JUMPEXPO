@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,47 +7,49 @@
     <title>박람회 정보</title>
 </head>
 <body>
-<div class="container">
+<div class="container" >
     <div class="title-box">
         <div class="body_title">
-            <span>박람회</span>
-            <span>정보</span>
+            <span class="t1"></span>
+            <span class="t2"></span>
         </div>
 
         <div class="body_title_right">
-            <!-- <img
-                src="/Pro3/image/home.png"
+            <img
+                src="/static/images/home.png"
                 alt="홈 아이콘"
                 style="width: 20px"
-            /> -->
-            <!-- > 신청하기 > 박람회 신청하기 -->
+            />
+            > 행사일정 > <span class="span">df</span>
+            <p class="cate" style="display:none" th:text="${ExpoInfo.expo_cate}"></p>
         </div>
     </div>
     <div class="line1"></div>
     <div class="expo_name_box">
-        <p>엑스포이름</p>
+        <p th:text="${ExpoInfo.expo_title}">엑스포이름</p>
     </div>
     <div class="line2"></div>
     <div class="expo_info_box">
         <div class="img_box">
-            <img src="" alt="" />
+            <img th:src="@{'http://192.168.2.3/images/a/' + ${ExpoInfo.expo_image}}" alt="" />
         </div>
         <div class="expo_info">
             <div class="expo_name info_box1">
                 <p>행사명 :</p>
-                <p>행사 이름</p>
+                <p th:text="${ExpoInfo.expo_title}">행사 이름</p>
             </div>
             <div class="expo_Period info_box1">
                 <p>개최 기간 :</p>
-                <p>기간</p>
+                <span th:text="${ExpoInfo.expo_start}"></span>~
+                <span th:text="${ExpoInfo.expo_end}"></span>
             </div>
             <div class="expo_time info_box1">
                 <p>관람시간 :</p>
-                <p>시간</p>
+                <p th:text="${ExpoInfo.expo_time}">시간</p>
             </div>
             <div class="expo_place info_box1">
                 <p>개최장소 :</p>
-                <p>장소</p>
+                <p th:text="${ExpoInfo.expo_add}">장소</p>
             </div>
         </div>
     </div>
@@ -56,45 +58,46 @@
             <p>전시 개요</p>
         </div>
         <div class="o_box2">
-            <p>전시내용</p>
+            <p th:text="${ExpoInfo.expo_outline}">전시내용</p>
         </div>
     </div>
     <div class="expo_info_box2">
         <div class="info_box2">
             <p>주최</p>
-            <p>정보</p>
+            <p th:text="${ExpoInfo.expo_host}">정보</p>
         </div>
         <div class="info_box2">
             <p>주관</p>
-            <p>정보</p>
+            <p th:text="${ExpoInfo.expo_manage}">정보</p>
         </div>
         <div class="info_box2">
             <p>전시품목</p>
-            <p>정보</p>
+            <p th:text="${ExpoInfo.expo_exhibit}">정보</p>
         </div>
         <div class="info_box2">
             <p>담당자</p>
-            <p>정보</p>
+            <p th:text="${ExpoInfo.master_name}">정보</p>
         </div>
         <div class="info_box2">
             <p>전화번호</p>
-            <p>정보</p>
+            <p th:text="${ExpoInfo.master_phone}">정보</p>
         </div>
         <div class="info_box2">
             <p>이메일</p>
-            <p>정보</p>
+            <p th:text="${ExpoInfo.master_mail}">정보</p>
         </div>
     </div>
-    <div class="expo_explanation">
-                <textarea
-                        name=""
-                        id=""
-                        cols="30"
-                        rows="10"
-                        oninput="autoResizeTextArea(this)"
-                        readonly
-                >
-                </textarea>
+    <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}">
+<!--                <textarea-->
+<!--                        name=""-->
+<!--                        id=""-->
+<!--                        cols="30"-->
+<!--                        rows="10"-->
+<!--                        oninput="autoResizeTextArea(this)"-->
+<!--                        readonly-->
+<!--                        -->
+<!--                >-->
+<!--                </textarea>-->
     </div>
     <div class="line2"></div>
     <div class="btn_box">
@@ -118,6 +121,29 @@
         );
         autoResizeTextArea(textArea);
     });
+
+    let cate = document.querySelector('.cate').textContent;
+    console.log(cate);
+
+    let t1 = document.querySelector('.t1');
+    let t2 = document.querySelector('.t2');
+
+    let span = document.querySelector('.span');
+
+    if(cate == 2){
+        t1.textContent = '채용박람회';
+        t2.textContent = '일정';
+        span.textContent = '채용박람회 일정';
+    }else if(cate == 0){
+        t1.textContent = '취업박람회';
+        t2.textContent = '일정';
+        span.textContent = '취업박람회 일정';
+    }else if(cate == 1){
+        t1.textContent = '페어박람회';
+        t2.textContent = '일정';
+        span.textContent = '페어박람회 일정';
+    }
+
 </script>
 </body>
 </html>

@@ -29,11 +29,20 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "from schedule_insert", nativeQuery = true)
     Page<ScheduleInsert> AllExpoList(Pageable pageable);
 
-    //행사 전체 리스트에서 검색
-    @Query(value = "select *\n" +
-            "from schedule_insert\n" +
-            "where expo_title like %:text%", nativeQuery = true)
-    Page<ScheduleInsert> serch1(Pageable pageable, @Param("text") String text);
+    //2024.01.11 정정빈
+    //행사 전체 리스트에서 검색 단어 있을떄
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)\n" +
+            "and expo_title like %:text%", nativeQuery = true)
+    Page<ScheduleInsert> serch1(Pageable pageable, @Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
+
+    //2024.01.11 정정빈
+    //단어 없을때
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)", nativeQuery = true)
+    Page<ScheduleInsert> serch2(Pageable pageable,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
 
     //행사 전체 리스트 1개월 버튼
     @Query(value = "SELECT *\n" +

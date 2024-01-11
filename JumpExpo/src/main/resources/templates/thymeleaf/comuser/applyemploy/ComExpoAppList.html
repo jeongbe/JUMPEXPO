@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/comuser/applyemploy/ComExpoAppList.css" />
+    <!-- Bootstrap CSS -->
+    <!-- <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous"
+    /> -->
+    <title>기업 박람회 신청 리스트</title>
+    <style>
+        /* 추가된 CSS 스타일 */
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="s_header" th:replace="~{comuser/header/ApplyEmployHeader :: applyEmployHeader}"></div>-->
+<div class="container">
+    <div class="title-box">
+        <div class="body_title">
+            <span>행사</span>
+            <span>신청하기</span>
+        </div>
+
+        <div class="body_title_right">
+            <img
+                    src="/static/images/home.png"
+                    alt="홈 아이콘"
+                    style="width: 20px"
+            />
+            > 신청하기 > 박람회 신청하기
+        </div>
+    </div>
+    <div class="select-box">
+        <div class="search-box">
+            <p class="size">행사 / 공연명</p>
+            <input type="text" name="" id="" />
+            <button>검색</button>
+        </div>
+        <div class="Period-box">
+            <p>기간 선택</p>
+            <div class="btns">
+                <button>1개월</button>
+                <button>3개월</button>
+                <button>6개월</button>
+            </div>
+            <div class="date-box">
+                <span><input type="date" name="" id="" /></span>
+                <input type="date" name="" id="" />
+            </div>
+        </div>
+    </div>
+    <div class="content" th:each="list : ${AppList}">
+        <div class="expo-info-box">
+            <div class="cont-img">
+                <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
+            </div>
+            <div class="expo-info">
+                <p>예정행사</p>
+                <p th:text="${list.expo_title}" class="expo-name">2024 예일 박람회</p>
+                <div class="period-box2">
+                    <p th:text="${list.expo_start}">2024-01-10</p>
+                    <p th:text="${list.expo_end}">2024-01-10</p>
+                    <p th:text="${list.expo_time}">10:00</p>
+<!--                    <p>20:00</p>-->
+                </div>
+                <p th:text="${list.expo_add}">장소</p>
+                <p ></p>
+            </div>
+            <div class="app-btn">
+                <button th:onclick="'javascript:location.href=&quot;/com/app/'+ ${list.expo_cate}+ '/' + ${list.expo_code}+ '/' + 1 + '&quot;'">신청하기</button>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <nav aria-label="Page navigation example" class="pageBtn">
+        <ul class="pagination" >
+        </ul>
+    </nav>
+    <p  class="total_page" th:text="${TotalPage}"></p>
+</div>
+<!--<div class="sidebar" th:replace="~{comuser/sidefooter/ApplyEmploySideFooter :: applyEmploySidefooter}"></div>-->
+<script>
+    let total_page = document.querySelector('.total_page').textContent;
+    console.log(total_page);
+
+    // 부모 요소
+    var paginationContainer = document.querySelector(".pagination");
+
+    if (paginationContainer) {
+        // 이전 버튼
+        var prevButton = document.createElement("li");
+        prevButton.classList.add("page-item");
+        prevButton.innerHTML = `<a class="page-link"  href="/com/app/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        paginationContainer.appendChild(prevButton);
+
+        // 페이지 번호 생성
+        for (var i = 1; i <= total_page; i++) {
+            var pageItem = document.createElement("li");
+            pageItem.classList.add("page-item");
+            pageItem.innerHTML = `<a class="page-link" href="/com/app/list?page=${i-1}">${i}</a>`;
+            paginationContainer.appendChild(pageItem);
+        }
+
+        // 다음 버튼
+        var nextButton = document.createElement("li");
+        nextButton.classList.add("page-item");
+        nextButton.innerHTML = `<a class="page-link" href="/com/app/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        paginationContainer.appendChild(nextButton);
+    }
+</script>
+</body>
+</html>
