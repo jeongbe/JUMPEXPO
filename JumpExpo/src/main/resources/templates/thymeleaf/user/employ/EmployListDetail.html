@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="scheduleHeader">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/employapply/Employdetail.css" />
+
+    <title>공고 보기 디테일</title>
+
+    <body>
+    <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+
+    <!-- 본문 -->
+    <div class="body_data" th:object="${applyEmploy}">
+        <span class="span_title">회사명 데이터</span>
+        <div class="header_a">
+            <p class="p_1" th:text="${applyEmploy.emnot_title}">채용 공고 제목</a></p>
+            <p class="p_2" >직종: </p>
+            <p class="p_3" th:text="${applyEmploy.emnot_occ}">공고 직종</a></p>
+        </div>
+
+        <div class="table-container">
+            <table class="body_table">
+                <tr>
+                    <td rowspan="5" class="company_logo"></td>
+                    <td class="semi_title">회사명</td>
+                    <td class="semi_body"></td>
+                    <td class="semi_title">이메일</td>
+                    <td class="semi_body"></td>
+                </tr>
+                <tr>
+                    <td class="semi_title">담당자</td>
+                    <td class="semi_body"></td>
+                    <td class="semi_title">전화번호</td>
+                    <td class="semi_body"></td>
+                </tr>
+                <tr>
+                    <td class="semi_title">회사주소</td>
+                    <td colspan="3" class="semi_body"></td>
+                </tr>
+                <tr>
+
+                    <td class="semi_title">홈페이지 링크</td>
+                    <td colspan="3" class="semi_body"></td>
+
+                </tr>
+                <tr>
+
+                    <td class="semi_title">면접 유형
+                    </td>
+                    <td colspan="3" class="semi_body">
+                        <span th:if="${applyEmploy.inter_cate == 0}">비대면</span>
+                        <span th:if="${applyEmploy.inter_cate == 1}">대면</span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="body_table2">
+                <tr>
+                    <td class="semi_title">경력</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_career}"></td>
+                    <td class="semi_title">근무형태</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_state}"></td>
+                    <td class="semi_title" rowspan="2">근무지역</td>
+                    <td class="semi_body2" rowspan="2" th:text="${applyEmploy.emnot_area}"></td>
+                </tr>
+                <tr>
+                    <td class="semi_title">학력</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_education}"></td>
+                    <td class="semi_title">급여</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_salary}"></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="smart_editor_content">
+            <div class="semi_content" th:utext="${applyEmploy.emnot_content}">내용</div>
+            <div class="apply_button">
+                    <button type="submit">목록으로</button>
+                    <button type="submit" onclick="showPopup();">이력서 넣기</button>
+            </div>
+        </div>
+    </div>
+    <div class="sidefooter" th:replace="~{user/sideFooter/employSidefooter :: employSidefooter}"></div>
+
+    <script>
+        function showPopup() { window.open("users/submit/resume", "a", "width=500, height=250, left=650, top=330"); }
+    </script>
+
+    </body>
+</header>
+
+</html>

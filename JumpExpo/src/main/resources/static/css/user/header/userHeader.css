@@ -1,0 +1,194 @@
+@charset "utf-8";
+
+/*초기 설정*/
+*{
+  margin: 0;
+  padding: 0;
+  list-style:none;
+  box-sizing: border-box;
+}
+body{
+  background: #ffffff;
+  color:#787878;
+}
+a{
+  text-decoration:none;
+  display:block;
+}
+/*본문시작*/
+main{
+    width:100%;
+    margin:0 auto;
+    position:relative; /* 서브 메뉴 때문에 반드시 필요함   */
+  }
+  
+  /* 메뉴와 로고가 들어가는 header */
+  header{
+    width:100%;
+    height:100px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo{
+    width:20%;
+    height:100%;
+    display: flex; /*로고 이미지를 중앙에 위치 시키기 위해 flex로 지정하여 수평, 수직 정렬이 되도록 하기 위해.*/
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+  }
+  .logo > img {
+    width:200px; 
+    height:70px; 
+    /* 로고 위치 조정 */
+    margin-left: 250px;
+  }
+  
+  /*메인메뉴*/
+  .mainMenu {
+    width:70%;
+    height:100%;
+    display:flex;
+    align-items: center;
+  }
+  .mainMenu > a {
+    padding:20px 0;
+    font-weight:bold;
+    width:170px;
+    text-align: center;
+    color:#787878;
+  }
+  .mainMenu > a:hover {
+    color: #EA8874;
+  }
+  
+  /*서브메뉴*/
+  .subMenu{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    background:#ECECEC;
+    position:absolute;
+    z-index: 1;
+  }
+  .subMenuWrap{
+    width:70%; /*메인메뉴 위치랑 동일하게*/
+    height:100%;
+    display:flex;
+  }
+  .subMenuWrap > ul {
+    width:170px;
+  }
+  .subMenuWrap > ul:hover{
+    background-color: #f2dcd8;
+  }
+  .subMenuWrap > ul > li > a {
+    text-align: center;
+    padding:8px 0;
+    color:#787878;
+    font-weight: 600;
+    font-size: 12px;
+    width:170px;
+  }
+  .subMenuWrap > ul > li > a:hover{
+    background: #ebbfb7;
+    color:#787878;
+    
+  }
+  .header_right{
+    position: absolute;
+    right: 450px;
+  }
+  .body {
+    width: 1100px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+  }
+  .body_title {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    width: 1100px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
+  }
+  .body_title span{
+    font-weight: 800;
+    font-size: 30px;
+  }
+  .body_title span:last-child{
+    color: #374658;
+  }
+  .body_title_right{
+    position: absolute;
+    top: 70px;
+    right: 40px;
+  }
+  footer {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    top: 253px;
+    background-color: #374658;
+  }
+  footer > div{
+    position: absolute;
+    top: 20px;
+    left: 100px;
+  }
+  footer div:nth-child(2){
+    position: absolute;
+    left: 430px;
+    top: 30px;
+  }
+  footer div:nth-child(2) a,
+  footer div:nth-child(2) span  {
+    color: #fff;
+  }
+  footer div:nth-child(2) a {
+    text-decoration: underline;
+  }
+  footer div:nth-child(2) span {
+    font-weight: 200;
+    position: absolute;
+    top: 25px;
+  }
+
+  .side {
+    position: absolute;
+    top: 100px;
+    left: 200px;
+  }
+  .side_header {
+      width: 200px;
+      height: 120px;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
+      background: #f2f2f2;
+    }
+    .side_header a {
+      margin-left: 18px;
+      margin-top: 60px;
+      font-size: 25px;
+      font-weight: 700;
+      color: #EA8874;
+    }
+    .side_body{
+      width: 200px;
+      height: 50px;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
+      border-top: none;
+    }
+    .side_body a {
+      padding: 15px;
+      color: #787878;
+      font-weight: 700;
+    }
+    .side_body a:hover {
+      background: #EA8874;
+      color: #fff;
+      border-bottom: 2px solid #ccc;
+    }

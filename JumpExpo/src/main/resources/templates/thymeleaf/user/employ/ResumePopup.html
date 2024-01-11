@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="/static/css/user/employ/Resume.css" />
+<!--    <link rel="stylesheet" href="/css/ComExpoApp.css" />-->
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    ></script>
+    <title>기업 박람회 신청페이지</title>
+</head>
+<body>
+<div class="container">
+    <div class="line"></div>
+    <div class="po">
+        <div class="input_box">
+            <div class="box3">
+                <label class="file-box" for="file">
+                    이력서 첨부하기
+                </label>
+                <input type="file" id="file" />
+                <p id="originName"></p>
+            </div>
+            <p class="warning_text">
+                * 1개 이상의 파일을 동록해야할 경우 파일을 압축해서
+                첨부해주세요.
+            </p>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="btn_box">
+        <button>닫기</button>
+        <div>
+            <button>지원하기</button>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        target = document.getElementById('file'); // file 아이디 선언
+        target.addEventListener('change', function () {
+            // change 함수
+
+            if (target.value.length) {
+                // 파일 첨부인 상태일경우 파일명 출력
+                $('#originName').html(target.files[0].name);
+            } else {
+                //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게
+                $('#originName').html('');
+            }
+        });
+    };
+</script>
+</body>
+</html>

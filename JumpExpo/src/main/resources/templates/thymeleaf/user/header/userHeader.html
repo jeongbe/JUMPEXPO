@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="userHeader">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/static/css/user/header/userHeader.css" rel="stylesheet" />
+    <script src="/static/js/user/jquery-3.7.0.min.js"></script>
+    <title>채용공고 헤더</title>
+
+    <body>
+    <main>
+        <!-- header 부분 -->
+        <header>
+            <a class="logo" href="#"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
+
+            <nav class="mainMenu">
+                <a href="#">행사일정</a>
+                <a href="#">고객센터</a>
+                <a href="#">채용공고</a>
+                <a href="#">리뷰</a>
+            </nav>
+            <div class="header_right">
+                <div>
+                    로그인하기
+                </div>
+            </div>
+        </header>
+        <!-- header 끝 -->
+        <!-- 서브메뉴 시작 -->
+        <div class="subMenu">
+            <nav class="subMenuWrap">
+                <ul>
+                    <li><a href="#">전체일정</a></li>
+                    <li><a href="#">취업박람회 일정</a></li>
+                    <li><a href="#">페어 일정</a></li>
+                    <li><a href="#">채용박람회</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">공지사항</a></li>
+                    <li><a href="#">Q&A</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">공고보기</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">전체 리뷰</a></li>
+                    <li><a href="#">취업박람회 리뷰</a></li>
+                    <li><a href="#">페어 리뷰</a></li>
+                    <li><a href="#">채용박람회 리뷰</a></li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+
+    <script>
+
+        $(document).ready(function () {
+            //**** 마우스오버  ****//
+            //서브메뉴 숨기고 시작
+            $(".subMenu").hide();
+            // 마우스 오버
+            $(".mainMenu, .subMenu").mouseover(function () {
+                $(".subMenu").stop().slideDown(500);
+            }).mouseout(function () {
+                $(".subMenu").stop().slideUp(500);
+            });
+        });
+
+
+    </script>
+    </body>
+</header>
+</html>

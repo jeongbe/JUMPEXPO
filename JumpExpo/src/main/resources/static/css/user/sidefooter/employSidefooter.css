@@ -1,0 +1,66 @@
+.side {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+}
+.side_header {
+    width: 200px;
+    height: 120px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    background: #f2f2f2;
+  }
+  .side_header a {
+    margin-left: 18px;
+    margin-top: 60px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #EA8874;
+  }
+  .side_body{
+    width: 200px;
+    height: 50px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-top: none;
+  }
+  .side_body a {
+    padding: 15px;
+    color: #787878;
+    font-weight: 700;
+  }
+  .side_body a:hover {
+    background: #EA8874;
+    color: #fff;
+    border-bottom: 2px solid #ccc;
+  }
+
+    footer {
+      width: 100%;
+      height: 100px;
+      position: relative;
+      top: 253px;
+      background-color: #374658;
+    }
+    footer > div{
+      position: absolute;
+      top: 20px;
+      left: 100px;
+    }
+    footer div:nth-child(2){
+      position: absolute;
+      left: 430px;
+      top: 30px;
+    }
+    footer div:nth-child(2) a,
+    footer div:nth-child(2) span  {
+      color: #fff;
+    }
+    footer div:nth-child(2) a {
+      text-decoration: underline;
+    }
+    footer div:nth-child(2) span {
+      font-weight: 200;
+      position: absolute;
+      top: 25px;
+    }

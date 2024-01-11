@@ -1,0 +1,254 @@
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.search_background {
+    margin: 0 auto;
+    padding: 0;
+    position: absolute;
+    top: 135px;
+    left: 0;
+    width: 1100px;
+    height: 45px;
+    background-color: #dddddd
+}
+
+.search_content {
+    margin: 0 auto;
+    padding: 7px;
+    text-align: center;
+}
+
+.search_background input {
+    width: 970px;
+    height: 26px;
+    border: 0;
+    outline: none;
+}
+
+.search_background button {
+    position: relative;
+    top: 2px;
+    width: 90px;
+    height: 26px;
+    border: 0;
+    cursor: pointer;
+    background-color: white;
+    color: #303030;
+    font-weight: bold;
+}
+
+/*컨텐츠*/
+.contents {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /* 탭메뉴의 콘텐츠 영역 absolute 때문에 넣어줌 */
+}
+
+/*컨텐츠 공통사항*/
+.contents div {
+    width: 100%;
+}
+
+.contents>div:nth-of-type(2) {
+    margin: 0 10px;
+}
+
+/*탭메뉴 : 공지사항 갤러리 */
+.tabMenu {
+    display: flex;
+}
+
+.tabMenu>li>a {
+    padding: 0 15px;
+    min-width: 110px;
+    line-height: 35px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+}
+
+.tabMenu>li>a:hover {
+    background-color: #eeeeee;
+}
+
+/* 공지사항과 갤러리 탭 맞닿는 부분에 보더를 없애줌 */
+.tabMenu>li:first-child a {
+    border-right: none;
+}
+
+/* 활성화된 탭의 스타일 */
+.tabMenu>li.active>a {
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+/*탭 콘텐츠 영역 스타일*/
+.tabBG {
+    position: absolute;
+    overflow: hidden;
+    height: 550px;
+    /* chrome inspect(검사) 보고 수치 계산 */
+    background: #ffffff;
+}
+
+/*active 클래스가 추가된 탭 콘텐츠 영역 스타일*/
+.tabMenu>li.active .tabBG {
+    border: 1px solid #dddddd;
+    z-index: 1;
+}
+
+.tabMenu>li.active div .pagenum {
+    border: none;
+    z-index: 1;
+}
+
+.tabMenu>li.active div .paging #pageNumbers {
+    border: none;
+    z-index: 1;
+}
+
+/*  탭 안에 내용  */
+/*  탭 안에 내용  */
+/*  탭 안에 내용  */
+/*  탭 안에 내용  */
+
+a{
+    text-decoration: none;
+    color: #222328;
+}
+
+/* 공지사항 */
+.notice ul {
+    padding: 20px 0;
+}
+
+.notice ul li {
+    padding: 8px 20px;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+/* 날짜 오른쪽 정렬 */
+.notice li span {
+    float: right;
+}
+
+
+.gallery {
+    left: 0;
+}
+
+.gallery ul {
+    padding: 20px 0;
+}
+
+.gallery ul li {
+    padding: 8px 20px;
+    margin: 0 10px;
+    font-size: 14px;
+
+}
+
+/* .gallery li:hover {
+    color: #222328;
+    background: rgba(246, 182, 44, 0.1);
+} */
+
+.gallery li span {
+    float: right;
+}
+
+
+/* 내코드따옴 내부 내부 */
+
+table,
+th,
+td {
+    /* border: 1px solid #000; */
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table{
+    margin: 20px;
+    position: absolute;
+    /* top: 200px;
+    left: 580px; */
+}
+
+th {
+    height: 30px;
+    color: #555555;
+    font-size: 12px;
+    font-weight: bold;
+    border-bottom: 1px solid #5c5c5c;
+}
+
+td {
+    font-size: 14px;
+    color: #555555;
+    border-bottom: 1px solid #5c5c5c;
+}
+
+.td_number {
+    font-size: 15px;
+    font-weight: bold;
+    color: #555555;
+    height: 45px;
+}
+
+.table_one {
+    width: 50px;
+}
+
+
+.table_three {
+    width: 600px;
+}
+
+.table_four {
+    width: 300px;
+}
+
+.table_five {
+    width: 100px;
+}
+
+/* 페이징 */
+.paging {
+    display: flex;
+    text-align: center;
+    position: absolute;
+    top: 515px;
+    left: 540px;
+    border: none;
+}
+
+.paging .pagenum {
+    display: inline-block; /* 페이지 번호를 인라인 블록으로 변경 */
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: auto; /* 페이지 번호의 너비를 자동으로 설정 */
+}
+
+.paging button {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
