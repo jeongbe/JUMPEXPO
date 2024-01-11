@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="/static/css/admin/notice/NoticeNew.css" type="text/css" rel="stylesheet">
+    <script src="/static/js/admin/notice/jquery-3.7.0.min.js"></script>
+
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <title>공지사항 등록 페이지</title>
+</head>
+
+<body>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
+
+<!--    관리자 공지사항 리스트-->
+<div class="wrap">
+    <div class="body_title">
+        <span style="color:#787878;">공지</span>
+        <span>사항</span>
+    </div>
+    <form enctype="multipart/form-data">
+        <table>
+            <tr class="nt_title">
+                <td>
+                    <span> 제목 : </span>
+                    <input type="text" name="notTitle" maxlength="50" required/>
+                </td>
+            </tr>
+
+            <tr class="nt_content">
+                <td colspan="4">
+                    <textarea required name="notContent" id="ir1" style="width: 100%; height:350px; border:2px solid #ccc;"></textarea>
+                </td>
+            </tr>
+            <!--                        첨부파일 형식 어떻게 하는 지-->
+            <tr class="file_box">
+                <td>
+                    <label for="file">파일찾기</label>
+                    <input class="upload-name" value="" placeholder="">
+                    <input type="file" id="file" name="notFile">
+                </td>
+            </tr>
+        </table>
+        <div class="sub-btn"><button class="in_btn" type="submit">작성하기</button></div>
+    </form>
+    <!-- 목록으로돌아가기 -->
+</div>
+<script>
+    let oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+    oAppRef: oEditors,
+    elPlaceHolder: "ir1",
+    sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+    fCreator: "createSEditor2"
+    });
+
+    let subBtn = document.querySelector('.in_btn');
+
+    subBtn.onclick = () => {
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+        const textarearvalue = document.querySelector("#ir1").value;
+<!--        alert(textarearvalue);-->
+
+        let formData = new FormData(document.querySelector("form"));
+
+        formData.forEach((v,k) => {
+            console.log("key: " + k);
+            console.log("value: " + v);
+        })
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/admin/save/nt",
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (response) => {
+                // <!--            고객센터>내가 등록한 페이지로 이동하게-->
+                alert('공지사항이 등록되었습니다');
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+</script>
+</body>
+</html>
