@@ -1,0 +1,89 @@
+main {
+    width: 700px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+
+.selectradio {
+    width: 100%;
+    height: 80px;
+    /* background-color: blue; */
+}
+
+.searchinput {
+    height: 250px;
+    width: 500px;
+    /* background-color: blueviolet; */
+    float: left;
+}
+
+.searchbtn {
+    width: 100%;
+    height: 250px;
+    /* background-color: orange; */
+}
+
+
+.searchform {
+    margin-left: 80px;
+    margin-top: 80px;
+
+}
+
+.idbox,.pwbox{
+    width: 350px;
+    height: 40px;
+    box-shadow: 0px 3px 0px 0px  #ccc;
+
+}
+
+.idform, .pwform{
+   font-size: larger;
+}
+
+.pwform{
+    margin-top: 20px;
+}
+
+.searbtn{
+    margin-top: 100px;
+    width: 150px;
+    height: 140px;
+    background-color: #374658;
+    font-size: larger;
+    color: white;
+}
+
+.join_search{
+
+    margin-top: 110px;
+}
+
+
+.search{
+    margin-left: 580px;
+    color: gray;
+}
+
+.logo{
+
+    width: 350px;
+    height: 100px;
+    background-color: aqua;
+}
+
+.title{
+    display: flex;
+
+}
+
+.title_text{
+
+}
+
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/join/ShowPw.css">
+    <title>Document</title>
+    <style>
+        main {
+    width: 700px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+
+.selectradio {
+    width: 100%;
+    height: 80px;
+    /* background-color: blue; */
+}
+
+.searchinput {
+    height: 250px;
+    width: 500px;
+    /* background-color: blueviolet; */
+    float: left;
+}
+
+.searchbtn {
+    width: 100%;
+    height: 250px;
+    /* background-color: orange; */
+}
+
+
+.searchform {
+    margin-left: 80px;
+    margin-top: 40px;
+
+}
+
+.idbox,.pwbox{
+    width: 350px;
+    height: 40px;
+    box-shadow: 0px 3px 0px 0px  #ccc;
+
+}
+
+.idform, .pwform{
+   font-size: larger;
+}
+
+.pwform{
+    margin-top: 20px;
+}
+
+.searbtn{
+    margin-top: 100px;
+    width: 150px;
+    height: 140px;
+    background-color: #374658;
+    font-size: larger;
+    color: white;
+}
+
+.join_search{
+
+    margin-top: 110px;
+}
+
+
+.search{
+    margin-left: 580px;
+    color: gray;
+}
+
+.logo{
+
+    width: 350px;
+    height: 100px;
+    background-color: aqua;
+}
+
+.title{
+    display: flex;
+
+}
+
+.title_text{
+
+}
+
+
+    </style>
+</head>
+<body>
+<div class="title">
+    <div class="logo">로고</div>
+    <div class="title_text">
+        비밀번호 찾기
+    </div>
+</div>
+<main>
+    <form method="post" action="/JumpExpo/SearchPw">
+    <div class="searchinput">
+        <div class="searchform">
+            <div  class="idform">
+                아이디<br>
+                <input type="text" class="idbox" name="id"><br>
+            </div>
+            <div class="pwform">
+                이름<br>
+                <input type="text" class="pwbox" name="name">
+            </div>
+            <div class="pwform">
+                이메일<br>
+                <input type="email" class="pwbox" name="email">
+            </div>
+        </div>
+    </div>
+    <div class="searchbtn">
+        <button type="submit" class="searbtn">찾기</button>
+    </div>
+    </form>
+</main>
+</body>
+</html>

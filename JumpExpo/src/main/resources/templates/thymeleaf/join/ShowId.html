@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/join/ShowId.css">
+    <title>Document</title>
+    <style>
+        main {
+    width: 700px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+
+.showform{
+    text-align: center;
+    margin-top: 100px;
+}
+.showinput{
+    width: 350px;
+    height: 40px;
+}
+
+.loginpage{
+    margin-top: 200px;
+    width: 250px;
+    height: 60px;
+    margin-left: 220px;
+    background-color: #374658;
+    color: white;
+}
+
+.logo{
+
+    width: 350px;
+    height: 100px;
+    background-color: aqua;
+}
+
+.title{
+    display: flex;
+
+}
+
+.title_text{
+
+}
+    </style>
+</head>
+
+<body>
+<div class="title">
+    <div class="logo">로고</div>
+    <div class="title_text">
+        아이디 찾기
+    </div>
+</div>
+<main>
+    <div class="showform">
+        <h3>아이디를 찾았습니다 !!</h3><br>
+        <div th:if="${comid != null}">
+        <input type="text" class="showinput" th:value="${comid}">
+        </div>
+        <div th:if="${userid != null}">
+        <input type="text" class="showinput" th:value="${userid}">
+        </div>
+    </div>
+    <a href="/JumpExpo/Login"><button class="loginpage">로그인하기</button></a>
+</main>
+
+</body>
+
+</html>

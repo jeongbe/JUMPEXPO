@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/join/Login.css">
+    <title>Document</title>
+    <style>
+        main {
+    width: 700px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+
+.selectradio {
+    width: 100%;
+    height: 80px;
+    /* background-color: blue; */
+}
+
+.logininput {
+    height: 250px;
+    width: 500px;
+    /* background-color: blueviolet; */
+    float: left;
+}
+
+.loginbtn {
+    width: 100%;
+    height: 250px;
+    /* background-color: orange; */
+}
+
+.com_radio {
+    margin-left: 520px;
+    margin-top: 50px;
+    width: 18px;
+    height: 18px;
+}
+
+.per_radio {
+    margin-left: 20px;
+    width: 18px;
+    height: 18px;
+}
+
+.loginform {
+    margin-left: 80px;
+    margin-top: 20px;
+
+}
+
+.idbox,.pwbox{
+    width: 350px;
+    height: 40px;
+    box-shadow: 0px 3px 0px 0px  #ccc;
+
+}
+
+.idform, .pwform{
+   font-size: larger;
+}
+
+.pwform{
+    margin-top: 20px;
+}
+
+.logbtn{
+    margin-top: 40px;
+    width: 150px;
+    height: 140px;
+    background-color: #374658;
+    font-size: larger;
+    color: white;
+}
+
+.join_search{
+    display: flex;
+    margin-top: 10px;
+}
+
+.join{
+    color: gray;
+}
+
+.search{
+    margin-left: 480px;
+    color: gray;
+}
+
+.kakaologin{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.kakaobtn{
+    width: 550px;
+    height: 60px;
+    background-color: yellow;
+}
+
+    </style>
+</head>
+
+<body>
+<main>
+    <form action="/JumpExpo/AppLogin" method="post">
+    <div class="selectradio">
+        <input type="radio" name="comper" class="com_radio" value="1">기업
+        <input type="radio" name="comper" class="per_radio" value="2">개인
+    </div>
+    <hr>
+    <div class="logininput">
+        <div class="loginform">
+            <div  class="idform">
+                아이디<br>
+                <input type="text" class="idbox" name="user_id"><br>
+            </div>
+            <div class="pwform">
+                비밀번호<br>
+                <input type="password" class="pwbox" name="password">
+            </div>
+        </div>
+    </div>
+    <div class="loginbtn">
+        <button type="submit" class="logbtn">로그인</button>
+    </div>
+    </form>
+    <div class="join_search">
+        <a href="/JumpExpo/JoinSelect"><div class="join">회원가입</div></a>
+        <a href="/JumpExpo/IdSearch"><div class="search">아이디/비밀번호 찾기</div></a>
+    </div>
+    <div class="kakaologin">
+        <button class="kakaobtn">카카오 로그인</button>
+    </div>
+
+</main>
+
+<script th:if="${error != null}" type="text/javascript">
+        alert('아이디 또는 비밀번호를 확인하세요.');
+</script>
+</body>
+
+</html>
