@@ -1,0 +1,109 @@
+
+
+.wrap {
+position:relative;
+top:-730px;
+left:-100px;
+}
+
+ .body_title {
+    position: absolute;
+    top: 60px;
+    left: 350px;
+    width: 700px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
+  }
+  .body_title span{
+    font-weight: 800;
+    font-size: 30px;
+  }
+  .body_title span:last-child{
+    color: #374658;
+  }
+.form {
+    border-top: 3px solid #374658;
+  }
+ .nt_title {
+    position: absolute;
+    top: 130px;
+    left:0px;
+    width: 700px;
+    text-align: center;
+    color: #787878;
+    font-weight: 700;
+    font-size: 13pt;
+    display:inline;
+ }
+  .nt_title span {
+  color:#787878;
+  position:absolute;
+  left:350px;
+  }
+ .nt_title input {
+    width:620px;
+    height:30px;
+    position:absolute;
+    left:410px;
+    border:2px solid #ccc;
+ }
+ .nt_content td {
+ width:700px;
+ height:500px;
+ position:absolute;
+ top:185px;
+ left:350px;
+ }
+
+.file_box {
+    position:absolute;
+    top:600px;
+    left:300px;
+    width:600px;
+}
+.file_box .upload-name {
+    display: inline-block;
+    height: 30px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 2px solid #ccc;
+    width: 550px;
+    color: #787878;
+    float:right;
+    position:absolute;
+    left:170px;
+}
+.file_box label {
+    display: inline-block;
+    float:left;
+    width: 110px;
+    color: #fff;
+    border: 2px solid #ccc;
+    background-color: #374658;
+    cursor: pointer;
+    height:30px;
+    text-align:center;
+    font-size:14px;
+    line-height:30px;
+    margin-left:45px;
+}
+.file_box input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+ .in_btn {
+    border: 2px solid #ccc;
+    width: 110px;
+    height: 30px;
+    color: #fff;
+    background-color: #374658;
+    position: absolute;
+    left: 600px;
+    top:670px;
+    cursor: pointer;
+  }
+
