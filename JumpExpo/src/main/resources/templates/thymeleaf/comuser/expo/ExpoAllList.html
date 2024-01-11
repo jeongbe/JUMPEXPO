@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/user/expo/ExpoAllList.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <title>박람회 전체 일정 리스트</title>
     <style>
@@ -60,25 +61,30 @@
         <img src="" alt="" />
     </div>
     <div class="select-box">
-        <form method="get" action="/allexpo">
+        <form method="get" action="/com/allexpo">
             <div class="search-box">
                 <p class="size">행사 / 공연명</p>
                 <input type="text" name="serch" id="" />
                 <button type="submit">검색</button>
             </div>
         </form>
-        <div class="Period-box">
-            <p>기간 선택</p>
-            <div class="btns">
-                <button>1개월</button>
-                <button>3개월</button>
-                <button>6개월</button>
+        <form method="get" action="/com/expo/period">
+            <div class="Period-box">
+                <p>기간 선택</p>
+                <div class="btns">
+                    <button type="button" onclick="sendDuration(1)">1개월</button>
+                    <button type="button" onclick="sendDuration(3)">3개월</button>
+                    <button type="button" onclick="sendDuration(6)">6개월</button>
+                </div>
+                <div class="date-box">
+                    <span><input type="date" name="" id="" /></span>
+                    <input type="date" name="" id="" />
+                </div>
             </div>
-            <div class="date-box">
-                <span><input type="date" name="" id="" /></span>
-                <input type="date" name="" id="" />
-            </div>
-        </div>
+        </form>
+    </div>
+    <div>
+
     </div>
     <div class="content" th:each="list : ${AllList}">
         <div class="expo-info-box" >
@@ -87,7 +93,7 @@
             </div>
             <div class="expo-info">
                 <p>예정행사</p>
-                <p class="expo-name" th:text="${list.expo_title}">2024 예일 박람회</p>
+                <p class="expo-name" th:text="${list.expo_title}" th:onclick="'javascript:location.href=&quot;/com/expo/info/' + ${list.expo_code} +'/' + ${list.expo_cate} + '&quot;'">2024 예일 박람회</p>
                 <div class="period-box2">
                     <p th:text="${list.expo_start}">2024-01-10</p>
                     <p th:text="${list.expo_end}">2024-01-10</p>
@@ -105,7 +111,8 @@
     </nav>
 
     <!-- 페이징 처리하기 -->
-    <p style="display:none" class="total_page" th:text="${TotalPage}"></p>
+<!--    style="display:none"-->
+    <p  class="total_page" th:text="${TotalPage}"></p>
 </div>
 <script>
     let total_page = document.querySelector('.total_page').textContent;
@@ -118,22 +125,44 @@
         // 이전 버튼
         var prevButton = document.createElement("li");
         prevButton.classList.add("page-item");
-        prevButton.innerHTML = `<a class="page-link"  href="/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        prevButton.innerHTML = `<a class="page-link"  href="/com/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
         paginationContainer.appendChild(prevButton);
 
         // 페이지 번호 생성
         for (var i = 1; i <= total_page; i++) {
             var pageItem = document.createElement("li");
             pageItem.classList.add("page-item");
-            pageItem.innerHTML = `<a class="page-link" href="/allexpo?page=${i-1}">${i}</a>`;
+            pageItem.innerHTML = `<a class="page-link" href="/com/allexpo?page=${i-1}">${i}</a>`;
             paginationContainer.appendChild(pageItem);
         }
 
         // 다음 버튼
         var nextButton = document.createElement("li");
         nextButton.classList.add("page-item");
-        nextButton.innerHTML = `<a class="page-link" href="/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        nextButton.innerHTML = `<a class="page-link" href="/com/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
         paginationContainer.appendChild(nextButton);
+    }
+
+    function sendDuration(months) {
+        // 선택된 버튼의 정보를 서버로 전송
+        $.ajax({
+            type: "get",  // 또는 "post"에 따라서 HTTP 메서드 선택
+            url: "/com/expo/period",
+            data: {
+                duration: months
+            },
+            success: function (response) {
+                // 서버 응답에 따른 동작
+<!--                total_page = -->
+                alert(total_page);
+<!--                console.log(response);-->
+            },
+            error: function (error) {
+                // 에러 발생 시 동작
+<!--                alert("에러");-->
+                console.log(error);
+            }
+        });
     }
 </script>
 </body>

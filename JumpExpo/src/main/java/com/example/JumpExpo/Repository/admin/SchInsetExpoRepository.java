@@ -34,4 +34,10 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "from schedule_insert\n" +
             "where expo_title like %:text%", nativeQuery = true)
     Page<ScheduleInsert> serch1(Pageable pageable, @Param("text") String text);
+
+    //행사 전체 리스트 1개월 버튼
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE expo_start BETWEEN NOW() AND date_add(NOW(), INTERVAL 1 Month)", nativeQuery = true)
+    Page<ScheduleInsert> period1(Pageable pageable);
 }

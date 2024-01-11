@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/side/ScheduleSide.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <title>심사 사이드바</title>
+</head>
+<body>
+<div class="side">
+    <!-- class="back-c" -->
+    <ul class="inset-ul back-3">
+        <li class="sc_insert">박람회 심사</li>
+        <div class="list">
+            <span class="">채용 박람회</span>
+            <span class="">페어 박람회</span>
+            <span>취업 박람회</span>
+        </div>
+    </ul>
+    <ul class="bac">
+        <li class="pad">공고 심사</li>
+    </ul>
+</div>
+<script>
+    //심사
+    let sc_insert = document.querySelector('.inset-ul');
+    //공고
+    let schedule = document.querySelector('.bac');
+    //심사 리스트
+    let inset_list = document.querySelector('.list');
+    inset_list.style.display = 'none';
+
+    // 각 span 요소에 클릭 이벤트 리스너 추가
+    document.querySelectorAll('.list span').forEach((span) => {
+        span.addEventListener('click', () => {
+            // 모든 span 요소에서 'selected' 클래스 제거
+            document.querySelectorAll('.list span').forEach((s) => {
+                s.classList.remove('font-c');
+            });
+
+            // 클릭된 span에 'selected' 클래스 추가
+            span.classList.add('font-c');
+        });
+    });
+
+    //심사
+    sc_insert.onclick = () => {
+        sc_insert.classList.add('back-3');
+        schedule.classList.remove('m1');
+        schedule.classList.remove('back-3');
+        inset_list.style.display = 'flex';
+    };
+
+    //공고
+    schedule.onclick = () => {
+        sc_insert.classList.remove('back-3');
+
+        schedule.classList.add('back-3');
+        schedule.classList.add('m1');
+        inset_list.style.display = 'none';
+    };
+</script>
+</body>
+</html>

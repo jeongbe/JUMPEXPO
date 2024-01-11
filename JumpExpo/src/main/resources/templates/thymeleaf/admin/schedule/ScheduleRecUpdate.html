@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/css/admin/schedule/ScheduleEmp.css" />
+    <title>채용 박람회 일정 수정</title>
+</head>
+<body>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
+<div class="container">
+    <p class="p-title">채용 박람회 일정 수정</p>
+    <p class="line"></p>
+    <form action="">
+        <table>
+            <tr>
+                <td>
+                    <span class="info">박람회 이름</span>
+                    <span><input type="text" th:value="${Data.expo_title}" name="RExpoTitle" id="RExpoTitle" required /></span>
+                </td>
+                <td>
+                    <span class="info">주최</span>
+                    <span><input type="text" th:value="${Data.expo_host}" name="RExpoHost" id="RExpoHost" required /></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="info">진행시간</span>
+                    <span
+                    ><input
+                            type="text"
+                            placeholder="ex) 10:00~15:00"
+                            required name="RExpoTime" id="RExpoTime"
+                            th:value="${Data.expo_time}"
+                    /></span>
+                </td>
+                <td>
+                    <span class="info">주관</span>
+                    <span><input type="text" th:value="${Data.expo_manage}" id="RExpoManage" name="RExpoManage" required /></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="info">장소</span>
+                    <span><input type="text" th:value="${Data.expo_add}" id="RExpoAdd" name="RExpoAdd" required /></span>
+                </td>
+                <td>
+                    <span class="info">전시품목</span>
+                    <span><input type="text" th:value="${Data.expo_exhibit}" id="RExpoExhibit" name="RExpoExhibit" required /></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="info">썸네일 이미지</span>
+                    <span
+                    ><input type="file" id="RExpoImage" name="RExpoImage" required
+                    /></span>
+                </td>
+                <td>
+                    <span class="info">담당자</span>
+                    <span><input type="text" th:value="${Data.master_name}" id="RMasterName" name="RMasterName" required /></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="info">신청기간</span>
+                    <span class="start-date"
+                    ><input type="date" th:value="${Data.apply_start}" name="RApplyStart" id="RApplyStart" required
+                    /></span>
+                    <span
+                    ><input type="date" th:value="${Data.apply_end}" name="RApplyEnd" id="RApplyEnd" required
+                    /></span>
+                </td>
+                <td>
+                    <span class="info" >전화번호</span>
+                    <span
+                    ><input
+                            type="number"
+                            placeholder="'-'빼고 입력해주세요"
+                            required
+                            max="11" name="RMasterPhone" id="RMasterPhone"
+                            th:value="${Data.master_phone}"
+                    /></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="info">진행기간</span>
+                    <span class="start-date"
+                    ><input type="date" th:value="${Data.expo_start}" name="RExpoStart" id="RExpoStart" required
+                    /></span>
+                    <span
+                    ><input type="date" th:value="${Data.expo_end}" name="RExpoEnd" id="RExpoEnd" required
+                    /></span>
+                </td>
+                <td>
+                    <span class="info">이메일</span>
+                    <span><input type="email" th:value="${Data.master_mail}" name="RMasterEmail" id="RMasterEmail" required /></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="info">전시 개요</span>
+                    <span
+                    ><input type="text" th:value="${Data.expo_outline}" name="RExpoOutline" id="RExpoOutline" required maxlength="50"
+                    /></span>
+                </td>
+                <td>
+                    <span class="info">직종</span>
+                    <span><input type="text" th:value="${Data.expo_occ_cate}" name="RExpoOccCate" id="RExpoOccCate" required /></span>
+                </td>
+            </tr>
+            <tr class="notice-row">
+                <td colspan="2">
+                    <textarea required th:utext="${Data.expo_content}" name="RExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="sub-btn">
+            <button class="in_btn" type="submit">수정하기</button>
+        </div>
+    </form>
+</div>
+<script>
+    let oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+    oAppRef: oEditors,
+    elPlaceHolder: "ir1",
+    sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+    fCreator: "createSEditor2"
+    });
+
+    let subBtn = document.querySelector('.in_btn');
+
+    subBtn.onclick = () => {
+
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+        const textarearvalue = document.querySelector("#ir1").value;
+
+        let formData = new FormData(document.querySelector("form"));
+
+        formData.forEach((v,k) => {
+            console.log("key: " + k);
+            console.log("vlaue: " + v);
+        })
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/admin/update/" + [[${Data.expo_code}]] + "/" + [[${Data.expo_cate}]] ,
+            enctype:"multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (response) => {
+                location.replace("/admin/Calender");
+
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+</script>
+</body>
+</html>

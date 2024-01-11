@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/schedule/AdExpoInfo.css" />
+    <title>박람회 정보</title>
+</head>
+<body>
+<div class="container">
+    <div class="title-box">
+        <div class="body_title">
+            <span>박람회</span>
+            <span>정보</span>
+        </div>
+
+        <div class="body_title_right">
+            <!-- <img
+                src="/Pro3/image/home.png"
+                alt="홈 아이콘"
+                style="width: 20px"
+            /> -->
+            <!-- > 신청하기 > 박람회 신청하기 -->
+        </div>
+    </div>
+    <div class="line1"></div>
+    <div class="expo_name_box">
+        <p>엑스포이름</p>
+    </div>
+    <div class="line2"></div>
+    <div class="expo_info_box">
+        <div class="img_box">
+            <img src="" alt="" />
+        </div>
+        <div class="expo_info">
+            <div class="expo_name info_box1">
+                <p>행사명 :</p>
+                <p>행사 이름</p>
+            </div>
+            <div class="expo_Period info_box1">
+                <p>개최 기간 :</p>
+                <p>기간</p>
+            </div>
+            <div class="expo_time info_box1">
+                <p>관람시간 :</p>
+                <p>시간</p>
+            </div>
+            <div class="expo_place info_box1">
+                <p>개최장소 :</p>
+                <p>장소</p>
+            </div>
+        </div>
+    </div>
+    <div class="outline_box">
+        <div class="o_box1">
+            <p>전시 개요</p>
+        </div>
+        <div class="o_box2">
+            <p>전시내용</p>
+        </div>
+    </div>
+    <div class="expo_info_box2">
+        <div class="info_box2">
+            <p>주최</p>
+            <p>정보</p>
+        </div>
+        <div class="info_box2">
+            <p>주관</p>
+            <p>정보</p>
+        </div>
+        <div class="info_box2">
+            <p>전시품목</p>
+            <p>정보</p>
+        </div>
+        <div class="info_box2">
+            <p>담당자</p>
+            <p>정보</p>
+        </div>
+        <div class="info_box2">
+            <p>전화번호</p>
+            <p>정보</p>
+        </div>
+        <div class="info_box2">
+            <p>이메일</p>
+            <p>정보</p>
+        </div>
+    </div>
+    <div class="expo_explanation">
+                <textarea
+                        name=""
+                        id=""
+                        cols="30"
+                        rows="10"
+                        oninput="autoResizeTextArea(this)"
+                        readonly
+                >
+                </textarea>
+    </div>
+    <div class="line2"></div>
+    <div class="btn_box">
+        <button>신청하기</button>
+        <button>목록</button>
+    </div>
+</div>
+
+<script>
+    function autoResizeTextArea(element) {
+        // 스크롤 높이 초기화
+        element.style.height = 'auto';
+        // 현재 스크롤 높이 설정
+        element.style.height = element.scrollHeight + 'px';
+    }
+
+    // 페이지 로드시 자동으로 높이 조절
+    document.addEventListener('DOMContentLoaded', function () {
+        var textArea = document.querySelector(
+            '.expo_explanation textarea'
+        );
+        autoResizeTextArea(textArea);
+    });
+</script>
+</body>
+</html>

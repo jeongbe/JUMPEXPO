@@ -176,8 +176,9 @@ function generateCalendar(year, month) {
                             SpanStyle += 'color:#374658;';
                         }else if(info[i].expo_cate == 2){
                             SpanStyle += 'color:#F1D2B0;';
+<!--                            "alert(${info[i].expo_code})"-->
                         }
-                        html += `<span class="sch" onclick="alert(${info[i].expo_code})"; style="${SpanStyle}">${expoName}</span>`;
+                        html += `<span class="sch" onclick="location.href='/admin/expo/info/' + ${info[i].expo_code}"; style="${SpanStyle}">${expoName}</span>`;
                     }
 
                 }

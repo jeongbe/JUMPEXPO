@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/schedule/ScheduleEmp.css" />
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <title>취업 박람회 일정 수정</title>
+</head>
+<body>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
+<div class="container">
+    <p class="p-title">취업 박람회 일정 수정</p>
+    <p class="line"></p>
+    <form enctype="multipart/form-data">
+    <table class="notice-list">
+        <tr>
+            <td>
+                <span class="info">박람회 이름</span>
+                <span><input type="text" th:value="${Data.expo_title}" name="ExpoTitle" id="ExpoTitle" maxlength="25" required/></span>
+            </td>
+            <td>
+                <span class="info">주최</span>
+                <span><input type="text" th:value="${Data.expo_host}" id="ExpoHost" placeholder="대표자 한명만 적어주세요" name="ExpoHost" maxlength="10" required/></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="info">진행시간</span>
+                <span><input type="text" th:value="${Data.expo_time}" name="ExpoTime" id="ExpoTime" required placeholder="ex) 10:00~15:00" maxlength="11"/></span>
+            </td>
+            <td>
+                <span class="info">주관</span>
+                <span><input type="text" th:value="${Data.expo_manage}" id="ExpoManage" placeholder="대표업체 하나만 적어주세요" name="ExpoManage" maxlength="10" required/></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="info">장소</span>
+                <span><input type="text" th:value="${Data.expo_add}" id="ExpoAdd" name="ExpoAdd" maxlength="50" required/></span>
+            </td>
+            <td>
+                <span class="info">전시품목</span>
+                <span><input type="text" th:value="${Data.expo_exhibit}" id="ExpoExhibit" name="ExpoExhibit" maxlength="100" required/></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="info">썸네일 이미지</span>
+                <span><input type="file"  id="ExpoImage" name="ExpoImage"  required/></span>
+            </td>
+            <td>
+                <span class="info">담당자</span>
+                <span><input type="text" th:value="${Data.master_name}" id="MasterName" name="MasterName"  required/></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="info">신청기간</span>
+                <span class="start-date"
+                ><input type="date" th:value="${Data.apply_start}" name="ApplyStart"  required id="ApplyStart"
+                /></span>
+                <span><input type="date" th:value="${Data.apply_end}" name="ApplyEnd"  required id="ApplyEnd"/></span>
+            </td>
+            <td>
+                <span class="info">전화번호</span>
+                <span><input type="number" th:value="${Data.master_phone}" name="MasterPhone" maxlength="11" id="MasterPhone" required placeholder="'-'빼고 입력해주세요"/></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="info">진행기간</span>
+                <span class="start-date"
+                ><input type="date" th:value="${Data.expo_start}" name="ExpoStart"  required id="ExpoStart"
+                /></span>
+                <span><input type="date" th:value="${Data.expo_end}" name="ExpoEnd"  required id="ExpoEnd"/></span>
+            </td>
+            <td>
+                <span class="info">이메일</span>
+                <span><input type="email" th:value="${Data.master_mail}" name="MasterEmail" maxlength="50" required id="MasterEmail" /></span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <span class="info">전시 개요</span>
+                <span class="outline"><input type="text" th:value="${Data.expo_outline}" name="ExpoOutline" nonce="250" id="ExpoOutline" required /></span>
+            </td>
+        </tr>
+        <tr class="notice-row">
+            <td colspan="2">
+                <textarea required th:utext="${Data.expo_content}" name="ExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
+            </td>
+        </tr>
+    </table>
+        <!-- 에디터 사용 예정 -->
+
+        <div class="sub-btn">
+            <button class="in_btn">수정하기</button>
+        </div>
+        </form>
+</div>
+
+<script>
+    let oEditors = [];
+    nhn.husky.EZCreator.createInIFrame({
+    oAppRef: oEditors,
+    elPlaceHolder: "ir1",
+    sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+    fCreator: "createSEditor2"
+    });
+
+    let subBtn = document.querySelector('.in_btn');
+<!--값 체크하기-->
+<!--        let ExpoTitle = document.getElementById('ExpoTitle');-->
+<!--        let ExpoStart = document.getElementById('ExpoStart');-->
+<!--        let ExpoEnd = document.getElementById('ExpoEnd');-->
+<!--        let ApplyStart = document.getElementById('ApplyStart');-->
+<!--        let ApplyEnd = document.getElementById('ApplyEnd');-->
+<!--        let ExpoAdd = document.getElementById('ExpoAdd');-->
+<!--        let ExpoImage = document.getElementById('ExpoImage');-->
+<!--        let ExpoOutline = document.getElementById('ExpoOutline');-->
+<!--        let ExpoManage = document.getElementById('ExpoManage');-->
+<!--        let ExpoExhibit = document.getElementById('ExpoExhibit');-->
+<!--        let MasterName = document.getElementById('MasterName');-->
+<!--        let MasterPhone = document.getElementById('MasterPhone');-->
+<!--        let MasterEmail = document.getElementById('MasterEmail');-->
+<!--        let ExpoOccCate = document.getElementById('ExpoOccCate');-->
+<!--        let ExpoHost = document.getElementById('ExpoHost');-->
+
+
+
+    subBtn.onclick = () => {
+
+
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+        const textarearvalue = document.querySelector("#ir1").value;
+<!--        alert(textarearvalue);-->
+
+        let formData = new FormData(document.querySelector("form"));
+
+        formData.forEach((v,k) => {
+            console.log("key: " + k);
+            console.log("vlaue: " + v);
+        })
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/admin/update/" + [[${Data.expo_code}]] + "/" + [[${Data.expo_cate}]] ,
+            enctype:"multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (response) => {
+<!--            일정관리 페이지로 이동하게-->
+                location.replace("/admin/Calender");
+
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -2,14 +2,21 @@
     background-color: #374658;
     width: 250px;
     height: 700px;
-    position: relative;
-    right: 525px;
+}
+
+li {
+    height: 40px;
 }
 
 .side > ul > li {
     color: white;
     font-size: 22px;
     padding-top: 10px;
+}
+
+.inset-ul {
+    margin: 0px;
+    height: auto;
 }
 
 .list {
@@ -35,6 +42,7 @@
         0.2
     ); /* 마지막 값인 0.5는 투명도를 나타냄 (0이 완전 투명, 1이 완전 불투명) */
     margin: 0px;
+    /* display: flex; */
 }
 
 .back-c2 {
@@ -50,7 +58,6 @@
         0.2
     ); /* 마지막 값인 0.5는 투명도를 나타냄 (0이 완전 투명, 1이 완전 불투명) */
     margin: 0px;
-    height: 50px;
 }
 
 .bac {
@@ -60,4 +67,9 @@
 
 .list > span {
     cursor: pointer;
+}
+
+.m1 {
+    margin: 0px;
+    margin-top: auto;
 }

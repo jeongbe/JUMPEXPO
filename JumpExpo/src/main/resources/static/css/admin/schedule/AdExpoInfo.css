@@ -1,0 +1,187 @@
+* {
+    margin: 0px;
+}
+
+body {
+    width: 950px;
+}
+
+.title-box {
+    display: flex;
+}
+
+.body_title {
+    margin: 0px;
+}
+
+.body_title > span:first-child {
+    font-size: 40px;
+    color: #808080;
+    font-weight: bold;
+}
+
+.body_title > span:last-child {
+    font-size: 40px;
+    color: #374658;
+    font-weight: bold;
+}
+
+.body_title_right {
+    margin-left: 380px;
+}
+
+.line1 {
+    margin-top: 10px;
+    border-bottom: 7px solid #374658;
+}
+
+.expo_name_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.line2 {
+    border-bottom: 3px solid #ccc;
+}
+
+.expo_info_box {
+    display: flex;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.img_box {
+    width: 250px;
+    height: 150px;
+    /* background-color: antiquewhite; */
+}
+
+.img_box > img {
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+.expo_info {
+    margin-left: 30px;
+    font-size: 19px;
+    color: #808080;
+    margin-top: 20px;
+}
+
+.info_box1 {
+    display: flex;
+}
+
+.info_box1 p:first-child {
+    margin-left: 5px;
+}
+
+.info_box1::before {
+    content: '● ';
+    color: #000;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.outline_box {
+    display: flex;
+    height: 130px;
+}
+
+.o_box1 {
+    background-color: #374658;
+    width: 130px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.o_box2 {
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 100%;
+    background-color: #ccc;
+    word-wrap: break-word;
+    max-height: 200px; /* Set a maximum height */
+    overflow-y: auto;
+}
+
+.o_box2 p {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.expo_info_box2 {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.info_box2 {
+    display: flex;
+}
+
+.info_box2 p:first-child {
+    width: 100px;
+    border: 2px solid #808080;
+    padding: 5px 8px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.info_box2 p:last-child {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    /* background-color: aqua; */
+    justify-content: center;
+    height: 34px;
+}
+
+.expo_explanation {
+    /* background-color: aqua; */
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+.expo_explanation > textarea {
+    width: 900px;
+    resize: none;
+    font-size: 20px;
+    overflow: hidden;
+    /* 자동으로 높이를 조절하도록 수정 */
+}
+
+textarea:focus {
+    outline: 0;
+}
+
+.btn_box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn_box button {
+    width: 130px;
+    height: 40px;
+    color: white;
+    background-color: #374658;
+    font-size: 20px;
+}
+
+.content {
+    width:100%;
+    height:auto;
+    min-height: 300px;
+    border: 1px solid #808080;
+}

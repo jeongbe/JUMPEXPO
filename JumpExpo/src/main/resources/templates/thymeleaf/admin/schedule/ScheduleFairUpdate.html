@@ -6,100 +6,100 @@
     <link rel="stylesheet" href="/static/css/admin/schedule/ScheduleEmp.css" />
     <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <title>페어 박람회 일정등록</title>
+    <title>페어 박람회 일정 수정</title>
 </head>
 <body>
 <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
 <div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
 <div class="container">
-    <p class="p-title">페어 박람회 일정 등록</p>
+    <p class="p-title">페어 박람회 일정 수정</p>
     <p class="line"></p>
     <form enctype="multipart/form-data">
-        <table >
+        <table th:if="${Data != null}" >
             <tr>
                 <td>
                     <span class="info">박람회 이름</span>
-                    <span><input type="text"  name="FExpoTitle" id="ExpoTitle" required/></span>
+                    <span><input type="text" th:value="${Data.expo_title}" name="FExpoTitle" id="ExpoTitle" required/></span>
                 </td>
                 <td>
                     <span class="info">주최</span>
-                    <span><input type="text"   name="FExpoHost" id="FExpoHost" placeholder="대표자 한명만 적어주세요" required/></span>
+                    <span><input type="text" th:value="${Data.expo_host}"  name="FExpoHost" id="FExpoHost" placeholder="대표자 한명만 적어주세요" required/></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="info">진행시간</span>
-                    <span><input type="text"  name="FExpoTime" id="ExpoTime" required placeholder="ex) 10:00~15:00" /></span>
+                    <span><input type="text" th:value="${Data.expo_time}" name="FExpoTime" id="ExpoTime" required placeholder="ex) 10:00~15:00" /></span>
                 </td>
                 <td>
                     <span class="info">주관</span>
-                    <span><input type="text" id="ExpoManage"  name="FExpoManage" placeholder="대표업체 하나만 적어주세요" required/></span>
+                    <span><input type="text" id="ExpoManage" th:value="${Data.expo_manage}" name="FExpoManage" placeholder="대표업체 하나만 적어주세요" required/></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="info">장소</span>
-                    <span><input type="text"  id="ExpoAdd" name="FExpoAdd" required /></span>
+                    <span><input type="text" th:value="${Data.expo_add}" id="ExpoAdd" name="FExpoAdd" required /></span>
                 </td>
                 <td>
                     <span class="info">전시품목</span>
-                    <span><input type="text"  id="ExpoExhibit" name="FExpoExhibit" required/></span>
+                    <span><input type="text" th:value="${Data.expo_exhibit}" id="ExpoExhibit" name="FExpoExhibit" required/></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="info">썸네일 이미지</span>
-                    <span><input type="file"  id="ExpoImage" name="FExpoImage" required/></span>
+                    <span><input type="file" th:value="${Data.expo_image}" id="ExpoImage" name="FExpoImage" required/></span>
                 </td>
                 <td>
                     <span class="info">담당자</span>
-                    <span><input type="text"  id="MasterName" name="FMasterName" required/></span>
+                    <span><input type="text" th:value="${Data.master_name}" id="MasterName" name="FMasterName" required/></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="info">신청기간</span>
                     <span class="start-date"
-                    ><input type="date"  name="FApplyStart" id="ApplyStart" required
+                    ><input type="date" th:value="${Data.apply_start}" name="FApplyStart" id="ApplyStart" required
                     /></span>
-                    <span><input type="date"  name="FApplyEnd" id="ApplyEnd" required /></span>
+                    <span><input type="date" th:value="${Data.apply_end}" name="FApplyEnd" id="ApplyEnd" required /></span>
                 </td>
                 <td>
                     <span class="info">전화번호</span>
-                    <span><input type="number"  name="FMasterPhone" id="MasterPhone" placeholder="'-'빼고 입력해주세요" required/></span>
+                    <span><input type="number" th:value="${Data.master_phone}" name="FMasterPhone" id="MasterPhone" placeholder="'-'빼고 입력해주세요" required/></span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span class="info">진행기간</span>
                     <span class="start-date"
-                    ><input type="date" name="FExpoStart" id="ExpoStart" required
+                    ><input type="date" th:value="${Data.expo_start}" name="FExpoStart" id="ExpoStart" required
                     /></span>
-                    <span><input type="date" name="FExpoEnd" id="ExpoEnd" required/></span>
+                    <span><input type="date" th:value="${Data.expo_end}" name="FExpoEnd" id="ExpoEnd" required/></span>
                 </td>
                 <td>
                     <span class="info">이메일</span>
-                    <span><input type="email"  name="FMasterEmail" id="MasterEmail" required/></span>
+                    <span><input type="email" th:value="${Data.master_mail}" name="FMasterEmail" id="MasterEmail" required/></span>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
                     <span class="info">전시 개요</span>
-                    <span class="outline"><input type="text"  name="FExpoOutline" id="ExpoOutline" required /></span>
+                    <span class="outline"><input type="text" th:value="${Data.expo_outline}" name="FExpoOutline" id="ExpoOutline" required /></span>
                 </td>
             </tr>
             <tr class="notice-row">
                 <td colspan="2">
-                    <textarea  required name="FExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
+                    <textarea th:utext="${Data.expo_content}" required name="FExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
                 </td>
             </tr>
         </table>
     <div class="sub-btn">
-        <button class="in_btn">등록하기</button>
+        <button class="in_btn">수정하기</button>
     </div>
 </form>
 </div>
-<script>
+<script th:inline="javascript">
     let oEditors = [];
     nhn.husky.EZCreator.createInIFrame({
     oAppRef: oEditors,
@@ -126,7 +126,7 @@
         $.ajax({
             async: false,
             type: "post",
-            url: "/admin/save/fair",
+            url: "/admin/update/" + [[${Data.expo_code}]] + "/" + [[${Data.expo_cate}]] ,
             enctype:"multipart/form-data",
             contentType: false,
             processData: false,
