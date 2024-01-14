@@ -13,18 +13,21 @@ import java.util.List;
 @Repository
 public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, Integer> {
 
-    //2024.01.08 정정빈
-    @Query(value = "select expo_start\n" +
-            "from schedule_insert", nativeQuery = true)
-    List startDay();
-
-    //2024.01.08 정정빈
-    @Query(value = "select expo_title\n" +
-            "from schedule_insert", nativeQuery = true)
-    List ExpoName();
+//    //2024.01.08 정정빈
+//    @Query(value = "select expo_start\n" +
+//            "from schedule_insert", nativeQuery = true)
+//    List startDay();
+//
+//    //2024.01.08 정정빈
+//    @Query(value = "select expo_title\n" +
+//            "from schedule_insert", nativeQuery = true)
+//    List ExpoName();
 
     //2024.01.08 정정빈
     //행사 전체 리스트
+//    SELECT *
+//    FROM schedule_insert
+//    WHERE CURDATE() BETWEEN apply_start AND apply_end;
     @Query(value = "select *\n" +
             "from schedule_insert", nativeQuery = true)
     Page<ScheduleInsert> AllExpoList(Pageable pageable);
@@ -49,4 +52,11 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "FROM schedule_insert\n" +
             "WHERE expo_start BETWEEN NOW() AND date_add(NOW(), INTERVAL 1 Month)", nativeQuery = true)
     Page<ScheduleInsert> period1(Pageable pageable);
+
+    //2024.01.12 정정빈
+    //관리자 채용 박람회 심사 목록
+    @Query(value = "select *\n" +
+            "from schedule_insert\n" +
+            "where expo_cate = 2", nativeQuery = true)
+    Page<ScheduleInsert> RecList(Pageable pageable);
 }

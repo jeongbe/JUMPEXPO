@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/comuser/applyemploy/ComExpoAppList.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/comuser/applyemploy/ComExpoAppList.css" />
     <!-- Bootstrap CSS -->
     <!-- <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -100,7 +100,7 @@
                 <p ></p>
             </div>
             <div class="app-btn">
-                <button th:onclick="'javascript:location.href=&quot;/com/app/'+ ${list.expo_cate}+ '/' + ${list.expo_code}+ '/' + 1 + '&quot;'">신청하기</button>
+                <button th:onclick="'javascript:location.href=&quot;/com/app/'+ ${list.expo_cate}+ '/' + ${list.expo_code}+ '/' + ${company.com_code} + '&quot;'">신청하기</button>
             </div>
         </div>
         <div class="line"></div>

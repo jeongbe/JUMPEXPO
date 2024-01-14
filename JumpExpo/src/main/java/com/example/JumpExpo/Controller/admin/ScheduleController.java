@@ -50,7 +50,6 @@ public class ScheduleController {
     @PostMapping("/save/emp")
     public String SaveEmp(EmpForm form,@RequestParam(value = "ExpoImage",required = false) MultipartFile file1){
 
-//        log.info(form.toString());
 
 
         String link = "\\\\192.168.2.3\\images\\a";
@@ -74,8 +73,9 @@ public class ScheduleController {
 //            log.info(save.toString());
 
 
-
+        log.info("성공");
         return "redirect:/admin/Calender";
+//        return "";
     }
 
     //2024.01.10 정정빈
@@ -157,17 +157,6 @@ public class ScheduleController {
     @GetMapping("/Calender")
     public String Calender(Model model){
 
-        List t1 = schInsetExpoRepository.startDay();
-//        log.info(t1.toString());
-
-        List ExpoName = schInsetExpoRepository.ExpoName();
-//        log.info(ExpoName.toString());
-
-        //날짜
-        model.addAttribute("ExpoStartDay",t1);
-        
-        //박람회 이름
-        model.addAttribute("ExpoNames",ExpoName);
 
         List<ExpoCalenderInfo> info = expoCalenderInfoRepository.getInfo();
 //        log.info(info.toString());

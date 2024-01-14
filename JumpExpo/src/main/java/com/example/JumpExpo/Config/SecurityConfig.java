@@ -69,6 +69,7 @@ public class SecurityConfig  {
                 .csrf((csrfConfig) ->
                         csrfConfig.disable()
                 )
+                .headers(headers -> headers.frameOptions(options -> options.disable()))
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests //모두의 권한
                                 .requestMatchers("/JumpExpo/**","/test","/css/**").permitAll()

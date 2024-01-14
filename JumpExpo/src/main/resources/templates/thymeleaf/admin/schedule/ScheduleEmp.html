@@ -14,7 +14,7 @@
 <div class="container">
     <p class="p-title">취업 박람회 일정 등록</p>
     <p class="line"></p>
-    <form enctype="multipart/form-data">
+    <form enctype="multipart/form-data" method="post" action="/admin/save/emp">
     <table class="notice-list">
         <tr>
             <td>
@@ -49,7 +49,7 @@
         <tr>
             <td>
                 <span class="info">썸네일 이미지</span>
-                <span><input type="file" id="ExpoImage" name="ExpoImage"  required/></span>
+<!--                <span><input type="file" id="ExpoImage" name="ExpoImage"  required/></span>-->
             </td>
             <td>
                 <span class="info">담당자</span>
@@ -97,7 +97,7 @@
         <!-- 에디터 사용 예정 -->
 
         <div class="sub-btn">
-            <button class="in_btn">등록하기</button>
+            <button class="in_btn" type="submit">등록하기</button>
         </div>
         </form>
 </div>
@@ -110,59 +110,67 @@
     sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
     fCreator: "createSEditor2"
     });
+    // 스마트 에디터에서의 CORS 문제 해결
+document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지의 도메인을 지정
 
     let subBtn = document.querySelector('.in_btn');
-<!--값 체크하기-->
-<!--        let ExpoTitle = document.getElementById('ExpoTitle');-->
-<!--        let ExpoStart = document.getElementById('ExpoStart');-->
-<!--        let ExpoEnd = document.getElementById('ExpoEnd');-->
-<!--        let ApplyStart = document.getElementById('ApplyStart');-->
-<!--        let ApplyEnd = document.getElementById('ApplyEnd');-->
-<!--        let ExpoAdd = document.getElementById('ExpoAdd');-->
-<!--        let ExpoImage = document.getElementById('ExpoImage');-->
-<!--        let ExpoOutline = document.getElementById('ExpoOutline');-->
-<!--        let ExpoManage = document.getElementById('ExpoManage');-->
-<!--        let ExpoExhibit = document.getElementById('ExpoExhibit');-->
-<!--        let MasterName = document.getElementById('MasterName');-->
-<!--        let MasterPhone = document.getElementById('MasterPhone');-->
-<!--        let MasterEmail = document.getElementById('MasterEmail');-->
-<!--        let ExpoOccCate = document.getElementById('ExpoOccCate');-->
-<!--        let ExpoHost = document.getElementById('ExpoHost');-->
 
 
 
     subBtn.onclick = () => {
-
-
-        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-        const textarearvalue = document.querySelector("#ir1").value;
-<!--        alert(textarearvalue);-->
-
-        let formData = new FormData(document.querySelector("form"));
-
-        formData.forEach((v,k) => {
-            console.log("key: " + k);
-            console.log("vlaue: " + v);
-        })
-
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "/admin/save/emp",
-            enctype:"multipart/form-data",
-            contentType: false,
-            processData: false,
-            data: formData,
-            success: (response) => {
-<!--            일정관리 페이지로 이동하게-->
-                location.replace("/admin/Calender");
-
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        })
+    // 입력 필드를 검증합니다.
+    if (!validateForm()) {
+        alert("필수 입력란을 모두 채워주세요.");
+        return;
     }
+
+    // 에디터 내용을 업데이트합니다.
+    oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+    const textarearvalue = document.querySelector("#ir1").value;
+
+    // FormData 객체를 생성합니다.
+    let formData = new FormData(document.querySelector("form"));
+
+    // formData를 반복하여 키-값 쌍을 로깅합니다.
+    formData.forEach((v, k) => {
+        console.log("키: " + k);
+        console.log("값: " + v);
+    });
+
+    // AJAX 요청을 수행합니다.
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/admin/save/emp",
+        enctype: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: (response) => {
+            // 성공 시 캘린더 페이지로 이동합니다.
+            alert('성공');
+            location.replace("/admin/Calender");
+        },
+        error: (error) => {
+        alert('실패');
+            console.log(error);
+        }
+    });
+}
+
+// 폼을 검증하기 위한 함수
+function validateForm() {
+    const requiredFields = document.querySelectorAll("input[required]");
+    let isValid = true;
+
+    requiredFields.forEach((field) => {
+        if (!field.value.trim()) {
+            isValid = false;
+        }
+    });
+
+    return isValid;
+}
 
 
 

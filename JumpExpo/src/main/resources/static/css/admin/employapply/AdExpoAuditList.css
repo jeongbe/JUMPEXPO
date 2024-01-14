@@ -2,6 +2,12 @@
 margin: 0 auto;
 }
 
+.container{
+    position:relative;
+    left: 200px;
+    bottom: 650px;
+}
+
 body {
 width: 950px;
 }
@@ -29,7 +35,7 @@ margin: 0px;
 
 .content {
 margin-top: 20px;
-height: 655px;
+/*height: 655px;*/
 /* background-color: aqua; */
 /* background-color: aquamarine; */
 }

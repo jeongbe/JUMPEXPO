@@ -40,4 +40,10 @@ public class ExpoService {
         Pageable pageable = PageRequest.of(page,2);
         return this.schInsetExpoRepository.period1(pageable);
     }
+
+    //2024.01.12 정정빈
+    public Page<ScheduleInsert> getRecList(int page){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.RecList(pageable);
+    }
 }

@@ -2,13 +2,17 @@ package com.example.JumpExpo.Controller.comuser;
 
 import com.example.JumpExpo.DTO.comuser.ExpoAppForm;
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
+import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
+import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import com.example.JumpExpo.Repository.comuser.ExpoAppComRepository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +39,11 @@ public class ExpoComController {
 
     @Autowired
     ExpoAppComRepository expoAppComRepository;
+
+    @Autowired
+    CompanyRepository companyRepository;
+
+
 
 
 
@@ -66,6 +75,13 @@ public class ExpoComController {
     @GetMapping("/app/list")
     public String ComExpoAppList(Model model, @RequestParam(value="page", defaultValue="0")int page){
 
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
         Page<ScheduleInsert> AppList = expoService.getAllList(page);
 //        log.info(AppList.getContent().toString());
         model.addAttribute("AppList",AppList);
@@ -83,6 +99,16 @@ public class ExpoComController {
         model.addAttribute("expoCate",expoCate);
         model.addAttribute("expoCode",expoCode);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+
+        log.info(username);
+        log.info(company.toString());
+
+        model.addAttribute("company", company);
+
 
 
         return "comuser/applyemploy/ComExpoApp";
@@ -91,7 +117,7 @@ public class ExpoComController {
     //기업 박람회 신청
     @PostMapping("/app/insert/{expo_code}/{com_code}")
     public String InsertApp(ExpoAppForm form,@RequestParam(value = "AppFileName",required = false) MultipartFile file1,
-                            @PathVariable("com_code")  String comCode,@PathVariable("expo_code")  String expoCode){
+                            @PathVariable("com_code")  int comCode,@PathVariable("expo_code")  String expoCode){
 
 
         String link = "\\\\192.168.2.3\\images\\a";
@@ -111,9 +137,9 @@ public class ExpoComController {
         log.info(form.toString());
 
         ExpoAppCom target = form.toEntity();
-        log.info(comCode);
+//        log.info(comCode);
         log.info(expoCode);
-        target.setCom_code(1);
+        target.setCom_code(comCode);
         target.setApp_date(new Date());
 
         log.info(target.toString());

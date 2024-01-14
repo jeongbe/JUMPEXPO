@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/employapply/AdExpoAuditList.css" />
+
+    <title>관리자 채용 박람회 심사 목록</title>
+</head>
+<body>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
+<div class="container" >
+    <div class="title-box">
+        <div class="body_title">
+            <span>채용 박람회 심사</span>
+            <span>신청기업 수</span>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div class="content" th:each="list,iterStat: ${RecList}">
+        <div class="expo-info-box">
+            <div class="cont-img">
+                <img src="" alt="" />
+            </div>
+            <div class="expo-info">
+                <p class="expo-name" th:text="${list.expo_title}">2024 예일 박람회</p>
+                <div class="period-box2">
+                    <p th:text="${list.expo_start}">2024-01-10</p>
+                    <p th:text="${list.expo_end}">2024-01-10</p>
+                    <p th:text="${list.expo_time}">10:00</p>
+<!--                    <p>20:00</p>-->
+                </div>
+                <p th:text="${list.expo_add}">장소</p>
+            </div>
+            <div class="com_count" >
+                <p th:text="${comCount[iterStat.index]}"></p>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <!-- 페이징 처리하기 -->
+</div>
+</body>
+</html>
