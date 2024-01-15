@@ -2,6 +2,7 @@ package com.example.JumpExpo.Controller.admin;
 
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import com.example.JumpExpo.Repository.comuser.ExpoAppComRepository;
@@ -104,20 +105,108 @@ public class EmployapplyController {
     @GetMapping("/employapply/rec/list")
     public String EmployApplyRecList(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<ScheduleInsert> RecList = expoService.getRecList(page);
-        log.info(RecList.getContent().toString());
+//        log.info(RecList.getContent().toString());
         model.addAttribute("RecList", RecList);
+        model.addAttribute("TotalPage",RecList.getTotalPages());
 
-        List<Integer> comCountList = new ArrayList<>(); // 변경된 부분
+        List<Integer> comCountList = new ArrayList<>();
 
         for (ScheduleInsert rec : RecList) {
             int comCount = expoAppComRepository.getComCount(rec.getExpo_code());
 //            log.info(String.valueOf(comCount));
-            comCountList.add(comCount); // 변경된 부분
+            comCountList.add(comCount);
         }
 
-        model.addAttribute("comCount", comCountList); // 변경된 부분
+        model.addAttribute("comCount", comCountList);
 
         return "admin/employApply/RecExpoAuditList";
     }
+    
+    //2024.01.15 정정빈
+    //페어 박람회 심사 목록 리스트
+    @GetMapping("/employapply/fair/list")
+    public String EmployapplyFairList(Model model, @RequestParam(value = "page", defaultValue = "0") int page){
+        Page<ScheduleInsert> FairList = expoService.getFairList(page);
+        model.addAttribute("FairList",FairList);
+        model.addAttribute("TotalPage",FairList.getTotalPages());
 
+        List<Integer> comCountList = new ArrayList<>();
+
+        for (ScheduleInsert fair : FairList) {
+            int comCount = expoAppComRepository.getComCount(fair.getExpo_code());
+//            log.info(String.valueOf(comCount));
+            comCountList.add(comCount);
+        }
+
+        model.addAttribute("comCount", comCountList);
+
+        return "admin/employApply/FairExpoAuditList";
+    }
+
+    //2024.01.15 정정빈
+    //취업 박람회 심사 목록 리스트
+    @GetMapping("/employapply/emp/list")
+    public String EmployapplyEmpList(Model model, @RequestParam(value = "page", defaultValue = "0") int page){
+        Page<ScheduleInsert> EmpList = expoService.getEmpList(page);
+        model.addAttribute("EmpList",EmpList);
+        model.addAttribute("TotalPage",EmpList.getTotalPages());
+
+        List<Integer> comCountList = new ArrayList<>();
+
+        for (ScheduleInsert emp : EmpList) {
+            int comCount = expoAppComRepository.getComCount(emp.getExpo_code());
+//            log.info(String.valueOf(comCount));
+            comCountList.add(comCount);
+        }
+
+        model.addAttribute("comCount", comCountList);
+
+        return "admin/employApply/EmpExpoAuditList";
+    }
+
+    //2024.01.15 정정빈
+    //박람회 기업 심사 목록 리스트 (심사전)
+    @GetMapping("/show/employapply/com/{expo_code}")
+    public String ShowEmployApply(@PathVariable("expo_code")  int expoCode,Model model, @RequestParam(value = "page", defaultValue = "0") int page){
+
+    Page<ExpoAppCom> ComList = expoService.getComList(page,expoCode);
+//    log.info(ComList.getContent().toString());
+    model.addAttribute("ComList",ComList);
+    model.addAttribute("ExpoCode",expoCode);
+
+
+    return "admin/employApply/AdExpoAudit";
+    }
+
+    //2024.01.15 정정빈
+    //박람회 기업 심사 완료 리스트 (심사후)
+    @GetMapping("/show/ok/employapply/com/{expo_code}")
+    public String OkComList(Model model,@PathVariable("expo_code") int expoCode,@RequestParam(value = "page", defaultValue = "0") int page){
+        Page<ExpoAppCom> ComList = expoService.getComOKList(page,expoCode);
+//    log.info(ComList.getContent().toString());
+        model.addAttribute("ComList",ComList);
+        model.addAttribute("ExpoCode",expoCode);
+
+        return "admin/employApply/AdExpoAuditOk";
+    }
+
+    //2024.01.15 정정빈
+    //박람회 기업 심사
+    @PostMapping("/com/audit/{expo_code}/{capp_num}")
+    public String ComAudit(@RequestParam(name = "approval") int approval,@PathVariable("expo_code")  int expoCode,
+                           @PathVariable("capp_num")  int cappNum){
+        log.info(String.valueOf(approval));
+        log.info(String.valueOf(cappNum));
+
+        ExpoAppCom target = expoAppComRepository.findById(cappNum).orElse(null);
+        log.info(target.toString());
+
+        target.setRecog_check(1);
+
+        expoAppComRepository.save(target);
+
+
+
+        return "redirect:/admin/show/employapply/com/" + expoCode;
+    }
 }

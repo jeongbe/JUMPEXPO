@@ -1,0 +1,161 @@
+body {
+    width: 1100px;
+}
+
+.imgs img {
+    width: 1100px;
+    height: 500px;
+}
+
+.imp_expo {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 1100px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+}
+
+.dd {
+    width: 1100px;
+}
+
+.imp_expo div p {
+    margin: 0px;
+}
+
+.imp_tit {
+    font-size: 25px;
+    font-weight: bold;
+    /* background-color: aqua; */
+    text-align: center;
+}
+
+.imp_tit2 {
+    /* background-color: antiquewhite; */
+    text-align: center;
+    font-weight: bold;
+}
+
+.line {
+    width: 950px;
+    border: 2px solid #374658;
+}
+
+.ddd {
+    margin-left: 90px;
+    /* background-color: antiquewhite; */
+    /* display: flex; */
+}
+
+.fq {
+    margin-top: 60px;
+}
+
+.expos {
+    display: flex;
+    /* background-color: aquamarine; */
+    height: auto;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.expo_img {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: antiquewhite;
+    width: 130px;
+    height: 70px;
+}
+
+.expo_img {
+    width: 130px;
+    height: 70px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.expo_info_ {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.expo_days {
+    display: flex;
+}
+
+.line2 {
+    width: 950px;
+    border-bottom: 1px solid #ccc;
+}
+
+.expo_info_ > p:first-child {
+    font-weight: bold;
+}
+
+.expo_days > p:first-child::after {
+    content: '~';
+}
+
+.more_expo {
+    /* background-color: antiquewhite; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.more_expo > button {
+    background-color: white;
+    width: 190px;
+    height: 40px;
+    font-size: 19px;
+    font-weight: bold;
+    border: 3px solid #374658;
+}
+
+.list_ {
+    margin-top: 50px;
+    height: 400px;
+    background-color: #f1d2b0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.ann_list_box {
+    background-color: white;
+    width: 500px;
+}
+
+.h {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.h > p:last-child {
+    margin-right: 20px;
+    font-size: 30px;
+    /* margin-bottom: 50px; */
+    transition: all ease 0.5s;
+    cursor: pointer;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul > span {
+    margin-right: 20px;
+}
+
+.h > p:last-child:hover {
+    transform: rotate(90deg);
+}

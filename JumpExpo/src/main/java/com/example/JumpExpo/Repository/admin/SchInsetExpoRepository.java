@@ -59,4 +59,17 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "from schedule_insert\n" +
             "where expo_cate = 2", nativeQuery = true)
     Page<ScheduleInsert> RecList(Pageable pageable);
+
+    //2024.01.15 정정빈
+    //관리자 페어 박람회 심사 목록
+    @Query(value = "select *\n" +
+            "from schedule_insert\n" +
+            "where expo_cate = 1", nativeQuery = true)
+    Page<ScheduleInsert> FairList(Pageable pageable);
+
+    //관리자 취업 박람회 심사 목록
+    @Query(value = "select *\n" +
+            "from schedule_insert\n" +
+            "where expo_cate = 0", nativeQuery = true)
+    Page<ScheduleInsert> EmpList(Pageable pageable);
 }

@@ -6,6 +6,38 @@
     <link rel="stylesheet" href="/static/css/admin/employapply/AdExpoAuditList.css" />
 
     <title>관리자 취업 박람회 심사 목록</title>
+    <style>
+        /* 추가된 CSS 스타일 */
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
@@ -18,28 +50,65 @@
         </div>
     </div>
     <div class="line"></div>
-    <div class="content">
+    <div class="content" th:each="list,iterStat: ${EmpList}">
         <div class="expo-info-box">
             <div class="cont-img">
-                <img src="" alt="" />
+                <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
             </div>
-            <div class="expo-info">
-                <p class="expo-name">2024 예일 박람회</p>
+            <div class="expo-info" th:onclick="'javascript:location.href=&quot;/admin/show/employapply/com/' + ${list.expo_code} + '&quot;'">
+                <p class="expo-name" th:text="${list.expo_title}">2024 예일 박람회</p>
                 <div class="period-box2">
-                    <p>2024-01-10</p>
-                    <p>2024-01-10</p>
-                    <p>10:00</p>
-                    <p>20:00</p>
+                    <p th:text="${list.expo_start}">2024-01-10</p>
+                    <p th:text="${list.expo_end}">2024-01-10</p>
+                    <p th:text="${list.expo_time}">10:00</p>
                 </div>
-                <p>장소</p>
+                <p th:text="${list.expo_add}">장소</p>
             </div>
             <div class="com_count">
-                <p>22</p>
+                <p  th:text="${comCount[iterStat.index]}">22</p>
             </div>
         </div>
         <div class="line"></div>
     </div>
-    <!-- 페이징 처리하기 -->
+    <nav aria-label="Page navigation example" class="pageBtn">
+        <ul class="pagination" >
+        </ul>
+    </nav>
+    <p  class="total_page" th:text="${TotalPage}"></p>
 </div>
+<script>
+
+    let total_page = document.querySelector('.total_page').textContent;
+    console.log(total_page);
+
+    // 부모 요소
+    var paginationContainer = document.querySelector(".pagination");
+
+    if (paginationContainer) {
+        // 이전 버튼
+        var prevButton = document.createElement("li");
+        prevButton.classList.add("page-item");
+        prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/fair/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        paginationContainer.appendChild(prevButton);
+
+        // 페이지 번호 생성
+        for (var i = 1; i <= total_page; i++) {
+            var pageItem = document.createElement("li");
+            pageItem.classList.add("page-item");
+            pageItem.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${i-1}">${i}</a>`;
+
+            paginationContainer.appendChild(pageItem);
+        }
+
+        // 다음 버튼
+        var nextButton = document.createElement("li");
+        nextButton.classList.add("page-item");
+        nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        paginationContainer.appendChild(nextButton);
+    }
+
+
+
+</script>
 </body>
 </html>

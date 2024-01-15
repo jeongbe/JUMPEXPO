@@ -54,6 +54,11 @@ width: 220px;
 height: 100px;
 }
 
+.cont-img > img{
+    width: 220px;
+    height: 100px;
+}
+
 .expo-info {
 margin: 0px;
 /* background-color: yellowgreen; */
