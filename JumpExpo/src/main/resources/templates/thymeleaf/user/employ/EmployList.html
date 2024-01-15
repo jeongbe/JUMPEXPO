@@ -59,7 +59,7 @@
                                             <span>~</span>
                                             <span th:text="${allList.emnot_end}">2024-01-25</span>
                                         </td>
-                                        <td>0</td>
+                                        <td th:text="${applicantCounts[allList.emnot_code]}">0</td>
                                     </tr>
 
                                 </table>
@@ -92,7 +92,7 @@
                                             <span>~</span>
                                             <span th:text="${designList.emnot_end}">2024-01-25</span>
                                         </td>
-                                        <td>0</td>
+                                        <td th:text="${applicantCounts[designList.emnot_code]}">0</td>
                                     </tr>
 
                                 </table>
@@ -127,7 +127,7 @@
                                             <span>~</span>
                                             <span th:text="${frontList.emnot_end}">2024-01-25</span>
                                         </td>
-                                        <td>0</td>
+                                        <td th:text="${applicantCounts[frontList.emnot_code]}">0</td>
                                     </tr>
 
                                 </table>
@@ -161,7 +161,7 @@
                                             <span>~</span>
                                             <span th:text="${backendList.emnot_end}">2024-01-25</span>
                                         </td>
-                                        <td>0</td>
+                                        <td th:text="${applicantCounts[backendList.emnot_code]}">0</td>
                                     </tr>
 
                                 </table>
@@ -195,7 +195,8 @@
                                             <span>~</span>
                                             <span th:text="${etcList.emnot_end}">2024-01-25</span>
                                         </td>
-                                        <td>0</td>
+<!--                                        지원자 수-->
+                                        <td th:text="${applicantCounts[etcList.emnot_code]}">0</td>
                                     </tr>
 
                                 </table>
@@ -284,12 +285,9 @@ function searchListings() {
 
 // 탭 클릭 이벤트 핸들러 수정
 $('.tabMenu>li>a').click(function () {
-    // 모든 탭에서 active 클래스 제거 및 이벤트 핸들러 내용
-    // ...
 
-    // 검색 입력 초기화
     $("#searchInput").val('');
-    // 선택된 탭의 리스트를 다시 보여줍니다 (검색 결과를 초기화)
+    // 선택된 탭의 리스트를 다시 보여줌
     searchListings();
 });
 
@@ -504,8 +502,6 @@ $('.tabMenu>li>a').click(function () {
             showPageBackend(currentPageBackend);
         }
     }
-
-
 
 
     //기타(etc Etc) 탭

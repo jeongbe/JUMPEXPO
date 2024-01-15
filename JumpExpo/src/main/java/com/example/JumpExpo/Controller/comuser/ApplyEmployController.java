@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 //채용 공고 신청 Controller
 @Slf4j
 @Controller
-@RequestMapping("/comuser")
+@RequestMapping("/com")
 public class ApplyEmployController {
 
     @Autowired

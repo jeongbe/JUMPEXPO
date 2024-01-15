@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,15 +14,19 @@
     <title>기업 박람회 신청페이지</title>
 </head>
 <body>
+
+<form method="post" th:action="@{'/users/submit/resume/' + ${emnotCode} + '/' + 1}" enctype="multipart/form-data">
 <div class="container">
-    <div class="line"></div>
+    <!-- 이력서 업로드 폼 -->
+        <div class="line"></div>
     <div class="po">
         <div class="input_box">
+            <input style="display:none" type="hidden" id="emnotCode" th:value="${emnotCode}" name="EmnotCode">
+
             <div class="box3">
-                <label class="file-box" for="file">
-                    이력서 첨부하기
-                </label>
-                <input type="file" id="file" />
+                <label class="file-box" for="file"
+                >이력서 첨부하기</label>
+                <input type="file" id="file" name="PemFile" />
                 <p id="originName"></p>
             </div>
             <p class="warning_text">
@@ -33,27 +37,64 @@
     </div>
     <div class="line"></div>
     <div class="btn_box">
-        <button>닫기</button>
+        <button type="button" id="closePopupBtn">닫기</button>
         <div>
-            <button>지원하기</button>
+            <button type="submit" id="submitBtn">지원하기</button>
         </div>
     </div>
 </div>
+</form>
 <script>
+    // 파일 입력 변경 시 처리
     window.onload = function () {
-        target = document.getElementById('file'); // file 아이디 선언
+        var target = document.getElementById('file');
         target.addEventListener('change', function () {
-            // change 함수
-
             if (target.value.length) {
-                // 파일 첨부인 상태일경우 파일명 출력
+                // 파일이 선택된 경우 파일명 출력
                 $('#originName').html(target.files[0].name);
             } else {
-                //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게
+                // 파일 선택이 취소된 경우 파일명 제거
                 $('#originName').html('');
             }
         });
     };
+
+    // 팝업 닫기 버튼 클릭 이벤트
+    $('#closePopupBtn').click(function () {
+        window.close();
+    });
+
+    // 제출 버튼 클릭 이벤트
+    $('#submitBtn').click(function (e) {
+        e.preventDefault(); // 기본 폼 제출 방지
+
+        var formData = new FormData();
+        formData.append('PemFile', $('#file')[0].files[0]);
+        formData.append('EmnotCode', $('#emnotCode').val());
+
+        $.ajax({
+            type: 'POST',
+            url: '/users/submit/resume/' + $('#emnotCode').val() + '/1',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                alert('지원서가 성공적으로 제출되었습니다.');
+                window.close();
+                window.opener.location.href = '/users/show/employlist';
+            },
+            error: function (xhr) {
+                if(xhr.status === 409) {
+                    // 409 Conflict 상태 코드인 경우
+                    alert(xhr.responseText); // 서버의 응답 메시지 표시
+                } else {
+                    // 다른 오류인 경우
+                    alert('오류가 발생했습니다. 다시 시도해주세요.');
+                }
+            }
+        });
+    });
 </script>
+
 </body>
 </html>

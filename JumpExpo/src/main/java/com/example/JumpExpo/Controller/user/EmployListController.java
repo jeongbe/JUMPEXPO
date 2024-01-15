@@ -1,16 +1,28 @@
 package com.example.JumpExpo.Controller.user;
 
+import com.example.JumpExpo.DTO.user.PeremApplyUserForm;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.user.PeremApplyUser;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
+import com.example.JumpExpo.Repository.user.PeremApplyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.stream.Collectors;
 
 //2024.01.11 박은채 채용 공고 보기 Controller
 //채용 공고 보기 Controller
@@ -22,6 +34,10 @@ public class EmployListController {
     @Autowired
     ApplyEmployRepository applyEmployRepository;
 
+    @Autowired
+    PeremApplyRepository peremApplyRepository;
+
+    //2024.01.15 박은채
     //공고 보기 리스트<분야별 리스트>
     @GetMapping("/show/employlist")
     public String empoyList(Model model){
@@ -38,6 +54,10 @@ public class EmployListController {
         model.addAttribute("backendList", BackendList);
         model.addAttribute("etcList", EtcList);
 
+        // 각 공고별 지원자 수
+        model.addAttribute("applicantCounts", allList.stream()
+                .collect(Collectors.toMap(ApplyEmploy::getEmnot_code, e -> peremApplyRepository.countByEmnotCode(e.getEmnot_code()))));
+
         return "user/employ/EmployList";
     }
 
@@ -49,7 +69,7 @@ public class EmployListController {
 
         if (applyEmploy == null) {
             // 데이터가 없을 경우
-            return "admin/show/employlist";
+            return "users/show/employlist";
         }
 
         model.addAttribute("applyEmploy", applyEmploy);
@@ -57,10 +77,71 @@ public class EmployListController {
         return "user/employ/EmployListDetail";
     }
 
-    @GetMapping("/submit/resume")
-    public String submitResume(){
+    //이력서 제출 팝업
+    @GetMapping("/submit/resume/{emnot_code}/{user_code}")
+    public String submitResume(Model model, @PathVariable(name="emnot_code") int emnotCode){
+        model.addAttribute("emnotCode",emnotCode);
+
+
+        ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+
+        if (applyEmploy == null) {
+            // 데이터가 없을 경우
+            return "show/employlist/{emnot_code}";
+        }
+
+        model.addAttribute("applyEmploy", applyEmploy);
 
         return "user/employ/ResumePopup";
+    }
+
+    //2024.01.15 박은채
+    //이력서 제출&중복확인
+    @PostMapping("/submit/resume/{emnot_code}/{user_code}")
+    public ResponseEntity<?> submitResumeData(PeremApplyUserForm form,
+                                              @RequestParam(value = "PemFile", required = false) MultipartFile file1,
+                                              @PathVariable(name = "emnot_code") int emnotCode,
+                                              @PathVariable(name = "user_code") int userCode,
+                                              Model model) {
+
+        PeremApplyUser existingApplication = peremApplyRepository.findByEmnotCodeAndUserCode(emnotCode, userCode);
+
+        if (existingApplication != null) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("이미 이력서를 제출한 회사입니다.");
+        }
+
+        String link = "\\\\192.168.2.3\\images\\a";
+
+        try {
+            if(file1 != null && !file1.isEmpty()){
+                String vio1 = link + File.separator + file1.getOriginalFilename();
+                Path filePath = Paths.get(vio1);
+                Files.copy(file1.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            }
+        }catch (IOException e) {
+            log.error("Error occurred while copying the file: {}", e.getMessage());
+            e.printStackTrace();
+//            return "";
+        }
+
+        log.info(form.toString());
+
+        PeremApplyUser peremApplyUser = form.toEntity();
+        peremApplyUser.setUser_code(1);
+        peremApplyUser.setUser_name("이름");
+        //취소여부 디폴트1
+        peremApplyUser.setPem_can(1);
+        peremApplyUser.setPem_date(new Date());
+
+        log.info(peremApplyUser.toString());
+
+        PeremApplyUser saved = peremApplyRepository.save(peremApplyUser);
+
+        return ResponseEntity.ok("성공적으로 지원되었습니다.");
+
+//        return "redirect:/users/show/employlist";
     }
 
 }
