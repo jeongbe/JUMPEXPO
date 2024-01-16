@@ -1,6 +1,7 @@
 package com.example.JumpExpo.Config;
 
 
+import com.example.JumpExpo.Controller.join.KakaoController;
 import com.example.JumpExpo.DTO.Login.LoginForm;
 import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Entity.user.Users;
@@ -45,21 +46,36 @@ public class UserSecurityService implements UserDetailsService {
 
 
 
+    //카카오 로그인시
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException{
+
+        Users users =userReository.kakao2(email);
+       return User.builder().username(users.getUser_email()).password(users.getUser_name()).roles(users.getRole().name()).build();
+
+    }
+
+
+
     @Override
     public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
 
+        //로그인시 입력된 id를 기준으로 유저정보가 있는지 가져오기
         Users users = userReository.username(user_id);
 
         Company company = companyRepository.comname(user_id);
 
 
             //기업 or 개인 아이디가 아무도 없을경우
-        if (users == null && company == null) {
+        if (users == null && company == null){
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다: " + user_id);
         }
         //유저에서 정보를 찾았을 경우
         else if (users != null){
-            
+
+            if (users.getUser_sec() == 0){
+                throw new UsernameNotFoundException("탈퇴된 회원 입니다. " + user_id);
+            }
+
             //유저코드가 1이라면 관리자 권한부여
             if (users.getUser_code() == 1){
                 return User.builder().username(users.getUser_id()).password(users.getUser_pw()).roles("ADMIN").build();
@@ -73,6 +89,10 @@ public class UserSecurityService implements UserDetailsService {
         }
         else if (company != null){
 
+            if (company.getCom_sec() == 0){
+                throw new UsernameNotFoundException("탈퇴된 회원 입니다. " + user_id);
+            }
+
             return User.builder().username(company.getCom_id()).password(company.getCom_pw()).roles(company.getRole().name()).build();
         }
         else {
@@ -83,47 +103,7 @@ public class UserSecurityService implements UserDetailsService {
     }
 
 
-//    @Override
-//    public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException{
-//
-//        log.info("User ID: {} is attempting to log in.", user_id);
-//
-////        log.info(passwordEncoder.encode("password"));
-//
-//        if (user_id == null || user_id.isEmpty()) {
-//            throw new IllegalArgumentException("User ID cannot be null or empty");
-//        }
-//
-//        Optional<Users> users = this.userReository.username(user_id);
-//
-//            //해당 아이디를 디비에서 못찾은 경우
-//            if (users.isEmpty()){
-//                throw new UsernameNotFoundException("사용자를 찾을 수 없습ㄴ디ㅏ");
-//            }else {
-//                //해당 아이디를 디비에서 찾은경우
-//                Users users1 = users.get(); //해당 유저 엔티티를 optional 객체에서 꺼냄
-//                log.info("User Password: {}", users1.getUser_pw());
-//
-//                List<GrantedAuthority> authorities = new ArrayList<>();
-//                if ("ADMIN".equals(users1.getRole())) {
-//                    authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getTitle()));
-//                } else {
-//                    authorities.add(new SimpleGrantedAuthority(Role.USER.getTitle()));
-//                }
-//
-//                    return User.builder()
-//                            .username(users1.getUser_id())
-//                            .password(users1.getUser_pw())
-//                            .roles(String.valueOf(users1.getRole()))
-//                            .authorities(authorities)
-//                            .build();
-//
-//                }
-//
-//            }
-
-
-    }
+}
 
 
 

@@ -1,6 +1,7 @@
 package com.example.JumpExpo.Config;
 
 
+import com.example.JumpExpo.Controller.join.KakaoController;
 import com.example.JumpExpo.DTO.Login.LoginForm;
 import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.comuser.CompanyRepository;
@@ -38,15 +39,14 @@ public class SecurityConfig  {
     private final UserDetailsService userDetailsService;
 
     private final CompanyRepository companyRepository;
-
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private KakaoController kakaoController;
 
 
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 
 
@@ -72,17 +72,17 @@ public class SecurityConfig  {
                 .headers(headers -> headers.frameOptions(options -> options.disable()))
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests //모두의 권한
-                                .requestMatchers("/JumpExpo/**","/test","/css/**").permitAll()
-                                .requestMatchers("/users/**","/css/**").hasRole(Role.USER.name())//유저 권한
-                                .requestMatchers("/com/**","/css/**").hasRole(Role.COM.name()) // 기업 권한
-                                .requestMatchers("/admin/**","/JumpExpo/**","/css/**").hasRole(Role.ADMIN.name()) // 관리자 권한
+                                .requestMatchers("/JumpExpo/**","/test").permitAll()
+                                .requestMatchers("/users/**").hasRole(Role.USER.name())//유저 권한
+                                .requestMatchers("/com/**").hasRole(Role.COM.name()) // 기업 권한
+                                .requestMatchers("/admin/**","/JumpExpo/**").hasRole(Role.ADMIN.name()) // 관리자 권한
                                 .anyRequest().authenticated())
                 .formLogin((login) -> login
                         .loginPage("/JumpExpo/Login")
                         .loginProcessingUrl("/JumpExpo/AppLogin")
                         .usernameParameter("user_id")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/JumpExpo/Success")
+                        .defaultSuccessUrl("/users/main", true)
                         .failureUrl("/JumpExpo/Loginfail"))
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

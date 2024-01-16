@@ -1,5 +1,6 @@
 package com.example.JumpExpo.Repository.user;
 
+import com.example.JumpExpo.Controller.join.OAuthToken;
 import com.example.JumpExpo.Entity.user.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -38,7 +39,6 @@ public interface UserReository extends JpaRepository<Users,Integer> {
     String userid(@Param("email") String email, @Param("name") String name);
 
 
-
     //비밀번호 찾기
     @Query(value = "SELECT user_id \n" +
             "FROM usertable\n" +
@@ -52,5 +52,23 @@ public interface UserReository extends JpaRepository<Users,Integer> {
             "FROM usertable\n" +
             "WHERE user_id = :userid " ,nativeQuery = true)
     Users finduser(@Param("userid") String userid);
+
+
+    //카카오 로그인시 이메일과 닉네임(이름)으로 조회할것임
+    @Query(value = "SELECT *\n" +
+            "FROM usertable\n" +
+            "WHERE user_email = :email \n" +
+            "AND user_name = :nickname ", nativeQuery = true)
+    Users kakao(@Param("email") String email, @Param("nickname") String name);
+
+    //이메일로 유저정보 가져오기
+    //카카오 로그인시 이메일과 닉네임(이름)으로 조회할것임
+    @Query(value = "SELECT *\n" +
+            "FROM usertable\n" +
+            "WHERE user_email = :email " +
+            "Limit 1 \n", nativeQuery = true)
+    Users kakao2(@Param("email") String email);
+
+
 
 }

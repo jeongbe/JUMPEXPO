@@ -136,7 +136,9 @@
         <a href="/JumpExpo/IdSearch"><div class="search">아이디/비밀번호 찾기</div></a>
     </div>
     <div class="kakaologin">
-        <button class="kakaobtn">카카오 로그인</button>
+        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bcf283702c88974c445ca041bb3d6ad6&redirect_uri=http://localhost:8080/JumpExpo/kakaologin">
+            <button class="kakaobtn">카카오 로그인</button>
+        </a>
     </div>
 
 </main>
@@ -144,6 +146,10 @@
 <script th:if="${error != null}" type="text/javascript">
         alert('아이디 또는 비밀번호를 확인하세요.');
 </script>
+
+
+
+
 </body>
 
 </html>

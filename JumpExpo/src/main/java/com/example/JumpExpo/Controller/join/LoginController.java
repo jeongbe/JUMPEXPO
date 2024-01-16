@@ -19,6 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
+
+import java.net.http.HttpHeaders;
+import java.net.http.HttpResponse;
 
 
 //로그인 관련 컨트롤러 2024-01-08 맹성우
@@ -71,7 +75,7 @@ public class LoginController {
     //아이디 보여주기
     @PostMapping("/JumpExpo/ShowId")
     public String ShowId(SearhIdForm form, Model model){
-//유저인지 기업인지 구분하기 위해 두개를 가져옴
+    //유저인지 기업인지 구분하기 위해 두개를 가져옴
         String userid = userReository.userid(form.getEmail(), form.getName());
         String comid =  companyRepository.userid(form.getEmail(), form.getName());
 
@@ -160,6 +164,13 @@ public class LoginController {
         return "join/ChangeSuccess";
     }
 
+    @GetMapping("/users/main")
+    public String usersmain(){
+        return "user/userMain";
+    }
+
+
+
     @GetMapping("admin/page")
     public String admin(Model model){
 
@@ -189,6 +200,10 @@ public class LoginController {
     public String user(){
         return "user/expo/ExpoAllList";
     }
+
+
+
+
 
 
 }

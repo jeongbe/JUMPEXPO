@@ -1,6 +1,7 @@
 package com.example.JumpExpo.Entity.user;
 
 
+import com.example.JumpExpo.Controller.join.OAuthToken;
 import com.example.JumpExpo.domain.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

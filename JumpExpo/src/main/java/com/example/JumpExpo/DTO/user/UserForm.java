@@ -1,5 +1,6 @@
 package com.example.JumpExpo.DTO.user;
 
+import com.example.JumpExpo.Controller.join.OAuthToken;
 import com.example.JumpExpo.Entity.user.Users;
 
 import com.example.JumpExpo.domain.Role;
@@ -30,7 +31,7 @@ public class UserForm {
 
     String phone;
 
-    String oauth2 = "not yet";
+    String oauth2;
 
     int usersec = 1;
 
