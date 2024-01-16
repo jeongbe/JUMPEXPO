@@ -54,7 +54,7 @@ main{
   .mainMenu > a {
     padding:20px 0;
     font-weight:bold;
-    width:170px;
+    width:140px;
     text-align: center;
     color:#787878;
   }
@@ -77,7 +77,7 @@ main{
     display:flex;
   }
   .subMenuWrap > ul {
-    width:170px;
+    width:140px;
   }
   .subMenuWrap > ul:hover{
     background-color: #f2dcd8;
@@ -88,7 +88,7 @@ main{
     color:#787878;
     font-weight: 600;
     font-size: 12px;
-    width:170px;
+    width:140px;
   }
   .subMenuWrap > ul > li > a:hover{
     background: #ebbfb7;
@@ -100,7 +100,8 @@ main{
     right: 450px;
   }
 
-    ul{
-      padding-left: 0rem;
-      margin-bottom: 0rem;
-    }
+  ul{
+    padding-left: 0rem;
+    margin-bottom: 0rem;
+  }
+
