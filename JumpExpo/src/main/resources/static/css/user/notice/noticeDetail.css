@@ -67,7 +67,7 @@ left:650px;
     top:240px;
     left: 0px;
  }
- .list, .edit, .delete {
+ .list {
     border: 2px solid #ccc;
     width: 110px;
     height: 30px;
@@ -75,13 +75,8 @@ left:650px;
     background-color: #374658;
     position: absolute;
     top:770px;
-    left: 160px;
+    left: 300px;
     bottom: 120px;
     cursor: pointer;
   }
-  .edit {
-  left:290px;
-  }
-  .delete {
-  left:420px;
-  }
+

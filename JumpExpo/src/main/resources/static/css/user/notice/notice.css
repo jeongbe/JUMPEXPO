@@ -1,12 +1,12 @@
- .content{
- position:relative;
- top:-700px;
- left:150px;
- }
+.content{
+position:relative;
+top:50px;
+left:600px;
+}
  .body_title {
      position: absolute;
      top: 30px;
-     left: 100px;
+     left: 0px;
      width: 700px;
    }
    .body_title span{
@@ -20,7 +20,7 @@
  .con_search{
     position: absolute;
     top: 100px;
-    left:20px;
+    left:-50px;
   }
   .search {
     width: 70px;
@@ -114,7 +114,7 @@ background-color: white;
 .total_post {
 position:absolute;
 top:140px;
-right:180px;
+left:800px;
 }
 .total_post span {
 color:#787878;

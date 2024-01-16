@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link href="/static/css/admin/notice/NoticeNew.css" type="text/css" rel="stylesheet">
-    <script src="/static/js/admin/notice/jquery-3.7.0.min.js"></script>
-
     <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>공지사항 등록 페이지</title>
@@ -14,7 +12,7 @@
 
 <body>
 <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
+<div class="sidebar" th:replace="~{admin/side/AdCustomerside :: adCustomerside}"></div>
 
 <!--    관리자 공지사항 리스트-->
 <div class="wrap">
@@ -41,7 +39,7 @@
                 <td>
                     <label for="file">파일찾기</label>
                     <input class="upload-name" value="" placeholder="">
-                    <input type="file" id="file" name="notFile">
+                    <input type="file" id="file" name="notFile" onchange="displayFileName(this)">
                 </td>
             </tr>
         </table>
@@ -50,45 +48,52 @@
     <!-- 목록으로돌아가기 -->
 </div>
 <script>
-    let oEditors = [];
-    nhn.husky.EZCreator.createInIFrame({
-    oAppRef: oEditors,
-    elPlaceHolder: "ir1",
-    sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
-    fCreator: "createSEditor2"
-    });
+    //파일 확장자 입력 부분에 표시되도록
+    function displayFileName(input) {
+       var fileName = input.files[0].name; // Get the file name
+       var uploadNameInput = document.querySelector('.upload-name');
+       uploadNameInput.value = fileName; // Set the file name in the input field
+   }
+   //스마트에디터 사용
+   let oEditors = [];
+   nhn.husky.EZCreator.createInIFrame({
+   oAppRef: oEditors,
+   elPlaceHolder: "ir1",
+   sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+   fCreator: "createSEditor2"
+   });
 
-    let subBtn = document.querySelector('.in_btn');
+   let subBtn = document.querySelector('.in_btn');
 
-    subBtn.onclick = () => {
-        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-        const textarearvalue = document.querySelector("#ir1").value;
+   subBtn.onclick = () => {
+       oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+       const textarearvalue = document.querySelector("#ir1").value;
 <!--        alert(textarearvalue);-->
 
-        let formData = new FormData(document.querySelector("form"));
+       let formData = new FormData(document.querySelector("form"));
 
-        formData.forEach((v,k) => {
-            console.log("key: " + k);
-            console.log("value: " + v);
-        })
+       formData.forEach((v,k) => {
+           console.log("key: " + k);
+           console.log("value: " + v);
+       })
 
-        $.ajax({
-            async: false,
-            type: "post",
-            url: "/admin/save/nt",
-            enctype: "multipart/form-data",
-            contentType: false,
-            processData: false,
-            data: formData,
-            success: (response) => {
-                // <!--            고객센터>내가 등록한 페이지로 이동하게-->
-                alert('공지사항이 등록되었습니다');
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        })
-    }
+       $.ajax({
+           async: false,
+           type: "post",
+           url: "/admin/save/nt",
+           enctype: "multipart/form-data",
+           contentType: false,
+           processData: false,
+           data: formData,
+           success: (response) => {
+               // <!--            고객센터>내가 등록한 페이지로 이동하게-->
+               alert('공지사항이 등록되었습니다');
+           },
+           error: (error) => {
+               console.log(error);
+           }
+       })
+   }
 
 </script>
 </body>

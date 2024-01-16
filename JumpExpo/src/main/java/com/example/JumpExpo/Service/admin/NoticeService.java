@@ -1,6 +1,6 @@
 package com.example.JumpExpo.Service.admin;
 
-import com.example.JumpExpo.DTO.admin.NoticeForm;
+import com.example.JumpExpo.DTO.admin.notice.NoticeForm;
 import com.example.JumpExpo.Entity.admin.Notice;
 import com.example.JumpExpo.Repository.admin.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

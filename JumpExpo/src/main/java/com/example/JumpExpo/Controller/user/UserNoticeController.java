@@ -1,4 +1,4 @@
-package com.example.JumpExpo.Controller.admin;
+package com.example.JumpExpo.Controller.user;
 
 import com.example.JumpExpo.DTO.admin.notice.NoticeForm;
 import com.example.JumpExpo.Entity.admin.Notice;
@@ -18,12 +18,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-//2024-01-08 유수민
-//공지사항 등록 컨트롤러
+
+//2024-01-16 유수민
+//공지사항 컨트롤러
 @Slf4j
 @Controller
-@RequestMapping("/admin")
-public class NoticeController {
+@RequestMapping("/users")
+public class UserNoticeController {
     @Autowired
     NoticeRepository noticeRepository;
 
@@ -33,9 +34,8 @@ public class NoticeController {
     //공지사항 등록 페이지
     @GetMapping("/insert/nt")
     public String insertNt(){
-        return "admin/notice/Notice_New";
+        return "user/notice/Notice_New";
     }
-
     //공지사항 등록 + 이미지 처리
     @PostMapping("/save/nt")
     public String SaveNt(NoticeForm form, @RequestParam(value = "notFile",required = false) MultipartFile file1){
@@ -64,7 +64,7 @@ public class NoticeController {
         Notice save = noticeRepository.save(data);
         log.info(save.toString());
 
-        return "redirect:/admin/show/nt";
+        return "redirect:/users/show/nt";
     }
     //공지사항 리스트
     @GetMapping("/show/nt")
@@ -77,7 +77,7 @@ public class NoticeController {
         model.addAttribute("NoticeList", NoticeList);
 
         //3. 뷰에 모델 뿌리기
-        return  "admin/notice/Notice_List";
+        return  "user/notice/Notice_List";
     }
     //공지사항 상세 페이지
     @GetMapping("/show/nt/{notCode}")
@@ -88,44 +88,7 @@ public class NoticeController {
 
         Notice detail = noticeRepository.findById(notCode).orElse(null);
         model.addAttribute("notice", detail);
-        return "admin/notice/Notice_Detail";
-    }
-
-    //2024-01-11 유수민
-    //공지사항 수정 페이지
-    @GetMapping("/show/nt/{notCode}/update")
-    public String Edit(@PathVariable Integer notCode, Model model)
-    {
-        //1. 수정할 데이터 가져오기
-        Notice detail = noticeRepository.findById(notCode).orElse(null);
-        log.info(detail.toString());
-        //2. 모델에 데이터 등록
-        model.addAttribute("notice", detail);
-
-        return "admin/notice/Notice_Edit";
-    }
-    //공지사항 수정 컨트롤러
-    @PostMapping("/nt/{notCode}/update")
-    public String Update(@PathVariable("not_code") Integer notCode)
-    {
-
-        Notice detail = noticeRepository.findById(notCode).orElse(null);
-
-        if(detail != null)
-        {
-            noticeRepository.save(detail);
-        }
-        return "redirect:/admin/show/nt";
-    }
-
-    // 공지사항 삭제하기
-    @GetMapping("/show/nt/{notCode}/delete")
-    public String Delete(@PathVariable("not_code") Integer notCode){
-
-        Notice DeleteTarget = noticeRepository.findById(notCode).orElse(null);
-        noticeRepository.delete(DeleteTarget);
-        // 결과화면 리다이렉트
-        return "redirect:/show/nt";
+        return "user/notice/Notice_Detail";
     }
 
 }
