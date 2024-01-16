@@ -9,10 +9,10 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>채용 공고 신청</title>
 </head>
-
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
-<div class="s_header" th:replace="~{comuser/header/ApplyEmployHeader :: applyEmployHeader}"></div>
-<main>
+
+<main style="width:1100px;">
     <content>
         <div class="body">
             <div class="body_title">
@@ -69,8 +69,10 @@
             </form>
         </div>
     </content>
-    <div class="sidefooter" th:replace="~{comuser/sidefooter/ApplyEmploySidefooter :: applyEmploySidefooter}"></div>
+
 </main>
+<div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide :: applyEmploySide}"></div>
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 <script>
 
     $(document).ready(function () {
@@ -110,7 +112,7 @@
         $.ajax({
             async: false,
             type: "post",
-            url: "/comuser/save/employ",
+            url: "/com/save/employ",
             enctype: "multipart/form-data",
             contentType: false,
             processData: false,

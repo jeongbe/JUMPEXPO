@@ -9,9 +9,8 @@
 
     <title>유저 공지사항 상세 페이지</title>
 </head>
-
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <body>
-
 
 <!--    유저 공지사항 상세-->
 <div class="detail_wrap">
@@ -37,5 +36,7 @@
     <!-- 목록으로돌아가기 -->
     <button class="list"><a href="/users/show/nt" style="color:#fff; text-decoration:none;">목록</a></button>
 </div>
+<div class="s_header" th:replace="~{user/side/noticeSide :: noticeSide}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </body>
 </html>

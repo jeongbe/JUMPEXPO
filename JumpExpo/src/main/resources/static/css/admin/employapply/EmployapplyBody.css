@@ -23,7 +23,7 @@ background-color: white;
 .span_title{
 position: absolute;
 top: 90px;
-left: 577px;
+left: 300px;
 font-size: 24px;
 font-weight: bold;
 color: #374658;
@@ -33,7 +33,7 @@ color: #374658;
 display: inline-block;
 position: absolute;
 top: 150px;
-left: 578px;
+left: 300px;
 }
 
 .p_1 {
@@ -68,7 +68,7 @@ text-align: center;
 table{
 position: absolute;
 top: 200px;
-left: 580px;
+left: 300px;
 }
 
 th {

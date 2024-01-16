@@ -11,9 +11,11 @@ tr {
 }
 
 .container{
-    position:relative;
-    bottom:650px;
-    left:180px;
+
+        position: relative;
+        bottom: 0px;
+        left: -150px;
+        top: 100px;
 }
 
 .header_box{

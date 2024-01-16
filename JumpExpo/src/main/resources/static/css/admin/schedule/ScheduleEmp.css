@@ -4,8 +4,8 @@
 
 .container{
     position: relative;
-    left: 200px;
-    bottom: 650px;
+    left: -100px;
+    top: 100px;
 }
 
 .s_header{

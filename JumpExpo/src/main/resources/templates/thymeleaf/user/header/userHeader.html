@@ -9,20 +9,21 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
     />
+    <link href="/static/css/user/header/userHeader.css" rel="stylesheet" />
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
     ></script>
-    <link href="/static/css/user/header/userHeader.css" rel="stylesheet" />
+
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
     <title>채용공고 헤더</title>
 
     <body>
     <main>
         <!-- header 부분 -->
-        <header>
-            <a class="logo" href="#"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
+        <div class="header">
+            <a class="logo" th:href="@{/com/JumpExpo/main}"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
 
             <nav class="mainMenu">
                 <a href="#">행사일정</a>
@@ -32,10 +33,10 @@
             </nav>
             <div class="header_right">
                 <div>
-                    로그인하기
+                    <a href="/JumpExpo/Login">로그인하기</a>
                 </div>
             </div>
-        </header>
+        </div>
         <!-- header 끝 -->
         <!-- 서브메뉴 시작 -->
         <div class="subMenu">
@@ -47,11 +48,11 @@
                     <li><a href="#">채용박람회</a></li>
                 </ul>
                 <ul>
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">Q&A</a></li>
+                    <li><a href="/show/nt">공지사항</a></li>
+                    <li><a href="/show/qn">Q&A</a></li>
                 </ul>
                 <ul>
-                    <li><a href="#">공고보기</a></li>
+                    <li><a href="/show/employlist">공고보기</a></li>
                 </ul>
                 <ul>
                     <li><a href="#">전체 리뷰</a></li>

@@ -1,11 +1,11 @@
 * {
     margin: 0 auto;
 }
-
-body {
-    width: 950px;
+.container {
+position:relative;
+left:-100px;
+width:1100px;
 }
-
 .title-box {
     width: 950px;
     display: flex;

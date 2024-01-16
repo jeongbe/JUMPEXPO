@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/user/notice/notice.css" />
+    <link rel="stylesheet" href="/static/css/user/qna/Qna.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<!--    <script src="/static/js/admin/notice/jquery-3.7.0.min.js"></script>-->
-    <title> 유저 공지사항 리스트</title>
+    <title>질의 응답 리스트</title>
 </head>
-<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+
 <body>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/AdCustomerside :: adCustomerside}"></div>
 
-
-<!--    유저 공지사항 리스트-->
+<!--    관리자 공지사항 리스트-->
 <div class="content">
     <div class="body_title">
-        <span>공지</span>
-        <span>사항</span>
+        <span>Q&</span>
+        <span>A</span>
     </div>
 
     <div class="con_search">
@@ -27,27 +27,30 @@
         <input id="searchInput" type="text">
         <button onclick="searchNotices()">검색</button>
 
+        <button class="not_button"><a href ="/users/insert/nt" style="color:#fff; text-decoration:none;">글쓰기</a></button>
     </div>
     <form enctype="multipart/form-data">
         <table>
             <thead>
             <tr>
                 <th>번호</th>
+                <th>아이디</th>
                 <th>제목</th>
                 <th>등록일</th>
-                <th>조회수</th>
+<!--                <th>답변 상태</th>-->
             </tr>
             </thead>
             <tbody>
 
-            <tr th:each="list : ${NoticeList}">
+            <tr th:each="list : ${QnaList}">
 
-                <td th:text="${list.not_code}"></td>
+                <td th:text="${list.qu_num}"></td>
+                <td th:text="${list.user_code}"></td>
                 <td>
-                    <a th:href="@{/users/show/nt/{notCode}(notCode=${list.not_code})}" th:text="${list.not_title}"></a>
+                    <a th:href="@{/users/show/qn/{quNum}(quNum=${list.qu_num})}" th:text="${list.qn_title}"></a>
                 </td>
-                <td th:text="${list.not_date}"></td>
-                <td th:text="${list.not_cnt}"></td>
+                <td th:utext="${list.qn_date}"></td>
+<!--                <td th:text="${list.not_cnt}"></td>-->
             </tr>
             </tbody>
         </table>
@@ -59,9 +62,8 @@
         <button onclick="nextPage()">></button>
     </div>
     <!--    게시물 총 개수 구하기-->
-    <div class="total_post"><span>총 <span th:text="${NoticeList.size()}"></span>개</span></div>
+    <div class="total_post"><span>총 <span th:text="${QnaList.size()}"></span>개</span></div>
 </div>
-
 <script>
     // 페이징
             // 초기 페이지 설정
@@ -135,6 +137,4 @@
             }
 </script>
 </body>
-<div class="s_header" th:replace="~{user/side/noticeSide :: noticeSide}"></div>
-<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </html>

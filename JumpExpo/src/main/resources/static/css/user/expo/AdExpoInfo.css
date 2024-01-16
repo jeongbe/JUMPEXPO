@@ -1,21 +1,19 @@
-* {
-    margin: 0px;
+
+.container {
+    position:relative;
+    top:0px;
+    left:-50px;
+    margin:0 auto;
 }
 
-body {
-    width: 950px;
-}
-.container {
-position:relative;
-top:100px;
-left:-120px;
-}
 .title-box {
     display: flex;
+    width: 950px;
 }
 
 .body_title {
     margin: 0px;
+    width: 700px;
 }
 
 .body_title > span:first-child {
@@ -31,12 +29,13 @@ left:-120px;
 }
 
 .body_title_right {
-    margin-left: 380px;
+   position:absolute;
+   right:70px;
 }
 
 .line1 {
     margin-top: 10px;
-    border-bottom: 7px solid #374658;
+    border-bottom: 3px solid #374658;
 }
 
 .expo_name_box {
@@ -183,9 +182,3 @@ textarea:focus {
     font-size: 20px;
 }
 
-.content {
-    width:100%;
-    height:auto;
-    min-height: 300px;
-    border: 1px solid #808080;
-}

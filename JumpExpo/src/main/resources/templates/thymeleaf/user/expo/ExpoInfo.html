@@ -3,108 +3,117 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/admin/schedule/AdExpoInfo.css" />
+    <link rel="stylesheet" href="/static/css/user/expo/AdExpoInfo.css" />
     <title>박람회 정보</title>
+    <style>
+        footer {
+        position:relative;
+        top: 100px;
+        }
+    </style>
 </head>
-<body>
-<div class="container" >
-    <div class="title-box">
-        <div class="body_title">
-            <span class="t1"></span>
-            <span class="t2"></span>
-        </div>
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+<div class="s_header" th:replace="~{user/side/expoSide_1 :: expoSide_1}"></div>
 
-        <div class="body_title_right">
-            <img
-                src="/static/images/home.png"
-                alt="홈 아이콘"
-                style="width: 20px"
-            />
-            > 행사일정 > <span class="span">df</span>
-            <p class="cate" style="display:none" th:text="${ExpoInfo.expo_cate}"></p>
-        </div>
-    </div>
-    <div class="line1"></div>
-    <div class="expo_name_box">
-        <p th:text="${ExpoInfo.expo_title}">엑스포이름</p>
-    </div>
-    <div class="line2"></div>
-    <div class="expo_info_box">
-        <div class="img_box">
-            <img th:src="@{'http://192.168.2.3/images/a/' + ${ExpoInfo.expo_image}}" alt="" />
-        </div>
-        <div class="expo_info">
-            <div class="expo_name info_box1">
-                <p>행사명 :</p>
-                <p th:text="${ExpoInfo.expo_title}">행사 이름</p>
+<body>
+    <div class="container" style="width:950px;">
+        <div class="title-box">
+            <div class="body_title">
+                <span class="t1"></span>
+                <span class="t2"></span>
             </div>
-            <div class="expo_Period info_box1">
-                <p>개최 기간 :</p>
-                <span th:text="${ExpoInfo.expo_start}"></span>~
-                <span th:text="${ExpoInfo.expo_end}"></span>
-            </div>
-            <div class="expo_time info_box1">
-                <p>관람시간 :</p>
-                <p th:text="${ExpoInfo.expo_time}">시간</p>
-            </div>
-            <div class="expo_place info_box1">
-                <p>개최장소 :</p>
-                <p th:text="${ExpoInfo.expo_add}">장소</p>
+
+            <div class="body_title_right">
+                <img
+                    src="/static/images/home.png"
+                    alt="홈 아이콘"
+                    style="width: 20px"
+                />
+                > 행사일정 > <span class="span">df</span>
+                <p class="cate" style="display:none" th:text="${ExpoInfo.expo_cate}"></p>
             </div>
         </div>
+        <div class="line1"></div>
+        <div class="expo_name_box">
+            <p th:text="${ExpoInfo.expo_title}">엑스포이름</p>
+        </div>
+        <div class="line2"></div>
+        <div class="expo_info_box">
+            <div class="img_box">
+                <img th:src="@{'http://192.168.2.3/images/a/' + ${ExpoInfo.expo_image}}" alt="" />
+            </div>
+            <div class="expo_info">
+                <div class="expo_name info_box1">
+                    <p>행사명 :</p>
+                    <p th:text="${ExpoInfo.expo_title}">행사 이름</p>
+                </div>
+                <div class="expo_Period info_box1">
+                    <p>개최 기간 :</p>
+                    <span th:text="${ExpoInfo.expo_start}"></span>~
+                    <span th:text="${ExpoInfo.expo_end}"></span>
+                </div>
+                <div class="expo_time info_box1">
+                    <p>관람시간 :</p>
+                    <p th:text="${ExpoInfo.expo_time}">시간</p>
+                </div>
+                <div class="expo_place info_box1">
+                    <p>개최장소 :</p>
+                    <p th:text="${ExpoInfo.expo_add}">장소</p>
+                </div>
+            </div>
+        </div>
+        <div class="outline_box">
+            <div class="o_box1">
+                <p>전시 개요</p>
+            </div>
+            <div class="o_box2">
+                <p th:text="${ExpoInfo.expo_outline}">전시내용</p>
+            </div>
+        </div>
+        <div class="expo_info_box2">
+            <div class="info_box2">
+                <p>주최</p>
+                <p th:text="${ExpoInfo.expo_host}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>주관</p>
+                <p th:text="${ExpoInfo.expo_manage}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>전시품목</p>
+                <p th:text="${ExpoInfo.expo_exhibit}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>담당자</p>
+                <p th:text="${ExpoInfo.master_name}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>전화번호</p>
+                <p th:text="${ExpoInfo.master_phone}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>이메일</p>
+                <p th:text="${ExpoInfo.master_mail}">정보</p>
+            </div>
+        </div>
+        <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}">
+    <!--                <textarea-->
+    <!--                        name=""-->
+    <!--                        id=""-->
+    <!--                        cols="30"-->
+    <!--                        rows="10"-->
+    <!--                        oninput="autoResizeTextArea(this)"-->
+    <!--                        readonly-->
+    <!--                        -->
+    <!--                >-->
+    <!--                </textarea>-->
+        </div>
+        <div class="line2"></div>
+        <div class="btn_box">
+            <button>신청하기</button>
+            <button>목록</button>
+        </div>
     </div>
-    <div class="outline_box">
-        <div class="o_box1">
-            <p>전시 개요</p>
-        </div>
-        <div class="o_box2">
-            <p th:text="${ExpoInfo.expo_outline}">전시내용</p>
-        </div>
-    </div>
-    <div class="expo_info_box2">
-        <div class="info_box2">
-            <p>주최</p>
-            <p th:text="${ExpoInfo.expo_host}">정보</p>
-        </div>
-        <div class="info_box2">
-            <p>주관</p>
-            <p th:text="${ExpoInfo.expo_manage}">정보</p>
-        </div>
-        <div class="info_box2">
-            <p>전시품목</p>
-            <p th:text="${ExpoInfo.expo_exhibit}">정보</p>
-        </div>
-        <div class="info_box2">
-            <p>담당자</p>
-            <p th:text="${ExpoInfo.master_name}">정보</p>
-        </div>
-        <div class="info_box2">
-            <p>전화번호</p>
-            <p th:text="${ExpoInfo.master_phone}">정보</p>
-        </div>
-        <div class="info_box2">
-            <p>이메일</p>
-            <p th:text="${ExpoInfo.master_mail}">정보</p>
-        </div>
-    </div>
-    <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}">
-<!--                <textarea-->
-<!--                        name=""-->
-<!--                        id=""-->
-<!--                        cols="30"-->
-<!--                        rows="10"-->
-<!--                        oninput="autoResizeTextArea(this)"-->
-<!--                        readonly-->
-<!--                        -->
-<!--                >-->
-<!--                </textarea>-->
-    </div>
-    <div class="line2"></div>
-    <div class="btn_box">
-        <button>신청하기</button>
-        <button>목록</button>
-    </div>
-</div>
 
 <script>
     function autoResizeTextArea(element) {
@@ -146,4 +155,5 @@
 
 </script>
 </body>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </html>

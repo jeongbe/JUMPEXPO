@@ -5,11 +5,11 @@
      <link rel="stylesheet" href="/static/css/admin/employapply/EmployapplyBody.css" />
 
     <title>관리자 헤더</title>
-
-    <body>
-
     <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-    <div class="s_header" th:replace="~{admin/side/EmployapplySide :: employapplyside}"></div>
+    <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
+    <body style="width:950px;">
+
+
 
     <div>
         <span class="span_title">공고 심사</span>

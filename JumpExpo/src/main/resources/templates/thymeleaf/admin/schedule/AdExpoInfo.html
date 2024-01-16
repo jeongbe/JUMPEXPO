@@ -7,6 +7,8 @@
     <title>박람회 정보</title>
 </head>
 <body>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
 <div class="container" th:each="infolist : ${ExpoInfo}">
     <div class="title-box">
         <div class="body_title">

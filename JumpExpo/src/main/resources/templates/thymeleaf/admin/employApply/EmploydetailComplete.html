@@ -9,10 +9,10 @@
 
     <body>
     <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-    <div class="s_header" th:replace="~{admin/side/EmployapplySide :: employapplyside}"></div>
+    <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
 
     <!-- 본문 -->
-    <div class="body_data" th:object="${applyEmploy}">
+    <div class="body_data" style="position:relative; left:80px;" th:object="${applyEmploy}">
         <span class="span_title">회사명 데이터</span>
         <div class="header_a">
             <p class="p_1" th:text="${applyEmploy.emnot_title}">채용 공고 제목</a></p>

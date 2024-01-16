@@ -6,10 +6,10 @@
      <link rel="stylesheet" href="/static/css/admin/employapply/Employdetail.css" />
 
     <title>공고 심사 디테일</title>
-
-    <body>
     <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-    <div class="s_header" th:replace="~{admin/side/EmployapplySide :: employapplyside}"></div>
+    <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
+    <body style="width:950px;">
+
 
     <!-- 본문 -->
     <div class="body_data" th:object="${applyEmploy}">

@@ -9,15 +9,18 @@
     <title>박람회 전체 일정 리스트</title>
     <style>
         /* 추가된 CSS 스타일 */
+
         .pagination {
             display: flex;
             list-style: none;
             padding: 0;
             margin-top: 20px;
+            margin-left:400px;
         }
 
         .pagination li {
             margin: 0 5px;
+            display:inline;
         }
 
         .pagination a {
@@ -38,9 +41,11 @@
             background-color: #007bff;
             color: #fff;
         }
+
     </style>
 </head>
 <body>
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <div class="container">
     <div class="title-box">
         <div class="body_title">
@@ -83,16 +88,14 @@
             </div>
         </form>
     </div>
-    <div>
 
-    </div>
     <div class="content" th:each="list : ${AllList}">
         <div class="expo-info-box" >
             <div class="cont-img">
                 <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
             </div>
             <div class="expo-info">
-                <p>예정행사</p>
+                <span>예정행사</span>
                 <p class="expo-name" th:text="${list.expo_title}" th:onclick="'javascript:location.href=&quot;/users/expo/info/' + ${list.expo_code} +'/' + ${list.expo_cate} + '&quot;'">2024 예일 박람회</p>
                 <div class="period-box2">
                     <p th:text="${list.expo_start}">2024-01-10</p>
@@ -112,9 +115,11 @@
 
     <!-- 페이징 처리하기 -->
 <!--    style="display:none"-->
-    <p  class="total_page" th:text="${TotalPage}"></p>
+    <span  class="total_page" th:text="${TotalPage}"></span>
 
 </div>
+<div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 <script>
 
     let S_btn = document.querySelector('.S_btn');

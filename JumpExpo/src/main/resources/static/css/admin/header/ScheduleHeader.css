@@ -8,11 +8,13 @@ body {
 
 .con {
     display: flex;
+    position:fixed;
+    left:66px;
 }
 
 .header-title {
     display: flex;
-    width: 950px;
+    width: 100%;
     justify-content: space-between;
     background-color: #374658;
     color: white;
@@ -26,7 +28,8 @@ body {
 }
 
 .logo {
-    width: 150px;
+    width: 200px;
+    height:60px;
     margin: 0;
     /* background-color: #374658; */
 }
