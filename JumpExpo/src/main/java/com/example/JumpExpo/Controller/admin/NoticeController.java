@@ -81,7 +81,7 @@ public class NoticeController {
     }
     //공지사항 상세 페이지
     @GetMapping("/show/nt/{notCode}")
-    public String Show(@PathVariable Integer notCode, Model model){
+    public String Show(@PathVariable("notCode") Integer notCode, Model model){
         log.info("notCode = " + notCode);
 
         Notice board = noticeService.selectNoticeDetail(notCode);
@@ -94,7 +94,7 @@ public class NoticeController {
     //2024-01-11 유수민
     //공지사항 수정 페이지
     @GetMapping("/show/nt/{notCode}/update")
-    public String Edit(@PathVariable Integer notCode, Model model)
+    public String Edit(@PathVariable("notCode") Integer notCode, Model model)
     {
         //1. 수정할 데이터 가져오기
         Notice detail = noticeRepository.findById(notCode).orElse(null);

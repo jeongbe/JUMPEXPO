@@ -2,9 +2,11 @@ package com.example.JumpExpo.Controller.admin;
 
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
+import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import com.example.JumpExpo.Repository.comuser.ExpoAppComRepository;
 import com.example.JumpExpo.Repository.etc.ExpoCalenderInfoRepository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
@@ -34,6 +36,9 @@ public class EmployapplyController {
 
     @Autowired
     ExpoAppComRepository expoAppComRepository;
+
+    @Autowired
+    CompanyRepository companyRepository;
 
     // 심사전인 채용 신청 리스트
     @GetMapping("/show/employapply")
@@ -208,5 +213,19 @@ public class EmployapplyController {
 
 
         return "redirect:/admin/show/employapply/com/" + expoCode;
+    }
+
+    //2024.01.15 정정빈
+    //회사 정보 팝업창
+    @GetMapping("/cominfo/{com_code}")
+    public String ComInco(Model model,@PathVariable("com_code")  int comCode){
+
+        Company cominfo = companyRepository.findById(comCode).orElse(null);
+        model.addAttribute("ComInfo",cominfo);
+        log.info(cominfo.toString());
+
+
+
+        return "/admin/employApply/ComInfo";
     }
 }

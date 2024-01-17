@@ -81,7 +81,7 @@ public class UserNoticeController {
     }
     //공지사항 상세 페이지
     @GetMapping("/show/nt/{notCode}")
-    public String Show(@PathVariable Integer notCode, Model model){
+    public String Show(@PathVariable("notCode") Integer notCode, Model model){
         log.info("notCode = " + notCode);
 
         Notice board = noticeService.selectNoticeDetail(notCode);

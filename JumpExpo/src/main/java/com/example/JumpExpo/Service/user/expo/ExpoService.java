@@ -82,4 +82,46 @@ public class ExpoService {
         Pageable pageable = PageRequest.of(page,2);
         return this.expoAppComRepository.getComOkList(pageable,expoCode);
     }
+
+    //2024.01.17 정정빈
+    //박람회(유저) 페어 리스트
+    public Page<ScheduleInsert> getUserFairList(int page){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.FairAllList(pageable);
+    }
+
+    //2024.01.17 정정빈
+    //박람회(유저) 취업 리스트
+    public Page<ScheduleInsert> getUserEmpList(int page){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.EmpAllList(pageable);
+    }
+
+    //2024.01.17 정정빈
+    //박람회(유저) 채용 리스트
+    public Page<ScheduleInsert> getUserRecList(int page){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.RecAllList(pageable);
+    }
+
+    //2024.01.17 정정빈
+    //박람회(유저) 페어 검색 단어 있을때
+    public Page<ScheduleInsert> getSerchFairList(int page,String serch,String StartDate,String EndDate){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.serchFair(pageable,serch,StartDate,EndDate);
+    }
+
+    //2024.01.17 정정빈
+    //박람회(유저) 취업 검색 단어 있을때
+    public Page<ScheduleInsert> getSerchEmpList(int page,String serch,String StartDate,String EndDate){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.serchEmp(pageable,serch,StartDate,EndDate);
+    }
+
+    //2024.01.17 정정빈
+    //박람회(유저) 채용 검색 단어 있을때
+    public Page<ScheduleInsert> getSerchRecList(int page,String serch,String StartDate,String EndDate){
+        Pageable pageable = PageRequest.of(page,2);
+        return this.schInsetExpoRepository.serchRec(pageable,serch,StartDate,EndDate);
+    }
 }

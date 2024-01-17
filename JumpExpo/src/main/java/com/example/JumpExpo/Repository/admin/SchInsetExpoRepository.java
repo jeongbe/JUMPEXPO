@@ -32,6 +32,30 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "from schedule_insert", nativeQuery = true)
     Page<ScheduleInsert> AllExpoList(Pageable pageable);
 
+    //2024.01.17 정정빈
+    //행사 리스트 - 페어
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n" +
+            "AND expo_cate = 1;", nativeQuery = true)
+    Page<ScheduleInsert> FairAllList(Pageable pageable);
+
+    //2024.01.17 정정빈
+    //행사 리스트 - 취업
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n" +
+            "AND expo_cate = 0;" , nativeQuery = true)
+    Page<ScheduleInsert> EmpAllList(Pageable pageable);
+
+    //2024.01.17 정정빈
+    //행사 리스트 - 채용
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n" +
+            "AND expo_cate = 2;" , nativeQuery = true)
+    Page<ScheduleInsert> RecAllList(Pageable pageable);
+
     //2024.01.11 정정빈
     //행사 전체 리스트에서 검색 단어 있을떄
     @Query(value = "SELECT *\n" +
@@ -39,6 +63,7 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "WHERE expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)\n" +
             "and expo_title like %:text%", nativeQuery = true)
     Page<ScheduleInsert> serch1(Pageable pageable, @Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
+
 
     //2024.01.11 정정빈
     //단어 없을때
@@ -72,4 +97,35 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "from schedule_insert\n" +
             "where expo_cate = 0", nativeQuery = true)
     Page<ScheduleInsert> EmpList(Pageable pageable);
+
+
+    //2024.01.17 정정빈
+    //유저 행사일정 페어 검색 쿼리
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n" +
+            "and expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)\n" +
+            "and expo_title like %:text% \n" +
+            "and expo_cate = 1", nativeQuery = true)
+    Page<ScheduleInsert> serchFair(Pageable pageable, @Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
+
+    //2024.01.17 정정빈
+    //유저 행사일정 취업 검색 쿼리
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n" +
+            "and expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)\n" +
+            "and expo_title like %:text% \n" +
+            "and expo_cate = 0", nativeQuery = true)
+    Page<ScheduleInsert> serchEmp(Pageable pageable, @Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
+
+    //2024.01.17 정정빈
+    //유저 행사일정 채용 쿼리
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n" +
+            "and expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)\n" +
+            "and expo_title like %:text% \n" +
+            "and expo_cate = 2", nativeQuery = true)
+    Page<ScheduleInsert> serchRec(Pageable pageable, @Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
 }

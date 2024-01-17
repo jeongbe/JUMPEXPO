@@ -1,0 +1,111 @@
+*{
+    margin: 0 auto;
+}
+
+body{
+    width: 950px;
+}
+
+tr {
+    /* background-color: aquamarine; */
+}
+
+.container{
+
+}
+
+.header_box{
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.clo{
+    margin: 0px;
+}
+
+.tit{
+    margin: 0px;
+    font-size: 40px;
+    color: #374658;
+}
+
+.c1{
+    background-color: #F1D2B0;
+    width: 100px;
+    height: 20px;
+}
+
+.c2{
+    background-color: #EA8874;
+    width: 100px;
+    height: 20px;
+}
+
+.c3{
+    background-color: #374658;
+    width: 100px;
+    height: 20px;
+}
+
+.color_box{
+    display: flex;
+}
+
+.color_box >p:first-child{
+    margin-right: 10px;
+}
+
+.line{
+    border-bottom: 1px solid #808080;
+    width: 1100px;
+    margin-top: 10px;
+}
+
+.c_box{
+    display: flex;
+}
+
+.MonthDown, .MonthUp {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: white;
+    margin-top: 5px;
+    font-size: 40px;
+}
+
+.MonthDown{
+    position: relative;
+    left: 150px;
+}
+
+.YearText, .MonthText{
+    font-size: 40px;
+    margin: 0px;
+}
+
+.YearText{
+    color: #808080;
+    width: 120px;
+}
+
+.MonthText{
+    margin: 0px;
+}
+
+.MonthUp{
+    position: relative;
+    right: 150px;
+}
+
+.days{
+    background-color: #e7e3e3;
+    border-top: 5px solid #374658;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.days > th{
+    border-right: 1px solid black;
+}

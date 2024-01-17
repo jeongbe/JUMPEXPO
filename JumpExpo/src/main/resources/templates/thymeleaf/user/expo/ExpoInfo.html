@@ -103,9 +103,15 @@
     <!--                </textarea>-->
         </div>
         <div class="line2"></div>
+
         <div class="btn_box">
-            <button>신청하기</button>
-            <button>목록</button>
+            <form action="/users/apply/expo" method="post">
+                <input type="hidden" name="UserCode" th:value="${users.user_code}">
+                <input type="hidden" name="ExpoCode" th:value="${ExpoInfo.expo_code}">
+                <input type="hidden" name="ExpoCate" th:value="${ExpoInfo.expo_cate}">
+                <button type="submit">신청하기</button>
+            </form>
+                <button>목록</button>
         </div>
     </div>
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/admin/employapply/ComInfo.css">
+    <title>Document</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td class="a g" colspan="2"><span class="d"><img th:src="@{'http://192.168.2.3/images/a/' + ${ComInfo.com_image}}" alt=""></span></td>
+        <td class="a b" colspan="2">회사명</td>
+    </tr>
+    <tr class="f">
+        <td class="c">회사명</td>
+        <td th:text="${ComInfo.com_name}">ㅇㄹㄴ</td>
+        <td class="c">이메일</td>
+        <td  th:text="${ComInfo.com_email}">ㄴㅇㄹ</td>
+    </tr>
+    <tr class="f">
+        <td class="c">담당자</td>
+        <td  th:text="${ComInfo.com_manager}">ㅇㄹㄴ</td>
+        <td class="c">전화번호</td>
+        <td  th:text="${ComInfo.manager_phone}">ㄴㅇㄹㄴ</td>
+    </tr>
+    <tr class="f">
+        <td class="c">회사주소</td>
+        <td colspan="3"  th:text="${ComInfo.com_intro}">ㄴㅇㄹㄴ</td>
+    </tr>
+    <tr class="f">
+        <td class="c">홈페이지 링크</td>
+        <td colspan="3"  th:text="${ComInfo.com_addr}">ㅇㄴㄹㅇ</td>
+    </tr>
+</table>
+<div class="btn_box_">
+    <button onclick="closePopup()">확인</button>
+</div>
+<script>
+    function closePopup() {
+        window.close();
+    }
+</script>
+</body>
+</html>
