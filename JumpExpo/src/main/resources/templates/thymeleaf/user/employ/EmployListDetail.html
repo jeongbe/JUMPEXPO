@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<header th:fragment="scheduleHeader">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/user/employ/Employdetail.css" />
-
     <title>공고 보기 디테일</title>
+</head>
+    <div class="s_header" th:replace="~{user/header/userHeader2 :: userHeader2}"></div>
 
-    <body>
-    <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
-
+<body>
     <!-- 본문 -->
     <div class="body_data" th:object="${applyEmploy}">
         <script th:inline="javascript">
@@ -25,7 +24,7 @@
         </div>
 
         <div class="table-container">
-            <table class="body_table">
+            <table class="body_table" border="1">
                 <tr>
                     <td rowspan="5" class="company_logo"></td>
                     <td class="semi_title">회사명</td>
@@ -60,7 +59,7 @@
                 </tr>
             </table>
 
-            <table class="body_table2">
+            <table class="body_table2" border="1">
                 <tr>
                     <td class="semi_title">경력</td>
                     <td class="semi_body2" th:text="${applyEmploy.emnot_career}"></td>
@@ -91,9 +90,6 @@
             </div>
         </div>
     </div>
-    <div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
-    <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
-
     <script>
         document.getElementById('submitResumeBtn').addEventListener('click', function() {
                     if (applyEmploy) {
@@ -108,6 +104,6 @@
     </script>
 
     </body>
-</header>
-
+<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </html>

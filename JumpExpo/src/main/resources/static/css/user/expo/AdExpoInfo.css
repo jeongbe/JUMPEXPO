@@ -1,7 +1,7 @@
 
 .container {
     position:relative;
-    top:0px;
+    top: -50PX;
     left:-50px;
     margin:0 auto;
 }

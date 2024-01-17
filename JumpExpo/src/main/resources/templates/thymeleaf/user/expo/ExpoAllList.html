@@ -44,9 +44,11 @@
 
     </style>
 </head>
-<body>
+
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
-<div class="container">
+<div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
+<body>
+<div class="container" style="width:950px;">
     <div class="title-box">
         <div class="body_title">
             <span>전체</span>
@@ -118,8 +120,7 @@
     <span  class="total_page" th:text="${TotalPage}"></span>
 
 </div>
-<div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
-<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<div class="footer" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 <script>
 
     let S_btn = document.querySelector('.S_btn');

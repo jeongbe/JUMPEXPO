@@ -11,10 +11,9 @@
 
     <title>공고 보기</title>
 </head>
-
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <body>
 <main>
-    <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
     <content>
         <div class="body">
             <div class="body_title">
@@ -52,7 +51,7 @@
                                     <tr th:each="allList, iterStat : ${allList}">
                                         <td class="td_number" th:text="${iterStat.index + 1}">1</td>
                                         <td>
-                                            <a th:href="@{'/users/show/employlist/' + ${allList.emnot_code}}" th:text="${allList.emnot_title}"></a>
+                                            <a th:href="@{'/JumpExpo/show/employlist/' + ${allList.emnot_code}}" th:text="${allList.emnot_title}"></a>
                                         </td>
                                         <td>
                                             <span th:text="${allList.emnot_start}">2024-01-04</span>
@@ -213,9 +212,6 @@
             </div>
         </div>
     </content>
-
-    <div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
-    <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </main>
 <script>
 
@@ -556,5 +552,6 @@ $('.tabMenu>li>a').click(function () {
     }
 </script>
 </body>
-
+<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </html>
