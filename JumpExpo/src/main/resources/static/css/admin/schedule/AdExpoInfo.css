@@ -1,10 +1,4 @@
-* {
-    margin: 0px;
-}
 
-body {
-    width: 950px;
-}
 .container {
 position:relative;
 top:100px;
@@ -19,13 +13,13 @@ left:-120px;
 }
 
 .body_title > span:first-child {
-    font-size: 40px;
+    font-size: 30px;
     color: #808080;
     font-weight: bold;
 }
 
 .body_title > span:last-child {
-    font-size: 40px;
+    font-size: 30px;
     color: #374658;
     font-weight: bold;
 }
@@ -36,7 +30,7 @@ left:-120px;
 
 .line1 {
     margin-top: 10px;
-    border-bottom: 7px solid #374658;
+    border-bottom: 4px solid #374658;
 }
 
 .expo_name_box {
@@ -53,14 +47,15 @@ left:-120px;
 }
 
 .expo_info_box {
-    display: flex;
-    margin-left: 50px;
-    margin-top: 20px;
+        display: flex;
+        margin-right: 375px;
+        margin-top: 20px;
 }
 
 .img_box {
     width: 250px;
     height: 150px;
+    margin-left: 40px;
     /* background-color: antiquewhite; */
 }
 
@@ -71,7 +66,6 @@ left:-120px;
 }
 
 .expo_info {
-    margin-left: 30px;
     font-size: 19px;
     color: #808080;
     margin-top: 20px;
@@ -129,7 +123,6 @@ left:-120px;
     margin-top: 30px;
     margin-left: 50px;
 }
-
 .info_box2 {
     display: flex;
 }
@@ -143,12 +136,12 @@ left:-120px;
 }
 
 .info_box2 p:last-child {
-    margin-left: 20px;
     display: flex;
-    align-items: center;
-    /* background-color: aqua; */
-    justify-content: center;
     height: 34px;
+    margin-left: -550px;
+    text-align: left;
+    width: 300px;
+    float: left;
 }
 
 .expo_explanation {
@@ -188,4 +181,7 @@ textarea:focus {
     height:auto;
     min-height: 300px;
     border: 1px solid #808080;
+}
+.info_box2 p:first-child{
+margin-left: 10px
 }
