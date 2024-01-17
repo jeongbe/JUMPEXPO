@@ -5,13 +5,13 @@
  }
  .body_title {
      position: absolute;
-     top: 30px;
-     left: 100px;
+     top: 40px;
+     left: 30px;
      width: 700px;
-   }
+ }
    .body_title span{
      font-weight: 800;
-     font-size: 35px;
+     font-size: 30px;
      color:#787878;
    }
    .body_title span:last-child{

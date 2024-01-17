@@ -1,12 +1,7 @@
-/* 기존 코드 */
-* {
-    margin: 0 auto;
+.container {
+position:absolute;
+left:100px;
 }
-
-body {
-    width: 950px;
-}
-
 .main_title {
     font-size: 40px;
     font-weight: bold;

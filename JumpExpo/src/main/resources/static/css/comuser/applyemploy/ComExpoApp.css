@@ -118,13 +118,14 @@ input:focus {
     color: rgb(255, 0, 0);
     font-weight: bold;
     font-size: 13px;
-    margin-left: 65px;
+    margin-left: 85px;
 }
 
 .btn_box {
     display: flex;
-    margin-top: 50px;
-    margin-left:300px;
+    position: absolute;
+    left: 380px;
+    top: 400px;
 }
 
 .btn_box > button {
@@ -133,4 +134,19 @@ input:focus {
     background-color: #374658;
     color: white;
     font-size: 22px;
+}
+.box3 {
+    margin-top: 20px;
+    margin-left: 85px;
+    display: flex;
+}
+.box2 input {
+    width: 350px;
+    height: 37px;
+    margin-left: 2px;
+}
+.box2 {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
 }
