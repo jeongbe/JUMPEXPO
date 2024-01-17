@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/css/user/Mypage/InterviewInsert.css" />
+  <title>유저 일정 등록</title>
+</head>
+<body>
+<form id="scheduleForm" action="/users/save/sc" method="post">
+  <div class="user_Sc_box">
+    <input type="hidden" name="UserCode" th:value="${userCode}" id="">
+    <div class="sc_title">
+      <label for="ti">제목</label>
+      <input type="text" name="ScTitle" maxlength="25" id="ti" />
+    </div>
+    <div class="sc_Sday">
+      <label for="sc_s">시작</label>
+      <input type="date"  name="ScStart" id="sc_s" />
+      <input type="time" name="StartTime"  />
+    </div>
+    <div class="sc_Eday">
+      <label for="sc_e">종료</label>
+      <input type="date" name="ScEnd" id="sc_e" />
+      <input type="time" name="EndTime" />
+    </div>
+    <div class="sc_etc">
+      <label for="sc_etc_">메모</label>
+      <textarea
+              name="ScNot"
+              id="sc_etc_"
+              cols="30"
+              rows="10"
+              placeholder="최대 200글자"
+              maxlength="200"
+      ></textarea>
+    </div>
+    <div class="sc_btn_box">
+      <button type="button" onclick="submitAndClose()">추가하기</button>
+    </div>
+  </div>
+</form>
+<script>
+  function submitAndClose() {
+     var form = document.getElementById('scheduleForm');
+
+     // AJAX를 사용하여 비동기적으로 데이터를 서버로 전송
+     var xhr = new XMLHttpRequest();
+     xhr.open('POST', form.action, true);
+     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+     xhr.onload = function () {
+       // 전송이 완료되면 창을 닫음
+       window.close();
+     };
+
+     // 폼 데이터를 가져와서 전송
+     var formData = new FormData(form);
+     xhr.send(new URLSearchParams(formData));
+   }
+</script>
+</body>
+</html>

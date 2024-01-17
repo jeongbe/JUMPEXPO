@@ -27,15 +27,33 @@
         <h1 id="YearText" class="YearText"></h1>
         <h1 id="MonthText" class="MonthText"></h1>
         <button class="MonthUp">></button>
-<!--        <button>일정 추가</button>-->
+        <button class="ins_" th:onclick="'javascript:openPopup(\'/users/save/inter/' + ${userCode} + '\')'">일정 추가</button>
     </div>
 
     <div id="calendar">
     </div>
 
+<!--    <div style="display:none" th:each="list : ${list}">-->
+<!--        <p class="UserSC" th:text="${list}"></p>-->
+<!--    </div>-->
 </div>
 <!--<script src="/static/js/admin/schedule/Calender.js"></script>-->
 <script th:inline="javascript">
+
+    let userSc = [[${list}]];
+    console.log(userSc);
+
+
+    function openPopup(url) {
+       var width = 500;
+       var height = 400;
+
+       var left = (screen.availWidth - width) / 2;
+       var top = (screen.availHeight - height) / 2;
+
+       var popup = window.open(url, 'popup', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
+       popup.focus();
+   }
 
 <!--    let info = [[${EInfo}]];-->
 <!--    console.log(info);-->
@@ -59,108 +77,124 @@ MonthText.innerHTML = `<h1 class="MonthText">${Month}월</h1>`;
 
 
 monthdown.onclick = () => {
-    if (Month > 1) {
-        Month--;
-    } else {
-        Month = 12;
-        Year--;
-    }
-    updateCalendar();
+   if (Month > 1) {
+       Month--;
+   } else {
+       Month = 12;
+       Year--;
+   }
+   updateCalendar();
 };
 
 monthup.onclick = () => {
-    if (Month < 12) {
-        Month++;
-    } else {
-        Month = 1;
-        Year++;
-    }
-    updateCalendar();
+   if (Month < 12) {
+       Month++;
+   } else {
+       Month = 1;
+       Year++;
+   }
+   updateCalendar();
 };
 
 // 달력 생성 함수
 function generateCalendar(year, month) {
-    var calenderYear = year;
-    var calMonth = month;
+   var calenderYear = year;
+   var calMonth = month;
 
-    var MonthLastDate = new Date(calenderYear, calMonth, 0);
-    console.log(MonthLastDate);
+   var MonthLastDate = new Date(calenderYear, calMonth, 0);
+   console.log(MonthLastDate);
 
-    var calMonthLastDate = MonthLastDate.getDate();
-    console.log(calMonthLastDate);
+   var calMonthLastDate = MonthLastDate.getDate();
+   console.log(calMonthLastDate);
 
-    // 주의 시작 요일을 일요일(0)로 설정
-    var calMonthStartDate = new Date(calenderYear, calMonth - 1, 1).getDay();
+   // 주의 시작 요일을 일요일(0)로 설정
+   var calMonthStartDate = new Date(calenderYear, calMonth - 1, 1).getDay();
 
-    console.log(calMonthStartDate);
+   console.log(calMonthStartDate);
 
-    var calWeekCount = Math.ceil((calMonthStartDate + calMonthLastDate) / 7);
-    console.log(calWeekCount);
+   var calWeekCount = Math.ceil((calMonthStartDate + calMonthLastDate) / 7);
+   console.log(calWeekCount);
 
-    var html = '';
-    html +=
-        '<table style="border-collapse: collapse; margin-left: auto; margin-right: auto;">';
-    //위치
-    var calendarPos = 0;
-    //날짜
-    var calendarDay = 0;
-    html +=
-        '<tr class="days" style="height:50px";><th style="color: red;">일요일</th><th>월요일</th><th>화요일</th><th>수요일</th><th>목요일</th><th>금요일</th><th style="color: blue;">토요일</th></tr>';
-    for (var index1 = 0; index1 < calWeekCount; index1++) {
-        //tr을 weekCount만큼 반복해줌 즉 6번
-        html += '<tr>';
+   var html = '';
+   html +=
+       '<table style="border-collapse: collapse; margin-left: auto; margin-right: auto;">';
+   //위치
+   var calendarPos = 0;
+   //날짜
+   var calendarDay = 0;
+   html +=
+       '<tr class="days" style="height:50px";><th style="color: red; text-align:center;">일요일</th><th style="text-align:center;">월요일</th><th style="text-align:center;">화요일</th><th style="text-align:center;">수요일</th><th style="text-align:center;">목요일</th><th style="text-align:center;">금요일</th><th style="color: blue; text-align:center;">토요일</th></tr>';
+   for (var index1 = 0; index1 < calWeekCount; index1++) {
+       //tr을 weekCount만큼 반복해줌 즉 6번
+       html += '<tr>';
 
-        for (var index2 = 0; index2 < 7; index2++) {
-            var isSunday = index2 === 0; // 일요일 확인
-            var isSaturday = index2 === 6; // 토요일 확인
-            var cellStyle =
-                'border: solid 1px black; width:150px; height:150px;';
-            if (isSunday) {
-                cellStyle += 'color: red;';
-            } else if (isSaturday) {
-                cellStyle += 'color: blue;';
-            }
-            html += `<td style="${cellStyle}">`;
-            if (
-                calMonthStartDate <= calendarPos &&
-                calendarDay < calMonthLastDate
-            ) {
-                calendarDay++;
-                html +=
-                    '<span style="display: flex; padding: 10px; position: relative; bottom: 20px;">' +
-                    calendarDay +
-                    '</span>';
-                if (calendarDay === 10 && calMonth === 1) {
-                    html += '<span class="sch" style="display:flex"> 면접 일정</span>'
-                    html += '<span class="sch" style="display:flex"> 면접 일정</span>'
-                    html += '<span class="sch" style="display:flex"> 면접 일정</span>';
-                }
-            } else {
-                html +=
-                    '<span style="display: block; padding: 10px 10px;"></span>';
-            }
-            html += '</td>';
-            calendarPos++;
-        }
-        html += '</tr>';
-    }
-    html += '</table>';
-    return html;
+       for (var index2 = 0; index2 < 7; index2++) {
+           var isSunday = index2 === 0; // 일요일 확인
+           var isSaturday = index2 === 6; // 토요일 확인
+           var cellStyle =
+               'border: solid 1px black; width:150px; height:150px;';
+           if (isSunday) {
+               cellStyle += 'color: red;';
+           } else if (isSaturday) {
+               cellStyle += 'color: blue;';
+           }
+           html += `<td style="${cellStyle}">`;
+           if (
+               calMonthStartDate <= calendarPos &&
+               calendarDay < calMonthLastDate
+           ) {
+               calendarDay++;
+               html +=
+                   '<span style="display: flex; padding: 10px; position: relative; bottom: 20px;">' +
+                   calendarDay +
+                   '</span>';
+               for(let i = 0; i < userSc.length; i++) {
+                    let user_sc_start = userSc[i].sc_start;
+
+                    let startDate = user_sc_start.split('-');
+                    d1 = startDate[0];
+                    d2 = startDate[1];
+                    d3 = startDate[2];
+
+                    console.log("sdfsdf",d1,d2,d3);
+                    if(calenderYear == d1 && calendarDay == d3 && calMonth == d2){
+                        html += `<span class="sch" style="display:flex; cursor: pointer;" onclick="openPopup('/users/update/sc/${userSc[i].sc_num}', 500, 400)">${userSc[i].sc_title}</span>`;
+
+                    }
+               }
+           } else {
+               html +=
+                   '<span style="display: block; padding: 10px 10px;"></span>';
+           }
+           html += '</td>';
+           calendarPos++;
+       }
+       html += '</tr>';
+   }
+   html += '</table>';
+   return html;
 }
 
 // 달력 업데이트 함수
 function updateCalendar() {
-    YearText.innerHTML = `<h1 class="YearText">${Year}</h1>`;
-    MonthText.innerHTML = `<h1 class="MonthText">${Month}</h1>`;
+   YearText.innerHTML = `<h1 class="YearText">${Year}</h1>`;
+   MonthText.innerHTML = `<h1 class="MonthText">${Month}</h1>`;
 
-    // 새로운 월과 연도에 대한 달력을 생성하고 업데이트합니다.
-    var calendar = generateCalendar(Year, Month);
-    $('#calendar').html(calendar);
+   // 새로운 월과 연도에 대한 달력을 생성하고 업데이트합니다.
+   var calendar = generateCalendar(Year, Month);
+   $('#calendar').html(calendar);
 }
 
 // 페이지 로드 시 달력 업데이트
 updateCalendar();
 
+function openPopup(url, width, height) {
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+    const options = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+
+    window.open(url, '_blank', options);
+}
 
 
 </script>

@@ -1,0 +1,47 @@
+.user_Sc_box {
+    font-size: 20px;
+    /* background-color: aqua; */
+    width: 300px;
+}
+
+.user_Sc_box input {
+    font-size: 15px;
+    border: 1px solid #ccc;
+    /*width:200px;*/
+    /* border-color: #ccc; */
+    outline: none;
+    /* vertical-align: middle; */
+}
+
+.user_Sc_box textarea {
+    border: 1px solid #ccc;
+    outline: none;
+    resize: none;
+}
+
+.sc_title > input {
+    width: 237px;
+}
+
+.sc_etc {
+    margin-top: 10px;
+}
+
+.sc_etc > label {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sc_etc > textarea {
+    width: 237px;
+}
+
+.sc_btn_box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sc_btn_box > button {
+    background-color: #374658;
+    color: white;
+}
