@@ -1,3 +1,31 @@
+.body {
+    width: 1100px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+  }
+  .body_title {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    width: 1100px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
+  }
+  .body_title span{
+    font-weight: 800;
+    font-size: 30px;
+  }
+  .body_title span:last-child{
+    color: #374658;
+  }
+  .body_title_right{
+    position: absolute;
+    top: 70px;
+    right: 40px;
+  }
+
 table, td{
     /* border: 1px solid #000; */
     border-collapse: collapse;

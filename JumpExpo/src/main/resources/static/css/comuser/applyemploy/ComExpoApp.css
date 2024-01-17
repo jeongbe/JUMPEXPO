@@ -1,17 +1,20 @@
 * {
     margin: 0 auto;
 }
-
-body {
-    width: 950px;
+.container {
+    position: relative;
+    left: -50px;
+    top: 45px;
+    width:950px;
 }
-
 .title-box {
     display: flex;
 }
 
 .body_title {
     margin: 0px;
+    display: inline;
+    width: 500px;
 }
 
 .body_title > span {
@@ -21,7 +24,10 @@ body {
 }
 
 .body_title_right {
-    margin-left: 380px;
+position: absolute;
+    right: 30px;
+    top: 20px;
+
 }
 
 .line {
@@ -118,6 +124,7 @@ input:focus {
 .btn_box {
     display: flex;
     margin-top: 50px;
+    margin-left:300px;
 }
 
 .btn_box > button {

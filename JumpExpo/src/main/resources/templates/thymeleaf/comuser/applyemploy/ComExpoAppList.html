@@ -45,6 +45,7 @@
         }
     </style>
 </head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
 <!--<div class="s_header" th:replace="~{comuser/header/ApplyEmployHeader :: applyEmployHeader}"></div>-->
 <div class="container">
@@ -141,5 +142,7 @@
         paginationContainer.appendChild(nextButton);
     }
 </script>
+<div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide :: applyEmploySide}"></div>
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </body>
 </html>

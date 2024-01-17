@@ -12,10 +12,11 @@
     ></script>
     <title>기업 박람회 신청페이지</title>
 </head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
 <p style="display:none" th:text="${company.com_code}"></p>
 <form method="post" th:action="@{'/com/app/insert/' + ${expoCode} + '/' + ${company.com_code}}" enctype="multipart/form-data">
-<div class="container">
+<div class="container" style="width:950px;">
     <div class="title-box">
         <div class="body_title">
             <span>2024 예일 박람회</span>
@@ -79,5 +80,7 @@
         });
     };
 </script>
+<div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide :: applyEmploySide}"></div>
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </body>
 </html>

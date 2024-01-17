@@ -72,7 +72,7 @@ public class SecurityConfig  {
                 .headers(headers -> headers.frameOptions(options -> options.disable()))
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests //모두의 권한
-                                .requestMatchers("/JumpExpo/**","/test").permitAll()
+                                .requestMatchers("/JumpExpo/**","/test","/static/**").permitAll()
                                 .requestMatchers("/users/**").hasRole(Role.USER.name())//유저 권한
                                 .requestMatchers("/com/**").hasRole(Role.COM.name()) // 기업 권한
                                 .requestMatchers("/admin/**","/JumpExpo/**").hasRole(Role.ADMIN.name()) // 관리자 권한
