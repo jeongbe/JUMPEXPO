@@ -90,6 +90,11 @@ main{
     font-size: 12px;
     width:170px;
   }
+
+  .header_right a{
+    text-decoration: none;
+    color: black;
+  }
   .subMenuWrap > ul > li > a:hover{
     background: #ebbfb7;
     color:#787878;

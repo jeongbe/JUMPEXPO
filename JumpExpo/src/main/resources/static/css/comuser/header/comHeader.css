@@ -82,6 +82,12 @@ main{
   .subMenuWrap > ul:hover{
     background-color: #f2dcd8;
   }
+
+    .header_right a{
+      text-decoration: none;
+      color: black;
+    }
+
   .subMenuWrap > ul > li > a {
     text-align: center;
     padding:8px 0;
