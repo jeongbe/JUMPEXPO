@@ -1,0 +1,248 @@
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.body{
+    position: absolute;
+    left: 80px;
+}
+
+/*컨텐츠*/
+.contents {
+    position: absolute;
+    top: 160px;
+    right: 55px;
+    width: 920px;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+/* .contents div {
+    width: 100%;
+} */
+
+/* .contents>div:nth-of-type(2) {
+    margin: 0 10px;
+} */
+
+
+.body {
+    width: 920px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+    top: 96px;
+}
+
+.body_title {
+    position: absolute;
+    top: 93px;
+    left: -60px;
+    width: 920px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
+}
+
+.body_title span {
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.body_title span:last-child {
+    color: #374658;
+}
+
+.body_title_right {
+    position: absolute;
+    top: 70px;
+    right: 60px;
+}
+
+.select-box {
+    width: 910px;
+    margin-top: 20px;
+    background-color: #ddd;
+    height: 90px;
+}
+
+.search-box {
+    padding-top: 15px;
+    display: flex;
+    align-items: baseline;
+}
+
+.search-box > p {
+    font-size: 15px;
+    margin-left: 17px;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+.search-box > input {
+    width: 640px;
+    height: 25px;
+    margin-right: 10px;
+    margin-left: 18px;
+}
+
+.search-box > button {
+    width: 100px;
+    margin-left: 0px;
+    background-color: #374658;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.Period-box {
+    display: flex;
+    margin-top: -5px;
+}
+
+.Period-box > p {
+    font-size: 15px;
+    margin-left: 18px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.btns {
+    /* margin-top: 5px; */
+    display: flex;
+    position: relative;
+    width: 400px;
+    right: 70px;
+    /* background-color: aqua; */
+    align-items: start;
+    margin-left: 115px;
+    /* justify-content: space-around; */
+}
+
+.btns > button {
+    width: 90px;
+    height: 28px;
+    margin: 0px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #000;
+}
+
+.date-box {
+    /* background-color: aqua; */
+    position: relative;
+    right: 136px;
+}
+
+input[type='date'] {
+    width: 150px;
+    height: 25px;
+}
+
+
+
+.content {
+    margin-top: 20px;
+    /* background-color: aqua; */
+    /* background-color: aquamarine; */
+}
+
+.expo-info-box {
+    margin-top: 20px;
+    display: flex;
+}
+
+.cont-img {
+    margin: 0px;
+    margin-left: 20px;
+    /* margin-top: 20px; */
+    background-color: bisque;
+    width: 220px;
+    height: 100px;
+}
+
+.expo-info {
+    margin-top: 15px;
+    /* background-color: yellowgreen; */
+    margin-left: 40px;
+}
+
+
+.period-box2 {
+    display: flex;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.period-box2 > p:nth-child(1)::after {
+    content: ' ~ ';
+    /* background-color: azure; */
+}
+
+.period-box2 > p:nth-child(2) {
+    margin-left: 5px;
+}
+
+.period-box2 > p:nth-child(3) {
+    margin-left: 10px;
+}
+.period-box2 > p:nth-child(3)::before {
+    content: ' | ';
+}
+
+/*.period-box2 > p:nth-child(3)::after {
+    content: ' ~ ';
+}*/
+
+.period-box2 > p:nth-child(4) {
+    margin-left: 5px;
+}
+
+.expo-name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.line {
+    width: 910px;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+}
+
+.app-btn button {
+    margin-left: 150px;
+    margin-top: 30px;
+    background-color: #374658;
+    color: white;
+    width: 130px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cont-img > img{
+    width:220px;
+    height:100px;
+}
+p {
+    margin-bottom:none;
+}
+
+.accept_btn{
+    position: absolute;
+    right: 40px;
+    margin-top: 30px;
+    width: 100px;
+    height: 30px;
+    outline: 0;
+    border: 0;
+    background-color: #374658;
+    color: white;
+    cursor: pointer;
+}
