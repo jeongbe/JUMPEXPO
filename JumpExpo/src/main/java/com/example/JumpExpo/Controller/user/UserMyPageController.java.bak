@@ -2,13 +2,9 @@ package com.example.JumpExpo.Controller.user;
 
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
 import com.example.JumpExpo.Entity.user.UserInterview;
-import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
-import com.example.JumpExpo.Repository.user.UserReository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +18,6 @@ public class UserMyPageController {
 
     @Autowired
     UserInterviewRepository userInterviewRepository;
-
-    @Autowired
-    UserReository userReository;
 
     //2024.01.15 정정빈
     //면접 일정 관리
@@ -115,21 +108,5 @@ public class UserMyPageController {
 
         return "redirect:/users/save/inter/" + form.getUserCode();
     }
-
-    //2024-01-18 맹성우
-    //마이페이지로 이동하는 매핑
-    @GetMapping("/myPage")
-    public String mypage(Model model){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // 현재 인증된 사용자의 사용자명을 가져옵니다.
-        String username = authentication.getName();
-        Users users = userReository.finduser(username);
-        model.addAttribute("users", users);
-
-
-        return "user/Mypage/UserInfo";
-    }
-
 
 }

@@ -1,14 +1,10 @@
 package com.example.JumpExpo.Controller.All;
 
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
-import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import com.example.JumpExpo.Repository.user.PeremApplyRepository;
-import com.example.JumpExpo.Repository.user.UserReository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,19 +24,6 @@ public class AllEmployListController {
 
     @Autowired
     PeremApplyRepository peremApplyRepository;
-
-    @Autowired
-    UserReository userReository;
-
-
-
-    //로그인전 디폴트 메인페이지
-    @GetMapping("/main")
-    public String defaultmain(){
-
-        return "user/userMain";
-    }
-
 
 
     //공고 보기 리스트<분야별 리스트>

@@ -137,24 +137,21 @@ public class KakaoController{
         System.out.println("닉네임: " + nickname);
         System.out.println("이메일: " + email);
 
+
         //이미 가입되어있는 정보인지 확인함
         Users users = userReository.kakao(email,nickname);
         //이미 가입되어있다면 바로 메인페이지로 반환
         if (users != null){
 
-            //시큐리티 로그인 매서드 호출
-            userSecurityService.loadUserByUsername(email);
+             //시큐리티 로그인 매서드 호출
+            userSecurityService.loadUserByEmail(email);
 
-            return "redirect:/users/Main";
+            return "redirect:/users/main";
 
         }
         //아니라면 정보를 저장하면서 메인페이지
         else {
-
             //정보 넣어주기
-            kakaojoin.setUser_id(email);
-            kakaojoin.setOauth2(oAuthToken.getAccess_token());
-            kakaojoin.setUser_pw(oAuthToken.getAccess_token());
             kakaojoin.setUser_name(nickname);
             kakaojoin.setUser_email(email);
             kakaojoin.setUser_sec(1);
@@ -164,9 +161,9 @@ public class KakaoController{
             userReository.save(kakaojoin);
 
             //시큐리티 로그인 매서드 호출
-            userSecurityService.loadUserByUsername(email);
+            userSecurityService.loadUserByEmail(email);
 
-            return "redirect:/users/Main";
+            return "redirect:/users/main";
 
         }
 

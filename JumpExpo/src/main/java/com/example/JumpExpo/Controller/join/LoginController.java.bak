@@ -165,17 +165,8 @@ public class LoginController {
     }
 
     @GetMapping("/users/main")
-    public String usersmain(Model model){
-
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // 현재 인증된 사용자의 사용자명을 가져옵니다.
-        String username = authentication.getName();
-        Users users = userReository.finduser(username);
-        model.addAttribute("users", users);
-
+    public String usersmain(){
         return "user/userMain";
-
     }
 
 

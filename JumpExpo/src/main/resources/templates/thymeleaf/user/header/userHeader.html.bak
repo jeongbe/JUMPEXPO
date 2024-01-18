@@ -17,11 +17,13 @@
     <link href="/static/css/user/header/userHeader.css" rel="stylesheet" />
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
     <title>채용공고 헤더</title>
+
     <body>
     <main>
         <!-- header 부분 -->
         <header>
             <a class="logo" href="/users/JumpExpo/main"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
+
             <nav class="mainMenu">
                 <a href="#">행사일정</a>
                 <a href="#">고객센터</a>
@@ -29,28 +31,11 @@
                 <a href="#">리뷰</a>
             </nav>
             <div class="header_right">
-                <!-- 유저 모델이 존재하는 경우 -->
-                <th:block th:if="${users ne null}">
-                    <a th:href="@{/users/myPage}">
-                        <div>
-                            마이페이지
-                        </div>
-                    </a>
-                    <a th:href="@{/logout}">
-                        <div>
-                            로그아웃
-                        </div>
-                    </a>
-                </th:block>
-
-                <!-- 유저 모델이 존재하지 않는 경우 -->
-                <th:block th:unless="${users ne null}">
-                    <a th:href="@{/JumpExpo/Login}">
-                        <div>
-                            로그인하기
-                        </div>
-                    </a>
-                </th:block>
+                <a href="/JumpExpo/Login">
+                <div>
+                    로그인하기
+                </div>
+                </a>
             </div>
         </header>
         <!-- header 끝 -->
@@ -79,7 +64,9 @@
             </nav>
         </div>
     </main>
+
     <script>
+
         $(document).ready(function () {
             //**** 마우스오버  ****//
             //서브메뉴 숨기고 시작
@@ -91,6 +78,8 @@
                 $(".subMenu").stop().slideUp(500);
             });
         });
+
+
     </script>
     </body>
 </header>

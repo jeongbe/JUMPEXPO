@@ -1,0 +1,60 @@
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+/*컨텐츠*/
+.contents {
+    position: absolute;
+    top: 140px;
+    right: 55px;
+    width: 920px;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+/*컨텐츠 공통사항*/
+.contents div {
+    width: 100%;
+}
+
+.contents>div:nth-of-type(2) {
+    margin: 0 10px;
+}
+
+
+.body {
+    width: 920px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+}
+
+.body_title {
+    position: absolute;
+    top: 60px;
+    left: -60px;
+    width: 920px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
+}
+
+.body_title span {
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.body_title span:last-child {
+    color: #374658;
+}
+
+.body_title_right {
+    position: absolute;
+    top: 70px;
+    right: 60px;
+}

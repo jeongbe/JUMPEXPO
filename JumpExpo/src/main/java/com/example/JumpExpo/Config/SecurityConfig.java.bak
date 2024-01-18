@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -64,6 +63,7 @@ public class SecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
 
+
         //권한부여
         http
                 .csrf((csrfConfig) ->
@@ -86,11 +86,13 @@ public class SecurityConfig  {
                         .failureUrl("/JumpExpo/Loginfail"))
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/JumpExpo/main")
+                        .logoutSuccessUrl("/JumpExpo/Login")
                         .invalidateHttpSession(true));
         return http.build();
 
     }
+
+
 
 
 }

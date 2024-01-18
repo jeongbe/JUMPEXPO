@@ -6,6 +6,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 1px solid black;
+   border-radius: 25px;
 }
 
 .selectradio {
@@ -56,6 +57,7 @@ main {
     background-color: #374658;
     font-size: larger;
     color: white;
+    border-radius: 25px;
 }
 
 .join_search{

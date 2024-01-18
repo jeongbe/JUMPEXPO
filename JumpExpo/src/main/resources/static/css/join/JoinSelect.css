@@ -1,5 +1,5 @@
     main {
-        width: 700px;
+        width: 1100px;
         height: 400px;
         position: absolute;
         top: 50%;
@@ -9,13 +9,16 @@
     }
 
     .per_join_form, .com_join_form{
-       margin-left: 80px;
+       margin-left: 50px;
        margin-top: 50px;
     }
 
+    .fa-solid{
+        margin-right: 10px;
+    }
 
     .per_join_btn, .com_join_btn{
-        width: 550px;
+        width: 500px;
         height: 120px;
         font-size: larger;
     }
@@ -34,8 +37,15 @@
         text-align: center;
     }
 
-    .per_join_btn:hover, .com_join_btn:hover {
+    .per_join_btn:hover, .com_join_btn:hover{
         background-color: #374658;
         color: white; /* 텍스트 색상도 변경하고 싶다면 추가 */
         /* 기타 원하는 스타일 변경 사항도 여기에 추가할 수 있습니다. */
     }
+
+    .login_select_form{
+
+    display:flex;
+
+    }
+

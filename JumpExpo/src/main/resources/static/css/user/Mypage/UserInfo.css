@@ -1,0 +1,27 @@
+.UserInfo_title{
+    text-align: center;
+}
+
+.UserInfo_content{
+  margin-top: 50px;
+}
+
+.UserInfo_content_text{
+    display: flex;
+}
+
+p{
+    margin: 5px;
+}
+
+.sec_btn{
+    background-color: #374658;
+    margin-top: 10px;
+    width: 100px;
+    height: 35px;
+    position: absolute;
+    left: 820px;
+    color: white;
+}
+
+

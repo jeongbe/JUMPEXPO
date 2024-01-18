@@ -1,4 +1,5 @@
-main {
+      main {
+
     width: 700px;
     height: 350px;
     position: absolute;
@@ -6,6 +7,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 1px solid black;
+    border-radius: 15px;
 }
 
 .selectradio {
@@ -68,6 +70,7 @@ main {
     background-color: #374658;
     font-size: larger;
     color: white;
+    border-radius: 15px;
 }
 
 .join_search{
@@ -94,4 +97,3 @@ main {
     height: 60px;
     background-color: yellow;
 }
-
