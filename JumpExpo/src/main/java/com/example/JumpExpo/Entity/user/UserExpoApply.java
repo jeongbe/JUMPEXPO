@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Getter
 @Setter
 @ToString
+@Table(name = "user_expo_apply")
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserExpoApply {

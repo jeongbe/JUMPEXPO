@@ -3,12 +3,15 @@ package com.example.JumpExpo.Controller.user;
 import com.example.JumpExpo.DTO.Login.ChangePwForm;
 import com.example.JumpExpo.DTO.user.UserForm;
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
+import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.user.UserInterview;
 import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
 import com.example.JumpExpo.Repository.user.UserReository;
+import com.example.JumpExpo.Service.user.expo.ExpoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,14 +38,24 @@ public class UserMyPageController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    ExpoService expoService;
+
     //2024.01.15 정정빈
     //면접 일정 관리
-    @GetMapping("/interv/calen/{user_code}")
-    public String UserInterview(Model model, @PathVariable("user_code") int userCode){
-        model.addAttribute("userCode", userCode);
+    @GetMapping("/interv/calen")
+    public String UserInterview(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        model.addAttribute("userCode", users.getUser_code());
+        log.info(String.valueOf(users.getUser_code()));
 
 
-        List<UserInterview> list = userInterviewRepository.getInterviewsList(userCode);
+        List<UserInterview> list = userInterviewRepository.getInterviewsList(users.getUser_code());
         log.info(list.toString());
         model.addAttribute("list",list);
 
@@ -122,6 +136,40 @@ public class UserMyPageController {
         userInterviewRepository.deleteById(scNum);
 
         return "redirect:/users/save/inter/" + form.getUserCode();
+    }
+    
+    //2024.01.18 정정빈
+    //유저 박람회 신청 내역
+    @GetMapping("/app/list")
+    public String UserExpoAppList(Model model, @RequestParam(value="page", defaultValue="0")int page, @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
+                                    @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        log.info(dateStart);
+        log.info(dateEnd);
+        log.info(serch);
+
+        Page<ScheduleInsert> UserAppExpoList = null;
+
+        //검색어 있을때
+        if(serch != null && dateStart != null && dateEnd != null){
+            UserAppExpoList = expoService.getUserAppExpoListSearch(page,users.getUser_code(),serch,dateStart,dateEnd);
+        }else {
+            UserAppExpoList = expoService.getUserAppExpoList(page,users.getUser_code());
+        }
+
+
+//        log.info(UserAppExpoList.getContent().toString());
+        model.addAttribute("TotalPage",UserAppExpoList.getTotalPages());
+
+        model.addAttribute("list",UserAppExpoList);
+
+
+        return "user/Mypage/UserExpoAppList";
     }
 
     //2024-01-18 맹성우

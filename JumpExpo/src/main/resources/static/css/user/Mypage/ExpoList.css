@@ -1,0 +1,184 @@
+* {
+    margin: 0 auto;
+}
+
+body {
+    width: 950px;
+}
+
+.title-box {
+    width: 950px;
+    display: flex;
+    border-bottom: 2px solid #374658;
+}
+
+.body_title {
+    width: 700px;
+    padding-bottom: 15px;
+}
+.body_title span {
+    font-weight: 800;
+    font-size: 30px;
+}
+.body_title span:last-child {
+    color: #374658;
+}
+
+.route {
+    display: flex;
+}
+
+.imgs {
+    margin-top: 30px;
+    width: 950px;
+    background-color: antiquewhite;
+    height: 250px;
+}
+
+.select-box {
+    margin-top: 20px;
+    background-color: #ccc;
+    height: 90px;
+}
+
+.search-box {
+    padding-top: 10px;
+    display: flex;
+}
+
+.search-box > p {
+    font-size: 20px;
+    /* margin-right: 50px; */
+}
+
+.search-box > input {
+    width: 600px;
+    margin-right: 10px;
+}
+
+.search-box > button {
+    width: 100px;
+    margin-left: 0px;
+    background-color: #374658;
+    color: white;
+    cursor: pointer;
+}
+
+.Period-box {
+    display: flex;
+    margin-top: 10px;
+}
+
+.Period-box > p {
+    font-size: 20px;
+    /* width: 90px; */
+    margin-left: 28px;
+    /* padding-right: 170px; */
+}
+
+.btns {
+    /* margin-top: 5px; */
+    display: flex;
+    position: relative;
+    width: 400px;
+    right: 26px;
+    /* background-color: aqua; */
+    align-items: start;
+    margin-left: 115px;
+    /* justify-content: space-around; */
+}
+
+.btns > button {
+    width: 90px;
+    height: 28px;
+    margin: 0px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.date-box {
+    /* background-color: aqua; */
+    position: relative;
+    right: 70px;
+}
+
+input[type='date'] {
+    width: 150px;
+    height: 25px;
+}
+
+.content {
+    margin-top: 20px;
+    height: 655px;
+    /* background-color: aqua; */
+    /* background-color: aquamarine; */
+}
+
+.expo-info-box {
+    margin-top: 10px;
+    display: flex;
+}
+
+.cont-img {
+    margin: 0px;
+    margin-left: 30px;
+    /* margin-top: 20px; */
+    background-color: bisque;
+    width: 220px;
+    height: 100px;
+}
+
+.expo-info {
+    margin: 0px;
+    /* background-color: yellowgreen; */
+    margin-left: 40px;
+}
+
+.period-box2 {
+    display: flex;
+}
+
+.period-box2 > p:nth-child(1)::after {
+    content: ' ~ ';
+    /* background-color: azure; */
+}
+
+.period-box2 > p:nth-child(2) {
+    margin-left: 5px;
+}
+
+.period-box2 > p:nth-child(3) {
+    margin-left: 10px;
+}
+.period-box2 > p:nth-child(3)::before {
+    content: ' | ';
+}
+
+.period-box2 > p:nth-child(3)::after {
+    content: ' ~ ';
+}
+
+.period-box2 > p:nth-child(4) {
+    margin-left: 5px;
+}
+
+.expo-name {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.line {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+}
+
+.app-btn button {
+    margin-left: 150px;
+    margin-top: 30px;
+    background-color: #374658;
+    color: white;
+    width: 130px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}

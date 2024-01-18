@@ -128,4 +128,32 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "and expo_title like %:text% \n" +
             "and expo_cate = 2", nativeQuery = true)
     Page<ScheduleInsert> serchRec(Pageable pageable, @Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
+
+
+    //2024.01.18 정정빈
+    //유저 마이페이지 박람회 신청 내역
+    //s나중에 타임 수정
+    @Query(value = "select s.expo_code,s.expo_cate,s.expo_title, s.expo_start, s.expo_end, s.apply_start ,s.apply_end\n" +
+            ",s.expo_add, s.expo_image, s.expo_time, s.expo_outline, s.expo_host, s.expo_manage, s.expo_exhibit\n" +
+            ",s.master_name, s.master_phone, s.master_mail, s.expo_occ_cate, s.expo_content\n" +
+            "from user_expo_apply u\n" +
+            "join schedule_insert s\n" +
+            "on u.expo_code = s.expo_code\n" +
+            "where u.user_code = :userCode" , nativeQuery = true)
+    Page<ScheduleInsert> UserAppExpoList(Pageable pageable, @Param("userCode") int userCode);
+
+    //2024.01.18 정정빈
+    //유저 마이페이지 박람회 신청 내역 검색
+    //s나중에 타임 수정
+    @Query(value = "select s.expo_code,s.expo_cate,s.expo_title, s.expo_start, s.expo_end, s.apply_start ,s.apply_end\n" +
+            ",s.expo_add, s.expo_image, s.expo_time, s.expo_outline, s.expo_host, s.expo_manage, s.expo_exhibit\n" +
+            ",s.master_name, s.master_phone, s.master_mail, s.expo_occ_cate, s.expo_content\n" +
+            "from user_expo_apply u\n" +
+            "join schedule_insert s\n" +
+            "on u.expo_code = s.expo_code\n" +
+            "where u.user_code = :userCode\n" +
+            "and s.expo_start BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)\n" +
+            "and s.expo_title like %:text%" , nativeQuery = true)
+    Page<ScheduleInsert> UserAppExpoListSerch(Pageable pageable, @Param("userCode") int userCode,@Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
+
 }
