@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +82,7 @@ public class NoticeController {
     }
     //공지사항 상세 페이지
     @GetMapping("/show/nt/{notCode}")
-    public String Show(@PathVariable("notCode") Integer notCode, Model model){
+    public String Show(@PathVariable("notCode")int notCode, Model model){
         log.info("notCode = " + notCode);
 
         Notice board = noticeService.selectNoticeDetail(notCode);
@@ -94,7 +95,7 @@ public class NoticeController {
     //2024-01-11 유수민
     //공지사항 수정 페이지
     @GetMapping("/show/nt/{notCode}/update")
-    public String Edit(@PathVariable("notCode") Integer notCode, Model model)
+    public String Edit(@PathVariable("notCode")int notCode, Model model)
     {
         //1. 수정할 데이터 가져오기
         Notice detail = noticeRepository.findById(notCode).orElse(null);
@@ -106,26 +107,31 @@ public class NoticeController {
     }
     //공지사항 수정 컨트롤러
     @PostMapping("/nt/{notCode}/update")
-    public String Update(@PathVariable("not_code") Integer notCode)
+    public String Update(NoticeForm form)
     {
+        log.info(form.toString());
+        Notice notice = form.toEntity();
+        Notice updateDetail = noticeRepository.findById(notice.getNot_code()).orElse(null);
 
-        Notice detail = noticeRepository.findById(notCode).orElse(null);
-
-        if(detail != null)
+        if(updateDetail != null)
         {
-            noticeRepository.save(detail);
+            noticeRepository.save(notice);
         }
         return "redirect:/admin/show/nt";
     }
 
     // 공지사항 삭제하기
     @GetMapping("/show/nt/{notCode}/delete")
-    public String Delete(@PathVariable("not_code") Integer notCode){
+    public String Delete(@PathVariable("notCode") Integer notCode, RedirectAttributes ra){
 
         Notice DeleteTarget = noticeRepository.findById(notCode).orElse(null);
-        noticeRepository.delete(DeleteTarget);
-        // 결과화면 리다이렉트
-        return "redirect:/show/nt";
+        if(DeleteTarget != null)
+        {
+            noticeRepository.delete(DeleteTarget);
+            ra.addFlashAttribute("msg", "삭제되었습니다");
+        }
+
+        return "redirect:/admin/show/nt";
     }
 
 }

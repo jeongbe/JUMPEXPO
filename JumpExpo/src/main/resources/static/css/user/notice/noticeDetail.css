@@ -1,22 +1,22 @@
 .detail_wrap {
-position: absolute;
+    position: absolute;
     top: 0px;
-    left: 450px;
+    left: 510px;
 }
     .nt_title {
     position: absolute;
-    top: 130px;
-    left:0;
-    width: 700px;
-    text-align: center;
-    color: #787878;
-    font-weight: 700;
-    font-size: 13pt;
+        top: 130px;
+        left: 0;
+        width: 920px;
+        text-align: center;
+        color: #787878;
+        font-weight: 700;
+        font-size: 20px;
  }
  .view_info {
     position: absolute;
     top: 165px;
-    width: 700px;
+    width: 920px;
     border-top: 2px solid #ccc;
     border-bottom: 2px solid #ccc;
  }
@@ -33,22 +33,23 @@ position: absolute;
     font-size: 12pt;
     line-height: 30px;
  }
+
  .date{
     position: absolute;
-    left: 300px;
+    left: 450px;
  }
  .see{
     position: absolute;
-    right: 100px;
+    right: 140px;
  }
  .nt_dt {
- margin-left:255px;
+margin-left: 400px
  }
  .nt_cnt {
-  margin-left:140px;
+    margin-left: 165px
  }
  .download {
-    width: 700px;
+    width: 920px;
     height: 30px;
     position: absolute;
     top: 210px;
@@ -62,7 +63,7 @@ position: absolute;
      display: inline;
    }
  .content {
-    width: 700px;
+    width: 920px;
     height:500px;
     border: 2px solid #ccc;
     position: absolute;
@@ -77,8 +78,11 @@ position: absolute;
     background-color: #374658;
     position: absolute;
     top:770px;
-    left: 300px;
+    left: 420px;
     bottom: 120px;
     cursor: pointer;
   }
 
+.admin {
+margin-left:10px;
+}

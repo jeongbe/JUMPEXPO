@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/static/css/user/notice/noticeDetail.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<!--    <script src="/static/js/admin/notice/jquery-3.7.0.min.js"></script>-->
-
     <title>유저 공지사항 상세 페이지</title>
 </head>
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
@@ -20,7 +18,7 @@
     </div>
     <!-- 작성자 등록일 조회수 -->
     <div class="view_info">
-        <div class="writer">작성자</div><div>관리자</div>
+        <div class="writer">작성자</div><div class="admin">관리자</div>
 
         <div class="date">등록일</div><div th:text="${notice.not_date}" class="nt_dt"></div>
 

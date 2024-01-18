@@ -21,7 +21,7 @@
         <span style="color:#787878;">공지</span>
         <span>사항</span>
     </div>
-    <form enctype="multipart/form-data">
+    <form enctype="multipart/form-data" method="post" th:action="@{'/admin/nt/' + ${notice.not_code} + '/update'}">
         <table>
             <tr class="nt_title">
                 <td>
@@ -70,7 +70,7 @@ subBtn.onclick = () => {
         console.log("key: " + k);
         console.log("value: " + v);
     })
-
+<!--console.log([[${notice.not_code}]]);-->
 
     $.ajax({
         async: false,

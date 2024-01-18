@@ -1,17 +1,28 @@
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
 .content{
-position: relative;
-    top: -30px;
-    left: 500px;
+    position: absolute;
+    top: 65px;
+    right: 420px;
+    width: 920px;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
 }
  .body_title {
      position: absolute;
-         top: 45px;
-         left: -40px;
-         width: 700px;
+     top: 55px;
+     left: -70px;
    }
    .body_title span{
      font-weight: 800;
-     font-size: 35px;
+     font-size: 30px;
      color:#787878;
    }
    .body_title span:last-child{
@@ -93,10 +104,10 @@ color:#000;
 opacity:0.8;
 }
 .paging {
-position:absolute;
-top:650px;
-left:380px;
-width:100px;
+position: absolute;
+top: 650px;
+left: 265px;
+width: 100px;
 }
 #pageNumbers {
 display:inline;
