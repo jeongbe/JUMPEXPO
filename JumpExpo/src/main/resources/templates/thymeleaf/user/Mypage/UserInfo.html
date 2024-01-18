@@ -27,6 +27,7 @@
 
             <!-- 주요내용 -->
             <div class="contents">
+                <form method="get" th:action="@{/users/myPage/resign/{usercode}(usercode=${users.user_code})}">
                 <hr>
                 <div class="UserInfo_title">
                     <h3>내 정보 확인</h3>
@@ -54,6 +55,7 @@
                 </div>
                 <hr>
                 <button class="sec_btn">탈퇴하기</button>
+                </form>
             </div>
             <!--  -->
         </div>
@@ -64,6 +66,12 @@
     <!-- side 끝 -->
      <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </main>
+<script th:if="${param.success}" type="text/javascript">
+    alert('정보변경 완료.');
+</script>
+<script th:if="${param.successPw}" type="text/javascript">
+    alert('비밀번호 변경 완료.');
+</script>
 <script>
     // header script
     $(document).ready(function () {

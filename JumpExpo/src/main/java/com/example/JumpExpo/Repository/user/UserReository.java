@@ -27,7 +27,8 @@ public interface UserReository extends JpaRepository<Users,Integer> {
     //아이디로 조회
     @Query(value = "SELECT * \n" +
             "FROM usertable\n" +
-            "WHERE user_id = :userid ", nativeQuery = true)
+            "WHERE user_id = :userid " +
+            "AND user_sec = 1 ", nativeQuery = true)
     Users username(@Param("userid") String userid);
 
 
@@ -50,7 +51,8 @@ public interface UserReository extends JpaRepository<Users,Integer> {
     //아이디 기준으로 유저정보 가져오기
     @Query(value = "SELECT *\n" +
             "FROM usertable\n" +
-            "WHERE user_id = :userid " ,nativeQuery = true)
+            "WHERE user_id = :userid " +
+            "AND user_sec = 1 " ,nativeQuery = true)
     Users finduser(@Param("userid") String userid);
 
 

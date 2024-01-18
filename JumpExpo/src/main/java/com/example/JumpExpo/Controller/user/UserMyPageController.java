@@ -1,5 +1,7 @@
 package com.example.JumpExpo.Controller.user;
 
+import com.example.JumpExpo.DTO.Login.ChangePwForm;
+import com.example.JumpExpo.DTO.user.UserForm;
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
 import com.example.JumpExpo.Entity.user.UserInterview;
 import com.example.JumpExpo.Entity.user.Users;
@@ -9,11 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Controller
@@ -25,6 +30,9 @@ public class UserMyPageController {
 
     @Autowired
     UserReository userReository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     //2024.01.15 정정빈
     //면접 일정 관리
@@ -129,6 +137,124 @@ public class UserMyPageController {
 
 
         return "user/Mypage/UserInfo";
+    }
+
+    //회원 탈퇴 기능
+    @GetMapping("/myPage/resign/{usercode}")
+    public String resign(Model model, @PathVariable("usercode") int usercode){
+
+        //유저코드 기준으로 유저 정보 가져오기
+        Users users = userReository.findById(usercode).orElse(null);
+
+        //가져온 유저정보에 탈퇴여부를 0으로 만들어주기
+        users.setUser_sec(0);
+
+        //탈퇴회원으로 다시 저장
+        userReository.save(users);
+
+
+        //메인 화면으로 전환
+
+        return "user/userMain";
+    }
+
+
+
+    //내 정보를 변경할수있는 페이지로 감
+    @GetMapping("/myPage/ChangeInfo")
+    public String Changeinfo(Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        return "user/Mypage/UserInfoChange";
+    }
+
+    //변경했을때의 매핑
+    @PostMapping("/myPage/ChangeSubmit")
+    public String ChSub(Model model, UserForm form){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+
+        if (!form.getName().isEmpty()){
+            users.setUser_name(form.getName());
+        }
+        if (!form.getBirth().isEmpty()){
+            users.setUser_birth(form.getBirth());
+        }
+        if (!form.getAddr().isEmpty()){
+            users.setUser_addr(form.getAddr());
+        }
+        if (!form.getAddr1().isEmpty()){
+            users.setUser_deaddr(form.getAddr1());
+        }
+        if (!form.getPhone().isEmpty()){
+            users.setUser_phone(form.getPhone());
+        }
+        if (!form.getEmail().isEmpty()){
+            users.setUser_email(form.getEmail());
+        }
+
+        userReository.save(users);
+
+        model.addAttribute("users", users);
+
+        String success = "정보 변경 완료!!.";
+        model.addAttribute("success", success);
+
+        return "redirect:/users/myPage?success=true";
+    }
+
+    //비밀번호 변경하는 페이지
+    @GetMapping("/myPage/PwChangePage")
+    public String pwchangepage(Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        return "user/Mypage/UserPwChangePage";
+    }
+
+    //실제로 변경이 이루어지는 매핑
+    @PostMapping("myPage/ChangingPw")
+    public String ChangingPw(Model model, ChangePwForm form){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+
+        //입력된 비밀번호를 폼으로 받아와 현재 비밀번호와 일치하는지
+        //matches를 이용하여 인코딩된 비밀번호를 비교하여 비밀번호가 맞는지 확인한다.
+        if (passwordEncoder.matches(form.getId(),users.getUser_pw())){
+            //새로입력한 비밀번호를 인코딩하여 저장해줌
+            users.setUser_pw(passwordEncoder.encode(form.getPassword()));
+            String successPw = "변경이 완료되었습니다";
+            model.addAttribute("successPw", successPw);
+            userReository.save(users);
+            model.addAttribute("users", users);
+
+            return "redirect:/users/myPage?successPw=true";
+        }
+        else {
+
+            String error = "비밀번호를 다시 확인하세요!";
+            model.addAttribute("error", error);
+            model.addAttribute("users", users);
+
+            return "redirect:/users/myPage/PwChangePage?error=true";
+        }
+
+
     }
 
 
