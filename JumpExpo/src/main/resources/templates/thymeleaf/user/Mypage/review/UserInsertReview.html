@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/user/Mypage/users_body.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/users_header.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/users_side.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/users_footer.css" rel="stylesheet" />
+    <script src="/static/js/comuser/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="/static/css/user/Mypage/UserinsertReview.css" />
+    <title>유저 리뷰 작성 페이지</title>
+</head>
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+
+<body>
+<main>
+    <content>
+        <div class="body">
+            <div class="body_title">
+                <span>리뷰</span>
+                <span>작성하기</span>
+            </div>
+
+            <div class="body_title_right">
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 박람회 신청 내역 > 리뷰 작성하기
+            </div>
+
+
+
+            <!-- 주요내용 -->
+            <div class="contents">
+                <div class="container_">
+                    <div class="r_title_box">
+                        <p>예일 박람회</p>
+                        <button class="r_btn">작성하기</button>
+                    </div>
+                    <div class="r_title">
+                        <p class="r1">제목</p>
+                        <p class="r2">제목내용</p>
+                    </div>
+                    <div class="r_cont">
+                        <!-- 스마트 에디터 사용 -->
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </content>
+
+    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
+    <!-- side 끝 -->
+
+    <!-- <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div> -->
+    <footer>
+        <div>
+            <a class="logo" href="/users/JumpExpo/main"><img src="/static/images/footer_logo.png" alt="로고"></a>
+        </div>
+        <div>
+            <a href="http://www.yeilit.com/main.html" target="_blank">http://www.yeilit.com/main.html</a>
+            <span>정빈 | 성우 | 은채 | 수민</span>
+        </div>
+    </footer>
+    <!-- footer 끝 -->
+</main>
+<script  th:inline="javascript">
+    <!--    // header script-->
+        $(document).ready(function () {
+    <!--        //**** 마우스오버  ****//-->
+            //서브메뉴 숨기고 시작
+            $(".subMenu").hide();
+    <!--        // 마우스 오버-->
+            $(".mainMenu, .subMenu").mouseover(function () {
+                $(".subMenu").stop().slideDown(500);
+            }).mouseout(function () {
+                $(".subMenu").stop().slideUp(500);
+            });
+        });
+
+
+</script>
+</body>
+
+</html>

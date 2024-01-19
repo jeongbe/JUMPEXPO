@@ -28,6 +28,7 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
 //    SELECT *
 //    FROM schedule_insert
 //    WHERE CURDATE() BETWEEN apply_start AND apply_end;
+    //수정
     @Query(value = "select *\n" +
             "from schedule_insert", nativeQuery = true)
     Page<ScheduleInsert> AllExpoList(Pageable pageable);
