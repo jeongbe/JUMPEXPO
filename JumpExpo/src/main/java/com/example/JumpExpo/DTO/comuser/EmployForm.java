@@ -36,18 +36,14 @@ public class EmployForm {
     String EmnotArea;
     String EmnotState;
     String EmnotSalary;
+    int ComCode;
 //    MultipartFile EmnotImage;
 
 //    Date EmnotDate;
 
-//    public ApplyEmploy toEnttiy(){
-//        return new ApplyEmploy(EmnotCode, EmnotTitle, EmnotContent, EmnotImage != null ? EmnotImage.getOriginalFilename() : null,
-//                EmnotOcc, RecogCheck, InterCate, EmnotStart, EmnotEnd, EmnotCareer, EmnotEducation, EmnotArea, EmnotState);
-//    }
-
     public ApplyEmploy toEnttiy(){
         return new ApplyEmploy(EmnotCode, EmnotTitle, EmnotContent,
                 EmnotOcc, RecogCheck, InterCate, EmnotStart, EmnotEnd, EmnotCareer, EmnotEducation, EmnotArea,
-                EmnotState, EmnotSalary);
+                EmnotState, EmnotSalary, ComCode);
     }
 }

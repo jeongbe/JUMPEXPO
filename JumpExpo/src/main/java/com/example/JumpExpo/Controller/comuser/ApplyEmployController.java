@@ -6,6 +6,7 @@ import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 //2024.01.08 박은채 채용 공고 신청 Controller
@@ -19,8 +20,10 @@ public class ApplyEmployController {
     ApplyEmployRepository applyEmployRepository;
 
     //채용 공고 신청 페이지
-    @GetMapping("/insert/employ")
-    public String insertEmploy(){
+    @GetMapping("/insert/employ/{com_code}")
+    public String insertEmploy(Model model, @PathVariable("com_code") int comCode){
+
+        model.addAttribute("comCode", comCode);
 
         return "comuser/applyemploy/ApplyEmploy";
     }

@@ -20,29 +20,31 @@
             <p class="p_3" th:text="${applyEmploy.emnot_occ}">공고 직종</a></p>
         </div>
 
-        <div class="table-container">
+        <div class="table-container" th:object="${company}">
             <table class="body_table">
                 <tr>
-                    <td rowspan="5" class="company_logo"></td>
+                    <td rowspan="5" class="company_logo">
+                        <img th:src="@{'http://192.168.2.3/images/a/' + ${company.com_image}}" alt="" />
+                    </td>
                     <td class="semi_title">회사명</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.com_name}"></td>
                     <td class="semi_title">이메일</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.com_email}"></td>
                 </tr>
                 <tr>
                     <td class="semi_title">담당자</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.com_manager}"></td>
                     <td class="semi_title">전화번호</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.manager_phone}"></td>
                 </tr>
                 <tr>
                     <td class="semi_title">회사주소</td>
-                    <td colspan="3" class="semi_body"></td>
+                    <td colspan="3" class="semi_body" th:text="${company.com_addr}"></td>
                 </tr>
                 <tr>
 
                     <td class="semi_title">홈페이지 링크</td>
-                    <td colspan="3" class="semi_body"></td>
+                    <td colspan="3" class="semi_body" th:text="${company.com_home}"></td>
 
                 </tr>
                 <tr>

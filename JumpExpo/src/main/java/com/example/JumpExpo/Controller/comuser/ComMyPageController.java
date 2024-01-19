@@ -2,9 +2,11 @@ package com.example.JumpExpo.Controller.comuser;
 
 import com.example.JumpExpo.DTO.comuser.ComInterviewForm;
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
+import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import com.example.JumpExpo.Entity.comuser.ComInterview;
 import com.example.JumpExpo.Entity.user.UserInterview;
 
+import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import com.example.JumpExpo.Repository.comuser.ComInterviewRepository;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +22,11 @@ import java.util.List;
 @RequestMapping("/com")
 public class ComMyPageController {
 
-
     @Autowired
     ComInterviewRepository comInterviewRepository;
+
+    @Autowired
+    ApplyEmployRepository applyEmployRepository;
 
     //2024.01.18 정정빈
     //기업 면접 일정 관리
@@ -110,6 +114,17 @@ public class ComMyPageController {
         comInterviewRepository.deleteById(scNum);
 
         return "redirect:/users/save/inter/" + form.getComCode();
+    }
+
+    //2024.01.19 박은채
+    //공고 신청 내역 페이지
+    @GetMapping("/mypage/employ/accept")
+    public String emAccept(){
+
+//        ApplyEmploy applyEmploy = applyEmployRepository.findById(comCode).orElse(null);
+
+
+        return "comuser/MyPage/EmployAccept";
     }
 
 }

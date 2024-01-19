@@ -144,5 +144,11 @@ color: #414141;
     left: 878px;
     font-size: 50px;
     font-weight: bold;
-    color: red;
 }
+
+    img{
+        width: 250px;
+        height: 250px;
+        text-align: center;
+
+    }

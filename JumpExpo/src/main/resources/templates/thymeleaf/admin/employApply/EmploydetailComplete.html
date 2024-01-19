@@ -7,46 +7,48 @@
 
     <title>공고 심사 디테일</title>
 
-    <body>
+    <body th:object="${company}">
     <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
     <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
 
     <!-- 본문 -->
     <div class="body_data" style="position:relative; left:80px;" th:object="${applyEmploy}">
-        <span class="span_title">회사명 데이터</span>
+        <span class="span_title" th:text="${company.com_name}">회사명 데이터</span>
         <div class="header_a">
             <p class="p_1" th:text="${applyEmploy.emnot_title}">채용 공고 제목</a></p>
             <p class="p_2" >직종: </p>
             <p class="p_3" th:text="${applyEmploy.emnot_occ}">공고 직종</a></p>
         </div>
         <div class="header_b">
-            <p th:if="${applyEmploy.recog_check == 1}">비승인</p>
-            <p th:if="${applyEmploy.recog_check == 2}">승인</p>
+            <p th:if="${applyEmploy.recog_check == 2}" style="color: red">비승인</p>
+            <p th:if="${applyEmploy.recog_check == 1}" style="color: green">승인</p>
         </div>
 
         <div class="table-container">
             <table class="body_table">
                 <tr>
-                    <td rowspan="5" class="company_logo"></td>
+                    <td rowspan="5" class="company_logo">
+                        <img th:src="@{'http://192.168.2.3/images/a/' + ${company.com_image}}" alt="" />
+                    </td>
                     <td class="semi_title">회사명</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.com_name}"></td>
                     <td class="semi_title">이메일</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.com_email}"></td>
                 </tr>
                 <tr>
                     <td class="semi_title">담당자</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.com_manager}"></td>
                     <td class="semi_title">전화번호</td>
-                    <td class="semi_body"></td>
+                    <td class="semi_body" th:text="${company.manager_phone}"></td>
                 </tr>
                 <tr>
                     <td class="semi_title">회사주소</td>
-                    <td colspan="3" class="semi_body"></td>
+                    <td colspan="3" class="semi_body" th:text="${company.com_addr}"></td>
                 </tr>
                 <tr>
 
                     <td class="semi_title">홈페이지 링크</td>
-                    <td colspan="3" class="semi_body"></td>
+                    <td colspan="3" class="semi_body" th:text="${company.com_home}"></td>
 
                 </tr>
                 <tr>

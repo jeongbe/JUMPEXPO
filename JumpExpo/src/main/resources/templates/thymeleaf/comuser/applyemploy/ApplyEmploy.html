@@ -29,6 +29,7 @@
                 <table>
                     <tr>
                         <td class="table_title">제목</td>
+                        <input type="hidden" name="ComCode" th:value="${comCode}" />
                         <td class="table_content"><input type="text" name="EmnotTitle" class="input_text" maxlength="25" /></td>
                         <td class="table_title">직종</td>
                         <td class="table_content"><input type="text" name="EmnotOcc" class="input_text" placeholder="디자인 / 프론트 / 백엔드" />
@@ -100,14 +101,12 @@
     subBtn.onclick = () => {
         oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
         const textarearvalue = document.querySelector("#ir1").value;
-        // <!--        alert(textarearvalue);-->
 
+        // form 데이터 수집
         let formData = new FormData(document.querySelector("form"));
 
-        formData.forEach((v, k) => {
-            console.log("key: " + k);
-            console.log("vlaue: " + v);
-        })
+        // ComCode 값을 확인
+        console.log("ComCode: " + formData.get("ComCode"));
 
         $.ajax({
             async: false,
@@ -118,14 +117,12 @@
             processData: false,
             data: formData,
             success: (response) => {
-                // <!--            마이페이지>내가신청한 공고리스트 페이지로 이동하게-->
-                // <!--                location.replace("/a/a/" + lecCode);-->
                 alert('성공');
             },
             error: (error) => {
                 console.log(error);
             }
-        })
+        });
     }
 </script>
 </body>

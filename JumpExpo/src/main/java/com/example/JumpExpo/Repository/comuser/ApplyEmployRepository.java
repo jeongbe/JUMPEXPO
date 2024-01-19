@@ -4,6 +4,7 @@ import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import org.hibernate.query.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.awt.print.Pageable;
@@ -74,5 +75,11 @@ public interface ApplyEmployRepository extends JpaRepository<ApplyEmploy, Intege
             "WHERE emnot_occ NOT IN ('프론트', '디자인', '백엔드')\n" +
             "AND CURDATE() BETWEEN emnot_start AND emnot_end;", nativeQuery = true)
     ArrayList<ApplyEmploy> EtcEmployList();
+
+    //2024.01.18 박은채
+    @Query(value = "SELECT *\n" +
+            "FROM apply_employ\n" +
+            "where com_code = :comCode", nativeQuery = true)
+    ArrayList<ApplyEmploy> AllList(@Param("comCode") int comCode);
 
 }

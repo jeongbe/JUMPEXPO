@@ -2,9 +2,13 @@ package com.example.JumpExpo.Controller.user;
 
 import com.example.JumpExpo.DTO.user.PeremApplyUserForm;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Entity.user.PeremApplyUser;
+import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
+import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import com.example.JumpExpo.Repository.user.PeremApplyRepository;
+import com.example.JumpExpo.Repository.user.UserReository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +41,12 @@ public class EmployListController {
     @Autowired
     PeremApplyRepository peremApplyRepository;
 
+    @Autowired
+    CompanyRepository companyRepository;
+
+    @Autowired
+    UserReository userReository;
+
     //2024.01.15 박은채
     //공고 보기 리스트<분야별 리스트>
     @GetMapping("/show/employlist")
@@ -62,10 +72,12 @@ public class EmployListController {
     }
 
     // 공고 보기 상세 페이지
-    @GetMapping("/show/employlist/{emnot_code}")
-    public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode){
+    @GetMapping("/show/employlist/{emnot_code}/{com_code}")
+    public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode,
+                               @PathVariable(name = "com_code") int comCode){
 
         ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+        Company company = companyRepository.findById(comCode).orElse(null);
 
         if (applyEmploy == null) {
             // 데이터가 없을 경우
@@ -73,15 +85,26 @@ public class EmployListController {
         }
 
         model.addAttribute("applyEmploy", applyEmploy);
+        model.addAttribute("company",company);
 
         return "user/employ/EmployListDetail";
     }
 
     //이력서 제출 팝업
     @GetMapping("/submit/resume/{emnot_code}/{user_code}")
-    public String submitResume(Model model, @PathVariable(name="emnot_code") int emnotCode){
-        model.addAttribute("emnotCode",emnotCode);
+    public String submitResume(Model model, @PathVariable(name="emnot_code") int emnotCode,
+                               @PathVariable(name = "user_code") int userCode){
 
+        model.addAttribute("emnotCode",emnotCode);
+        model.addAttribute("userCode",userCode);
+
+        Users user = userReository.findById(userCode).orElse(null);
+        if (user != null) {
+            model.addAttribute("userName", user.getUser_name());
+        } else {
+            // 사용자를 찾을 수 없을 때 처리
+            model.addAttribute("userName", "사용자 이름 없음");
+        }
 
         ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
 
@@ -95,14 +118,13 @@ public class EmployListController {
         return "user/employ/ResumePopup";
     }
 
-    //2024.01.15 박은채
+    //2024.01.15 박은채, 2024.01.19 박은채 수정
     //이력서 제출&중복확인
     @PostMapping("/submit/resume/{emnot_code}/{user_code}")
     public ResponseEntity<?> submitResumeData(PeremApplyUserForm form,
                                               @RequestParam(value = "PemFile", required = false) MultipartFile file1,
-                                              @PathVariable(name = "emnot_code") int emnotCode,
-                                              @PathVariable(name = "user_code") int userCode,
-                                              Model model) {
+                                              Model model, @PathVariable(name="emnot_code") int emnotCode,
+                                              @PathVariable(name = "user_code") int userCode) {
 
         PeremApplyUser existingApplication = peremApplyRepository.findByEmnotCodeAndUserCode(emnotCode, userCode);
 
@@ -128,9 +150,10 @@ public class EmployListController {
 
         log.info(form.toString());
 
+//        Users users = userReository.findById(userCode).orElse(null);
+//        model.addAttribute("users",users);
+
         PeremApplyUser peremApplyUser = form.toEntity();
-        peremApplyUser.setUser_code(1);
-        peremApplyUser.setUser_name("이름");
         //취소여부 디폴트1
         peremApplyUser.setPem_can(1);
         peremApplyUser.setPem_date(new Date());

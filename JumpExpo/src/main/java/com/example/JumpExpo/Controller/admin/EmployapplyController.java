@@ -63,10 +63,12 @@ public class EmployapplyController {
     }
     //2024.01.10 박은채
     // 신청 공고 상세 페이지
-    @GetMapping("/show/employapply/{emnot_code}")
-    public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode){
+    @GetMapping("/show/employapply/{emnot_code}/{com_code}")
+    public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode
+            , @PathVariable(name="com_code") int comCode){
 
         ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+        Company company = companyRepository.findById(comCode).orElse(null);
 
         if (applyEmploy == null) {
             // 데이터가 없을 경우
@@ -74,6 +76,7 @@ public class EmployapplyController {
         }
 
         model.addAttribute("applyEmploy", applyEmploy);
+        model.addAttribute("company",company);
 
         int recogCheck = applyEmploy.getRecog_check();
 

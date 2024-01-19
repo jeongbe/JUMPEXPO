@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/comuser/Side/mypageAcceptBody.css" rel="stylesheet" />
+
+    <script src="/static/js/user/jquery-3.7.0.min.js"></script>
+
+    <title>공고 보기</title>
+</head>
+
+ <div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+
+<body>
+<main>
+    <content>
+        <div class="body">
+            <div class="body_title">
+                <span>공고</span>
+                <span>신청내역</span>
+            </div>
+
+            <div class="body_title_right">
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 공고 신청내역
+            </div>
+
+
+
+            <!-- 주요내용 -->
+            <div class="contents">
+                <div class="select-box">
+                    <form method="get" action="/users/allexpo">
+                        <div class="search-box">
+                            <p class="size">행사 / 공연명</p>
+                            <input type="text" name="serch" id="" />
+                            <button type="submit" class="S_btn">검색</button>
+                        </div>
+                        <!--        </form>-->
+                        <!--        <form method="get" action="/com/expo/period">-->
+                        <div class="Period-box">
+                            <p>기간 선택</p>
+                            <div class="btns">
+                                <button type="button">1개월</button>
+                                <button type="button">3개월</button>
+                                <button type="button">6개월</button>
+                            </div>
+                            <div class="date-box">
+                                <span><input type="date" class="d1" name="date_start" id="" /></span>
+                                <span><input type="date" class="d2" name="date_end" id="" /></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+<!--                <div class="content" th:each="list : ${AllList}">-->
+                <div class="paging_content">
+                    <div class="content">
+                        <div class="expo-info-box">
+                            <div class="cont-img">
+                                <img src="" alt="" />
+                            </div>
+                            <div class="expo-info">
+                                <p class="expo-name">2024 예일 박람회</p>
+                                <div class="period-box2">
+                                    <p>2024-01-10</p>
+                                    <p>2024-01-10</p>
+                                    <p>10:00</p>
+                                    <!--                    <p>20:00</p>-->
+                                </div>
+                            </div>
+                            <button class="accept_btn">승인</button>
+                        </div>
+                        <div class="line"></div>
+                    </div>
+                </div>
+
+                <div class="paging" id="pagination">
+                    <button onclick="previousPage()">
+                        <</button>
+                    <div id="pageNumbers"></div>
+                    <button onclick="nextPage()">></button>
+                </div>
+<!--                <div class="content" th:each="list : ${AllList}">-->
+<!--                    <div class="expo-info-box" >-->
+<!--                        <div class="cont-img">-->
+<!--                            <img src="" alt="" />-->
+<!--                        </div>-->
+<!--                        <div class="expo-info">-->
+<!--                            <p class="expo-name" th:text="${list.expo_title}" th:onclick="'javascript:location.href=&quot;/users/expo/info/' + ${list.expo_code} +'/' + ${list.expo_cate} + '&quot;'">2024 예일 박람회</p>-->
+<!--                            <div class="period-box2">-->
+<!--                                <p th:text="${list.expo_start}">2024-01-10</p>-->
+<!--                                <p th:text="${list.expo_end}">2024-01-10</p>-->
+<!--                                <p th:text="${list.expo_time}">10:00</p>-->
+<!--                                &lt;!&ndash;                    <p>20:00</p>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <button class="accept_btn">승인</button>-->
+<!--                    </div>-->
+<!--                    <div class="line"></div>-->
+<!--                </div>-->
+            </div>
+            <!--  -->
+
+        </div>
+    </content>
+
+     <div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+
+     <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+
+</main>
+<script>
+<!--    // header script-->
+<!--    $(document).ready(function () {-->
+<!--        //**** 마우스오버  ****//-->
+<!--        //서브메뉴 숨기고 시작-->
+<!--        $(".subMenu").hide();-->
+<!--        // 마우스 오버-->
+<!--        $(".mainMenu, .subMenu").mouseover(function () {-->
+<!--            $(".subMenu").stop().slideDown(500);-->
+<!--        }).mouseout(function () {-->
+<!--            $(".subMenu").stop().slideUp(500);-->
+<!--        });-->
+<!--    });-->
+
+
+    // 페이징
+// 초기 페이지 설정
+let currentPage = 1;
+let rowsPerPage = 6;
+let content = document.querySelectorAll('.content');
+let totalRows = content.length; // 모든 .content div 포함
+let totalPages = Math.ceil(totalRows / rowsPerPage);
+let pagination = document.getElementById('pageNumbers');
+
+function showPage(page) {
+    for (let i = 0; i < totalRows; i++) {
+        if (i >= (page - 1) * rowsPerPage && i < page * rowsPerPage) {
+            content[i].style.display = '';
+        } else {
+            content[i].style.display = 'none';
+        }
+    }
+}
+
+function generatePageNumbers() {
+    let pageNumbersHTML = '';
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbersHTML += `<span class="page-number" onclick="goToPage(${i})">${i}</span>`;
+    }
+    pagination.innerHTML = pageNumbersHTML;
+}
+
+function goToPage(page) {
+    if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        showPage(currentPage);
+        generatePageNumbers();
+    }
+}
+
+function nextPage() {
+    if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+        generatePageNumbers();
+    }
+}
+
+function previousPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+        generatePageNumbers();
+    }
+}
+
+showPage(currentPage);
+generatePageNumbers();
+// 여기까지 페이징
+</script>
+</body>
+
+</html>
