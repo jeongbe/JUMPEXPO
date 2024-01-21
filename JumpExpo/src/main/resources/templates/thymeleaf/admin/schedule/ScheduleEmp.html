@@ -14,7 +14,7 @@
 <div class="container">
     <p class="p-title">취업 박람회 일정 등록</p>
     <p class="line"></p>
-    <form enctype="multipart/form-data" method="post" action="/admin/save/emp">
+    <form enctype="multipart/form-data"  >
     <table class="notice-list">
         <tr>
             <td>
@@ -29,7 +29,7 @@
         <tr>
             <td>
                 <span class="info">진행시간</span>
-                <span><input type="text" name="ExpoTime" id="ExpoTime" required placeholder="ex) 10:00~15:00" maxlength="11"/></span>
+                <span><input type="time" name="ExpoTime" id="ExpoTime" /> ~ <input type="time" id="ExpoEndTime" name="ExpoEndTime" /></span>
             </td>
             <td>
                 <span class="info">주관</span>
@@ -49,7 +49,7 @@
         <tr>
             <td>
                 <span class="info">썸네일 이미지</span>
-                <span><input type="file" id="ExpoImage" name="ExpoImage"  required/></span>
+<!--                <span><input type="file" id="ExpoImage" name="ExpoImage"  required/></span>-->
             </td>
             <td>
                 <span class="info">담당자</span>
@@ -113,6 +113,55 @@
     // 스마트 에디터에서의 CORS 문제 해결
 document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지의 도메인을 지정
 
+// ExpoStart의 변경 이벤트를 감지하여 ExpoEnd의 min 속성을 업데이트
+document.getElementById('ApplyStart').addEventListener('input', function () {
+    // ExpoStart의 값 가져오기
+    const ApplyStartValue = this.value;
+
+    // ExpoEnd 엘리먼트 가져오기
+    const ApplyEndElement = document.getElementById('ApplyEnd');
+
+    // ExpoEnd의 min 속성 업데이트
+    ApplyEndElement.min = ApplyStartValue;
+});
+
+// ExpoEnd의 변경 이벤트를 감지하여 ExpoStart의 max 속성을 업데이트
+document.getElementById('ApplyEnd').addEventListener('input', function () {
+    // ExpoEnd의 값 가져오기
+    const expoApplyEndValue = this.value;
+
+    // ExpoStart 엘리먼트 가져오기
+    const expoApplyStartElement = document.getElementById('ApplyStart');
+
+    // ExpoStart의 max 속성 업데이트
+    expoApplyStartElement.max = expoApplyEndValue;
+});
+
+
+// ExpoStart의 변경 이벤트를 감지하여 ExpoEnd의 min 속성을 업데이트
+document.getElementById('ExpoStart').addEventListener('input', function () {
+    // ExpoStart의 값 가져오기
+    const expoStartValue = this.value;
+
+    // ExpoEnd 엘리먼트 가져오기
+    const expoEndElement = document.getElementById('ExpoEnd');
+
+    // ExpoEnd의 min 속성 업데이트
+    expoEndElement.min = expoStartValue;
+});
+
+// ExpoEnd의 변경 이벤트를 감지하여 ExpoStart의 max 속성을 업데이트
+document.getElementById('ExpoEnd').addEventListener('input', function () {
+    // ExpoEnd의 값 가져오기
+    const expoEndValue = this.value;
+
+    // ExpoStart 엘리먼트 가져오기
+    const expoStartElement = document.getElementById('ExpoStart');
+
+    // ExpoStart의 max 속성 업데이트
+    expoStartElement.max = expoEndValue;
+});
+
     let subBtn = document.querySelector('.in_btn');
 
 
@@ -120,7 +169,7 @@ document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지
     subBtn.onclick = () => {
     // 입력 필드를 검증합니다.
     if (!validateForm()) {
-        alert("필수 입력란을 모두 채워주세요.");
+
         return;
     }
 
@@ -148,8 +197,8 @@ document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지
         data: formData,
         success: (response) => {
             // 성공 시 캘린더 페이지로 이동합니다.
-            alert('성공');
-            location.replace("/admin/Calender");
+                    window.location.replace("/admin/Calender");
+
         },
         error: (error) => {
         alert('실패');
@@ -168,6 +217,11 @@ function validateForm() {
             isValid = false;
         }
     });
+
+        // 입력 필드를 검증합니다.
+    if (!isValid) {
+        alert("필수 입력란을 모두 채워주세요.");
+    }
 
     return isValid;
 }

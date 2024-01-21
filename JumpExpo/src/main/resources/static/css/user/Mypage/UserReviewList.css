@@ -1,0 +1,86 @@
+.r_title_box {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: aqua; */
+    margin-bottom: 10px;
+}
+
+
+.r_title_box > p {
+    text-align: center;
+    font-weight: bold;
+    color: #808080;
+    width: 920px;
+}
+
+
+.re_box{
+    display: flex;
+    margin-top:20px;
+}
+
+.select-box{
+    height:70px;
+}
+
+.r_Per{
+    padding-top: 20px;
+
+}
+
+.r_Per > p {
+    width: 100px
+}
+
+.r_btns{
+
+}
+
+.r_date{
+    display:flex;
+    position: relative;
+    right: 40px;
+}
+
+.r_search_box{
+    margin-right:10px;
+
+}
+
+.r_s_btn{
+    height:30px;
+    margin-bottom:10px;
+    background-color: #374658;
+    color:white;
+    width:100px;
+}
+
+.d1{
+    margin-right:1px;
+}
+
+.period-box2_{
+
+}
+
+.period-box2_ > p:nth-child(1){
+    color: #808080;
+}
+
+.period-box2_ > p:nth-child(2){
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.r_sdf{
+    display:flex;
+}
+
+.r_sdf > p:first-child{
+    margin-right: 10px;
+}
+
+.r_sdf > p:last-child::before{
+    content:'조회수 ';
+}

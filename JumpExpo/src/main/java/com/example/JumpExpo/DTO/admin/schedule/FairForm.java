@@ -37,6 +37,7 @@ public class FairForm {
     MultipartFile FExpoImage;
 
     String FExpoTime;
+    String FExpoEndTime;
     String FExpoOutline;
     String FExpoHost;
     String FExpoManage;
@@ -49,7 +50,7 @@ public class FairForm {
 
     public ScheduleInsert toEntity(){
         return new ScheduleInsert(FExpoCode,FExpoCate,FExpoTitle,FExpoStart,FExpoEnd,FApplyStart,FApplyEnd,
-                FExpoAdd,FExpoImage != null ? FExpoImage.getOriginalFilename() : null,FExpoTime,FExpoOutline,FExpoHost,FExpoManage,FExpoExhibit,
+                FExpoAdd,FExpoImage != null ? FExpoImage.getOriginalFilename() : null,FExpoTime,FExpoEndTime,FExpoOutline,FExpoHost,FExpoManage,FExpoExhibit,
                 FMasterName,FMasterPhone,FMasterEmail,FExpoOccCate,FExpoContent);
     }
 }

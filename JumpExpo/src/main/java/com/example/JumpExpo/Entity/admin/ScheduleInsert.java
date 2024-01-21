@@ -50,6 +50,9 @@ public class ScheduleInsert {
     String expo_time;
 
     @Column
+    String expo_end_time;
+
+    @Column
     String expo_outline;
 
     @Column

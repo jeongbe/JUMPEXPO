@@ -29,13 +29,7 @@
             <tr>
                 <td>
                     <span class="info">진행시간</span>
-                    <span
-                    ><input
-                            type="text"
-                            placeholder="ex) 10:00~15:00"
-                            required name="RExpoTime" id="RExpoTime"
-                            th:value="${Data.expo_time}"
-                    /></span>
+                    <span><input type="time"  th:value="${Data.expo_time}" name="RExpoTime" id="RExpoTime" /> ~ <input type="time"  th:value="${Data.expo_end_time}" id="RExpoEndTime" name="RExpoEndTime" /></span>
                 </td>
                 <td>
                     <span class="info">주관</span>

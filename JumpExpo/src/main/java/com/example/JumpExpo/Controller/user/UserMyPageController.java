@@ -6,9 +6,11 @@ import com.example.JumpExpo.DTO.user.UserInterviewForm;
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.user.UserInterview;
 import com.example.JumpExpo.Entity.user.Users;
+import com.example.JumpExpo.Repository.user.UserExpoApplyRepository;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
 import com.example.JumpExpo.Repository.user.UserReository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,6 +43,9 @@ public class UserMyPageController {
 
     @Autowired
     ExpoService expoService;
+
+    @Autowired
+    UserExpoApplyRepository userExpoApplyRepository;
 
     //2024.01.15 정정빈
     //면접 일정 관리
@@ -163,13 +169,33 @@ public class UserMyPageController {
         }
 
 
-//        log.info(UserAppExpoList.getContent().toString());
+        log.info(UserAppExpoList.getContent().toString());
         model.addAttribute("TotalPage",UserAppExpoList.getTotalPages());
 
         model.addAttribute("list",UserAppExpoList);
 
 
         return "user/Mypage/UserExpoAppList";
+    }
+
+    //2024.01.21 정정빈
+    //박람회 취소
+    @PostMapping("/cancel/expo/")
+    public String CancelExpo(RedirectAttributes redirectAttributes, Model model, @RequestParam("expoCode") int exCode){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        log.info("연결");
+        log.info(String.valueOf(exCode));
+
+
+        userExpoApplyRepository.UserCancelExpo(exCode,users.getUser_code());
+
+        return "redirect:/users/app/list";
     }
 
     //2024-01-18 맹성우
@@ -303,6 +329,29 @@ public class UserMyPageController {
         }
 
 
+    }
+
+    //2024.01.21 정정빈
+    // 마이페이지 리뷰 작성 페이지
+//    @GetMapping("/review/{user_code}")
+//    public String UserReview(@PathVariable("user_code") int userCode,@RequestParam("ExpoCate") int expoCate,@RequestParam("ExpoCode") int expoCode){
+//        log.info(String.valueOf(userCode));
+//        log.info(String.valueOf(expoCate));
+//        log.info(String.valueOf(expoCode));
+//        log.info("연결");
+//
+//
+//        return "user/Mypage/review/UserInsertReview";
+//    }
+
+    @GetMapping("/review/{user_code}/{expo_code}")
+    public String UserReview(@PathVariable("user_code") int userCode,@PathVariable("expo_code") int expoCode){
+        log.info(String.valueOf(userCode));
+        log.info(String.valueOf(expoCode));
+        log.info("연결");
+
+
+        return "user/Mypage/review/UserInsertReview";
     }
 
 

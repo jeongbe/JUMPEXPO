@@ -246,3 +246,10 @@ p {
     color: white;
     cursor: pointer;
 }
+
+.chreviw{
+    background-color: white;
+    font-color: #374658;
+    border: 1px solid #374658;
+    color: #374658;
+}

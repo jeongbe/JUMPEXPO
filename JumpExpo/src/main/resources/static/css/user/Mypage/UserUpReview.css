@@ -1,10 +1,10 @@
-.container_{
+.container_ {
     width: 920px;
     margin-top: 30px;
     margin-left: 30px;
 }
 
-.r_title_box{
+.r_title_box {
     font-size: 20px;
     display: flex;
     justify-content: space-between;
@@ -13,11 +13,13 @@
 }
 
 .r_title_box > p {
+    text-align: center;
     font-weight: bold;
     color: #808080;
+    width: 920px;
 }
 
-.r_btn{
+.r_btn {
     height: 30px;
     background-color: #374658;
     font-size: 15px;
@@ -27,7 +29,7 @@
     margin-top: 15px;
 }
 
-.r_title{
+.r_title {
     margin: 0px;
     display: flex;
     font-size: 15px;
@@ -36,7 +38,7 @@
     height: 30px;
 }
 
-.r1{
+.r1 {
     margin: 0px;
     width: 100px;
     background-color: #f6f3f3;
@@ -53,14 +55,56 @@
     padding-top: 5px;
     margin-left: 5px;
     color: #808080;
+    width: 400px;
     /* height: 30px; */
 }
 
-.r_cont{
+.r3,
+.r4 {
+    margin: 0px;
+    height: auto;
+    padding-top: 5px;
+    margin-left: 5px;
+    color: #808080;
+    /* height: 30px; */
+}
+
+.r3 {
+    width: 150px;
+}
+
+.r_cont {
     /* background-color: aqua; */
     width: 920px;
     min-height: 300px;
     margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.r_btn_box {
+    display: flex;
+    justify-content: end;
+}
+
+.r_btn {
+    margin-right: 10px;
+}
+
+.r_line {
+    border-bottom: 1px solid #ccc;
+    margin-top: 30px;
+}
+
+.r_b_ {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.r_b {
+    background-color: #374658;
+    color: white;
+    width: 100px;
+    /* height: ; */
 }

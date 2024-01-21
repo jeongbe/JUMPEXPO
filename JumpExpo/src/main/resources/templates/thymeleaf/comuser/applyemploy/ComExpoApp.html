@@ -39,16 +39,16 @@
 
             <div class="box1">
                 <p>회사명</p>
-                <input type="text" name="ComAddr">
+                <input type="text" class="c_input" th:value="${company.com_name}" name="ComAddr">
             </div>
             <div class="box2">
                 <p>제목</p>
-                <input type="text" name="AppTitle" id="" />
+                <input type="text" name="AppTitle" id="appTitle" required />
             </div>
             <div class="box3">
                 <label class="file-box" for="file"
                 >신청서 첨부하기</label>
-<!--                <input type="file" id="file" name="AppFileName" />-->
+                <input type="file" id="file" name="AppFileName" required  />
                 <p id="originName"></p>
             </div>
             <p class="warning_text">
@@ -60,25 +60,66 @@
     <div class="line"></div>
     <div class="btn_box">
 <!--        th:onclick="'javascript:location.href=&quot;/com/app/insert'+ '/'+ ${expoCate} + '/' + ${expoCode}+ '/' + 1 + '&quot;'"-->
-        <button type="submit">신청하기</button>
+        <button class="abtn" type="submit" onclick="validateForm()">신청하기</button>
     </div>
+    <p class="comCheck" style="display:none;" th:text="${ComAppCheck}"></p>
 </div>
 </form>
 <script>
-    window.onload = function () {
-        target = document.getElementById('file'); // file 아이디 선언
-        target.addEventListener('change', function () {
-            // change 함수
+    function validateForm() {
+     var title = document.getElementById('appTitle').value;
+     var fileInput = document.getElementById('file');
 
-            if (target.value.length) {
-                // 파일 첨부인 상태일경우 파일명 출력
-                $('#originName').html(target.files[0].name);
-            } else {
-                //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게
-                $('#originName').html('');
-            }
-        });
-    };
+     if (title.trim() === '') {
+         alert('제목을 입력해주세요.');
+         return false;
+     }
+
+     if (!fileInput.value) {
+         alert('신청서를 첨부해주세요.');
+         return false;
+     }
+
+    if(ComCheck == '' && title.trim() !== '' && fileInput.value){
+        alert('신청 완료 되었습니다.');
+    }
+
+     return true;
+ }
+
+ function submitForm() {
+     if (validateForm()) {
+         document.getElementById('expoForm').submit();
+     } else {
+         alert('입력값을 확인해주세요.');  // 입력값이 비어있을 때 메시지 추가
+     }
+ }
+
+ let abtn = document.querySelector('.abtn');
+
+ abtn.onclick = () => {
+     let ComCheck = document.querySelector('.comCheck').textContent;
+     console.log(ComCheck);
+
+     if (ComCheck !== '') {
+         alert('이미 신청한 박람회 입니다.');
+     }
+ }
+
+<!--    window.onload = function () {-->
+<!--        target = document.getElementById('file'); // file 아이디 선언-->
+<!--        target.addEventListener('change', function () {-->
+<!--            // change 함수-->
+
+<!--            if (target.value.length) {-->
+<!--                // 파일 첨부인 상태일경우 파일명 출력-->
+<!--                $('#originName').html(target.files[0].name);-->
+<!--            } else {-->
+<!--                //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게-->
+<!--                $('#originName').html('');-->
+<!--            }-->
+<!--        });-->
+<!--    };-->
 </script>
 <div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide :: applyEmploySide}"></div>
 <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>

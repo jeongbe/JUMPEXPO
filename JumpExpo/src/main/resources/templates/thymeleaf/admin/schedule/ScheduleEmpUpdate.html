@@ -29,7 +29,7 @@
         <tr>
             <td>
                 <span class="info">진행시간</span>
-                <span><input type="text" th:value="${Data.expo_time}" name="ExpoTime" id="ExpoTime" required placeholder="ex) 10:00~15:00" maxlength="11"/></span>
+                <span><input type="time" th:value="${Data.expo_time}" name="ExpoTime" id="ExpoTime" /> ~ <input type="time" th:value="${Data.expo_end_time}" id="ExpoEndTime" name="ExpoEndTime" /></span>
             </td>
             <td>
                 <span class="info">주관</span>

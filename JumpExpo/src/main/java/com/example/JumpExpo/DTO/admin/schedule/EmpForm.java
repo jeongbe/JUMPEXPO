@@ -36,6 +36,7 @@ public class EmpForm {
     MultipartFile ExpoImage;
 
     String ExpoTime;
+    String ExpoEndTime;
     String ExpoOutline;
     String ExpoHost;
     String ExpoManage;
@@ -48,7 +49,7 @@ public class EmpForm {
 
     public ScheduleInsert toEntity(){
         return new ScheduleInsert(ExpoCode,ExpoCate,ExpoTitle,ExpoStart,ExpoEnd,ApplyStart,ApplyEnd,
-                ExpoAdd,ExpoImage != null ? ExpoImage.getOriginalFilename() : null,ExpoTime,ExpoOutline,ExpoHost,ExpoManage,ExpoExhibit,
+                ExpoAdd,ExpoImage != null ? ExpoImage.getOriginalFilename() : null,ExpoTime,ExpoEndTime,ExpoOutline,ExpoHost,ExpoManage,ExpoExhibit,
                 MasterName,MasterPhone,MasterEmail,ExpoOccCate,ExpoContent);
     }
 }

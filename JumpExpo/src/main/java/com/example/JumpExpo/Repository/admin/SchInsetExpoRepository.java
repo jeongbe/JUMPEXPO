@@ -30,7 +30,8 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
 //    WHERE CURDATE() BETWEEN apply_start AND apply_end;
     //수정
     @Query(value = "select *\n" +
-            "from schedule_insert", nativeQuery = true)
+            "from schedule_insert\n" +
+            "WHERE CURDATE() BETWEEN DATE(apply_start) AND DATE(apply_end)\n", nativeQuery = true)
     Page<ScheduleInsert> AllExpoList(Pageable pageable);
 
     //2024.01.17 정정빈
@@ -135,8 +136,8 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
     //유저 마이페이지 박람회 신청 내역
     //s나중에 타임 수정
     @Query(value = "select s.expo_code,s.expo_cate,s.expo_title, s.expo_start, s.expo_end, s.apply_start ,s.apply_end\n" +
-            ",s.expo_add, s.expo_image, s.expo_time, s.expo_outline, s.expo_host, s.expo_manage, s.expo_exhibit\n" +
-            ",s.master_name, s.master_phone, s.master_mail, s.expo_occ_cate, s.expo_content\n" +
+            ",s.expo_add, s.expo_image, s.expo_time,s.expo_end_time, s.expo_outline, s.expo_host, s.expo_manage, s.expo_exhibit\n" +
+            ",s.master_name, s.master_phone, s.master_mail, s.expo_occ_cate, s.expo_content \n" +
             "from user_expo_apply u\n" +
             "join schedule_insert s\n" +
             "on u.expo_code = s.expo_code\n" +

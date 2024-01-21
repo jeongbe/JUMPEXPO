@@ -46,30 +46,6 @@ public class ExpoComController {
 
 
 
-
-    //2024.01.10 정정빈
-    //전체일정 기간 선택
-
-//    @GetMapping("/expo/period")
-//    public String ExpoPeriod(Model model,@RequestParam(value="page", defaultValue="0")int page,@RequestParam(name = "duration") int duration){
-//        log.info("DSffffffff" + duration);
-//
-//        Page<ScheduleInsert> AllList = null;
-//
-//        if(duration == 1){
-//            AllList = expoService.get1Period(page);
-//        }
-//        model.addAttribute("AllList",AllList);
-//        log.info(AllList.toString());
-//
-//        model.addAttribute("TotalPage",AllList.getTotalPages());
-//
-//
-//        return "redirect:/com/allexpo";
-//    }
-
-
-
     //2024.01.11 정정빈
     //기업 박람회 신청 리스트 페이지
     @GetMapping("/app/list")
@@ -109,16 +85,25 @@ public class ExpoComController {
 
         model.addAttribute("company", company);
 
+        ExpoAppCom ComAppCheck = expoAppComRepository.ComAppCheck(expoCode,company.getCom_code());
 
+        if(ComAppCheck != null){
+            model.addAttribute("ComAppCheck",ComAppCheck);
+        }
 
         return "comuser/applyemploy/ComExpoApp";
     }
 
     //기업 박람회 신청
     @PostMapping("/app/insert/{expo_code}/{com_code}")
-    public String InsertApp(ExpoAppForm form,@RequestParam(value = "AppFileName",required = false) MultipartFile file1,
-                            @PathVariable("com_code")  int comCode,@PathVariable("expo_code")  String expoCode){
-
+    public String InsertApp(Model model,ExpoAppForm form,@RequestParam(value = "AppFileName",required = false) MultipartFile file1,
+                            @PathVariable("com_code")  int comCode,@PathVariable("expo_code")  String expoCode,
+                            @RequestParam(name = "ExpoCate") int expoCate){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
         String link = "\\\\192.168.2.3\\images\\a";
 
@@ -135,19 +120,30 @@ public class ExpoComController {
         }
 
         log.info(form.toString());
+        log.info("박람호 구분 코드" + String.valueOf(expoCate));
 
-        ExpoAppCom target = form.toEntity();
+
+        ExpoAppCom ComAppCheck = expoAppComRepository.ComAppCheck(Integer.parseInt(expoCode),company.getCom_code());
+
+        if(ComAppCheck != null){
+            log.info("이미 박람회 신청함");
+            return "redirect:/com/app/" + expoCate + "/" + expoCode + "/" + company.getCom_code();
+        }else {
+            ExpoAppCom target = form.toEntity();
 //        log.info(comCode);
-        log.info(expoCode);
-        target.setCom_code(comCode);
-        target.setApp_date(new Date());
+//        log.info(expoCode);
+            target.setCom_code(comCode);
+            target.setApp_date(new Date());
 
-        log.info(target.toString());
+            log.info(target.toString());
+            ExpoAppCom saved = expoAppComRepository.save(target);
 
-        ExpoAppCom saved = expoAppComRepository.save(target);
+            return "redirect:/com/app/list";
+        }
 
 
-        return "redirect:/com/app/list";
+
+
     }
 
 }

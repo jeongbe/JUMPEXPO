@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="/static/css/user/Side/mypageAcceptBody.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/user/Mypage/UserReviewList.css">
 
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
 
@@ -54,12 +55,12 @@
     <content>
         <div class="body">
             <div class="body_title">
-                <span>박람회</span>
-                <span>신청 내역</span>
+                <span>마이</span>
+                <span>리뷰</span>
             </div>
 
             <div class="body_title_right">
-                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 박람회 신청 내역
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 마이 리뷰
             </div>
 
 
@@ -67,24 +68,21 @@
             <!-- 주요내용 -->
             <div class="contents">
                 <div class="select-box">
-                    <form method="get" action="/users/app/list">
-                        <div class="search-box">
-                            <p class="size">행사 / 공연명</p>
-                            <input type="text" name="serch" id="" />
-                            <button type="submit" class="S_btn">검색</button>
-                        </div>
-                        <!--        </form>-->
-                        <!--        <form method="get" action="/com/expo/period">-->
-                        <div class="Period-box">
+                    <form>
+
+                        <div class="Period-box r_Per">
                             <p>기간 선택</p>
-                            <div class="btns">
+                            <div class="btns r_btns">
                                 <button type="button">1개월</button>
                                 <button type="button">3개월</button>
                                 <button type="button">6개월</button>
                             </div>
-                            <div class="date-box">
+                            <div class="r_date">
                                 <span><input type="date" class="d1" name="date_start" id="" /></span>
                                 <span><input type="date" class="d2" name="date_end" id="" /></span>
+                            </div>
+                            <div class="r_search_box">
+                                <button type="submit" class="S_btn r_s_btn">검색</button>
                             </div>
                         </div>
                     </form>
@@ -92,26 +90,21 @@
 
 
 
-                <div class="content">
-                    <div class="expo-info-box" th:each="lists : ${list}">
+                <div class="content_">
+                    <div class="re_box">
                         <div class="cont-img">
-<!--                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />-->
+                            <!--                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />-->
                         </div>
                         <div class="expo-info">
-                            <p class="expo-name" th:text="${lists.expo_title}"></p>
-                            <div class="period-box2">
-                                <p th:text="${lists.expo_start}"></p>
-                                <p th:text="${lists.expo_end}"></p>
-                                <p th:text="${lists.expo_time}"></p>
-                                <p th:text="${lists.expo_end_time}"></p>
+                            <p class="expo-name"></p>
+                            <div class="period-box2_">
+                                <p >박람회 이름</p>
+                                <p >리뷰 제목</p>
+                                <div class="r_sdf">
+                                    <p>등록 날짜</p>
+                                    <p>10</p>
+                                </div>
                             </div>
-                        </div>
-                        <p style="display:none" th:text="${lists.expo_end}" class="expoEnd"></p>
-                        <div onclick="ch(this)">
-                            <p style="display:none" class="expoCode" th:text="${lists.expo_code}"></p>
-                            <p style="display:none" class="userCode" th:text="${users.user_code}"></p>
-                            <p  style="display:none" class="expoCate" th:text="${lists.expo_cate}"></p>
-                            <button class="accept_btn" >취소하기</button>
                         </div>
                     </div>
                     <div class="line"></div>
@@ -132,52 +125,7 @@
 
 </main>
 <script th:inline="javascript">
-    function ch(item){
-        console.log(item);
 
-        let btnText = item.querySelector('.accept_btn').textContent;
-<!--        let exCode = item.querySelector('.expoCode').textContent;-->
-        let uCode = item.querySelector('.userCode').textContent;
-
-
-        if(btnText === '취소하기'){
-            let exCode = item.querySelector('.expoCode').textContent;
-            console.log('취소하기 클릭');
-            console.log(exCode);
-
-            $.ajax({
-                url: "/users/cancel/expo/",
-                type: "POST",
-                data: "expoCode=" + exCode,
-                success: (response) => {
-                    location.reload();
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            })
-
-        }else{
-            let exCode = item.querySelector('.expoCode').textContent;
-            window.location.replace("/users/review/" + uCode + "/" + exCode);
-
-        }
-    }
-
-    let S_btn = document.querySelector('.S_btn');
-
-    S_btn.onclick = () => {
-        let d1 = document.querySelector('.d1').value;
-        let d2 = document.querySelector('.d2').value;
-
-        console.log(d1);
-        console.log(d2);
-
-        if(!d1 || !d2){
-            alert("기간을 선택해주세요");
-            return false;
-        }
-    }
 
     // 기간 선택 버튼에 이벤트 리스너 추가
     document.querySelectorAll('.btns button').forEach(function(button) {
@@ -204,50 +152,6 @@
 });
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-        // 오늘 날짜 가져오기
-        let today = new Date();
-
-        let year = today.getFullYear();
-        let month = today.getMonth() + 1;
-        let date = today.getDate();
-
-        console.log(year, month, date);
-
-        //  expo_end 날짜 가져오기
-        let expoEndValue = document.querySelectorAll('.expoEnd');
-        console.log(expoEndValue);
-
-        for (let i = 0; i < expoEndValue.length; i++) {
-            let expoEndValuet = expoEndValue[i].textContent;
-            console.log(expoEndValuet);
-
-            let expoEnddd = expoEndValuet.split('-');
-
-            let d1 = parseInt(expoEnddd[0]);
-            let d2 = parseInt(expoEnddd[1]);
-            let d3 = parseInt(expoEnddd[2]);
-
-            console.log(d1, d2, d3);
-
-            if (year < d1 || (year === d1 && month < d2) || (year === d1 && month === d2 && date < d3)) {
-
-            } else {
-                // 현재 날짜가 expoEnd 날짜보다 이후인 경우
-                console.log('현재 날짜가 expoEnd 날짜보다 이후입니다.');
-
-                // 현재 순번의 버튼을 찾아서 리뷰 쓰기로 변경
-                let acceptButtons = document.querySelectorAll('.accept_btn');
-
-                // 두 번째 버튼 선택
-                let currentButton = acceptButtons[i];
-
-                // 버튼 변경
-                currentButton.textContent = '리뷰쓰기';
-                currentButton.classList.add('chreviw');
-            }
-        }
-    });
 
 
 

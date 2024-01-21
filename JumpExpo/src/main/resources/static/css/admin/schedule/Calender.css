@@ -89,12 +89,13 @@ tr {
     margin: 0px;
 }
 
-.YearText{
+#YearText{
     color: #808080;
-    width: 120px;
+    width: 150px;
+    margin: 0px;
 }
 
-.MonthText{
+#MonthText{
     margin: 0px;
 }
 
@@ -112,4 +113,12 @@ tr {
 
 .days > th{
     border-right: 1px solid black;
+}
+
+.MonthText::after{
+    content: '¿ù';
+}
+
+.YearText::after{
+    content: '³â';
 }

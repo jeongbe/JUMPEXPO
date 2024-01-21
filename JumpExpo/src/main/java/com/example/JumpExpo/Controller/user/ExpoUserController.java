@@ -176,6 +176,12 @@ public class ExpoUserController {
 
         model.addAttribute("ExpoInfo",data);
 
+        UserExpoApply Check = userExpoApplyRepository.UserAppCheck(expoCode, users.getUser_code());
+//        log.info(Check.toString());
+        if(Check != null){
+            model.addAttribute("Check",Check);
+        }
+
 
         return "user/expo/expoInfo";
     }
@@ -183,14 +189,23 @@ public class ExpoUserController {
     //2024.01.17 정정빈
     //유저 박람회 신청
     @PostMapping("/apply/expo")
-    public String UserApplyExpo(UserExpoApplyForm form){
+    public String UserApplyExpo(UserExpoApplyForm form,Model model){
         log.info(form.toString());
 
         UserExpoApply target = form.toEntity();
-        UserExpoApply save = userExpoApplyRepository.save(target);
-        log.info(save.toString());
 
-        //나중에 신청 내역으로 이동
-        return "";
+        UserExpoApply Check = userExpoApplyRepository.UserAppCheck(form.getExpoCode(), form.getUserCode());
+        model.addAttribute("Check",Check);
+
+        if(Check != null){
+            log.info("이미 신청한 박람회");
+            return "redirect:/users/expo/info/" + form.getExpoCode() + "/" + form.getExpoCate();
+        }else {
+            UserExpoApply save = userExpoApplyRepository.save(target);
+            log.info(save.toString());
+            //나중에 신청 내역으로 이동
+            return "redirect:/users/app/list";
+        }
+
     }
 }

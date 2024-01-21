@@ -39,6 +39,7 @@ public class RecForm {
     MultipartFile RExpoImage;
 
     String RExpoTime;
+    String RExpoEndTime;
     String RExpoOutline;
     String RExpoHost;
     String RExpoManage;
@@ -51,7 +52,7 @@ public class RecForm {
 
     public ScheduleInsert toEntity(){
         return new ScheduleInsert(RExpoCode,RExpoCate,RExpoTitle,RExpoStart,RExpoEnd,RApplyStart,RApplyEnd,
-                RExpoAdd,RExpoImage != null ? RExpoImage.getOriginalFilename() : null,RExpoTime,RExpoOutline,RExpoHost,RExpoManage,RExpoExhibit,
+                RExpoAdd,RExpoImage != null ? RExpoImage.getOriginalFilename() : null,RExpoTime,RExpoEndTime,RExpoOutline,RExpoHost,RExpoManage,RExpoExhibit,
                 RMasterName,RMasterPhone,RMasterEmail,RExpoOccCate,RExpoContent);
     }
 }

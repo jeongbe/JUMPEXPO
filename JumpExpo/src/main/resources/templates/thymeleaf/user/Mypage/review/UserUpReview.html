@@ -10,7 +10,7 @@
     <link href="/static/css/user/Mypage/users_side.css" rel="stylesheet" />
     <link href="/static/css/user/Mypage/users_footer.css" rel="stylesheet" />
     <script src="/static/js/comuser/jquery-3.7.0.min.js"></script>
-    <link rel="stylesheet" href="/static/css/user/Mypage/UserinsertReview.css" />
+    <link rel="stylesheet" href="/static/css/user/Mypage/UserUpReview.css" />
     <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
     <title>유저 리뷰 작성 페이지</title>
 </head>
@@ -21,12 +21,12 @@
     <content>
         <div class="body">
             <div class="body_title">
+                <span>마이</span>
                 <span>리뷰</span>
-                <span>작성하기</span>
             </div>
 
             <div class="body_title_right">
-                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 박람회 신청 내역 > 리뷰 작성하기
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 마이리뷰
             </div>
 
 
@@ -36,16 +36,31 @@
                 <form action="" method="post">
                     <div class="container_">
                         <div class="r_title_box">
-                            <p>예일 박람회</p>
-                            <button class="r_btn">작성하기</button>
+                            <p>내가 쓴 리뷰입니다.</p>
                         </div>
                         <div class="r_title">
-                            <p class="r1">제목</p>
-                            <input type="text" class="r2">
+                            <p class="r1">작성자</p>
+                            <p class="r2">마마마</p>
+                            <p class="r1">등록일</p>
+                            <p class="r3">날짜</p>
+                            <p class="r1">조회수</p>
+                            <p class="r4">마마마</p>
+                        </div>
+                        <div class="r_btn_box">
+                            <button class="r_btn">삭제하기</button>
+                            <button class="r_btn">수정하기</button>
                         </div>
                         <div class="r_cont">
-                            <textarea required name="ExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
-
+                <textarea
+                        required
+                        name="ExpoContent"
+                        id="ir1"
+                        style="width: 100%; height: 500px"
+                ></textarea>
+                        </div>
+                        <div class="r_line"></div>
+                        <div class="r_b_">
+                            <button class="r_b">목록</button>
                         </div>
                     </div>
                 </form>
@@ -96,23 +111,6 @@
 
     // 스마트 에디터에서의 CORS 문제 해결
     document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지의 도메인을 지정
-
- // 이미지 파일명에서 공백 및 특수문자 제거 후 다시 생성
-    var sRealFileNm = today + UUID.randomUUID().toString() + sFilename.substring(sFilename.lastIndexOf("."));
-    sRealFileNm = sRealFileNm.replace(/[^a-zA-Z0-9.-]/g, "_");
-
-    // 파일 경로에서 역슬래시를 슬래시로 변경
-    const rlFileNm = filePath + sRealFileNm.replace(/\\/g, "/");
-
-    // 스마트 에디터에서 사용하는 이미지 경로를 인코딩하지 않도록 수정
-    var sFileInfo = "&bNewLine=true";
-    sFileInfo += "&sFileName=" + encodeURIComponent(sFilename); // 이미지 파일명 인코딩
-    sFileInfo += "&sFileURL=" + encodeURIComponent(rlFileNm); // 이미지 경로 인코딩
-
-    // 에디터에 이미지 정보 추가
-    oEditors.getById["ir1"].exec("PASTE_HTML", [sFileInfo]);
-
-
 
 </script>
 </body>

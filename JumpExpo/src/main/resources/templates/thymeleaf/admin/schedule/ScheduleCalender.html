@@ -36,22 +36,14 @@
     <div class="line"></div>
     <div class="c_box">
         <button class="MonthDown"><</button>
-        <h1 id="YearText" class="YearText"></h1>
-        <h1 id="MonthText" class="MonthText"></h1>
+        <h1 id="YearText"></h1>
+        <h1 id="MonthText" ></h1>
         <button class="MonthUp">></button>
     </div>
 
     <div id="calendar">
     </div>
-<!--    <div style="display:none" th:each="list : ${ExpoStartDay}">-->
-<!--        <p class="ExpoDay" th:text="${list}"></p>-->
-<!--    </div>-->
-
-<!--    <div style="display:none" th:each="list : ${ExpoNames}">-->
-<!--        <p class="ExpoNames" th:text="${list}"></p>-->
-<!--    </div>-->
 </div>
-<!--<script src="/static/js/admin/schedule/Calender.js"></script>-->
 <script th:inline="javascript">
 
 let info = [[${EInfo}]];
@@ -72,7 +64,7 @@ var YearText = document.getElementById('YearText');
 var MonthText = document.getElementById('MonthText');
 
 YearText.innerHTML = `<h1 class="YearText">${Year}</h1>`;
-MonthText.innerHTML = `<h1 class="MonthText">${Month}월</h1>`;
+MonthText.innerHTML = `<h1 class="MonthText">${Month}</h1>`;
 
 
 monthdown.onclick = () => {
@@ -152,7 +144,7 @@ function generateCalendar(year, month) {
             ) {
                 calendarDay++;
                 html +=
-                    '<span style="display: flex; padding: 10px; position: relative; bottom: 20px;">' +
+                    '<span style="display: flex; padding: 10px; position: relative; bottom: 20px; font-size:25px;">' +
                     calendarDay +
                     '</span>';
 
@@ -171,11 +163,11 @@ function generateCalendar(year, month) {
                     if (calenderYear == d1 && calendarDay == d3 && calMonth == d2) {
                         let expoName = info[i].expo_title;
                         if(info[i].expo_cate == 1){
-                            SpanStyle += 'color:#EA8874;';
+                            SpanStyle += 'background-color:#EA8874; color:black; font-weight: bold;';
                         }else if(info[i].expo_cate == 0){
-                            SpanStyle += 'color:#374658;';
+                            SpanStyle += 'background-color:#374658; color:white; font-weight: bold;';
                         }else if(info[i].expo_cate == 2){
-                            SpanStyle += 'color:#F1D2B0;';
+                            SpanStyle += 'background-color:#F1D2B0; color:black; font-weight: bold;';
                         }
                         html += `<span class="sch" onclick="location.href='/admin/expo/info/' + ${info[i].expo_code}"; style="${SpanStyle}">${expoName}</span>`;
                     }
