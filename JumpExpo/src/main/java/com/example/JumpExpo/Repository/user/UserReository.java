@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 public interface UserReository extends JpaRepository<Users,Integer> {
@@ -70,6 +71,13 @@ public interface UserReository extends JpaRepository<Users,Integer> {
             "WHERE user_email = :email " +
             "Limit 1 \n", nativeQuery = true)
     Users kakao2(@Param("email") String email);
+
+    //2024-01-21 맹성우
+    //탈퇴 여부로 유저 정보 가져오기
+    @Query(value = "SELECT *\n" +
+            "FROM usertable\n" +
+            "WHERE user_sec = 1;", nativeQuery = true)
+    ArrayList<Users> userM();
 
 
 

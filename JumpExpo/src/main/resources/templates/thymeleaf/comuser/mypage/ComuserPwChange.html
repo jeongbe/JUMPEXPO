@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/user/Side/users_body.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/UserPwChangePage.css" rel="stylesheet" />
+
+    <script src="js/jquery-3.7.0.min.js"></script>
+
+    <title>공고 보기</title>
+</head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+<body>
+<main>
+    <content>
+        <div class="body">
+            <div class="body_title">
+                <span>비밀번호</span>
+                <span>변경</span>
+            </div>
+
+            <div class="body_title_right">
+                <img src="images/home.png" alt="홈 아이콘" style="width: 20px;"> > 비밀번호 변경
+            </div>
+
+            <!-- 주요내용 -->
+            <div class="contents">
+                <form method="post" action="/com/myPage/ComChangingPw">
+                    <div class="allform">
+                        <div class="searchinput">
+                            <div class="searchform">
+                                <div class="idform">
+                                    현재 비밀번호<br>
+                                    <input type="password" class="idbox" name="id"><br>
+                                </div>
+                                <div class="pwform">
+                                    새 비밀번호<br>
+                                    <input type="password" class="pwbox" name="password">
+                                </div>
+                                <div class="pwform">
+                                    비밀번호 확인<br>
+                                    <input type="password" class="pwbox">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="searchbtn">
+                            <button type="submit" class="searbtn">변경하기</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--  -->
+        </div>
+    </content>
+    <div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+
+    <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+</main>
+<script th:if="${param.error}" type="text/javascript">
+    alert('비밀번호를 다시 확인하세요.');
+</script>
+<script>
+    // header script
+    $(document).ready(function () {
+        //**** 마우스오버  ****//
+        //서브메뉴 숨기고 시작
+        $(".subMenu").hide();
+        // 마우스 오버
+        $(".mainMenu, .subMenu").mouseover(function () {
+            $(".subMenu").stop().slideDown(500);
+        }).mouseout(function () {
+            $(".subMenu").stop().slideUp(500);
+        });
+    });
+</script>
+
+
+
+</body>
+
+</html>

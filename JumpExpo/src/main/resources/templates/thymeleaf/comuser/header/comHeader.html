@@ -32,11 +32,27 @@
                 <a href="#">신청하기</a>
             </nav>
             <div class="header_right">
-                <a href="/JumpExpo/Login">
-                    <div>
-                        로그인하기
-                    </div>
-                </a>
+                <th:block th:if="${company ne null}">
+                    <a th:href="@{/com/myPage}">
+                        <div>
+                            마이페이지
+                        </div>
+                    </a>
+                    <a th:href="@{/logout}">
+                        <div>
+                            로그아웃
+                        </div>
+                    </a>
+                </th:block>
+
+                <!-- 유저 모델이 존재하지 않는 경우 -->
+                <th:block th:unless="${company ne null}">
+                    <a th:href="@{/JumpExpo/Login}">
+                        <div>
+                            로그인하기
+                        </div>
+                    </a>
+                </th:block>
             </div>
         </header>
         <!-- header 끝 -->

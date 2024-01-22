@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/user/Mypage/UserInfoChange.css" rel="stylesheet"/>
+    <link href="/static/css/user/Side/users_body.css" rel="stylesheet"/>
+
+    <script src="js/jquery-3.7.0.min.js"></script>
+
+    <title>공고 보기</title>
+</head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+<body>
+<main>
+    <content>
+        <div class="body">
+            <div class="body_title">
+                <span>정보</span>
+                <span>수정</span>
+            </div>
+
+            <div class="body_title_right">
+                <img src="images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 정보 수정
+            </div>
+
+            <!-- 주요내용 -->
+            <div class="contents">
+                <form method="post" action="/com/myPage/ChangeSubmit">
+                    <table>
+                        <tr>
+                            <td><label for="name">회사명 *</label></td>
+                            <td><input type="text" id="name" name="Comname" ></td>
+                        </tr>
+                        <tr>
+                            <td><label for="sample6_address">회사 주소 *</label></td>
+                            <td>
+                                <input type="text" id="sample6_postcode" readonly>
+                                <button type="button" class="addr_search" onclick="execution_daum_address()">주소 검색</button>
+                                <input type="text" id="sample6_extraAddress" readonly>
+                                <hr>
+                                <input type="text" id="sample6_address" name="addr" required readonly >
+                                <hr>
+                                <input type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="phone">홈페이지 *</label></td>
+                            <td>
+                                <input type="text" id="homepage" name="homepage" placeholder="-없이 숫자만 11자리 입력" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="phone">담당자 연락처 *</label></td>
+                            <td>
+                                <input type="text" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" >
+                                <div id="phoneError" class="error-message"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">이메일 *</label></td>
+                            <td>
+                                <input type="email" id="email" name="email" >
+                                <div id="emailError" class="error-message"></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="joinbtn">수정하기</button>
+                </form>
+            </div>
+            <!--  -->
+        </div>
+    </content>
+
+    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
+
+    <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+</main>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script>
+    // header script
+    $(document).ready(function () {
+        //**** 마우스오버  ****//
+        //서브메뉴 숨기고 시작
+        $(".subMenu").hide();
+        // 마우스 오버
+        $(".mainMenu, .subMenu").mouseover(function () {
+            $(".subMenu").stop().slideDown(500);
+        }).mouseout(function () {
+            $(".subMenu").stop().slideUp(500);
+        });
+    });
+
+    //주소 api 사용
+
+    function execution_daum_address(){
+
+     new daum.Postcode({
+        oncomplete: function(data) {
+                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+
+
+
+        }
+    }).open();
+
+}
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/AdminUser/adminbody.css" />
+    <title>admin</title>
+</head>
+
+<body style="width:950px;">
+
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+
+<!-- body -->
+<div class="container" style="width:950px;">
+    <div class="main_title">
+        <p>타이틀</p>
+    </div>
+</div>
+<div class="main_content_11">
+    <h1>개인회원 관리</h1>
+    <hr>
+<!--    <div class="main_content_user">-->
+<!--        <div>번호</div>-->
+<!--        <div>아이디</div>-->
+<!--        <div>이름</div>-->
+<!--        <div>탈퇴</div>-->
+<!--    </div>-->
+<!--    <hr>-->
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>탈퇴</th>
+        </tr>
+        </thead>
+        <tbody class="main_content_user_text">
+        <tr th:each="usersM : ${usersM}">
+            <td th:text="${usersM.user_code}"></td>
+            <td th:text="${usersM.user_id}"></td>
+            <td th:text="${usersM.user_name}"></td>
+            <td><button>탈퇴하기</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- body -->
+ <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
+
+<script>
+
+</script>
+</body>
+
+</html>

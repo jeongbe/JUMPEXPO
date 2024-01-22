@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.ArrayList;
+
 public interface CompanyRepository extends JpaRepository<Company,Integer> {
 
     //중복체크 쿼리
@@ -46,6 +48,15 @@ public interface CompanyRepository extends JpaRepository<Company,Integer> {
             "FROM company\n" +
             "WHERE com_id = :comid " ,nativeQuery = true)
     Company findcom(@Param("comid") String userid);
+
+
+    //2024-01-22 맹성우
+    //탈퇴 여부로 유저 정보 가져오기
+    @Query(value = "SELECT *\n" +
+            "FROM company\n" +
+            "WHERE com_sec = 1;", nativeQuery = true)
+    ArrayList<Company> comM();
+
 
 
 }
