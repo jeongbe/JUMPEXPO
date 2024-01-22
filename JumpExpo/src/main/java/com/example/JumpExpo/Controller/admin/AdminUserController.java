@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -53,6 +54,33 @@ public class AdminUserController {
     }
 
     //2024-01-22 맹성우
+    //유저를 탈퇴시키는 매핑
+    @GetMapping("/UserResign/{usercode}")
+    public String userResign(@PathVariable("usercode") int usercode, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        //유저 코드 기준으로 유저정보를 가져오기
+        Users users1 = userReository.findById(usercode).orElse(null);
+        //유저 탈퇴여부를 0으로 만들어 탈퇴로 만들기
+        users1.setUser_sec(0);
+        //탈퇴된 정보로 다시 저장
+        userReository.save(users1);
+
+        //탈퇴성공 메세지
+        String success = "탈퇴 시키기 성공";
+        model.addAttribute("success",success);
+
+
+        return "redirect:/admin/UserManage?success=true";
+
+    }
+
+    //2024-01-22 맹성우
     //기업관리 페이지 매핑
 
     @GetMapping("/ComManage")
@@ -72,5 +100,32 @@ public class AdminUserController {
 
 
         return "admin/AdminUserManage/ComManage";
+    }
+
+    //2024-01-22 맹성우
+    //기업을 탈퇴시키는 매핑
+    @GetMapping("/ComResign/{comcode}")
+    public String comResign(@PathVariable("comcode") int comcode, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        //기업 코드 기준으로 기업정보를 가져오기
+        Company company = companyRepository.findById(comcode).orElse(null);
+        //기업 탈퇴여부를 0으로 만들어 탈퇴로 만들기
+        company.setCom_sec(0);
+        //탈퇴된 정보로 다시 저장
+        companyRepository.save(company);
+
+        //탈퇴성공 메세지
+        String success = "탈퇴 시키기 성공";
+        model.addAttribute("success",success);
+
+
+        return "redirect:/admin/ComManage?success=true";
+
     }
 }

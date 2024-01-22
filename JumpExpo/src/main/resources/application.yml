@@ -1,3 +1,11 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+error:
+  path: /error
+
 spring:
   mvc:
     static-path-pattern: /static/**
@@ -51,6 +59,8 @@ spring:
 logging:
   level:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+
 
 
 

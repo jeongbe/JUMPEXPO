@@ -164,8 +164,8 @@ public class LoginController {
         return "join/ChangeSuccess";
     }
 
-    @GetMapping("/users/main")
-    public String usersmain(Model model){
+    @GetMapping("/login/main")
+    public String loginsmain(Model model){
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -173,28 +173,41 @@ public class LoginController {
         String username = authentication.getName();
         Users users = userReository.finduser(username);
         model.addAttribute("users", users);
+
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
+        //권한에 따라 리다이렉트 페이지를 부여 할것임.
+        if (users != null && users.getUser_code() > 1){
+            return "redirect:/users/userMain";
+        }
+        else if (users != null && users.getUser_code() == 1){
+            return "redirect:/admin/employapply/rec/list";
+        }
+        else if (users == null && company != null){
+            return "redirect:/com/JumpExpo/main";
+        }
+        else {
+            return "";
+        }
+
+    }
+
+    @GetMapping("/users/userMain")
+    public String usersMain(Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
 
         return "user/userMain";
-
     }
 
-
-
-    @GetMapping("admin/page")
-    public String admin(Model model){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // 현재 인증된 사용자의 사용자명을 가져옵니다.
-        String username = authentication.getName();
-        Users users = userReository.finduser(username);
-        model.addAttribute("users", users);
-
-
-        return "admin/employApply/Disemployapply";
-    }
-
-    @GetMapping("com/page")
-    public String com(Model model){
+    @GetMapping("/com/JumpExpo/main")
+    public String comMainPage(Model model){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 현재 인증된 사용자의 사용자명을 가져옵니다.
@@ -202,12 +215,7 @@ public class LoginController {
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
 
-        return "comuser/applyemploy/ApplyEmploy";
-    }
-
-    @GetMapping("users/page")
-    public String user(){
-        return "user/expo/ExpoAllList";
+        return "/comuser/comMain";
     }
 
 

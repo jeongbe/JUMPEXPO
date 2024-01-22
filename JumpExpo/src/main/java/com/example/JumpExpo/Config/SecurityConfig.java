@@ -82,7 +82,7 @@ public class SecurityConfig  {
                         .loginProcessingUrl("/JumpExpo/AppLogin")
                         .usernameParameter("user_id")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/users/main", true)
+                        .defaultSuccessUrl("/login/main", true)
                         .failureUrl("/JumpExpo/Loginfail"))
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

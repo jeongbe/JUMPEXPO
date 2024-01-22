@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="/static/css/user/Mypage/UserInfoChange.css" rel="stylesheet"/>
+    <link href="/static/css/comuser/mypage/ComUserInfoChange.css" rel="stylesheet"/>
     <link href="/static/css/user/Side/users_body.css" rel="stylesheet"/>
 
     <script src="js/jquery-3.7.0.min.js"></script>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="body_title_right">
-                <img src="images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 정보 수정
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 정보 수정
             </div>
 
             <!-- 주요내용 -->
@@ -74,9 +74,9 @@
         </div>
     </content>
 
-    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
+    <div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
 
-    <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+    <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 

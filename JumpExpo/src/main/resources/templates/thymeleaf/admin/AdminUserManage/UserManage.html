@@ -39,10 +39,12 @@
         </thead>
         <tbody class="main_content_user_text">
         <tr th:each="usersM : ${usersM}">
+            <form method="get" th:action="@{/admin/UserResign/{usercode}(usercode=${usersM.user_code})}">
             <td th:text="${usersM.user_code}"></td>
             <td th:text="${usersM.user_id}"></td>
             <td th:text="${usersM.user_name}"></td>
-            <td><button>탈퇴하기</button></td>
+            <td><button type="submit">탈퇴하기</button></td>
+            </form>
         </tr>
         </tbody>
     </table>
@@ -50,8 +52,8 @@
 <!-- body -->
  <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
 
-<script>
-
+<script th:if="${param.success}" type="text/javascript">
+    alert('탈퇴 완료.');
 </script>
 </body>
 

@@ -51,7 +51,7 @@ public interface CompanyRepository extends JpaRepository<Company,Integer> {
 
 
     //2024-01-22 맹성우
-    //탈퇴 여부로 유저 정보 가져오기
+    //탈퇴 여부로 기업 정보 가져오기
     @Query(value = "SELECT *\n" +
             "FROM company\n" +
             "WHERE com_sec = 1;", nativeQuery = true)

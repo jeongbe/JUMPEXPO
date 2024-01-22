@@ -19,7 +19,7 @@
     </div>
 </div>
 <div class="main_content_11">
-    <h1>개인회원 관리</h1>
+    <h1>기업회원 관리</h1>
     <hr>
     <!--    <div class="main_content_user">-->
     <!--        <div>번호</div>-->
@@ -39,10 +39,12 @@
         </thead>
         <tbody class="main_content_user_text">
         <tr th:each="comM : ${comM}">
+            <form method="get" th:action="@{/admin/ComResign/{comcode}(comcode=${comM.com_code})}">
             <td th:text="${comM.com_code}"></td>
             <td th:text="${comM.com_id}"></td>
             <td th:text="${comM.com_name}"></td>
-            <td><button>탈퇴하기</button></td>
+            <td><button type="submit">탈퇴하기</button></td>
+            </form>
         </tr>
         </tbody>
     </table>
@@ -50,8 +52,8 @@
 <!-- body -->
 <div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
 
-<script>
-
+<script th:if="${param.success}" type="text/javascript">
+    alert('탈퇴 완료.');
 </script>
 </body>
 
