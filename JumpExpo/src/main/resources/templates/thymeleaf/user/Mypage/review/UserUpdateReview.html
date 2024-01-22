@@ -10,7 +10,7 @@
     <link href="/static/css/user/Mypage/users_side.css" rel="stylesheet" />
     <link href="/static/css/user/Mypage/users_footer.css" rel="stylesheet" />
     <script src="/static/js/comuser/jquery-3.7.0.min.js"></script>
-    <link rel="stylesheet" href="/static/css/user/Mypage/UserUpReview.css" />
+    <link rel="stylesheet" href="/static/css/user/Mypage/UserinsertReview.css" />
     <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
     <title>유저 리뷰 작성 페이지</title>
 </head>
@@ -21,46 +21,33 @@
     <content>
         <div class="body">
             <div class="body_title">
-                <span>마이</span>
                 <span>리뷰</span>
+                <span>수정하기</span>
             </div>
 
             <div class="body_title_right">
-                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 마이리뷰
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 마이 리뷰 > 리뷰 수정
             </div>
 
 
 
             <!-- 주요내용 -->
             <div class="contents">
-                <form action="" method="post">
+<!--                 method="post" th:action="@{/users/review/up/{renum}(renum=${reDate.re_num})}"-->
+                <form  enctype="multipart/form-data" action="/users/re/up" method="post">
                     <div class="container_">
                         <div class="r_title_box">
-                            <p>내가 쓴 리뷰입니다.</p>
+                            <p th:value="${reDate.expo_title}">예일 박람회</p>
+                            <button class="r_btn" type="submit">수정완료</button>
                         </div>
                         <div class="r_title">
-                            <p class="r1">작성자</p>
-                            <p class="r2">마마마</p>
-                            <p class="r1">등록일</p>
-                            <p class="r3">날짜</p>
-                            <p class="r1">조회수</p>
-                            <p class="r4">마마마</p>
-                        </div>
-                        <div class="r_btn_box">
-                            <button class="r_btn">삭제하기</button>
-                            <button class="r_btn">수정하기</button>
+                            <p class="r1" >제목</p>
+                            <input type="text" required name="ReTitle" th:value="${reDate.re_title}" class="r2">
+                            <input type="hidden" name="ReNum" th:value="${reDate.re_num}">
                         </div>
                         <div class="r_cont">
-                <textarea
-                        required
-                        name="ExpoContent"
-                        id="ir1"
-                        style="width: 100%; height: 500px"
-                ></textarea>
-                        </div>
-                        <div class="r_line"></div>
-                        <div class="r_b_">
-                            <button class="r_b">목록</button>
+                            <textarea th:utext="${reDate.re_content}" required name="ReContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
+
                         </div>
                     </div>
                 </form>
@@ -88,12 +75,12 @@
     <!-- footer 끝 -->
 </main>
 <script  th:inline="javascript">
-    <!--    // header script-->
+
         $(document).ready(function () {
-    <!--        //**** 마우스오버  ****//-->
+
             //서브메뉴 숨기고 시작
             $(".subMenu").hide();
-    <!--        // 마우스 오버-->
+
             $(".mainMenu, .subMenu").mouseover(function () {
                 $(".subMenu").stop().slideDown(500);
             }).mouseout(function () {
@@ -109,8 +96,42 @@
     fCreator: "createSEditor2"
     });
 
+
     // 스마트 에디터에서의 CORS 문제 해결
     document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지의 도메인을 지정
+
+    let subBtn = document.querySelector('.r_btn');
+
+   subBtn.onclick = () => {
+       oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+       const textarearvalue = document.querySelector("#ir1").value;
+
+       let formData = new FormData(document.querySelector("form"));
+
+       formData.forEach((v,k) => {
+           console.log("key: " + k);
+           console.log("value: " + v);
+       })
+
+
+        $.ajax({
+            async: false,
+            type: "post",
+            url: "/users/re/up" ,
+            enctype: "multipart/form-data",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: (response) => {
+
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+    }
+
+
 
 </script>
 </body>

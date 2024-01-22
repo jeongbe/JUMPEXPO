@@ -3,12 +3,16 @@ package com.example.JumpExpo.Controller.user;
 import com.example.JumpExpo.DTO.Login.ChangePwForm;
 import com.example.JumpExpo.DTO.user.UserForm;
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
+import com.example.JumpExpo.DTO.user.UserReviewForm;
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.user.UserInterview;
+import com.example.JumpExpo.Entity.user.UserReview;
 import com.example.JumpExpo.Entity.user.Users;
+import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.user.UserExpoApplyRepository;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
 import com.example.JumpExpo.Repository.user.UserReository;
+import com.example.JumpExpo.Repository.user.UserReviewRepository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,6 +51,12 @@ public class UserMyPageController {
 
     @Autowired
     UserExpoApplyRepository userExpoApplyRepository;
+
+    @Autowired
+    SchInsetExpoRepository schInsetExpoRepository;
+
+    @Autowired
+    UserReviewRepository userReviewRepository;
 
     //2024.01.15 정정빈
     //면접 일정 관리
@@ -173,6 +184,8 @@ public class UserMyPageController {
         model.addAttribute("TotalPage",UserAppExpoList.getTotalPages());
 
         model.addAttribute("list",UserAppExpoList);
+
+//        Boolean data = userReviewRepository.UserR(users.getUser_code(), UserAppExpoList.ge)
 
 
         return "user/Mypage/UserExpoAppList";
@@ -331,28 +344,145 @@ public class UserMyPageController {
 
     }
 
-    //2024.01.21 정정빈
+    //2024.01.22 정정빈
     // 마이페이지 리뷰 작성 페이지
-//    @GetMapping("/review/{user_code}")
-//    public String UserReview(@PathVariable("user_code") int userCode,@RequestParam("ExpoCate") int expoCate,@RequestParam("ExpoCode") int expoCode){
-//        log.info(String.valueOf(userCode));
-//        log.info(String.valueOf(expoCate));
-//        log.info(String.valueOf(expoCode));
-//        log.info("연결");
-//
-//
-//        return "user/Mypage/review/UserInsertReview";
-//    }
-
     @GetMapping("/review/{user_code}/{expo_code}")
-    public String UserReview(@PathVariable("user_code") int userCode,@PathVariable("expo_code") int expoCode){
+    public String UserReview(Model model,@PathVariable("user_code") int userCode,@PathVariable("expo_code") int expoCode){
         log.info(String.valueOf(userCode));
         log.info(String.valueOf(expoCode));
-        log.info("연결");
 
+
+        log.info("리뷰 작성 페이지");
+
+        model.addAttribute("userCode",userCode);
+        model.addAttribute("ExpoCode",expoCode);
 
         return "user/Mypage/review/UserInsertReview";
     }
 
+    //2024.01.22 정정빈
+    //리뷰 저장
+    @PostMapping("/review/save")
+    public String UserRSave(Model model,UserReviewForm form){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
+//        log.info(form.toString());
+        ScheduleInsert expoCate = schInsetExpoRepository.findById(form.getRExpoCode()).orElse(null);
+
+
+        form.setUserId(users.getUser_id());
+        form.setReDate(new Date());
+        form.setExpoCate(expoCate.getExpo_cate());
+        form.setRExpoTitle(expoCate.getExpo_title());
+
+        UserReview target = form.toEntity();
+        UserReview saved = userReviewRepository.save(target);
+//        log.info(saved.toString());
+
+//        log.info(form.toString());
+
+        log.info("리뷰 저장");
+        //리뷰 리스트 연결 해줘야함 수정
+        return "redirect:/users/mypage/review";
+    }
+
+    //2024.01.22 정정빈
+    //마이페이지 리뷰 리스트
+    @GetMapping("/mypage/review")
+    public String UserReviewList(Model model,@RequestParam(value="page", defaultValue="0")int page){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+        Page<UserReview> userReList = expoService.getUserReList(page, users.getUser_code());
+//        log.info(userReList.getContent().toString());
+
+        model.addAttribute("UserReList",userReList);
+        model.addAttribute("totalPage",userReList.getTotalPages());
+
+//        ScheduleInsert expoInfo = schInsetExpoRepository.
+
+        return "user/Mypage/review/UserReviewList";
+    }
+
+    //2024.01.22 정정빈
+    //마이 리뷰 보기 페이지
+    @GetMapping("/review/re/{re_num}")
+    public String ReviewRead(Model model,@PathVariable("re_num") int reNum){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+//        log.info(String.valueOf(reNum));
+
+        UserReview userReInfo = userReviewRepository.UserReinfo(users.getUser_code());
+//        log.info(userReInfo.toString());
+
+        model.addAttribute("UserReList",userReInfo);
+
+        return "user/Mypage/review/UserReReview";
+    }
+
+    //2024.01.22 정정빈
+    //마이 리뷰 삭제하기
+    @PostMapping("/review/de/{re_num}")
+    public String ReviewDelete(Model model, @PathVariable("re_num") int reNum) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
+//        log.info("공지 번호: " + reNum);
+
+        userReviewRepository.deleteById(reNum);
+
+        return "redirect:/users/mypage/review";
+    }
+
+    //2024.01.22 정정빈
+    //마이 리뷰 수정하기 페이지
+    @GetMapping("/review/up/{re_num}")
+    public String UserReviewUpDate(Model model, @PathVariable("re_num") int reNum){
+
+
+
+        UserReview reDate = userReviewRepository.findById(reNum).orElse(null);
+//        log.info(reDate.toString());
+        model.addAttribute("reDate",reDate);
+
+
+        
+        return "user/Mypage/review/UserUpdateReview";
+    }
+
+    //2024.01.22 정정빈
+    //마이 리뷰 수정
+    @PostMapping("/re/up")
+    public String  UserReviewUp(Model model,UserReviewForm form){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+//        log.info("수정");
+//        log.info(form.toString());
+
+        UserReview reDate = userReviewRepository.findById(form.getReNum()).orElse(null);
+//        log.info(reDate.toString());
+
+        reDate.setRe_title(form.getReTitle());
+        reDate.setRe_content(form.getReContent());
+
+        userReviewRepository.save(reDate);
+
+        return "redirect:/users/mypage/review";
+    }
 }

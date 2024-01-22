@@ -2,9 +2,11 @@ package com.example.JumpExpo.Service.user.expo;
 
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
+import com.example.JumpExpo.Entity.user.UserReview;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.comuser.ExpoAppComRepository;
 import com.example.JumpExpo.Repository.user.UserExpoApplyRepository;
+import com.example.JumpExpo.Repository.user.UserReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +23,7 @@ public class ExpoService {
     ExpoAppComRepository expoAppComRepository;
 
     @Autowired
-    UserExpoApplyRepository userExpoApplyRepository;
+    UserReviewRepository userReviewRepository;
 
     //2024.01.08 정정빈
     //박람회 전체 페이징 서비스
@@ -129,5 +131,12 @@ public class ExpoService {
     public Page<ScheduleInsert> getUserAppExpoListSearch(int page,int userCode,String search,String StartDate,String EndDate){
         Pageable pageable = PageRequest.of(page,2);
         return this.schInsetExpoRepository.UserAppExpoListSerch(pageable,userCode,search,StartDate,EndDate);
+    }
+
+    //유저 마이 리뷰
+    public Page<UserReview> getUserReList(int page,int userCode){
+
+        Pageable pageable = PageRequest.of(page,6);
+        return this.userReviewRepository.UserReList(pageable,userCode);
     }
 }

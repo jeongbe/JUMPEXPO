@@ -20,9 +20,11 @@ public class UserReviewForm {
 
     private int ReNum;
 
-    private int UserCode;
+    private int RUserCode;
 
-    private int ExpoCode;
+    private int RExpoCode;
+
+    private String RExpoTitle;
 
     private String  UserId;
 
@@ -48,7 +50,7 @@ public class UserReviewForm {
     private int ExpoCate;
 
     public UserReview toEntity() {
-        return new UserReview(ReNum,UserCode,ExpoCode,UserId,ReTitle,ReContent,ReDate,ReCnt,
+        return new UserReview(ReNum,RUserCode,RExpoCode,RExpoTitle,UserId,ReTitle,ReContent,ReDate,ReCnt,
                 ReImage1 != null ? ReImage1.getOriginalFilename() : null,
                 ReImage2 != null ? ReImage2.getOriginalFilename() : null,
                 ReImage3 != null ? ReImage3.getOriginalFilename() : null,

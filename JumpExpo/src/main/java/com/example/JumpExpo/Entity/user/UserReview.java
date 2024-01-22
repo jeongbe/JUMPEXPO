@@ -25,12 +25,15 @@ public class UserReview {
     int expo_code;
 
     @Column
+    String expo_title;
+
+    @Column
     String user_id;
 
     @Column
     String re_title;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     String re_content;
 
     @Column

@@ -33,21 +33,24 @@
 
             <!-- 주요내용 -->
             <div class="contents">
-                <form action="" method="post">
+                <form  enctype="multipart/form-data">
                     <div class="container_">
                         <div class="r_title_box">
-                            <p>예일 박람회</p>
-                            <button class="r_btn">작성하기</button>
+<!--                            박람회 이름 넣어줘야함 수정-->
+                            <p >예일 박람회</p>
+                            <button class="r_btn" type="button">작성하기</button>
                         </div>
                         <div class="r_title">
-                            <p class="r1">제목</p>
-                            <input type="text" class="r2">
+                            <p class="r1" >제목</p>
+                            <input type="text" required name="ReTitle" class="r2">
                         </div>
                         <div class="r_cont">
-                            <textarea required name="ExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
+                            <textarea required name="ReContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
 
                         </div>
                     </div>
+                    <input type="hidden" th:value="${userCode}" name="RUserCode">
+                    <input type="hidden" th:value="${ExpoCode}" name="RExpoCode">
                 </form>
             </div>
 
@@ -73,12 +76,12 @@
     <!-- footer 끝 -->
 </main>
 <script  th:inline="javascript">
-    <!--    // header script-->
+
         $(document).ready(function () {
-    <!--        //**** 마우스오버  ****//-->
+
             //서브메뉴 숨기고 시작
             $(".subMenu").hide();
-    <!--        // 마우스 오버-->
+
             $(".mainMenu, .subMenu").mouseover(function () {
                 $(".subMenu").stop().slideDown(500);
             }).mouseout(function () {
@@ -94,23 +97,41 @@
     fCreator: "createSEditor2"
     });
 
+    let subBtn = document.querySelector('.r_btn');
+
+   subBtn.onclick = () => {
+       oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+       const textarearvalue = document.querySelector("#ir1").value;
+
+       let formData = new FormData(document.querySelector("form"));
+
+       formData.forEach((v,k) => {
+           console.log("key: " + k);
+           console.log("value: " + v);
+       })
+
+       $.ajax({
+           type: "post",
+           url: "/users/review/save",
+           enctype: "multipart/form-data",
+           contentType: false,
+           processData: false,
+           data: formData,
+           success: (response) => {
+                alert("등록");
+                window.location.href = "/users/mypage/review";
+           },
+           error: (error) => {
+               console.log(error);
+           }
+       })
+   }
+
+
     // 스마트 에디터에서의 CORS 문제 해결
     document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지의 도메인을 지정
 
- // 이미지 파일명에서 공백 및 특수문자 제거 후 다시 생성
-    var sRealFileNm = today + UUID.randomUUID().toString() + sFilename.substring(sFilename.lastIndexOf("."));
-    sRealFileNm = sRealFileNm.replace(/[^a-zA-Z0-9.-]/g, "_");
 
-    // 파일 경로에서 역슬래시를 슬래시로 변경
-    const rlFileNm = filePath + sRealFileNm.replace(/\\/g, "/");
-
-    // 스마트 에디터에서 사용하는 이미지 경로를 인코딩하지 않도록 수정
-    var sFileInfo = "&bNewLine=true";
-    sFileInfo += "&sFileName=" + encodeURIComponent(sFilename); // 이미지 파일명 인코딩
-    sFileInfo += "&sFileURL=" + encodeURIComponent(rlFileNm); // 이미지 경로 인코딩
-
-    // 에디터에 이미지 정보 추가
-    oEditors.getById["ir1"].exec("PASTE_HTML", [sFileInfo]);
 
 
 

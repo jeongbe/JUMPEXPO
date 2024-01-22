@@ -69,7 +69,7 @@
             <div class="contents">
                 <div class="select-box">
                     <form>
-
+<!--                        수정 -> 기간 해줘야함-->
                         <div class="Period-box r_Per">
                             <p>기간 선택</p>
                             <div class="btns r_btns">
@@ -92,22 +92,22 @@
 
                 <div class="content_">
                     <div class="re_box">
-                        <div class="cont-img">
-                            <!--                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />-->
-                        </div>
+<!--                        <div class="cont-img">-->
+<!--                            &lt;!&ndash;                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />&ndash;&gt;-->
+<!--                        </div>-->
                         <div class="expo-info">
                             <p class="expo-name"></p>
-                            <div class="period-box2_">
-                                <p >박람회 이름</p>
-                                <p >리뷰 제목</p>
+                            <div class="period-box2_" th:each="list : ${UserReList}">
+                                <p th:text="${list.expo_title}">박람회 이름</p>
+                                <p th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/re/' + ${list.re_num} + '&quot;'">리뷰 제목</p>
                                 <div class="r_sdf">
-                                    <p>등록 날짜</p>
+                                    <p th:text="${list.re_date}">등록 날짜</p>
                                     <p>10</p>
                                 </div>
+                                <div class="line"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="line"></div>
                 </div>
 
                 <nav aria-label="Page navigation example" class="pageBtn">
@@ -115,7 +115,7 @@
                     </ul>
                 </nav>
             </div>
-            <span style="display:none;" class="total_page" th:text="${TotalPage}"></span>
+            <span style="display:none;" class="total_page" th:text="${totalPage}"></span>
         </div>
     </content>
 
