@@ -77,6 +77,7 @@ public interface ApplyEmployRepository extends JpaRepository<ApplyEmploy, Intege
     ArrayList<ApplyEmploy> EtcEmployList();
 
     //2024.01.18 박은채
+    //comCode기준으로 리스트 불러오기    
     @Query(value = "SELECT *\n" +
             "FROM apply_employ\n" +
             "where com_code = :comCode", nativeQuery = true)

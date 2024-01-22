@@ -1,5 +1,7 @@
 package com.example.JumpExpo.Entity.comuser;
 
+import com.example.JumpExpo.DTO.admin.schedule.FairForm;
+import com.example.JumpExpo.DTO.comuser.EmployForm;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -63,4 +65,19 @@ public class ApplyEmploy extends BaseEntity{
 
 //    @Column
 //    String emnot_image;
+
+    public void updateDataFromForm(EmployForm form) {
+        this.emnot_title = form.getEmnotTitle();
+        this.emnot_content = form.getEmnotContent();
+        this.emnot_occ = form.getEmnotOcc();
+        this.inter_cate = form.getInterCate();
+        this.emnot_start = form.getEmnotStart();
+        this.emnot_end = form.getEmnotEnd();
+        this.emnot_career = form.getEmnotCareer();
+        this.emnot_education = form.getEmnotEducation();
+        this.emnot_area = form.getEmnotArea();
+        this.emnot_state = form.getEmnotState();
+        this.emnot_salary = form.getEmnotSalary();
+    }
+
 }

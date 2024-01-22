@@ -37,27 +37,7 @@
     /* border: 1px solid #000; */
     height: 500px;
     position: relative;
-    top: 96px;
 }
-
-.paging{
-    display: inline-block;
-    position: absolute;
-    top: 525px;
-    left: 500px;
-    }
-
-    .paging #pageNumbers{
-    display: inline-block;
-    cursor: pointer;
-    color: #000;
-    }
-
-    .paging button{
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    }
 
 .body_title {
     position: absolute;
@@ -93,7 +73,6 @@
 .search-box {
     padding-top: 15px;
     display: flex;
-    align-items: baseline;
 }
 
 .search-box > p {
@@ -122,7 +101,7 @@
 
 .Period-box {
     display: flex;
-    margin-top: -5px;
+    margin-top: 12px;
 }
 
 .Period-box > p {
@@ -150,7 +129,6 @@
     margin: 0px;
     margin-right: 10px;
     cursor: pointer;
-    border: 1px solid #000;
 }
 
 .date-box {
@@ -230,7 +208,7 @@ input[type='date'] {
 
 .line {
     width: 910px;
-    margin-top: 15px;
+    margin-top: 20px;
     border: 1px solid #ccc;
 }
 

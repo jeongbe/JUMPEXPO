@@ -51,7 +51,7 @@
                                     <tr th:each="allList, iterStat : ${allList}">
                                         <td class="td_number" th:text="${iterStat.index + 1}">1</td>
                                         <td>
-                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${allList.emnot_code}, com_code=${allList.com_code})}" th:text="${allList.emnot_title}"></a>
+                                            <a th:href="@{'/users/show/employlist/' + ${allList.emnot_code} + '/' + ${allList.com_code} + '/' + ${userCode}}" th:text="${allList.emnot_title}"></a>
                                         </td>
                                         <td>
                                             <span th:text="${allList.emnot_start}">2024-01-04</span>

@@ -49,8 +49,9 @@ public class EmployListController {
 
     //2024.01.15 박은채
     //공고 보기 리스트<분야별 리스트>
-    @GetMapping("/show/employlist")
-    public String empoyList(Model model){
+    @GetMapping("/show/employlist/{user_code}")
+    public String empoyList(Model model, @PathVariable("user_code") int userCode){
+        model.addAttribute("userCode", userCode);
 
         ArrayList<ApplyEmploy> allList = applyEmployRepository.AllEmployList();
         ArrayList<ApplyEmploy> DesignList = applyEmployRepository.DesignEmployList();
@@ -72,9 +73,12 @@ public class EmployListController {
     }
 
     // 공고 보기 상세 페이지
-    @GetMapping("/show/employlist/{emnot_code}/{com_code}")
+    @GetMapping("/show/employlist/{emnot_code}/{com_code}/{user_code}")
     public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode,
-                               @PathVariable(name = "com_code") int comCode){
+                               @PathVariable(name = "com_code") int comCode,
+                               @PathVariable("user_code") int userCode){
+
+        model.addAttribute("userCode", userCode);
 
         ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
         Company company = companyRepository.findById(comCode).orElse(null);
@@ -102,7 +106,7 @@ public class EmployListController {
         if (user != null) {
             model.addAttribute("userName", user.getUser_name());
         } else {
-            // 사용자를 찾을 수 없을 때 처리
+            // 사용자를 찾을 수 없을 때
             model.addAttribute("userName", "사용자 이름 없음");
         }
 

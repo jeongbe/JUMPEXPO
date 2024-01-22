@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/comuser/applyemploy/ApplyEmploy.css" rel="stylesheet" />
+    <!--    <script src="js/jquery-3.7.0.min.js"></script>-->
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <title>채용 공고 신청</title>
+</head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+<body>
+
+<main style="width:1100px;">
+    <content>
+        <div class="body">
+            <div class="body_title">
+                <span>공고</span>
+                <span>신청</span>
+            </div>
+
+            <div class="body_title_right">
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 신청하기 > 공고 신청하기
+            </div>
+
+            <form enctype="multipart/form-data">
+                <button type="submit" class="write_button">수정하기</button>
+                <table>
+                    <tr>
+                        <td class="table_title">제목</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_title}" name="EmnotTitle" class="input_text" maxlength="25" /></td>
+                        <td class="table_title">직종</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_occ}" name="EmnotOcc" class="input_text" placeholder="디자인 / 프론트 / 백엔드" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_title">면접유형</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.inter_cate}" name="InterCate" class="input_text" placeholder="비대면: 0 / 대면: 1" /></td>
+                        <td class="table_title">근무지역</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_area}" name="EmnotArea" class="input_text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="table_title">시작일</td>
+                        <td class="table_content"><input type="date" th:value="${applyEmploy.emnot_start}" class="input_date" name="EmnotStart" required /></td>
+                        <td class="table_title">종료일</td>
+                        <td class="table_content"><input type="date" th:value="${applyEmploy.emnot_end}" class="input_date" name="EmnotEnd" required /></td>
+                    </tr>
+                    <tr>
+                        <td class="table_title">경력</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_career}" class="input_text" placeholder="신입 / 경력"
+                                                         maxlength="25" name="EmnotCareer" /></td>
+                        <td class="table_title">학력</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_education}" class="input_text" maxlength="25" name="EmnotEducation" /></td>
+                    </tr>
+                    <tr>
+                        <td class="table_title">근무형태</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_state}" class="input_text" maxlength="25" name="EmnotState" /></td>
+                        <td class="table_title">급여</td>
+                        <td class="table_content"><input type="text" th:value="${applyEmploy.emnot_salary}" class="input_text" maxlength="25" name="EmnotSalary" /></td>
+                    </tr>
+                    <tr class="apply-row">
+                        <td colspan="4">
+                            <textarea th:utext="${applyEmploy.emnot_content}" required name="EmnotContent" id="ir1" style="width: 100%; height: 300px;"></textarea>
+                            <!--                            <input type="hidden" name="EmnotImage">-->
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </content>
+
+</main>
+<div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+
+<script>
+
+    $(document).ready(function () {
+        //**** 마우스오버  ****//
+        //서브메뉴 숨기고 시작
+        $(".subMenu").hide();
+        // 마우스 오버
+        $(".mainMenu, .subMenu").mouseover(function () {
+            $(".subMenu").stop().slideDown(500);
+        }).mouseout(function () {
+            $(".subMenu").stop().slideUp(500);
+        });
+    });
+
+let oEditors = [];
+nhn.husky.EZCreator.createInIFrame({
+    oAppRef: oEditors,
+    elPlaceHolder: "ir1",
+    sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+    fCreator: "createSEditor2"
+});
+
+let subBtn = document.querySelector('.write_button');
+
+subBtn.onclick = () => {
+    oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+    const textarearvalue = document.querySelector("#ir1").value;
+
+    // form 데이터 수집
+    let formData = new FormData(document.querySelector("form"));
+
+    formData.forEach((v,k) => {
+            console.log("key: " + k);
+            console.log("value: " + v);
+        })
+
+
+    $.ajax({
+        async: false,
+        type: "post",
+        url: "/com/mypage/employ/accept/" + [[${applyEmploy.com_code}]] + "/" + [[${applyEmploy.emnot_code}]] + "/update",
+        enctype: "multipart/form-data",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: (response) => {
+            console.log("sucess");
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+}
+
+</script>
+</body>
+
+</html>

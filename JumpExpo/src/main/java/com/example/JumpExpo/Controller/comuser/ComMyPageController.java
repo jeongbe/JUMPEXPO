@@ -1,10 +1,14 @@
 package com.example.JumpExpo.Controller.comuser;
 
 import com.example.JumpExpo.DTO.Login.ChangePwForm;
+import com.example.JumpExpo.DTO.admin.notice.NoticeForm;
 import com.example.JumpExpo.DTO.comuser.ComInterviewForm;
 import com.example.JumpExpo.DTO.comuser.CompanyForm;
+import com.example.JumpExpo.DTO.comuser.EmployForm;
 import com.example.JumpExpo.DTO.user.UserForm;
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
+import com.example.JumpExpo.Entity.admin.Notice;
+import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import com.example.JumpExpo.Entity.comuser.ComInterview;
 import com.example.JumpExpo.Entity.comuser.Company;
@@ -24,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -129,17 +134,6 @@ public class ComMyPageController {
         comInterviewRepository.deleteById(scNum);
 
         return "redirect:/users/save/inter/" + form.getComCode();
-    }
-
-    //2024.01.19 박은채
-    //공고 신청 내역 페이지
-    @GetMapping("/mypage/employ/accept")
-    public String emAccept(){
-
-//        ApplyEmploy applyEmploy = applyEmployRepository.findById(comCode).orElse(null);
-
-
-        return "comuser/MyPage/EmployAccept";
     }
 
     //2024-01-20 맹성우
@@ -276,6 +270,75 @@ public class ComMyPageController {
 
     }
 
+    //2024.01.22 박은채
+    //공고 신청 내역 페이지
+    @GetMapping("/mypage/employ/accept/{com_code}")
+    public String emAccept(Model model, @PathVariable("com_code") int comCode){
 
+        model.addAttribute("comCode", comCode);
+
+        ArrayList<ApplyEmploy> applyEmploy = applyEmployRepository.AllList(comCode);
+        model.addAttribute("applyEmploy", applyEmploy);
+
+
+        return "comuser/MyPage/EmployAccept";
+    }
+
+    //2024.01.22 박은채
+    //공고 신청 내역 상세 페이지
+    @GetMapping("/mypage/employ/accept/{com_code}/{emnot_code}")
+    public String emAcceptDetail(Model model, @PathVariable("com_code") int comCode,
+                                 @PathVariable("emnot_code") int emnotCode){
+
+        ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+        Company company = companyRepository.findById(comCode).orElse(null);
+
+        model.addAttribute("applyEmploy", applyEmploy);
+        model.addAttribute("company",company);
+
+        return "comuser/MyPage/EmployAcceptDetail";
+    }
+
+    //2024.01.22 박은채
+    //공고 상세 수정 페이지
+    @GetMapping("/mypage/employ/accept/{com_code}/{emnot_code}/update")
+    public String emAcceptDetailEdit(Model model, @PathVariable("com_code") int comCode,
+                               @PathVariable("emnot_code") int emnotCode){
+
+        ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+
+        model.addAttribute("applyEmploy", applyEmploy);
+//        model.addAttribute("comCode", comCode);
+//        model.addAttribute("emnotCode", emnotCode);
+
+        return "comuser/MyPage/EmployAcceptDetailUpdate";
+    }
+
+    //2024.01.22 박은채
+    //공고 상세 수정하기 (Post)
+    @PostMapping("/mypage/employ/accept/{com_code}/{emnot_code}/update")
+    public String emAcceptDetailUpdate(EmployForm form, @PathVariable("com_code") int comCode,
+                                       @PathVariable("emnot_code") int emnotCode){
+
+//        emnotCode 기준으로 데이터 찾기
+        ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+
+        applyEmploy.updateDataFromForm(form);
+        applyEmployRepository.save(applyEmploy);
+
+        return "redirect:/com/mypage/employ/accept/{com_code}/{emnot_code}";
+    }
+
+    //2024.01.22 박은채
+    //공고 삭제하기
+    @GetMapping("/mypage/employ/accept/{com_code}/{emnot_code}/delete")
+    public String ExpoInfo(@PathVariable("emnot_code") int emnotCode){
+
+        ApplyEmploy deleteTarget = applyEmployRepository.findById(emnotCode).orElse(null);
+
+        applyEmployRepository.delete(deleteTarget);
+
+        return "redirect:/com/mypage/employ/accept/{com_code}";
+    }
 
 }

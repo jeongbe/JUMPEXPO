@@ -55,27 +55,32 @@
                     </form>
                 </div>
 
-
-<!--                <div class="content" th:each="list : ${AllList}">-->
+                <input id="comCode" th:value="${comCode}" name="ComCode">
                 <div class="paging_content">
-                    <div class="content">
+<!--                    여기서부터 페이징 반복-->
+                    <div class="content" th:each="list : ${applyEmploy}">
                         <div class="expo-info-box">
                             <div class="cont-img">
                                 <img src="" alt="" />
                             </div>
                             <div class="expo-info">
-                                <p class="expo-name">2024 예일 박람회</p>
+                                <a th:href="@{'/com/mypage/employ/accept/' + ${comCode} + '/' + ${list.emnot_code}}">
+                                <p class="expo-name" th:text="${list.emnot_title}">2024 예일 박람회</p>
+                                </a>
                                 <div class="period-box2">
-                                    <p>2024-01-10</p>
-                                    <p>2024-01-10</p>
-                                    <p>10:00</p>
-                                    <!--                    <p>20:00</p>-->
+                                    <p th:text="${list.emnot_start}">2024-01-10</p>
+                                    <p th:text="${list.emnot_end}">2024-01-10</p>
                                 </div>
                             </div>
-                            <button class="accept_btn">승인</button>
+                            <button class="accept_btn">
+                                <span th:if="${list.recog_check == 0}">비승인</span>
+                                <span th:if="${list.recog_check == 1}">승인</span>
+                                <span th:if="${list.recog_check == 2}">비승인</span>
+                            </button>
                         </div>
                         <div class="line"></div>
                     </div>
+<!--                    여기까지-->
                 </div>
 
                 <div class="paging" id="pagination">

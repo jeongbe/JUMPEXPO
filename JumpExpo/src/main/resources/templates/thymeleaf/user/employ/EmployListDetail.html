@@ -92,17 +92,25 @@
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('submitResumeBtn').addEventListener('click', function() {
-                    if (applyEmploy) {
-                        var emnot_code = applyEmploy.emnot_code;
-                        var popupUrl = "/users/submit/resume/" + emnot_code + "/" + 1;
-                        window.open(popupUrl, "a", "width=550, height=300, left=650, top=330");
-                    } else {
-                        // applyEmploy 객체가 없을 경우
-                        alert("찾을 수 없는 페이지입니다.");
-                    }
-                });
+<!--    JavaScript 코드 내에서 변수를 초기화 < th:inline="javascript"-->
+    <script th:inline="javascript">
+
+<!--        Thymeleaf 변수를 JavaScript 변수로 초기화-->
+            var userCode = [[${userCode}]];
+
+            document.getElementById('submitResumeBtn').addEventListener('click', function() {
+                if (applyEmploy) {
+                    var emnot_code = applyEmploy.emnot_code;
+                    var popupUrl = "/users/submit/resume/" + emnot_code + "/" + userCode;
+                    window.open(popupUrl, "a", "width=550, height=300, left=650, top=330");
+                } else {
+                    // applyEmploy 객체가 없을 경우
+                    alert("찾을 수 없는 페이지입니다.");
+                }
+            });
+
+    </script>
+
     </script>
 
     </body>
