@@ -316,7 +316,7 @@ public class ComMyPageController {
 
     //2024.01.22 박은채
     //공고 상세 수정하기 (Post)
-    @PostMapping("/mypage/employ/accept/{com_code}/{emnot_code}/update")
+    @PostMapping("/mypage/employ/accept/{com_code}/{emnot_code}/updateCom")
     public String emAcceptDetailUpdate(EmployForm form, @PathVariable("com_code") int comCode,
                                        @PathVariable("emnot_code") int emnotCode){
 
