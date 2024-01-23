@@ -1,13 +1,18 @@
-      main {
-
+main {
     width: 700px;
     height: 350px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
-    border-radius: 15px;
+    border: 3px solid black;
+    border-radius: 25px;
+    }
+
+.logo_form{
+  width:1910px;
+  height: 271px;
+  text-align:center;
 }
 
 .selectradio {
@@ -71,6 +76,7 @@
     font-size: larger;
     color: white;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .join_search{
@@ -99,9 +105,13 @@
 }
 
 .login_logo{
-margin-top:70px;
- margin-left: 590px;
- width: 400px;
- height: 150px;
+
+ width: 350px;
+ margin-top:120px;
+}
+
+.kakao_png{
+
+width: 450px;
 
 }

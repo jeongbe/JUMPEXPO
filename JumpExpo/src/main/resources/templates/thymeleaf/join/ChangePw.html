@@ -6,102 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/join/ChangePw.css">
     <title>Document</title>
-    <style>
-        main {
-    width: 700px;
-    height: 350px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-}
-
-.selectradio {
-    width: 100%;
-    height: 80px;
-    /* background-color: blue; */
-}
-
-.searchinput {
-    height: 250px;
-    width: 500px;
-    /* background-color: blueviolet; */
-    float: left;
-}
-
-.searchbtn {
-    width: 100%;
-    height: 250px;
-    /* background-color: orange; */
-}
-
-
-.searchform {
-    margin-left: 80px;
-    margin-top: 80px;
-
-}
-
-.idbox,.pwbox{
-    width: 350px;
-    height: 40px;
-    box-shadow: 0px 3px 0px 0px  #ccc;
-
-}
-
-.idform, .pwform{
-   font-size: larger;
-}
-
-.pwform{
-    margin-top: 20px;
-}
-
-.searbtn{
-    margin-top: 100px;
-    width: 150px;
-    height: 140px;
-    background-color: #374658;
-    font-size: larger;
-    color: white;
-}
-
-.join_search{
-
-    margin-top: 110px;
-}
-
-
-.search{
-    margin-left: 580px;
-    color: gray;
-}
-
-.logo{
-
-    width: 350px;
-    height: 100px;
-    background-color: aqua;
-}
-
-.title{
-    display: flex;
-    margin-left: 575px;
-    margin-top: 200px;
-    font-size: x-large
-}
-
-.title_text{
-    margin-left: 180px;
-    margin-top: 50px;
-}
-
-
-
-
-
-    </style>
 </head>
 
 <body>
@@ -110,14 +14,15 @@
     <div class="searchinput">
         <div class="searchform">
             <div th:if="${findpw != null}">
-            <input th:value="${findpw}" name="id">
+            <input th:value="${findpw}" name="id" style="display:none;">
             </div>
             <div th:if="${findCompw != null}">
-            <input th:value="${findCompw}" name="id">
+            <input th:value="${findCompw}" name="id"style="display:none;">
             </div>
             <div  class="idform">
                 새 비밀번호<br>
-                <input type="password" class="idbox" name="password"><br>
+                <input type="password" id="password" class="idbox" name="password"><br>
+                <div id="passwordError" class="error-message" style="color:red;"></div>
             </div>
             <div class="pwform">
                 비밀번호 확인<br>
@@ -126,10 +31,39 @@
         </div>
     </div>
     <div class="searchbtn">
-        <button type="submit" class="searbtn">찾기</button>
+        <button type="submit" id="searbtn" class="searbtn">찾기</button>
     </div>
     </form>
 </main>
+
+<script>
+// 포커스 아웃 이벤트 처리 (비밀번호)
+document.getElementById('password').addEventListener('blur', function () {
+validatePassword();
+});
+
+
+var searchbtn = document.getElementById('searbtn');
+
+// 비밀번호 유효성 검사 함수
+function validatePassword() {
+var passwordInput = document.getElementById('password');
+var passwordError = document.getElementById('passwordError');
+
+var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+
+if (!passwordRegex.test(passwordInput.value)) {
+// 비밀번호가 유효하지 않은 경우
+passwordError.textContent = "특수문자를 포함한 8~16자리로 입력하세요.";
+searchbtn.setAttribute('disabled', 'disabled');
+} else {
+// 비밀번호가 유효한 경우
+passwordError.textContent = ""; // 에러 메시지 초기화
+searchbtn.removeAttribute('disabled');
+}
+}
+</script>
+
 
 </body>
 
