@@ -1,0 +1,113 @@
+/* 기존 코드 */
+* {
+    margin: 0 auto;
+}
+
+.container{
+    position:relative;
+    top: 100px;
+}
+
+body {
+    width: 920px;
+}
+
+.main_title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.cho {
+    margin-top: 30px;
+    display: flex;
+    font-size: 25px;
+
+}
+
+.cho > p {
+    font-size: 20px;
+    margin: 0px;
+    margin-right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.clo {
+    color: #ea8874;
+}
+
+table {
+    margin: 0px;
+    margin-top: 50px;
+    width: 950px;
+    border-collapse: collapse; /* 인접한 경계가 같은 경계로 병합되도록 설정 */
+}
+
+th{
+    font-size: 15px;
+}
+
+th {
+    font-size: 22px;
+    color: #666565;
+    font-weight: 100;
+}
+
+th:nth-child(1) {
+    width: 60px;
+}
+
+th:nth-child(2) {
+    width: 200px;
+}
+
+
+th:nth-child(3) {
+    width: 250px;
+}
+
+th:nth-child(4) {
+    width: 100px;
+}
+
+th:nth-child(5) {
+    width: 100px;
+}
+
+th:nth-child(6) {
+    width: 100px;
+}
+
+td,
+th {
+    padding: 10px;
+    border-bottom: 1px solid #808080; /* 기본적으로 각 셀에 선을 추가 */
+}
+
+td {
+    text-align: center;
+}
+
+td:last-child button {
+    width: 100px;
+    height: 30px;
+    color: white;
+    font-size: 18px;
+}
+
+td:last-child button:first-child {
+    background-color: #ea8874;
+    border: none;
+    cursor: pointer;
+}
+
+td:last-child button:last-child {
+    background-color: #374658;
+    cursor: pointer;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

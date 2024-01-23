@@ -34,6 +34,14 @@ public interface UserReviewRepository extends JpaRepository<UserReview,Integer> 
             "from review_table\n" +
             "where user_code = :userCode\n" +
             "and expo_code = :expoCode", nativeQuery = true)
-    Boolean UserR(@Param("userCode") int userCode, @Param("expoCode") int expoCode);
+    UserReview UserR(@Param("userCode") int userCode, @Param("expoCode") int expoCode);
+
+    //2024-01-23 정정빈
+    // 관리자 박람회리뷰
+    @Query(value = "SELECT *\n" +
+            "    FROM review_table\n" +
+            "    WHERE expo_cate = :expoCate", nativeQuery = true)
+    Page<UserReview> AdReviewList(Pageable pageable, @Param("expoCate") int expoCate);
+
 
 }

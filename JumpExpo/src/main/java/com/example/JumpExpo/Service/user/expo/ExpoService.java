@@ -139,4 +139,12 @@ public class ExpoService {
         Pageable pageable = PageRequest.of(page,6);
         return this.userReviewRepository.UserReList(pageable,userCode);
     }
+
+    //2024.01.23 정정빈
+    //관리자 리뷰 리스트
+    public Page<UserReview> getAdUserReviewList(int page, int expoCate) {
+        Pageable pageable = PageRequest.of(page, 6); // 여기서 6은 페이지 크기
+        return this.userReviewRepository.AdReviewList(pageable, expoCate);
+    }
+
 }

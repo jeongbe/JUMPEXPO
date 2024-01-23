@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
@@ -180,7 +181,7 @@ public class UserMyPageController {
         }
 
 
-        log.info(UserAppExpoList.getContent().toString());
+//        log.info(UserAppExpoList.getContent().toString());
         model.addAttribute("TotalPage",UserAppExpoList.getTotalPages());
 
         model.addAttribute("list",UserAppExpoList);
@@ -190,6 +191,28 @@ public class UserMyPageController {
 
         return "user/Mypage/UserExpoAppList";
     }
+
+    //2024.01.22
+    //박람회 리뷰 작성 여부
+    @PostMapping("/review/check")
+    public ResponseEntity<String> userReviewCheck(@RequestParam("expoCode") int expoCode, @RequestParam("userCode") int userCode) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+
+        UserReview data = userReviewRepository.UserR(userCode, expoCode);
+
+        if (data == null) {
+            // 리뷰 작성 안했ㅇ르떄
+            log.info("Review not written");
+            return ResponseEntity.ok("ReviewNotWritten");
+        } else {
+            // 리뷰 작성했으때
+            log.info("Review already written");
+            return ResponseEntity.ok("ReviewAlreadyWritten");
+        }
+    }
+
 
     //2024.01.21 정정빈
     //박람회 취소
@@ -455,6 +478,11 @@ public class UserMyPageController {
 
 
         UserReview reDate = userReviewRepository.findById(reNum).orElse(null);
+
+        //수정 날짜
+        reDate.setModi_date(new Date());
+
+        userReviewRepository.save(reDate);
 //        log.info(reDate.toString());
         model.addAttribute("reDate",reDate);
 

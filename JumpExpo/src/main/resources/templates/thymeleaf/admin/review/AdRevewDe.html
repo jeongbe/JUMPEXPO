@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/user/Mypage/users_body.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/users_header.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/users_side.css" rel="stylesheet" />
+    <link href="/static/css/user/Mypage/users_footer.css" rel="stylesheet" />
+    <script src="/static/js/comuser/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="/static/css/user/Mypage/UserUpReview.css" />
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <title>관리자 리뷰 상세 페이지</title>
+</head>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+
+<body>
+<main>
+    <content>
+        <div class="body">
+<!--            <div class="body_title">-->
+<!--                <span>마이</span>-->
+<!--                <span>리뷰</span>-->
+<!--            </div>-->
+
+<!--            <div class="body_title_right">-->
+<!--                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 마이리뷰-->
+<!--            </div>-->
+
+
+
+            <!-- 주요내용 -->
+            <div class="contents">
+                <div class="container_">
+                    <div class="r_title_box">
+                        <p th:text="${UserReList.re_title}">내가 쓴 리뷰입니다.</p>
+                    </div>
+                    <div class="r_title">
+                        <p class="r1">작성자</p>
+                        <p class="r2" th:text="${UserReList.user_id}">마마마</p>
+                        <p class="r1">등록일</p>
+                        <p class="r3" th:text="${UserReList.re_date}">날짜</p>
+                        <p class="r1">조회수</p>
+                        <p class="r4" th:text="${UserReList.re_cnt}">마마마</p>
+                    </div>
+                    <div class="r_cont" th:utext="${UserReList.re_content}" >
+                    </div>
+                    <div class="r_line"></div>
+                    <div class="r_b_">
+                        <button class="r_b"  onclick="goBack();">목록</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </content>
+
+    <!-- side 끝 -->
+
+    <!-- <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div> -->
+    <!-- footer 끝 -->
+</main>
+<script  th:inline="javascript">
+    <!--    // header script-->
+        $(document).ready(function () {
+    <!--        //**** 마우스오버  ****//-->
+            //서브메뉴 숨기고 시작
+            $(".subMenu").hide();
+    <!--        // 마우스 오버-->
+            $(".mainMenu, .subMenu").mouseover(function () {
+                $(".subMenu").stop().slideDown(500);
+            }).mouseout(function () {
+                $(".subMenu").stop().slideUp(500);
+            });
+        });
+
+    function goBack(){
+        window.history.back();
+    }
+
+</script>
+</body>
+
+</html>
