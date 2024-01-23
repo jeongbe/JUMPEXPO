@@ -14,8 +14,10 @@
             display: flex;
             list-style: none;
             padding: 0;
-            margin-top: 20px;
-            margin-left:400px;
+             margin-top: 300px;
+            margin-left: 300px;
+
+}
         }
 
         .pagination li {
@@ -46,9 +48,9 @@
 </head>
 
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
-<div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
+
 <body>
-<div class="container" style="width:950px;">
+<div class="container" style="width:920px;">
     <div class="title-box">
         <div class="body_title">
             <span>전체</span>
@@ -67,28 +69,31 @@
     <div class="imgs">
         <img src="" alt="" />
     </div>
-    <div class="select-box">
-        <form method="get" action="/users/allexpo">
-            <div class="search-box">
-                <p class="size">행사 / 공연명</p>
-                <input type="text" name="serch" id="" />
-                <button type="submit" class="S_btn">검색</button>
-            </div>
-<!--        </form>-->
-<!--        <form method="get" action="/com/expo/period">-->
-            <div class="Period-box">
-                <p>기간 선택</p>
-                <div class="btns">
-                    <button type="button">1개월</button>
-                    <button type="button">3개월</button>
-                    <button type="button">6개월</button>
+
+    <div class="contents">
+        <div class="select-box">
+            <form method="get" action="/users/allexpo">
+                <div class="search-box">
+                    <p class="size">행사 / 공연명</p>
+                    <input type="text" name="serch" id="" />
+                    <button type="submit" class="S_btn">검색</button>
                 </div>
-                <div class="date-box">
-                    <span><input type="date" class="d1" name="date_start" id="" /></span>
-                    <span><input type="date" class="d2" name="date_end" id="" /></span>
+                <!--        </form>-->
+                <!--        <form method="get" action="/com/expo/period">-->
+                <div class="Period-box">
+                    <p>기간 선택</p>
+                    <div class="btns">
+                        <button type="button">1개월</button>
+                        <button type="button">3개월</button>
+                        <button type="button">6개월</button>
+                    </div>
+                    <div class="date-box">
+                        <span><input type="date" class="d1" name="date_start" id="" /></span>
+                        <span><input type="date" class="d2" name="date_end" id="" /></span>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <div class="content" th:each="list : ${AllList}">
@@ -102,10 +107,9 @@
                 <div class="period-box2">
                     <p th:text="${list.expo_start}">2024-01-10</p>
                     <p th:text="${list.expo_end}">2024-01-10</p>
-                    <p th:text="${list.expo_time}">10:00</p>
-<!--                    <p>20:00</p>-->
+                    <p th:text="${list.expo_time}">10:00</p><br />
                 </div>
-                <p th:text="${list.expo_add}">장소</p>
+                <span class="place" th:text="${list.expo_add}">장소</span>
             </div>
         </div>
         <div class="line"></div>
@@ -116,11 +120,11 @@
     </nav>
 
     <!-- 페이징 처리하기 -->
-<!--    style="display:none"-->
-    <span  class="total_page" th:text="${TotalPage}"></span>
+    <span style="display:none;" class="total_page" th:text="${TotalPage}"></span>
 
 </div>
-<div class="footer" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
+<!--<div class="footer" th:replace="~{user/footer/userFooter2 :: userFooter2}"></div>-->
 <script>
 
     let S_btn = document.querySelector('.S_btn');

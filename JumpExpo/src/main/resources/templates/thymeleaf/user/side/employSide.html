@@ -4,8 +4,46 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/static/css/user/sidefooter/employSidefooter.css" rel="stylesheet" />
-        <title>채용 공고 사이드 푸터</title>
+        <title>채용 공고 사이드</title>
+        <style>
+            .side {
+              position: fixed;
+              top: 130px;
+              left: 200px;
+            }
+            .side_header {
+                width: 200px;
+                height: 120px;
+                border: 2px solid #ccc;
+                box-sizing: border-box;
+                background: #f2f2f2;
+              }
+              .side_header a {
+                margin-left: 18px;
+                margin-top: 60px;
+                font-size: 25px;
+                font-weight: 700;
+                color: #EA8874;
+              }
+              .side_body{
+                width: 200px;
+                height: 50px;
+                border: 2px solid #ccc;
+                box-sizing: border-box;
+                border-top: none;
+              }
+              .side_body a {
+                padding: 15px;
+                color: #787878;
+                font-weight: 700;
+              }
+              .side_body a:hover {
+                background: #EA8874;
+                color: #fff;
+                border-bottom: 2px solid #ccc;
+                height: 48px;
+              }
+        </style>
     </head>
 
     <body>
@@ -17,10 +55,6 @@
         <div class="side_body" style=" background-color: #EA8874;">
             <a href="/users/show/employlist" style="color: white;">공고 보기</a>
         </div>
-
-<!--        <div class="side_body">-->
-<!--            <a href="#">박람회 행사 신청하기</a>-->
-<!--        </div>-->
     </div>
     </body>
 </header>

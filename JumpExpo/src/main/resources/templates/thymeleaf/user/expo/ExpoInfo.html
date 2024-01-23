@@ -10,7 +10,7 @@
 <div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
 
 <body>
-    <div class="container" style="width:950px;">
+    <div class="container" style="width:920px;">
         <div class="title-box">
             <div class="body_title">
                 <span class="t1"></span>
@@ -31,7 +31,6 @@
         <div class="expo_name_box">
             <p th:text="${ExpoInfo.expo_title}">엑스포이름</p>
         </div>
-        <div class="line2"></div>
         <div class="expo_info_box">
             <div class="img_box">
                 <img th:src="@{'http://192.168.2.3/images/a/' + ${ExpoInfo.expo_image}}" alt="" />
@@ -109,30 +108,13 @@
                 <input type="hidden" name="UserCode" th:value="${users.user_code}">
                 <input type="hidden" name="ExpoCode" th:value="${ExpoInfo.expo_code}">
                 <input type="hidden" name="ExpoCate" th:value="${ExpoInfo.expo_cate}">
-                <button type="submit" class="C_btn">신청하기</button>
+                <button type="submit">신청하기</button>
             </form>
                 <button>목록</button>
         </div>
-        <p class="c_text" th:text="${Check}"></p>
-
     </div>
 
-<script th:inline="javascript">
-
-    let c_btn = document.querySelector('.C_btn');
-
-    c_btn.onclick = () => {
-        let c_text = document.querySelector('.c_text').textContent;
-        console.log(c_text);
-
-        if(c_text !== ''){
-            alert("이미 신청한 박람회입니다.");
-        }else{
-            alert("신청 완료");
-        }
-
-    }
-
+<script>
     function autoResizeTextArea(element) {
         // 스크롤 높이 초기화
         element.style.height = 'auto';
@@ -149,7 +131,7 @@
     });
 
     let cate = document.querySelector('.cate').textContent;
-    <!--    console.log(cate);-->
+    console.log(cate);
 
     let t1 = document.querySelector('.t1');
     let t2 = document.querySelector('.t2');
@@ -172,5 +154,5 @@
 
 </script>
 </body>
-<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<!--<div class="s_header" th:replace="~{user/footer/userFooter2 :: userFooter2}"></div>-->
 </html>

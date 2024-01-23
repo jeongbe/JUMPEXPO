@@ -1,20 +1,30 @@
+/*초기 설정*/
 * {
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
 }
+
 .container {
-    position: relative;
-    left: 120px;
-    top: 60px;
+    top: 96px;
+        left: 70px;
+         width: 920px;
+         height: 500px;
+         margin: 0 auto;
 }
 .title-box {
-    width: 950px;
-    display: flex;
-    border-bottom: 2px solid #374658;
+   width: 920px;
+   display: flex;
 }
 
 .body_title {
-    width: 700px;
-    padding-bottom: 15px;
+    position: absolute;
+            top: 93px;
+            left: -50px;
+            width: 920px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #374658;
 }
 .body_title span {
     font-weight: 800;
@@ -23,37 +33,40 @@
 .body_title span:last-child {
     color: #374658;
 }
-
-.route {
-    display: flex;
+.contents {
+    position: absolute;
+    top: 160px;
+    right: 55px;
+    width: 920px;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
 }
-
-.imgs {
-    margin-top: 30px;
-    width: 950px;
-    background-color: antiquewhite;
-    height: 250px;
-}
-
 .select-box {
     margin-top: 20px;
-    background-color: #ccc;
+    background-color: #ddd;
     height: 90px;
+     width: 920px;
 }
 
 .search-box {
     padding-top: 10px;
     display: flex;
+        align-items: baseline;
 }
 
 .search-box > p {
-    font-size: 20px;
-    /* margin-right: 50px; */
+   font-size: 15px;
+       margin-left: 17px;
+       margin-top: 2px;
+       font-weight: bold;
 }
 
 .search-box > input {
-    width: 600px;
-    margin-right: 10px;
+   width: 640px;
+       height: 25px;
+       margin-right: 10px;
+       margin-left: 18px;
 }
 
 .search-box > button {

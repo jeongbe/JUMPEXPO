@@ -12,7 +12,7 @@
     position: absolute;
     top: 135px;
     left: 0;
-    width: 1100px;
+    width: 920px;
     height: 45px;
     background-color: #dddddd
 }
@@ -24,15 +24,16 @@
 }
 
 .search_background input {
-    width: 970px;
-    height: 26px;
-    border: 0;
-    outline: none;
+        width: 800px;
+        height: 26px;
+        border: 0;
+        outline: none;
+        margin-top: 3px;
 }
 
 .search_background button {
     position: relative;
-    top: 2px;
+    top: -1px;
     width: 90px;
     height: 26px;
     border: 0;
@@ -46,7 +47,7 @@
 .contents {
     position: absolute;
     top: 200px;
-    width: 1100px;
+    width: 920px;
     height: 200px;
     padding: 0;
     margin: 10px 0;
@@ -235,7 +236,7 @@ td {
     text-align: center;
     position: absolute;
     top: 515px;
-    left: 540px;
+    left: 400px;
     border: none;
 }
 
@@ -255,17 +256,19 @@ td {
 }
 
   .body {
-    width: 1100px;
-    margin: 0 auto;
-    /* border: 1px solid #000; */
-    height: 500px;
-    position: relative;
+        width: 920px;
+        margin: 0 auto;
+        /* border: 1px solid #000; */
+        height: 500px;
+        position: relative;
+        top: 118px;
+        left: 10px;
   }
   .body_title {
     position: absolute;
     top: 60px;
     left: 0px;
-    width: 1100px;
+   width: 920px;
     padding-bottom: 15px;
     border-bottom: 3px solid #374658;
   }

@@ -4,6 +4,7 @@
     padding: 0;
     list-style: none;
     box-sizing: border-box;
+    font-family: 'Orbit', sans-serif;
 }
 
 .content{
@@ -27,6 +28,13 @@
    }
    .body_title span:last-child{
      color: #374658;
+   }
+   .body_title_right {
+   position: absolute;
+       top: 70px;
+       right: 90px;
+       font-weight:700;
+       font-size:15px;
    }
  .con_search{
     position: absolute;

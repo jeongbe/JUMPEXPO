@@ -1,4 +1,6 @@
-
+p {
+margin-bottom:none;
+}
 .container {
     position:relative;
     top: -50PX;
@@ -7,8 +9,11 @@
 }
 
 .title-box {
-    display: flex;
-    width: 950px;
+            display: flex;
+            width: 950px;
+            position: absolute;
+            top: 130px;
+            left: 70px;
 }
 
 .body_title {
@@ -17,13 +22,13 @@
 }
 
 .body_title > span:first-child {
-    font-size: 40px;
+    font-size: 30px;
     color: #808080;
     font-weight: bold;
 }
 
 .body_title > span:last-child {
-    font-size: 40px;
+    font-size: 30px;
     color: #374658;
     font-weight: bold;
 }
@@ -31,30 +36,42 @@
 .body_title_right {
    position:absolute;
    right:70px;
+   bottom: 0;
 }
 
 .line1 {
-    margin-top: 10px;
-    border-bottom: 3px solid #374658;
+    position: absolute;
+        border-bottom: 3px solid #374658;
+        width: 920px;
+        top: 190px;
+        left: 70px;
 }
 
 .expo_name_box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+        font-size: 20px;
+        position: absolute;
+        top: 200px;
+        text-align: center;
+        margin: 0 auto;
+        width: 920px;
+        font-weight: 700;
+        border-bottom: 3px solid #ccc;
+        margin-left: 60px;
+        height: 35px;
 }
 
 .line2 {
-    border-bottom: 3px solid #ccc;
+      border-bottom: 3px solid #ccc;
+      margin-top: 30px;
+      margin-left: 60px;
 }
 
 .expo_info_box {
     display: flex;
-    margin-left: 50px;
-    margin-top: 20px;
+        margin-left: 80px;
+        margin-top: 20px;
+        position: relative;
+        top: 260px;
 }
 
 .img_box {
@@ -70,10 +87,9 @@
 }
 
 .expo_info {
-    margin-left: 30px;
-    font-size: 19px;
-    color: #808080;
-    margin-top: 20px;
+        margin-left: 30px;
+        font-size: 15px;
+        color: #808080;
 }
 
 .info_box1 {
@@ -86,37 +102,45 @@
 
 .info_box1::before {
     content: '● ';
-    color: #000;
-    font-size: 10px;
+    color: #787878;
+    font-size: 7px;
     display: flex;
     align-items: center;
+    margin-top: -15px;
 }
 
 .outline_box {
     display: flex;
     height: 130px;
+    position: relative;
+    top: 260px;
+    left: 20px;
 }
 
 .o_box1 {
-    background-color: #374658;
-    width: 130px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 40px;
-    margin-top: 20px;
-    font-weight: bold;
+        background-color: #374658;
+        width: 130px;
+        color: white;
+        display: flex;
+        /* align-items: center; */
+        justify-content: center;
+        margin-left: 40px;
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 110px;
 }
 
 .o_box2 {
     margin-left: 20px;
-    margin-top: 20px;
-    width: 100%;
-    background-color: #ccc;
-    word-wrap: break-word;
-    max-height: 200px; /* Set a maximum height */
-    overflow-y: auto;
+        margin-top: 20px;
+        width: 100%;
+        background-color: #ccc;
+        word-wrap: break-word;
+        max-height: 200px;
+        overflow-y: auto;
+        text-align: center;
+        line-height: 110px;
 }
 
 .o_box2 p {
@@ -126,7 +150,9 @@
 
 .expo_info_box2 {
     margin-top: 30px;
-    margin-left: 50px;
+        margin-left: 90px;
+        position: relative;
+        top: 260px
 }
 
 .info_box2 {
@@ -152,9 +178,9 @@
 
 .expo_explanation {
     /* background-color: aqua; */
-    margin-top: 10px;
-    margin-left: 40px;
-    margin-bottom: 10px;
+        margin-top: 300px;
+        margin-left: 60px;
+        text-align: center;
 }
 
 .expo_explanation > textarea {
@@ -170,8 +196,10 @@ textarea:focus {
 }
 
 .btn_box {
-    text-align: center;
-    margin-top: 30px;
+        text-align: center;
+        margin-top: 100px;
+        display: flex;
+        margin-left: 320px;
 }
 
 .btn_box button {
@@ -179,6 +207,9 @@ textarea:focus {
     height: 40px;
     color: white;
     background-color: #374658;
-    font-size: 20px;
+    font-size: 15px;
+    border:1px solid #ccc;
 }
-
+.btn_box button:last-child {
+margin-left:20px;
+}
