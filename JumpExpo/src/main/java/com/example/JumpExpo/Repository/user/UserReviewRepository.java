@@ -44,4 +44,26 @@ public interface UserReviewRepository extends JpaRepository<UserReview,Integer> 
     Page<UserReview> AdReviewList(Pageable pageable, @Param("expoCate") int expoCate);
 
 
+    //2024.01.24 정정빈
+    // 유저 리뷰 검색 했을떄
+    @Query(value = "select *\n" +
+            "from review_table\n" +
+            "where expo_cate = :expoCate\n" +
+            "and re_title like %:search%", nativeQuery = true)
+    Page<UserReview> UserReSerch(Pageable pageable,@Param("search") String search,@Param("expoCate") int expoCate);
+
+    //검색 했을때 리뷰 많은 순했을때
+    @Query(value = "select *\n" +
+            "from review_table\n" +
+            "where expo_cate = :expoCate\n" +
+            "and re_title like %:search%\n" +
+            "order by re_cnt desc;\n" , nativeQuery = true)
+    Page<UserReview> UserReHit(Pageable pageable,@Param("search") String search,@Param("expoCate") int expoCate);
+
+    //그냥 조회수만
+    @Query(value = "select *\n" +
+            "from review_table\n" +
+            "where expo_cate = :expoCate\n" +
+            "order by re_cnt desc;\n" , nativeQuery = true)
+    Page<UserReview> UserReHit2(Pageable pageable,@Param("expoCate") int expoCate);
 }
