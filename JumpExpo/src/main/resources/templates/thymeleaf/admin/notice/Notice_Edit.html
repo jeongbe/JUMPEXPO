@@ -44,7 +44,7 @@
                 </td>
             </tr>
         </table>
-        <div class="sub-btn"><button class="in_btn" type="submit">수정하기</button></div>
+        <div class="sub-btn"><button class="in_btn" type="button">수정하기</button></div>
     </form>
     <!-- 목록으로돌아가기 -->
 </div>
@@ -82,7 +82,7 @@ subBtn.onclick = () => {
         data: formData,
         success: (response) => {
             // <!--            리스트 페이지로 이동하게-->
-<!--             location.replace("/admin/nt/"+ [[${notice.not_code}]] + "/update");-->
+             location.replace("/admin/show/nt");
 <!--              alert('공지사항이 수정되었습니다');-->
         },
         error: (error) => {

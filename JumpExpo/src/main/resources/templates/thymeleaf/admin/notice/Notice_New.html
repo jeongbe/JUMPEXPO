@@ -43,7 +43,7 @@
                 </td>
             </tr>
         </table>
-        <div class="sub-btn"><button class="in_btn" type="submit">작성하기</button></div>
+        <div class="sub-btn"><button class="in_btn" type="button">작성하기</button></div>
     </form>
     <!-- 목록으로돌아가기 -->
 </div>
@@ -88,6 +88,7 @@
            success: (response) => {
                // <!--            고객센터>내가 등록한 페이지로 이동하게-->
                alert('공지사항이 등록되었습니다');
+               location.replace("/admin/show/nt");
            },
            error: (error) => {
                console.log(error);

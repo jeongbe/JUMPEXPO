@@ -1,0 +1,117 @@
+ .content{
+        position: relative;
+        top: 0;
+        left: -60px;
+ }
+ .body_title {
+     position: absolute;
+      top: 110px;
+     left: -60px;
+     width: 920px;
+   }
+   .body_title span{
+     font-weight: 800;
+     font-size: 35px;
+     color:#787878;
+   }
+   .body_title span:last-child{
+     color: #374658;
+   }
+   .body_title_right {
+    position: absolute;
+          top: 90px;
+          left: 670px;
+          font-weight:700;
+          font-size:15px;
+          color:#787878;
+   }
+ .con_search{
+    position: absolute;
+    top: 110px;
+    left: 735px;
+  }
+
+ /* 테이블 */
+table {
+  position:relative;
+  top:170px;
+  left: -160px;
+  border-collapse: collapse;
+  border-top:3px solid #374658;
+  width: 918px;
+  /* margin: 1rem auto; */
+  background-color: white;
+  font-size: 15px;
+  text-align: center;
+  color:#787878;
+}
+
+/* 테이블 행 */
+th, td {
+  padding: 8px;
+  margin: 1rem auto;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  /* text-align: center; */
+}
+th {
+  background-color: #fff;
+  color: #787878;
+}
+/* 테이블 비율 */
+th:nth-child(1),
+td:nth-child(1) {
+  width: 10%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 30%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 30%;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 20%;
+}
+table a {
+color:#787878;
+text-decoration:none;
+}
+table a:hover {
+font-weight:800;
+color:#000;
+opacity:0.8;
+}
+.paging {
+position:absolute;
+top:650px;
+left:380px;
+width:100px;
+}
+#pageNumbers {
+display:inline;
+cursor: pointer;
+color:#787878;
+font-weight:700;
+width:10px;
+margin:5px;
+}
+.paging button {
+cursor: pointer;
+border: none;
+background-color: white;
+}
+.total_post {
+position:absolute;
+    top: 144px;
+    left: 800px;
+}
+.total_post span {
+color:#787878;
+font-weight:700;
+font-size:12px;
+}

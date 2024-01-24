@@ -15,6 +15,16 @@ public class DateEntity {
     @CreatedDate
     @Column(updatable = false)
     @Temporal(TemporalType.DATE)
-    private Date not_date;
+    private Date not_date; // 공지사항 등록일
+
+    @CreatedDate
+    @Column(updatable = false)
+    @Temporal(TemporalType.DATE)
+    private Date qu_date; // 큐앤에이 질문 등록일
+
+    @CreatedDate
+    @Column(updatable = false)
+    @Temporal(TemporalType.DATE)
+    private Date an_date; // 큐앤에이 답변 등록일
 
 }

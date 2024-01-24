@@ -1,0 +1,149 @@
+.detail_wrap {
+        position: absolute;
+        top: -40px;
+        left: 280px;
+}
+    .nt_title {
+    position: absolute;
+        top: 130px;
+        left: 0;
+        width: 920px;
+        text-align: center;
+        color: #787878;
+        font-weight: 700;
+        font-size: 20px;
+ }
+ .view_info {
+    position: absolute;
+    top: 165px;
+    width: 920px;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+ }
+ .info {
+ width: 920px;
+ border-top: 2px solid #ccc;
+ border-bottom: 2px solid #ccc;
+ position: absolute;
+ top: 785px;
+ height:30px;
+ }
+ .view_info > div {
+    display: inline-block;
+ }
+ .writer,  .date, .andate {
+    width: 70px;
+    height: 30px;
+    background: #eee;
+    color: #787878;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12pt;
+    line-height: 30px;
+ }
+
+ .date{
+    position: absolute;
+    left: 450px;
+ }
+ .andate {
+ position: absolute;
+     left: 0px;
+ }
+ .see{
+    position: absolute;
+    right: 140px;
+ }
+ .nt_dt {
+margin-left: 420px;
+ }
+ .dt {
+margin-left: 80px;
+    margin-top: 4px;
+ }
+
+ .download {
+    width: 920px;
+    height: 30px;
+    position: absolute;
+    top: 210px;
+    text-align: right;
+    left: 0px;
+    color: #787878;
+    font-size: 11pt;
+    font-weight: 700;
+ }
+   .download a {
+     display: inline;
+   }
+ .content {
+    width: 920px;
+    height:500px;
+    border: 2px solid #ccc;
+    position: absolute;
+    top:240px;
+    left: 0px;
+ }
+ .list {
+    border: 2px solid #ccc;
+    width: 110px;
+    height: 30px;
+    color: #fff;
+    background-color: #374658;
+    position: absolute;
+        top: 1040px;
+        left: 400px;
+    bottom: 120px;
+    cursor: pointer;
+  }
+
+.admin {
+margin-left:10px;
+}
+table {
+position: absolute;
+    top: 600px;
+    left: -350px;
+}
+
+.an_content td {
+ width:920px;
+ height:500px;
+ position:absolute;
+ top:185px;
+ left:350px;
+ }
+  .in_btn {
+     border: 2px solid #ccc;
+     width: 110px;
+     height: 30px;
+     color: #fff;
+     background-color: #374658;
+     position: absolute;
+      left: 400px;
+      top: 1200px;
+     cursor: pointer;
+   }
+   span {
+       display: inline;
+   }
+   .as {
+    font-weight: 700;
+    position: absolute;
+    top: 750px;
+    color: #374658;
+    display: inline;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    width: 920px;
+    font-size: 20px;
+   }
+   .cn {
+position: absolute;
+    top: 830px;
+    left: 0px;
+    width: 920px;
+    border: 2px solid #ccc;
+    height: 200px;
+   }
