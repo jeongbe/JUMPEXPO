@@ -147,4 +147,20 @@ public class ExpoService {
         return this.userReviewRepository.AdReviewList(pageable, expoCate);
     }
 
+    //2024.01.24 정정빈
+    // 리뷰 검색 했을때
+    public Page<UserReview> getUserReSearchList(int page, String search,int expoCate){
+        Pageable pageable = PageRequest.of(page,6);
+        return this.userReviewRepository.UserReSerch(pageable,search,expoCate);
+    }
+
+    public Page<UserReview> getUserReHitList(int page,String search,int expoCate){
+        Pageable pageable = PageRequest.of(page,6);
+        return this.userReviewRepository.UserReHit(pageable,search,expoCate);
+    }
+
+    public Page<UserReview> getUserReHitList2(int page,int expoCate){
+        Pageable pageable = PageRequest.of(page,6);
+        return this.userReviewRepository.UserReHit2(pageable,expoCate);
+    }
 }

@@ -3,7 +3,6 @@ package com.example.JumpExpo.Controller.admin;
 import com.example.JumpExpo.Entity.user.UserReview;
 import com.example.JumpExpo.Repository.user.UserReviewRepository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
-import lombok.experimental.PackagePrivate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Controller
 @RequestMapping("/admin")
-public class UserReviewController {
+public class AdReviewController {
 
     @Autowired
     ExpoService expoService;
@@ -67,7 +66,8 @@ public class UserReviewController {
         return ResponseEntity.ok("삭제완료");
     }
 
-    //2024.01.23
+    //2024.01.23 정정빈
+    //리뷰 디테일
     @GetMapping("/review/read/{re_num}")
     public String ReviewRead(Model model,@PathVariable("re_num") int renum){
         log.info(String.valueOf(renum));
