@@ -13,15 +13,36 @@
     <div class="showform">
         <h3>아이디를 찾았습니다 !!</h3><br>
         <div th:if="${comid != null}">
-        <input type="text" class="showinput" th:value="${comid}">
+        <input type="text" id="comid" class="showinput" th:value="${comid}">
         </div>
         <div th:if="${userid != null}">
-        <input type="text" class="showinput" th:value="${userid}">
+        <input type="text" id="userid" class="showinput" th:value="${userid}">
         </div>
     </div>
     <a href="/JumpExpo/Login"><button class="loginpage">로그인하기</button></a>
 </main>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var comidElement = document.getElementById("comid");
+        var useridElement = document.getElementById("userid");
+
+        if (comidElement) {
+            var comidValue = comidElement.value;
+            comidElement.value = maskId(comidValue);
+        }
+
+        if (useridElement) {
+            var useridValue = useridElement.value;
+            useridElement.value = maskId(useridValue);
+        }
+
+        function maskId(id) {
+            var maskedId = id.substring(0, 2) + "*****" + id.substring(id.length - 2);
+            return maskedId;
+        }
+    });
+</script>
 </body>
 
 </html>

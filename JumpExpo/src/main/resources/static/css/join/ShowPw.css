@@ -5,7 +5,7 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
+    border: 3px solid black;
    border-radius: 25px;
 }
 
@@ -87,4 +87,29 @@ main {
 
 }
 
+.logo_form{
+  width:1910px;
+  height: 271px;
+  text-align:center;
+}
+
+.login_logo{
+
+ width: 350px;
+ margin-top:120px;
+}
+
+.reset_btn{
+    margin-top:400px;
+    margin-left:820px;
+
+}
+
+.btn_reset_pw{
+ width:250px;
+ height:40px;
+ background-color: #374658;
+ color: white;
+
+}
 

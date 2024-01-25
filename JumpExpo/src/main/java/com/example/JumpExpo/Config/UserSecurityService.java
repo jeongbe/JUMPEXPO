@@ -46,7 +46,6 @@ public class UserSecurityService implements UserDetailsService {
 
 
 
-
     //카카오 로그인시
     public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException{
 
@@ -54,7 +53,6 @@ public class UserSecurityService implements UserDetailsService {
         return User.builder().username(users1.getUser_id()).password(users1.getUser_pw()).roles(users1.getRole().name()).build();
 
     }
-
 
 
     @Override
