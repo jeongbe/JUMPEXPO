@@ -18,10 +18,12 @@ public class QnAForm {
 
     String  quContent; // 공지 내용
 
-    int quState;
+    int quState; //답변 상태
+
+    int quScr; //비밀글
 
     public QnA toEntity(){
         return new QnA(quNum,
-                quTitle,quContent,quState);
+                quTitle,quContent,quState,quScr);
     }
 }

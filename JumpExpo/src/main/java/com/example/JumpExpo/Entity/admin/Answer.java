@@ -1,5 +1,6 @@
 package com.example.JumpExpo.Entity.admin;
 
+import com.example.JumpExpo.DTO.admin.notice.AnswerForm;
 import com.example.JumpExpo.Entity.user.QnA;
 import jakarta.persistence.*;
 import lombok.*;

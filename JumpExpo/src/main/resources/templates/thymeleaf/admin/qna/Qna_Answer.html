@@ -32,6 +32,8 @@
     </div>
     <div class="cn" th:utext="${answer.an_content}"></div>
     <button class="list"><a href="/admin/show/qu" style="color:#fff; text-decoration:none;">목록</a></button>
+    <button class="edit" th:onclick="'javascript:location.href=&quot;/admin/show/qu/' + ${qna.qu_num}+ '/answer/update' + '&quot;'">수정</button>
+    <button class="delete" th:onclick="'javascript:location.href=&quot;/admin/show/qu/' + ${qna.qu_num}+ '/answer/delete'+ '&quot;'">삭제</button>
 
 </div>
 </body>

@@ -47,11 +47,21 @@ left:110px;
     border:2px solid #ccc;
     top: 5px;
  }
+ .scr {
+  position:absolute;
+   top:175px;
+    left:350px;
+    width:100px;
+ }
+ .scr span {
+   color:#787878;
+ }
+
  .qu_content td {
-width: 920px;
+ width: 920px;
  height:400px;
  position:absolute;
- top:175px;
+ top:200px;
  left:350px;
  }
 

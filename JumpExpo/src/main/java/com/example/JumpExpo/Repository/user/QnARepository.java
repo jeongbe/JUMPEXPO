@@ -19,5 +19,15 @@ import java.util.List;
 public interface QnARepository extends JpaRepository<QnA, Integer> {
     @Override
     ArrayList<QnA> findAll();
+    @Query(value = "SELECT * \n" +
+            "FROM qna\n" +
+            "where qu_state = 1", nativeQuery = true)
+    public List<QnA> getState();
+
+    @Query(value = "SELECT * \n" +
+            "FROM qna\n" +
+            "where qu_state = 0", nativeQuery = true)
+    public List<QnA> getSate();
+
 }
 

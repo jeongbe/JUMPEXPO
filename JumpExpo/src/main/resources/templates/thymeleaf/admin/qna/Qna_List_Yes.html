@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/admin/qna/Qna.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <title>관리자 질문 리스트</title>
+    <title>관리자 답변완료 질문 리스트</title>
 </head>
 <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
 <div class="sidebar" th:replace="~{admin/side/AdCustomerside :: adCustomerside}"></div>
@@ -18,7 +18,7 @@
     <div class="state">
         <span class="asn"><a th:href="@{/admin/show/nanswer}">미답변</a></span>
         <span>|</span>
-        <span class="asy"><a th:href="@{/admin/show/yanswer}">답변완료</a></span>
+        <span class="asy"><a th:href="@{/admin/show/yanswer}" style="color:#ea8874">답변완료</a></span>
     </div>
     <div class="body_title_right">
         <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 고객 센터 > Q&A

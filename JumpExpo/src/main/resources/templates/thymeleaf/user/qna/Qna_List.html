@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/user/qna/Qna.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <title>질문 리스트</title>
+    <title>유저 질문 리스트</title>
 </head>
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <body>
@@ -13,6 +13,11 @@
     <div class="body_title">
         <span>Q&</span>
         <span>A</span>
+    </div>
+    <div class="state">
+        <span class="asn"><a th:href="@{/users/show/nanswer}">미답변</a></span>
+        <span>|</span>
+        <span class="asy"><a th:href="@{/users/show/yanswer}">답변완료</a></span>
     </div>
     <div class="body_title_right">
         <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 고객 센터 > Q&A
@@ -38,10 +43,14 @@
                 <td th:text="${list.qu_num}"></td>
                 <td th:text="${#strings.substring(userId, 0, 3)} + '****'"></td>
                 <td>
-                    <a th:href="@{/users/show/qu/{quNum}(quNum=${list.qu_num})}" th:text="${list.qu_title}"></a>
+                    <p th:unless="${list.qu_scr == 1}" th:onclick="'javascript:location.href=&quot;/users/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor:pointer;"></p>
+                    <p th:if="${list.qu_scr == 1}"><img src="/static/images/lock.png" style="width:15px; height:15px; opacity:0.6; margin-right:5px; margin-bottom:5px;">비밀글입니다.</p>
                 </td>
                 <td th:utext="${list.qu_date}"></td>
-                <td>미답변</td>
+                <td>
+                    <span th:if="${list.qu_state == 0}">미답변</span>
+                    <span th:if="${list.qu_state == 1}">답변완료</span>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -113,7 +122,7 @@
 
 </script>
 
-<div class="s_header" th:replace="~{user/side/noticeSide :: noticeSide}"></div>
+<div class="s_header" th:replace="~{user/side/qnaSide :: qnaSide}"></div>
 <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </body>
 </html>

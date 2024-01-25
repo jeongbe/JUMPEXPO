@@ -24,5 +24,8 @@ public class QnA extends DateEntity {
     String qu_content; // 질문 내용
 
     @Column
-    int qu_state;
+    int qu_state;//답변 상태
+
+    @Column
+    int qu_scr;//비밀글
 }

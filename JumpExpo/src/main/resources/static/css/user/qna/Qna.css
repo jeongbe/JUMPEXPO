@@ -120,3 +120,15 @@ color:#787878;
 font-weight:700;
 font-size:12px;
 }
+.state {
+position:absolute;
+top: 128px;
+left:100px;
+}
+.state span a {
+    text-decoration: none;
+    color: #787878;
+    font-size: 17px;
+    font-weight:700;
+    display:inline;
+}
