@@ -160,6 +160,8 @@ public class EmployListController {
         PeremApplyUser peremApplyUser = form.toEntity();
         //취소여부 디폴트1
         peremApplyUser.setPem_can(1);
+        //열람여부 디폴트0
+        peremApplyUser.setPem_check(0);
         peremApplyUser.setPem_date(new Date());
 
         log.info(peremApplyUser.toString());
@@ -167,6 +169,78 @@ public class EmployListController {
         PeremApplyUser saved = peremApplyRepository.save(peremApplyUser);
 
         return ResponseEntity.ok("성공적으로 지원되었습니다.");
+
+//        return "redirect:/users/show/employlist";
+    }
+
+    //2024.01.25 박은채
+    //이력서 다시 제출 팝업
+    @GetMapping("/submit/resume/re/{emnot_code}/{user_code}")
+    public String submitResume2(Model model, @PathVariable(name="emnot_code") int emnotCode,
+                               @PathVariable(name = "user_code") int userCode){
+
+        model.addAttribute("emnotCode",emnotCode);
+        model.addAttribute("userCode",userCode);
+
+        Users user = userReository.findById(userCode).orElse(null);
+        if (user != null) {
+            model.addAttribute("userName", user.getUser_name());
+        } else {
+            // 사용자를 찾을 수 없을 때
+            model.addAttribute("userName", "사용자 이름 없음");
+        }
+
+        ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
+
+        if (applyEmploy == null) {
+            // 데이터가 없을 경우
+            return "show/employlist/{emnot_code}";
+        }
+
+        model.addAttribute("applyEmploy", applyEmploy);
+
+        return "user/employ/ResumePopupRe";
+    }
+
+    //2024.01.25 박은채
+    //이력서 다시 제출
+    @PostMapping("/submit/resume/re/{emnot_code}/{user_code}")
+    public ResponseEntity<?> submitResumeDataRe(PeremApplyUserForm form,
+                                              @RequestParam(value = "PemFile", required = false) MultipartFile file1,
+                                              Model model, @PathVariable(name="emnot_code") int emnotCode,
+                                              @PathVariable(name = "user_code") int userCode) {
+
+        PeremApplyUser existingApplication = peremApplyRepository.findByEmnotCodeAndUserCode(emnotCode, userCode);
+
+        String link = "\\\\192.168.2.3\\images\\a";
+
+        try {
+            if(file1 != null && !file1.isEmpty()){
+                String vio1 = link + File.separator + file1.getOriginalFilename();
+                Path filePath = Paths.get(vio1);
+                Files.copy(file1.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+                existingApplication.setPem_file(file1.getOriginalFilename());
+            }
+        }catch (IOException e) {
+            log.error("Error occurred while copying the file: {}", e.getMessage());
+            e.printStackTrace();
+//            return "";
+        }
+
+        log.info(form.toString());
+
+//        PeremApplyUser peremApplyUser = form.toEntity();
+        //취소여부 디폴트1
+        existingApplication.setPem_can(1);
+        //열람여부 디폴트0
+        existingApplication.setPem_check(0);
+        existingApplication.setPem_date(new Date());
+
+        log.info(existingApplication.toString());
+
+        PeremApplyUser saved = peremApplyRepository.save(existingApplication);
+
+        return ResponseEntity.ok("재신청이 완료되었습니다.");
 
 //        return "redirect:/users/show/employlist";
     }

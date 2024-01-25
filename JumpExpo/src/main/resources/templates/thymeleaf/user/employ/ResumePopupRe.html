@@ -78,14 +78,14 @@
 
         $.ajax({
             type: 'POST',
-            url: '/users/submit/resume/' + $('#emnotCode').val() + '/' + $('#userCode').val(),
+            url: '/users/submit/resume/re/' + $('#emnotCode').val() + '/' + $('#userCode').val(),
             data: formData,
             processData: false,
             contentType: false,
             success: function (response) {
                 alert('지원서가 성공적으로 제출되었습니다.');
                 window.close();
-                window.opener.location.href = '/users/show/employlist';
+                window.opener.location.href = '/users/mypage/employ/apply/' + $('#userCode').val();
             },
             error: function (xhr) {
                 if(xhr.status === 409) {

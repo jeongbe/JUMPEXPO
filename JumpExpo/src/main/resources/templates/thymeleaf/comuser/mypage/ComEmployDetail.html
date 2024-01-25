@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/comuser/mypage/ComEmployDetail.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <title> 기업 채용 공고 신청 현황 상세 </title>
+</head>
+
+<body>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+<!--    관리자 공지사항 리스트-->
+<div class="content" th:object="${emnotList}">
+    <div class="body_title">
+        <span th:text="${emnotList.emnot_title}">채용 공고</span>
+<!--        <span>신청 현황</span>-->
+    </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>신청서 파일</th>
+                <th>열람여부</th>
+            </tr>
+            </thead>
+            <tbody>
+<!--            <td>-->
+<!--                <a th:text="${userList.pem_file}" th:href="@{'http://yeil03.iptime.org/images/a/' + ${userList.pem_file}}"-->
+<!--                   style="color:#000;">-->
+<!--                    파일-->
+<!--                </a>-->
+<!--            </td>-->
+            <tr th:each="userList, iterStat : ${userList}">
+                <td th:text="${iterStat.index + 1}">1</td>
+                <td th:text="${userList.user_name}">이름</td>
+                <td>
+                    <form th:action="@{/com/updatePemCheck/{pem_appnum}/{emnot_code}/{com_code}/{value}
+                    (pem_appnum=${userList.pem_appnum},emnot_code=${userList.emnot_code},com_code=${emnotList.com_code}, value=1)}"
+                          method="post">
+                        <a th:text="${userList.pem_file}" th:href="@{'http://yeil03.iptime.org/images/a/' + ${userList.pem_file}}" style="color:#000;">파일</a>
+                        <button type="submit" style="display: none;"></button>
+                    </form>
+                </td>
+<!--                <td>-->
+<!--                    <form id="myForm" th:action="@{/com/updatePemCheck/{pem_appnum}/{emnot_code}/{com_code}/{value}-->
+<!--                    (pem_appnum=${userList.pem_appnum},emnot_code=${userList.emnot_code},com_code=${emnotList.com_code}, value=1)}"-->
+<!--                          method="post">-->
+<!--                        <button type="submit" th:text="${userList.pem_file}" style="border: none; background-color: white; font-size: 15px; color: #787878;">파일</button>-->
+<!--                    </form>-->
+<!--                </td>-->
+<!--                열람여부 설정 0일 때 미열람 1일 때 열람-->
+                <td>
+                    <p th:if="${userList.pem_check == 0}" style="color: red">미열람</p>
+                    <p th:if="${userList.pem_check == 1}" style="color: green">열람</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    <div class="paging" id="pagination">
+        <button onclick="previousPage()"><</button>
+        <div id="pageNumbers"></div>
+        <button onclick="nextPage()">></button>
+    </div>
+</div>
+<div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+<script>
+
+    // 페이징
+            // 초기 페이지 설정
+            let currentPage = 1;
+            let rowsPerPage = 10;
+            let table = document.querySelector('table');
+            let rows = table.querySelectorAll('tr');
+            let totalRows = rows.length - 1; // 헤더 제외
+            let totalPages = Math.ceil(totalRows / rowsPerPage);
+            let pagination = document.getElementById('pageNumbers');
+
+            function showPage(page) {
+                for (let i = 1; i <= totalRows; i++) {
+                    if (i <= page * rowsPerPage && i > (page - 1) * rowsPerPage) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            function generatePageNumbers() {
+                let pageNumbersHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    pageNumbersHTML += `<span class="page-number" onclick="goToPage(${i})">${i}</span>`;
+                }
+                pagination.innerHTML = pageNumbersHTML;
+            }
+
+            function goToPage(page) {
+                if (page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    showPage(currentPage);
+                    generatePageNumbers();
+                }
+            }
+
+            function nextPage() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                    generatePageNumbers();
+                }
+            }
+
+            function previousPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                    generatePageNumbers();
+                }
+            }
+
+            showPage(currentPage);
+            generatePageNumbers();
+
+</script>
+</body>
+</html>

@@ -12,12 +12,14 @@ import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import com.example.JumpExpo.Entity.comuser.ComInterview;
 import com.example.JumpExpo.Entity.comuser.Company;
+import com.example.JumpExpo.Entity.user.PeremApplyUser;
 import com.example.JumpExpo.Entity.user.UserInterview;
 
 import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import com.example.JumpExpo.Repository.comuser.ComInterviewRepository;
 import com.example.JumpExpo.Repository.comuser.CompanyRepository;
+import com.example.JumpExpo.Repository.user.PeremApplyRepository;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -47,6 +50,9 @@ public class ComMyPageController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    PeremApplyRepository peremApplyRepository;
 
     //2024.01.18 정정빈
     //기업 면접 일정 관리
@@ -339,6 +345,68 @@ public class ComMyPageController {
         applyEmployRepository.delete(deleteTarget);
 
         return "redirect:/com/mypage/employ/accept/{com_code}";
+    }
+
+    //2024.01.22 박은채
+    //채용 공고 신청 현황<분야별 리스트>
+    @GetMapping("/mypage/show/employlist/{com_code}")
+    public String empoyList(Model model, @PathVariable("com_code") int comCode){
+        model.addAttribute("comCode", comCode);
+
+        ArrayList<ApplyEmploy> allList = applyEmployRepository.AllComEmployList(comCode);
+        ArrayList<ApplyEmploy> DesignList = applyEmployRepository.DesignComEmployList(comCode);
+        ArrayList<ApplyEmploy> FrontList = applyEmployRepository.FrontComEmployList(comCode);
+        ArrayList<ApplyEmploy> BackendList = applyEmployRepository.BackendComEmployList(comCode);
+        ArrayList<ApplyEmploy> EtcList = applyEmployRepository.EtcComEmployList(comCode);
+
+        model.addAttribute("allList", allList);
+        model.addAttribute("designList", DesignList);
+        model.addAttribute("frontList", FrontList);
+        model.addAttribute("backendList", BackendList);
+        model.addAttribute("etcList", EtcList);
+
+        // 각 공고별 지원자 수
+        model.addAttribute("applicantCounts", allList.stream()
+                .collect(Collectors.toMap(ApplyEmploy::getEmnot_code, e -> peremApplyRepository.countByEmnotCode(e.getEmnot_code()))));
+
+        return "comuser/MyPage/ComEmployList";
+    }
+
+    //2024.01.24 박은채
+    //채용 공고 신청 현황 상세 페이지
+    @GetMapping("/mypage/show/employlist/{com_code}/{emnot_code}")
+    public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode,
+                               @PathVariable(name = "com_code") int comCode){
+
+        ArrayList<PeremApplyUser> userList = peremApplyRepository.EmcodeUserList(emnotCode);
+        ApplyEmploy emnotList = applyEmployRepository.findById(emnotCode).orElse(null);
+
+        model.addAttribute("userList", userList);
+        model.addAttribute("emnotList",emnotList);
+
+        return "comuser/MyPage/ComEmployDetail";
+    }
+
+    //2024.01.24 박은채
+    //열람, 미열람 업데이트
+    @PostMapping("/updatePemCheck/{pem_appnum}/{emnot_code}/{com_code}/{value}")
+    public String updatePemCheck(Model model, @PathVariable(name = "pem_appnum") int pemAppnum,
+                                   @PathVariable(name = "value") int value, @PathVariable(name="emnot_code") int emnotCode,
+                                 @PathVariable(name = "com_code") int comCode) {
+
+        PeremApplyUser peremApplyUser = peremApplyRepository.findById(pemAppnum).orElse(null);
+
+        if (peremApplyUser != null) {
+            peremApplyUser.setPem_check(value);
+            try {
+                peremApplyRepository.save(peremApplyUser);
+                return "redirect:/com/mypage/show/employlist/{com_code}/{emnot_code}";
+            } catch (Exception e) {
+                // 업데이트 실패한 경우 예외 처리 가능
+                return "redirect:/com/mypage/show/employlist/{com_code}/{emnot_code}";
+            }
+        }
+        return "redirect:/com/mypage/show/employlist/{com_code}/{emnot_code}";
     }
 
 }

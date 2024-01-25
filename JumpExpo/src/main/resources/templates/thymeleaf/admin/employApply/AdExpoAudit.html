@@ -28,7 +28,7 @@
     <tr th:each="list : ${ComList}">
 <!--        th:text="${list.app_file_name}"-->
         <td >1</td>
-        <td th:text="${list.com_addr}" th:onclick="'javascript:openPopup(\'/admin/cominfo/' + ${list.com_code} + '\')'">예일회사</td>
+        <td th:text="${list.com_addr}" th:onclidd="'javascript:openPopup(\'/admin/cominfo/' + ${list.com_code} + '\')'">예일회사</td>
         <td th:text="${list.app_title}">제목ㅇㅇ</td>
         <td>
             <span>

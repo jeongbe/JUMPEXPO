@@ -25,4 +25,19 @@ public interface PeremApplyRepository extends JpaRepository<PeremApplyUser,Integ
             "WHERE emnot_code = :emnotCode", nativeQuery = true)
     int countByEmnotCode(@Param("emnotCode") int emnotCode);
 
+
+    //2024.01.24 박은채
+    //emnot_code별 지원자 리스트
+    @Query(value = "SELECT *\n" +
+            "FROM perem_apply_user\n" +
+            "WHERE emnot_code = :emnotCode", nativeQuery = true)
+    ArrayList<PeremApplyUser> EmcodeUserList(@Param("emnotCode") int emnotCode);
+
+    //2024.01.24 박은채
+    //user_code별 채용 신청 리스트
+//    @Query(value = "SELECT *\n" +
+//            "FROM perem_apply_user\n" +
+//            "WHERE user_code = :userCode", nativeQuery = true)
+//    ArrayList<PeremApplyUser> UserApplyList(@Param("userCode") int userCode);
+
 }

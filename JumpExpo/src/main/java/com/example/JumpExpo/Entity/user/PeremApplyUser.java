@@ -36,4 +36,7 @@ public class PeremApplyUser {
     @Column
     int pem_can;
 
+    @Column
+    int pem_check;
+
 }

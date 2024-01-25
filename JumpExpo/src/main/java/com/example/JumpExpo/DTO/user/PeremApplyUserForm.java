@@ -35,8 +35,10 @@ public class PeremApplyUserForm {
 
     int PemCan;
 
+    int PemCheck;
+
     public PeremApplyUser toEntity(){
         return new PeremApplyUser(PemAppnum, UserCode, EmnotCode, UserName,
-                PemDate, PemFile != null ? PemFile.getOriginalFilename() : null, PemCan);
+                PemDate, PemFile != null ? PemFile.getOriginalFilename() : null, PemCan, PemCheck);
     }
 }

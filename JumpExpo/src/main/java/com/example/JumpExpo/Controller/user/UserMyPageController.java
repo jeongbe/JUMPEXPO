@@ -5,14 +5,15 @@ import com.example.JumpExpo.DTO.user.UserForm;
 import com.example.JumpExpo.DTO.user.UserInterviewForm;
 import com.example.JumpExpo.DTO.user.UserReviewForm;
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
+import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.comuser.Company;
+import com.example.JumpExpo.Entity.user.PeremApplyUser;
 import com.example.JumpExpo.Entity.user.UserInterview;
 import com.example.JumpExpo.Entity.user.UserReview;
 import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
-import com.example.JumpExpo.Repository.user.UserExpoApplyRepository;
-import com.example.JumpExpo.Repository.user.UserInterviewRepository;
-import com.example.JumpExpo.Repository.user.UserReository;
-import com.example.JumpExpo.Repository.user.UserReviewRepository;
+import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
+import com.example.JumpExpo.Repository.user.*;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -58,6 +60,12 @@ public class UserMyPageController {
 
     @Autowired
     UserReviewRepository userReviewRepository;
+
+    @Autowired
+    ApplyEmployRepository applyEmployRepository;
+
+    @Autowired
+    PeremApplyRepository peremApplyRepository;
 
     //2024.01.15 정정빈
     //면접 일정 관리
@@ -512,5 +520,76 @@ public class UserMyPageController {
         userReviewRepository.save(reDate);
 
         return "redirect:/users/mypage/review";
+    }
+
+    //2024.01.24 박은채
+    //유저 채용 신청 내역
+    @GetMapping("/mypage/employ/apply/{user_code}")
+    public String emAccept(Model model, @PathVariable("user_code") int userCode) {
+
+        model.addAttribute("userCode", userCode);
+
+        //applyemploy da
+        ArrayList<ApplyEmploy> applyUser = applyEmployRepository.UserApplyList(userCode);
+        PeremApplyUser peremApplyUser = peremApplyRepository.findById(userCode).orElse(null);
+
+        model.addAttribute("apply", applyUser);
+        model.addAttribute("perem", peremApplyUser);
+
+        log.info(applyUser.toString());
+
+        return "user/MyPage/UserEmployAccept";
+    }
+
+    //2024.01.24 박은채
+    //취소, 재신청 업데이트
+    @PostMapping("/updatePemCan/{pem_appnum}/{user_code}/{value}")
+    public String updatePemCheck(Model model, @PathVariable(name = "pem_appnum") int pemAppnum,
+                                 @PathVariable(name = "user_code") int userCode,
+                                 @PathVariable(name = "value") int value) {
+
+        PeremApplyUser peremApplyUser = peremApplyRepository.findById(pemAppnum).orElse(null);
+
+        if (peremApplyUser != null) {
+            peremApplyUser.setPem_can(value);
+            try {
+                peremApplyRepository.save(peremApplyUser);
+                return "redirect:/users/mypage/employ/apply/{user_code}";
+            } catch (Exception e) {
+                // 업데이트 실패한 경우 예외 처리 가능
+                return "redirect:/users/mypage/employ/apply/{user_code}";
+            }
+        }
+        return "redirect:/users/mypage/employ/apply/{user_code}";
+    }
+
+    //2024.01.25 박은채
+    //재신청하기 팝업창
+    @GetMapping("/mypage/apply/re/{emnot_code}/{user_code}")
+    public String ApplyRe(Model model, @PathVariable(name = "emnot_code") int emnotCode,
+                          @PathVariable(name = "user_code") int userCode){
+
+        model.addAttribute("emnotCode",emnotCode);
+        model.addAttribute("userCode",userCode);
+
+        PeremApplyUser emnotUser = peremApplyRepository.findByEmnotCodeAndUserCode(emnotCode, userCode);
+
+        model.addAttribute("emnotUser", emnotUser);
+
+        return "/user/employ/GetResumePopup";
+    }
+
+    //2024.01.25 박은채
+    //이전 신청양식 가져오기
+    @PostMapping("/submit/apply/re/{emnot_code}/{user_code}")
+    public ResponseEntity<?> submitApply(@PathVariable(name = "emnot_code") int emnotCode,
+                              @PathVariable(name = "user_code") int userCode){
+
+        PeremApplyUser existingApplication = peremApplyRepository.findByEmnotCodeAndUserCode(emnotCode, userCode);
+        existingApplication.setPem_can(1);
+
+        PeremApplyUser saved = peremApplyRepository.save(existingApplication);
+
+        return ResponseEntity.ok("재신청이 완료되었습니다.");
     }
 }
