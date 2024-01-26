@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/user/expo/ExpoAllList.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <title>박람회 전체 일정 리스트</title>
+    <style>
+        /* 추가된 CSS 스타일 */
+
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+             margin-top: 300px;
+            margin-left: 300px;
+
+}
+        }
+
+        .pagination li {
+            margin: 0 5px;
+            display:inline;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .pagination a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+
+<body>
+<div class="container" style="width:920px;">
+    <div class="title-box">
+        <div class="body_title">
+            <span>전체</span>
+            <span>일정</span>
+        </div>
+
+        <div class="body_title_right">
+            <img
+                    src="/static/images/home.png"
+                    alt="홈 아이콘"
+                    style="width: 20px"
+            />
+            > 행사 일정 > 전체 일정
+        </div>
+    </div>
+    <div class="imgs">
+        <img src="" alt="" />
+    </div>
+
+    <div class="contents">
+        <div class="select-box">
+            <form method="get" action="/com/allexpo">
+                <div class="search-box">
+                    <p class="size">행사 / 공연명</p>
+                    <input type="text" name="serch" id="" />
+                    <button type="submit" class="S_btn">검색</button>
+                </div>
+                <!--        </form>-->
+                <!--        <form method="get" action="/com/expo/period">-->
+                <div class="Period-box">
+                    <p>기간 선택</p>
+                    <div class="btns">
+                        <button type="button">1개월</button>
+                        <button type="button">3개월</button>
+                        <button type="button">6개월</button>
+                    </div>
+                    <div class="date-box">
+                        <span><input type="date" class="d1" name="date_start" id="" /></span>
+                        <span><input type="date" class="d2" name="date_end" id="" /></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="content" th:each="list : ${AllList}">
+        <div class="expo-info-box" >
+            <div class="cont-img">
+                <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
+            </div>
+            <div class="expo-info">
+                <span>예정행사</span>
+                <p class="expo-name" th:text="${list.expo_title}" th:onclick="'javascript:location.href=&quot;/com/expo/info/' + ${list.expo_code} +'/' + ${list.expo_cate} + '&quot;'">2024 예일 박람회</p>
+                <div class="period-box2">
+                    <p th:text="${list.expo_start}">2024-01-10</p>
+                    <p th:text="${list.expo_end}">2024-01-10</p>
+                    <p th:text="${list.expo_time}">10:00</p>
+                    <p th:text="${list.expo_end_time}">10:00</p>
+                </div>
+                <span class="place" th:text="${list.expo_add}">장소</span>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+    <nav aria-label="Page navigation example" class="pageBtn">
+        <ul class="pagination" >
+        </ul>
+    </nav>
+
+    <!-- 페이징 처리하기 -->
+    <span style="display:none;" class="total_page" th:text="${TotalPage}"></span>
+
+</div>
+<div class="s_header" th:replace="~{comuser/side/expo/expoSide_1 :: expoSide_1}"></div>
+<!--<div class="footer" th:replace="~{user/footer/userFooter2 :: userFooter2}"></div>-->
+<script>
+
+    let S_btn = document.querySelector('.S_btn');
+
+    S_btn.onclick = () => {
+        let d1 = document.querySelector('.d1').value;
+        let d2 = document.querySelector('.d2').value;
+
+        console.log(d1);
+        console.log(d2);
+
+        if(!d1 || !d2){
+            alert("기간을 선택해주세요");
+            return false;
+        }
+    }
+
+    let total_page = document.querySelector('.total_page').textContent;
+    console.log(total_page);
+
+
+
+    // 부모 요소
+    var paginationContainer = document.querySelector(".pagination");
+
+    if (paginationContainer) {
+        // 이전 버튼
+        var prevButton = document.createElement("li");
+        prevButton.classList.add("page-item");
+
+        let d1 = document.querySelector('.d1');
+        console.log(d1)
+
+        const urlParams = new URL(location.href).searchParams;
+        const Search = urlParams.get('serch');
+        const start = urlParams.get('date_start');
+        const end = urlParams.get('date_end');
+
+        if(start != null){
+            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        }else{
+            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        }
+
+        paginationContainer.appendChild(prevButton);
+
+        // 페이지 번호 생성
+        for (var i = 1; i <= total_page; i++) {
+            var pageItem = document.createElement("li");
+            pageItem.classList.add("page-item");
+            if(start != null){
+                pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
+            }else{
+                pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
+            }
+            paginationContainer.appendChild(pageItem);
+        }
+
+        // 다음 버튼
+        var nextButton = document.createElement("li");
+        nextButton.classList.add("page-item");
+        if(start != null){
+            nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        }else{
+            nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        }
+
+        paginationContainer.appendChild(nextButton);
+    }
+
+// 기간 선택 버튼에 이벤트 리스너 추가
+document.querySelectorAll('.btns button').forEach(function(button) {
+    button.addEventListener('click', function() {
+        // 현재 날짜 구하기
+        var today = new Date();
+
+        // 오늘 날짜를 "YYYY-MM-DD" 형식으로 포맷
+        var formattedToday = today.toISOString().split('T')[0];
+
+        // 버튼에 따라 기간 설정
+        var monthsToAdd = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
+
+        // 선택된 기간 후의 날짜 계산
+        today.setMonth(today.getMonth() + monthsToAdd);
+
+        // 선택된 기간 후의 날짜를 "YYYY-MM-DD" 형식으로 포맷
+        var formattedNextDate = today.toISOString().split('T')[0];
+
+        // "date_start"와 "date_end" 입력 필드의 값을 설정
+        document.querySelector('input[name="date_start"]').value = formattedToday;
+        document.querySelector('input[name="date_end"]').value = formattedNextDate;
+    });
+});
+
+
+</script>
+</body>
+</html>

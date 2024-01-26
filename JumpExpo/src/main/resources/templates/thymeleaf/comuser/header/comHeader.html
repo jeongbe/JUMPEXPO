@@ -25,11 +25,11 @@
             <a class="logo" th:href="@{/com/JumpExpo/main}"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
 
             <nav class="mainMenu">
-                <a href="#">행사일정</a>
-                <a href="#">고객센터</a>
+                <a href="/com/allexpo">행사일정</a>
                 <a href="#">채용공고</a>
-                <a href="#">리뷰</a>
-                <a href="#">신청하기</a>
+                <a href="/com/review/emp">리뷰</a>
+                <a  href="/com/insert/employ">신청하기</a>
+                <a href="#">고객센터</a>
             </nav>
             <div class="header_right">
                 <th:block th:if="${company ne null}">
@@ -60,27 +60,27 @@
         <div class="subMenu">
             <nav class="subMenuWrap">
                 <ul class="header_ul">
-                    <li><a href="#">전체일정</a></li>
-                    <li><a href="#">취업박람회 일정</a></li>
-                    <li><a href="#">페어 일정</a></li>
-                    <li><a href="#">채용박람회</a></li>
+                    <li><a href="/com/allexpo">전체일정</a></li>
+                    <li><a href="/com/emp/expolist">취업박람회 일정</a></li>
+                    <li><a href="/com/fair/expolist">페어 일정</a></li>
+                    <li><a href="/com/rec/expolist">채용박람회</a></li>
                 </ul>
                 <ul class="header_ul">
-                    <li><a href="#">공지사항</a></li>
-                    <li><a href="#">Q&A</a></li>
+                    <li><a href="/com/show/employlist">공고보기</a></li>
                 </ul>
                 <ul class="header_ul">
-                    <li><a href="#">공고보기</a></li>
-                </ul>
-                <ul class="header_ul">
-                    <li><a href="#">전체 리뷰</a></li>
-                    <li><a href="#">취업박람회 리뷰</a></li>
-                    <li><a href="#">페어 리뷰</a></li>
-                    <li><a href="#">채용박람회 리뷰</a></li>
+<!--                    <li><a href="#">전체 리뷰</a></li>-->
+                    <li><a href="/com/review/emp">취업박람회 리뷰</a></li>
+                    <li><a href="/com/review/fair">페어 리뷰</a></li>
+                    <li><a href="/com/review/rec">채용박람회 리뷰</a></li>
                 </ul>
                 <ul class="header_ul">
                     <li><a href="/com/insert/employ">채용 공고 신청하기</a></li>
                     <li><a href="/com/app/list">박람회 행사 신청하기</a></li>
+                </ul>
+                <ul class="header_ul">
+                    <li><a href="/com/show/nt">공지사항</a></li>
+                    <li><a href="/com/show/qu">Q&A</a></li>
                 </ul>
             </nav>
         </div>

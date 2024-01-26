@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/user/notice/notice.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <title> 기업 공지사항 리스트</title>
+</head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+<body>
+
+<!--    유저 공지사항 리스트-->
+<div class="content">
+    <div class="body_title">
+        <span>공지</span>
+        <span>사항</span>
+    </div>
+
+    <div class="body_title_right">
+        <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 고객 센터 > 공지 사항
+    </div>
+
+    <div class="con_search">
+        <select id="searchOption" class="search" style="color:#787878; font-weight:700;">
+            <option value="title">제목</option>
+            <option value="number">번호</option>
+        </select>
+        <input id="searchInput" type="text">
+        <button onclick="searchNotices()">검색</button>
+    </div>
+
+    <form enctype="multipart/form-data">
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>등록일</th>
+                <th>조회수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list : ${NoticeList}">
+
+                <td th:text="${list.not_code}"></td>
+                <td>
+                    <a th:href="@{/com/show/nt/{notCode}(notCode=${list.not_code})}" th:text="${list.not_title}"></a>
+                </td>
+                <td th:text="${list.not_date}"></td>
+                <td th:text="${list.not_cnt}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <div class="paging" id="pagination">
+        <button onclick="previousPage()"><</button>
+        <div id="pageNumbers"></div>
+        <button onclick="nextPage()">></button>
+    </div>
+    <!--    게시물 총 개수 구하기-->
+    <div class="total_post"><span>총 <span th:text="${NoticeList.size()}"></span>개</span></div>
+</div>
+<div class="s_header" th:replace="~{comuser/side/qnaSide :: qnaSide}"></div>
+<script>
+    // 페이징
+            // 초기 페이지 설정
+            let currentPage = 1;
+            let rowsPerPage = 10;
+            let table = document.querySelector('table');
+            let rows = table.querySelectorAll('tr');
+            let totalRows = rows.length - 1; // 헤더 제외
+            let totalPages = Math.ceil(totalRows / rowsPerPage);
+            let pagination = document.getElementById('pageNumbers');
+
+            function showPage(page) {
+                for (let i = 1; i <= totalRows; i++) {
+                    if (i <= page * rowsPerPage && i > (page - 1) * rowsPerPage) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            function generatePageNumbers() {
+                let pageNumbersHTML = '';
+                for (let i = 1; i <= totalPages; i++) {
+                    pageNumbersHTML += `<span class="page-number" onclick="goToPage(${i})">${i}</span>`;
+                }
+                pagination.innerHTML = pageNumbersHTML;
+            }
+
+            function goToPage(page) {
+                if (page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    showPage(currentPage);
+                    generatePageNumbers();
+                }
+            }
+
+            function nextPage() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                    generatePageNumbers();
+                }
+            }
+
+            function previousPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                    generatePageNumbers();
+                }
+            }
+
+            showPage(currentPage);
+            generatePageNumbers();
+
+<!--            키워드 별로 검색-->
+            function searchNotices() {
+                var searchOption = $("#searchOption").val().toLowerCase();
+                var searchValue = $("#searchInput").val().toLowerCase();
+
+                $("tbody tr").each(function () {
+                    var noticeValue = $(this).find("td:nth-child(" + (searchOption === "number" ? 1 : 2) + ")").text().toLowerCase();
+
+                    if (noticeValue.includes(searchValue)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+</script>
+</body>
+<!--<div class="s_header" th:replace="~{user/side/noticeSide :: noticeSide}"></div>-->
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+</html>

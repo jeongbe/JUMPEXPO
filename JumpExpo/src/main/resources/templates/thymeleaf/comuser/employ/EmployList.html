@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="/static/css/user/employ/EmployList.css" rel="stylesheet" />
+
+    <script src="/static/js/user/jquery-3.7.0.min.js"></script>
+
+    <title>공고 보기</title>
+</head>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
+<body>
+<main>
+    <content>
+        <div class="body">
+            <div class="body_title">
+                <span>공고</span>
+                <span>보기</span>
+            </div>
+
+            <div class="body_title_right">
+                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 채용공고 > 공고 보기
+            </div>
+
+            <!-- 주요내용 -->
+            <div class="search_background">
+                <div class="search_content">
+                    <input type="text" id="searchInput"> <!-- 검색 입력 필드에 ID 추가 -->
+                    <button onclick="searchListings()">검색</button> <!-- 검색 버튼에 onclick 이벤트 추가 -->
+                </div>
+            </div>
+
+            <div class="contents">
+                <div>
+                    <ul class="tabMenu"> <!-- tabMenu:공지사항과 갤러리 묶어줌 -->
+                        <li class="active">
+
+                            <a style="cursor: pointer;">전체</a>
+                            <div class="tabBG notice">
+                                <table id="table-all">
+                                    <th class="table_one">번호</th>
+                                    <th class="table_three">제목</th>
+                                    <th class="table_four">날짜</th>
+                                    <th class="table_five">지원자 수</th>
+
+                                    <!-- tr 데이터 추가 -->
+                                    <!-- 10개 데이터당 한 페이지 -->
+                                    <tr th:each="allList, iterStat : ${allList}">
+                                        <td class="td_number" th:text="${iterStat.index + 1}">1</td>
+                                        <td>
+                                            <a th:href="@{'/com/show/employlist/' + ${allList.emnot_code} + '/' + ${allList.com_code}}" th:text="${allList.emnot_title}"></a>
+                                        </td>
+                                        <td>
+                                            <span th:text="${allList.emnot_start}">2024-01-04</span>
+                                            <span>~</span>
+                                            <span th:text="${allList.emnot_end}">2024-01-25</span>
+                                        </td>
+                                        <td th:text="${applicantCounts[allList.emnot_code]}">0</td>
+                                    </tr>
+
+                                </table>
+                                <div class="paging" id="pagination-all">
+                                    <button onclick="previousPageAll()"><</button>
+                                    <div class="pagenum" id="pageNumbers-all"></div>
+                                    <button onclick="nextPageAll()">></button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a style="cursor: pointer;">디자인</a>
+                            <div class="tabBG gallery">
+                                <table id="table-design">
+                                    <th class="table_one">번호</th>
+                                    <th class="table_three">제목</th>
+                                    <th class="table_four">날짜</th>
+                                    <th class="table_five">지원자 수</th>
+
+                                    <!-- tr 데이터 추가 -->
+                                    <!-- 10개 데이터당 한 페이지 -->
+                                    <tr th:each="designList, iterStat : ${designList}">
+                                        <td class="td_number" th:text="${iterStat.index + 1}">1</td>
+                                        <td>
+                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${designList.emnot_code}, com_code=${designList.com_code})}" th:text="${designList.emnot_title}"></a>
+                                        </td>
+                                        <td>
+                                            <span th:text="${designList.emnot_start}">2024-01-04</span>
+                                            <span>~</span>
+                                            <span th:text="${designList.emnot_end}">2024-01-25</span>
+                                        </td>
+                                        <td th:text="${applicantCounts[designList.emnot_code]}">0</td>
+                                    </tr>
+
+                                </table>
+                                <div class="paging" id="pagination-design">
+                                    <button onclick="previousPageDesign()"><</button>
+                                    <div class="pagenum" id="pageNumbers-design"></div>
+                                    <button onclick="nextPageDesign()">></button>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+
+                            <a style="cursor: pointer;">프론트</a>
+                            <div class="tabBG gallery">
+                                <table id="table-front">
+                                    <th class="table_one">번호</th>
+                                    <th class="table_three">제목</th>
+                                    <th class="table_four">날짜</th>
+                                    <th class="table_five">지원자 수</th>
+
+                                    <!-- tr 데이터 추가 -->
+                                    <!-- 10개 데이터당 한 페이지 -->
+                                    <tr th:each="frontList, iterStat : ${frontList}">
+                                        <td class="td_number" th:text="${iterStat.index + 1}">1</td>
+                                        <td>
+                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${frontList.emnot_code}, com_code=${frontList.com_code})}" th:text="${frontList.emnot_title}"></a>
+                                        </td>
+                                        <td>
+                                            <span th:text="${frontList.emnot_start}">2024-01-04</span>
+                                            <span>~</span>
+                                            <span th:text="${frontList.emnot_end}">2024-01-25</span>
+                                        </td>
+                                        <td th:text="${applicantCounts[frontList.emnot_code]}">0</td>
+                                    </tr>
+
+                                </table>
+                                <div class="paging" id="pagination-front">
+                                    <button onclick="previousPageFront()"><</button>
+                                    <div class="pagenum" id="pageNumbers-front"></div>
+                                    <button onclick="nextPageFront()">></button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+
+                            <a style="cursor: pointer;">백엔드</a>
+                            <div class="tabBG gallery">
+                                <table id="table-backend">
+                                    <th class="table_one">번호</th>
+                                    <th class="table_three">제목</th>
+                                    <th class="table_four">날짜</th>
+                                    <th class="table_five">지원자 수</th>
+
+                                    <!-- tr 데이터 추가 -->
+                                    <!-- 10개 데이터당 한 페이지 -->
+                                    <tr th:each="backendList, iterStat : ${backendList}">
+                                        <td class="td_number" th:text="${iterStat.index + 1}">1</td>
+                                        <td>
+                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${backendList.emnot_code}, com_code=${backendList.com_code})}" th:text="${backendList.emnot_title}"></a>
+                                        </td>
+                                        <td>
+                                            <span th:text="${backendList.emnot_start}">2024-01-04</span>
+                                            <span>~</span>
+                                            <span th:text="${backendList.emnot_end}">2024-01-25</span>
+                                        </td>
+                                        <td th:text="${applicantCounts[backendList.emnot_code]}">0</td>
+                                    </tr>
+
+                                </table>
+                                <div class="paging" id="pagination-backend">
+                                    <button onclick="previousPageBackend()"><</button>
+                                    <div class="pagenum" id="pageNumbers-backend"></div>
+                                    <button onclick="nextPageBackend()">></button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+
+                            <a style="cursor: pointer;">기타</a>
+                            <div class="tabBG gallery">
+                                <table id="table-etc">
+                                    <th class="table_one">번호</th>
+                                    <th class="table_three">제목</th>
+                                    <th class="table_four">날짜</th>
+                                    <th class="table_five">지원자 수</th>
+
+                                    <!-- tr 데이터 추가 -->
+                                    <!-- 10개 데이터당 한 페이지 -->
+                                    <tr th:each="etcList, iterStat : ${etcList}">
+                                        <td class="td_number" th:text="${iterStat.index + 1}">1</td>
+                                        <td>
+                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${etcList.emnot_code}, com_code=${etcList.com_code})}" th:text="${etcList.emnot_title}"></a>
+                                        </td>
+                                        <td>
+                                            <span th:text="${etcList.emnot_start}">2024-01-04</span>
+                                            <span>~</span>
+                                            <span th:text="${etcList.emnot_end}">2024-01-25</span>
+                                        </td>
+                                        <!--                                        지원자 수-->
+                                        <td th:text="${applicantCounts[etcList.emnot_code]}">0</td>
+                                    </tr>
+
+                                </table>
+                                <div class="paging" id="pagination-etc">
+                                    <button onclick="previousPageEtc()"><</button>
+                                    <div class="pagenum" id="pageNumbers-etc"></div>
+                                    <button onclick="nextPageEtc()">></button>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul> <!-- tabMenu 끝 -->
+                </div>
+            </div>
+        </div>
+    </content>
+</main>
+<script>
+
+    $(document).ready(function () {
+        // 서브메뉴 숨기고 시작
+        $(".subMenu").hide();
+
+        // 마우스 오버
+        $(".mainMenu, .subMenu").mouseover(function () {
+            $(".subMenu").stop().slideDown(500);
+        }).mouseout(function () {
+            $(".subMenu").stop().slideUp(500);
+        });
+
+
+
+        // 탭 클릭 이벤트 핸들러
+        $('.tabMenu>li>a').click(function () {
+            // 모든 탭에서 active 클래스 제거
+            $('.tabMenu>li').removeClass('active');
+
+            // 클릭된 탭에 active 클래스 추가
+            $(this).parent().addClass('active');
+
+            // 클릭된 탭의 텍스트를 기준으로 페이징 로직 초기화
+            var selectedTab = $(this).text().trim();
+            switch (selectedTab) {
+                case '전체':
+                    initializePagingForAllTab();
+                    break;
+                case '디자인':
+                    initializePagingForDesignTab();
+                    break;
+                case '프론트':
+                    initializePagingForFrontTab();
+                    break;
+                case '백엔드':
+                    initializePagingForBackendTab();
+                    break;
+                case '기타':
+                    initializePagingForEtcTab();
+                    break;
+            }
+        });
+
+        // 초기 탭 설정
+        initializePagingForAllTab();
+    });
+
+
+
+
+function searchListings() {
+    var searchValue = $("#searchInput").val().toLowerCase();
+    var activeTable = $(".tabMenu li.active").find('table').attr('id'); // 현재 활성화된 탭의 테이블 ID
+
+    $("#" + activeTable + " tr:not(:first)").each(function() {
+        var titleValue = $(this).find("td:nth-child(2)").text().toLowerCase();
+
+        if (titleValue.includes(searchValue)) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+}
+
+// 탭 클릭 이벤트 핸들러 수정
+$('.tabMenu>li>a').click(function () {
+
+    $("#searchInput").val('');
+    // 선택된 탭의 리스트를 다시 보여줌
+    searchListings();
+});
+
+
+
+
+
+    // 페이징
+
+    function initializePagingForAllTab() {
+        currentPageAll = 1;
+        rowsPerPageAll = 10;
+        tableAll = document.getElementById('table-all');
+        rowsAll = tableAll.getElementsByTagName('tr');
+        totalRowsAll = rowsAll.length;
+        totalPagesAll = Math.ceil((totalRowsAll - 1) / rowsPerPageAll); // 첫 번째 행(테이블 헤더) 제외
+        showPageAll(currentPageAll);
+        generatePageNumbersAll();
+    }
+
+    function showPageAll(page) {
+        let start = (page - 1) * rowsPerPageAll + 1; // 첫 번째 행(테이블 헤더) 제외
+        let end = start + rowsPerPageAll;
+        for (let i = 1; i < totalRowsAll; i++) { // 첫 번째 행(테이블 헤더) 제외
+            rowsAll[i].style.display = (i >= start && i < end) ? '' : 'none';
+        }
+    }
+
+    function generatePageNumbersAll() {
+        let paginationAll = document.getElementById('pageNumbers-all');
+        paginationAll.innerHTML = '';
+        for (let i = 1; i <= totalPagesAll; i++) {
+            let span = document.createElement('span');
+            span.className = 'page-number';
+            span.innerText = i;
+            span.onclick = function () { goToPageAll(i); };
+            paginationAll.appendChild(span);
+        }
+    }
+
+    function goToPageAll(page) {
+        currentPageAll = page;
+        showPageAll(page);
+    }
+
+    function nextPageAll() {
+        if (currentPageAll < totalPagesAll) {
+            currentPageAll++;
+            showPageAll(currentPageAll);
+        }
+    }
+
+    function previousPageAll() {
+        if (currentPageAll > 1) {
+            currentPageAll--;
+            showPageAll(currentPageAll);
+        }
+    }
+
+    //디자인 탭
+    function initializePagingForDesignTab() {
+        currentPageDesign = 1;
+        rowsPerPageDesign = 10;
+        tableDesign = document.getElementById('table-design');
+        rowsDesign = tableDesign.getElementsByTagName('tr');
+        totalRowsDesign = rowsDesign.length;
+        totalPagesDesign = Math.ceil((totalRowsDesign - 1) / rowsPerPageDesign); // 첫 번째 행(테이블 헤더) 제외
+        showPageDesign(currentPageDesign);
+        generatePageNumbersDesign();
+    }
+
+    function showPageDesign(page) {
+        let start = (page - 1) * rowsPerPageDesign + 1; // 첫 번째 행(테이블 헤더) 제외
+        let end = start + rowsPerPageDesign;
+        for (let i = 1; i < totalRowsDesign; i++) { // 첫 번째 행(테이블 헤더) 제외
+            rowsDesign[i].style.display = (i >= start && i < end) ? '' : 'none';
+        }
+    }
+
+    function generatePageNumbersDesign() {
+        let paginationDesign = document.getElementById('pageNumbers-design');
+        paginationDesign.innerHTML = '';
+        for (let i = 1; i <= totalPagesDesign; i++) {
+            let span = document.createElement('span');
+            span.className = 'page-number';
+            span.innerText = i;
+            span.onclick = function () { goToPageDesign(i); };
+            paginationDesign.appendChild(span);
+        }
+    }
+
+    function goToPageDesign(page) {
+        currentPageDesign = page;
+        showPageDesign(page);
+    }
+
+    function nextPageDesign() {
+        if (currentPageDesign < totalPagesDesign) {
+            currentPageDesign++;
+            showPageDesign(currentPageDesign);
+        }
+    }
+
+    function previousPageDesign() {
+        if (currentPageDesign > 1) {
+            currentPageDesign--;
+            showPageDesign(currentPageDesign);
+        }
+    }
+
+
+
+    //프론트 탭
+    function initializePagingForFrontTab() {
+        currentPageFront = 1;
+        rowsPerPageFront = 10;
+        tableFront = document.getElementById('table-front');
+        rowsFront = tableFront.getElementsByTagName('tr');
+        totalRowsFront = rowsFront.length;
+        totalPagesFront = Math.ceil((totalRowsFront - 1) / rowsPerPageFront); // 첫 번째 행(테이블 헤더) 제외
+        showPageFront(currentPageFront);
+        generatePageNumbersFront();
+    }
+
+    function showPageFront(page) {
+        let start = (page - 1) * rowsPerPageFront + 1; // 첫 번째 행(테이블 헤더) 제외
+        let end = start + rowsPerPageFront;
+        for (let i = 1; i < totalRowsFront; i++) { // 첫 번째 행(테이블 헤더) 제외
+            rowsFront[i].style.display = (i >= start && i < end) ? '' : 'none';
+        }
+    }
+
+    function generatePageNumbersFront() {
+        let paginationFront = document.getElementById('pageNumbers-front');
+        paginationFront.innerHTML = '';
+        for (let i = 1; i <= totalPagesFront; i++) {
+            let span = document.createElement('span');
+            span.className = 'page-number';
+            span.innerText = i;
+            span.onclick = function () { goToPageFront(i); };
+            paginationFront.appendChild(span);
+        }
+    }
+
+    function goToPageFront(page) {
+        currentPageFront = page;
+        showPageFront(page);
+    }
+
+    function nextPageFront() {
+        if (currentPageFront < totalPagesFront) {
+            currentPageFront++;
+            showPageFront(currentPageFront);
+        }
+    }
+
+    function previousPageFront() {
+        if (currentPageFront > 1) {
+            currentPageFront--;
+            showPageFront(currentPageFront);
+        }
+    }
+
+
+    //백엔드(backend Backend) 탭
+    function initializePagingForBackendTab() {
+        currentPageBackend = 1;
+        rowsPerPageBackend = 10;
+        tableBackend = document.getElementById('table-backend');
+        rowsBackend = tableBackend.getElementsByTagName('tr');
+        totalRowsBackend = rowsBackend.length;
+        totalPagesBackend = Math.ceil((totalRowsBackend - 1) / rowsPerPageBackend); // 첫 번째 행(테이블 헤더) 제외
+        showPageBackend(currentPageBackend);
+        generatePageNumbersBackend();
+    }
+
+    function showPageBackend(page) {
+        let start = (page - 1) * rowsPerPageBackend + 1; // 첫 번째 행(테이블 헤더) 제외
+        let end = start + rowsPerPageBackend;
+        for (let i = 1; i < totalRowsBackend; i++) { // 첫 번째 행(테이블 헤더) 제외
+            rowsBackend[i].style.display = (i >= start && i < end) ? '' : 'none';
+        }
+    }
+
+    function generatePageNumbersBackend() {
+        let paginationBackend = document.getElementById('pageNumbers-backend');
+        paginationBackend.innerHTML = '';
+        for (let i = 1; i <= totalPagesBackend; i++) {
+            let span = document.createElement('span');
+            span.className = 'page-number';
+            span.innerText = i;
+            span.onclick = function () { goToPageBackend(i); };
+            paginationBackend.appendChild(span);
+        }
+    }
+
+    function goToPageBackend(page) {
+        currentPageBackend = page;
+        showPageBackend(page);
+    }
+
+    function nextPageBackend() {
+        if (currentPageBackend < totalPagesBackend) {
+            currentPageBackend++;
+            showPageBackend(currentPageBackend);
+        }
+    }
+
+    function previousPageBackend() {
+        if (currentPageBackend > 1) {
+            currentPageBackend--;
+            showPageBackend(currentPageBackend);
+        }
+    }
+
+
+    //기타(etc Etc) 탭
+    function initializePagingForEtcTab() {
+        currentPageEtc = 1;
+        rowsPerPageEtc = 10;
+        tableEtc = document.getElementById('table-etc');
+        rowsEtc = tableEtc.getElementsByTagName('tr');
+        totalRowsEtc = rowsEtc.length;
+        totalPagesEtc = Math.ceil((totalRowsEtc - 1) / rowsPerPageEtc); // 첫 번째 행(테이블 헤더) 제외
+        showPageEtc(currentPageEtc);
+        generatePageNumbersEtc();
+    }
+
+    function showPageEtc(page) {
+        let start = (page - 1) * rowsPerPageEtc + 1; // 첫 번째 행(테이블 헤더) 제외
+        let end = start + rowsPerPageEtc;
+        for (let i = 1; i < totalRowsEtc; i++) { // 첫 번째 행(테이블 헤더) 제외
+            rowsEtc[i].style.display = (i >= start && i < end) ? '' : 'none';
+        }
+    }
+
+    function generatePageNumbersEtc() {
+        let paginationEtc = document.getElementById('pageNumbers-etc');
+        paginationEtc.innerHTML = '';
+        for (let i = 1; i <= totalPagesEtc; i++) {
+            let span = document.createElement('span');
+            span.className = 'page-number';
+            span.innerText = i;
+            span.onclick = function () { goToPageEtc(i); };
+            paginationEtc.appendChild(span);
+        }
+    }
+
+    function goToPageEtc(page) {
+        currentPageEtc = page;
+        showPageEtc(page);
+    }
+
+    function nextPageEtc() {
+        if (currentPageEtc < totalPagesEtc) {
+            currentPageEtc++;
+            showPageEtc(currentPageEtc);
+        }
+    }
+
+    function previousPageEtc() {
+        if (currentPageEtc > 1) {
+            currentPageEtc--;
+            showPageEtc(currentPageEtc);
+        }
+    }
+</script>
+</body>
+<!--<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>-->
+<!--<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>-->
+</html>

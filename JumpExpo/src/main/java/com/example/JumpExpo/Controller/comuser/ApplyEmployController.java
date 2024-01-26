@@ -2,9 +2,13 @@ package com.example.JumpExpo.Controller.comuser;
 
 import com.example.JumpExpo.DTO.comuser.EmployForm;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
+import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +23,21 @@ public class ApplyEmployController {
     @Autowired
     ApplyEmployRepository applyEmployRepository;
 
-    //채용 공고 신청 페이지
-    @GetMapping("/insert/employ/{com_code}")
-    public String insertEmploy(Model model, @PathVariable("com_code") int comCode){
+    @Autowired
+    CompanyRepository companyRepository;
 
-        model.addAttribute("comCode", comCode);
+    //채용 공고 신청 페이지
+    @GetMapping("/insert/employ")
+    public String insertEmploy(Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
+
+        model.addAttribute("comCode", company.getCom_code());
 
         return "comuser/applyemploy/ApplyEmploy";
     }

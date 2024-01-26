@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/static/css/user/qna/QnaDetail.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <title>유저 공지사항 상세 페이지</title>
+</head>
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+<body>
+
+<!--    유저 공지사항 상세-->
+<div class="detail_wrap">
+    <!-- 제목부분 -->
+    <div class="nt_title">
+        <div th:text="${qna.qu_title}"></div>
+    </div>
+    <!-- 작성자 등록일 조회수 -->
+    <div class="view_info">
+        <div class="writer">작성자</div><div class="admin" th:text="${userName}"></div>
+
+        <div class="date">등록일</div><div th:text="${qna.qu_date}" class="nt_dt"></div>
+    </div>
+
+<!--    비밀글 설정 추가하기-->
+
+    <!-- 내용  -->
+    <div class="content" th:utext="${qna.qu_content}"></div>
+    <!-- 목록으로돌아가기 -->
+    <button class="list"><a href="/users/show/qu" style="color:#fff; text-decoration:none;">목록</a></button>
+</div>
+<div class="s_header" th:replace="~{user/side/qnaSide :: qnaSide}"></div>
+<div style="margin-top:200px;" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+</body>
+</html>
