@@ -27,7 +27,9 @@ public class ComReviewController {
 
     @GetMapping("/review/fair")
     public String UserReviewFair(Model model,@RequestParam(value="page", defaultValue="0")int page,
-                            @RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target){
+                            @RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,
+                            @RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
+                            @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
         log.info(serch);
         log.info(target);
         Page<UserReview> list = null;
@@ -37,7 +39,7 @@ public class ComReviewController {
 
             //전체
             if("all".equals(target)){
-                list = expoService.getUserReSearchList(page,serch,1);
+                list = expoService.getUserReSearchList(page,serch,1,dateStart,dateEnd);
 
             }else if("hits".equals(target)){ //조회수 많은 순
                 list = expoService.getUserReHitList(page,serch,1);
@@ -65,7 +67,9 @@ public class ComReviewController {
     //취업 리뷰 리스트
 
     @GetMapping("/review/emp")
-    public String UserReviewEmp(@RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,Model model,@RequestParam(value="page", defaultValue="0")int page){
+    public String UserReviewEmp(@RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,Model model,@RequestParam(value="page", defaultValue="0")int page,
+                                @RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
+                                @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
 
         log.info(serch);
         log.info(target);
@@ -76,7 +80,7 @@ public class ComReviewController {
 
             //전체
             if("all".equals(target)){
-                list = expoService.getUserReSearchList(page,serch,0);
+                list = expoService.getUserReSearchList(page,serch,0,dateStart,dateEnd);
 
             }else if("hits".equals(target)){ //조회수 많은 순
                 list = expoService.getUserReHitList(page,serch,0);
@@ -106,7 +110,9 @@ public class ComReviewController {
 
     @GetMapping("/review/rec")
     public String UserReviewRec(Model model,@RequestParam(value="page", defaultValue="0")int page,
-                                @RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target){
+                                @RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,
+                                @RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
+                                @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
         log.info(serch);
         log.info(target);
         Page<UserReview> list = null;
@@ -116,7 +122,7 @@ public class ComReviewController {
 
             //전체
             if("all".equals(target)){
-                list = expoService.getUserReSearchList(page,serch,2);
+                list = expoService.getUserReSearchList(page,serch,2,dateStart,dateEnd);
 
             }else if("hits".equals(target)){ //조회수 많은 순
                 list = expoService.getUserReHitList(page,serch,2);

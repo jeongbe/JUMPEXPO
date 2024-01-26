@@ -49,8 +49,9 @@ public interface UserReviewRepository extends JpaRepository<UserReview,Integer> 
     @Query(value = "select *\n" +
             "from review_table\n" +
             "where expo_cate = :expoCate\n" +
-            "and re_title like %:search%", nativeQuery = true)
-    Page<UserReview> UserReSerch(Pageable pageable,@Param("search") String search,@Param("expoCate") int expoCate);
+            "and re_title like %:search%\n" +
+            "and re_date BETWEEN :StartDate AND date_add(:EndDate, INTERVAL 1 Month)", nativeQuery = true)
+    Page<UserReview> UserReSerch(Pageable pageable,@Param("search") String search,@Param("expoCate") int expoCate,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
 
     //검색 했을때 리뷰 많은 순했을때
     @Query(value = "select *\n" +

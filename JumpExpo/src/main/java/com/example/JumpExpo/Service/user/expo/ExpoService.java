@@ -149,9 +149,9 @@ public class ExpoService {
 
     //2024.01.24 정정빈
     // 리뷰 검색 했을때
-    public Page<UserReview> getUserReSearchList(int page, String search,int expoCate){
+    public Page<UserReview> getUserReSearchList(int page, String search,int expoCate,String StartDate,String EndDate){
         Pageable pageable = PageRequest.of(page,6);
-        return this.userReviewRepository.UserReSerch(pageable,search,expoCate);
+        return this.userReviewRepository.UserReSerch(pageable,search,expoCate,StartDate,EndDate);
     }
 
     public Page<UserReview> getUserReHitList(int page,String search,int expoCate){
