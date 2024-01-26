@@ -22,7 +22,7 @@
 .body_title {
      position: absolute;
         top: 93px;
-        left: -50px;
+        left: -60px;
         width: 920px;
         padding-bottom: 15px;
         border-bottom: 3px solid #374658;
@@ -40,6 +40,11 @@
         top: 100px;
         right: 70px;
 }
+.body_title_right img {
+    position: absolute;
+    left: -26px;
+    top: 2px;
+}
 .contents {
     position: absolute;
     top: 160px;
@@ -49,13 +54,39 @@
     padding: 0;
     margin: 10px 0;
 }
+
 .imgs {
         margin-top: 180px;
         width: 920px;
-        background-color: antiquewhite;
         height: 250px;
         margin-left: -60px;
 }
+.imgslide{
+    /* float:right; */
+    width:920px;
+    height:250px;
+    position:relative;
+    overflow:hidden;
+}
+.slidelist{
+    width:2760px;
+}
+.slidelist img {
+    width:920px;
+    height:250px;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+}
+.slidelist ul li{
+    float:left;
+    width:920px;
+    list-style: none;
+    height:250px;
+}
+.slidelist ul li>a{
+    position:relative;
+}
+
 
 .select-box {
             width: 920px;

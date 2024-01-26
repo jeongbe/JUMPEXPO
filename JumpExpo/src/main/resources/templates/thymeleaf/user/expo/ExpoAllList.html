@@ -67,7 +67,29 @@
         </div>
     </div>
     <div class="imgs">
-        <img src="" alt="" />
+        <div class="imgslide">
+            <div class="slidelist">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="/static/images/1.png" alt="이미지1">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="/static/images/2.png" alt="이미지2">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="/static/images/3.png" alt="이미지3">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="contents">
@@ -126,6 +148,15 @@
 <div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
 <!--<div class="footer" th:replace="~{user/footer/userFooter2 :: userFooter2}"></div>-->
 <script>
+    setInterval(function(){
+            $('.slidelist').delay(2000);
+            $('.slidelist').animate({marginLeft:-920});
+            $('.slidelist').delay(2000);
+            $('.slidelist').animate({marginLeft:-1840});
+            $('.slidelist').delay(2000);
+            $('.slidelist').animate({marginLeft:0});
+            $('.slidelist').delay(2000);
+            });
 
     let S_btn = document.querySelector('.S_btn');
 

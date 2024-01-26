@@ -3,19 +3,11 @@
 <header th:fragment="userHeader">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-    />
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
-    ></script>
     <link href="/static/css/user/header/userHeader.css" rel="stylesheet" />
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <title>유저 헤더</title>
     <body>
     <main>
@@ -24,21 +16,21 @@
             <a class="logo" href="/users/userMain"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
             <nav class="mainMenu">
                 <a href="#">행사일정</a>
-                <a href="#">고객센터</a>
                 <a href="#">채용공고</a>
                 <a href="#">리뷰</a>
+                <a href="#">고객센터</a>
             </nav>
             <div class="header_right">
                 <!-- 유저 모델이 존재하는 경우 -->
                 <th:block th:if="${users ne null}">
                     <a th:href="@{/users/myPage}">
-                        <div>
-                            마이페이지
+                        <div class="mypage" style="margin-right:40px;">
+                            <img src="/static/images/mypage_icon.png" alt="마이페이지이미지" style="width:30px; height:30px;" onmouseover="this.src='/static/images/mypage_hover.png'">
                         </div>
                     </a>
                     <a th:href="@{/logout}">
-                        <div>
-                            로그아웃
+                        <div class="logout">
+                            <img src="/static/images/logout_icon.png" alt="로그아웃이미지" style="width:30px; height:30px;" onmouseover="this.src='/static/images/logout_hover.png'">
                         </div>
                     </a>
                 </th:block>
@@ -47,7 +39,7 @@
                 <th:block th:unless="${users ne null}">
                     <a th:href="@{/JumpExpo/Login}">
                         <div>
-                            로그인하기
+                            <img src="/static/images/login_icon.png" alt="로그인이미지" style="width:30px; height:30px;"  onmouseover="this.src='/static/images/login_hover.png'">
                         </div>
                     </a>
                 </th:block>
@@ -64,10 +56,6 @@
                     <li><a href="/users/rec/expolist">채용박람회</a></li>
                 </ul>
                 <ul>
-                    <li><a href="/users/show/nt">공지사항</a></li>
-                    <li><a href="#">Q&A</a></li>
-                </ul>
-                <ul>
                     <li><a href="/users/show/employlist">공고보기</a></li>
                 </ul>
                 <ul>
@@ -76,20 +64,36 @@
                     <li><a href="/users/review/fair">페어 리뷰</a></li>
                     <li><a href="/users/review/rec">채용박람회 리뷰</a></li>
                 </ul>
+                <ul>
+                    <li><a href="/users/show/nt">공지사항</a></li>
+                    <li><a href="/users/show/qu">Q&A</a></li>
+                </ul>
             </nav>
         </div>
     </main>
     <script>
         $(document).ready(function () {
-            //**** 마우스오버  ****//
-            //서브메뉴 숨기고 시작
+            // 서브메뉴 숨기고 시작
             $(".subMenu").hide();
+
             // 마우스 오버
             $(".mainMenu, .subMenu").mouseover(function () {
                 $(".subMenu").stop().slideDown(500);
             }).mouseout(function () {
                 $(".subMenu").stop().slideUp(500);
             });
+
+            // 이미지 마우스 오버 및 아웃
+            $(".mypage img, .logout img, img[src*='login_icon.png']").hover(
+                function () {
+                    // 마우스 오버
+                    $(this).attr("src", $(this).attr("src").replace("_icon.png", "_hover.png"));
+                },
+                function () {
+                    // 마우스 아웃
+                    $(this).attr("src", $(this).attr("src").replace("_hover.png", "_icon.png"));
+                }
+            );
         });
     </script>
     </body>

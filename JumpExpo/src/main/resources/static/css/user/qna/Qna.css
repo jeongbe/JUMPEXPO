@@ -1,3 +1,16 @@
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
  .content{
     position: relative;
     top: 80px;
@@ -132,3 +145,4 @@ left:100px;
     font-weight:700;
     display:inline;
 }
+ body {font-family: 'SUITE', sans-serif;}

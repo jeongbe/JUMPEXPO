@@ -2,10 +2,14 @@ package com.example.JumpExpo.Controller.admin;
 
 import com.example.JumpExpo.DTO.admin.notice.NoticeForm;
 import com.example.JumpExpo.Entity.admin.Notice;
+import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.admin.NoticeRepository;
+import com.example.JumpExpo.Repository.user.UserReository;
 import com.example.JumpExpo.Service.admin.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +35,17 @@ public class NoticeController {
     @Autowired
     NoticeService noticeService;
 
+    @Autowired
+    UserReository userReository;
+
     //공지사항 등록 페이지
     @GetMapping("/insert/nt")
-    public String insertNt(){
+    public String insertNt(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
         return "admin/notice/Notice_New";
     }
 
@@ -77,6 +89,12 @@ public class NoticeController {
         //2. Notice 묶음을 모델에 등록( Entity > Model )
         model.addAttribute("NoticeList", NoticeList);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
         //3. 뷰에 모델 뿌리기
         return  "admin/notice/Notice_List";
     }
@@ -84,6 +102,11 @@ public class NoticeController {
     @GetMapping("/show/nt/{notCode}")
     public String Show(@PathVariable("notCode")int notCode, Model model){
         log.info("notCode = " + notCode);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
         Notice board = noticeService.selectNoticeDetail(notCode);
 
@@ -97,6 +120,12 @@ public class NoticeController {
     @GetMapping("/show/nt/{notCode}/update")
     public String Edit(@PathVariable("notCode")int notCode, Model model)
     {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
         //1. 수정할 데이터 가져오기
         Notice detail = noticeRepository.findById(notCode).orElse(null);
         log.info(detail.toString());
@@ -109,6 +138,7 @@ public class NoticeController {
     @PostMapping("/nt/{notCode}/update")
     public String Update(NoticeForm form)
     {
+
         log.info(form.toString());
         Notice notice = form.toEntity();
         Notice updateDetail = noticeRepository.findById(notice.getNot_code()).orElse(null);

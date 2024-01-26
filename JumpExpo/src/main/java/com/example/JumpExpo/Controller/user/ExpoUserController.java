@@ -40,6 +40,12 @@ public class ExpoUserController {
     public String AllExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                               @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                               @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
 
@@ -72,6 +78,11 @@ public class ExpoUserController {
     public String FairExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                                @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                                @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
@@ -103,6 +114,11 @@ public class ExpoUserController {
     public String EmpExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                                @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                                @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
@@ -134,6 +150,11 @@ public class ExpoUserController {
     public String RecExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                               @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                               @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
@@ -162,6 +183,7 @@ public class ExpoUserController {
     //박람회 디테일정보 페이지
     @GetMapping("/expo/info/{expo_code}/{expo_cate}")
     public String ExpoInfo(Model model, @PathVariable("expo_code")  int expoCode, @PathVariable("expo_cate")  int expoCate){
+
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 현재 인증된 사용자의 사용자명을 가져옵니다.

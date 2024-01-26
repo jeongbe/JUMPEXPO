@@ -2,10 +2,14 @@ package com.example.JumpExpo.Controller.user;
 
 import com.example.JumpExpo.DTO.admin.notice.NoticeForm;
 import com.example.JumpExpo.Entity.admin.Notice;
+import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.admin.NoticeRepository;
+import com.example.JumpExpo.Repository.user.UserReository;
 import com.example.JumpExpo.Service.admin.NoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +35,17 @@ public class UserNoticeController {
     @Autowired
     NoticeService noticeService;
 
+    @Autowired
+    UserReository userReository;
+
     //공지사항 등록 페이지
     @GetMapping("/insert/nt")
-    public String insertNt(){
+    public String insertNt(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
         return "user/notice/Notice_New";
     }
     //공지사항 등록 + 이미지 처리
@@ -70,6 +82,12 @@ public class UserNoticeController {
     @GetMapping("/show/nt")
     public String AdminNtList(Model model)
     {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
         //1. 디비에서 notice 테이블에 있는 모든 데이터 가져오기
         ArrayList<Notice> NoticeList = noticeRepository.findAll();
 
@@ -82,6 +100,12 @@ public class UserNoticeController {
     //공지사항 상세 페이지
     @GetMapping("/show/nt/{notCode}")
     public String Show(@PathVariable("notCode") Integer notCode, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
         log.info("notCode = " + notCode);
 
         Notice board = noticeService.selectNoticeDetail(notCode);
