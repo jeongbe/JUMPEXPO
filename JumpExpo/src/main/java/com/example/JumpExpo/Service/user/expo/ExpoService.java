@@ -2,9 +2,11 @@ package com.example.JumpExpo.Service.user.expo;
 
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
+import com.example.JumpExpo.Entity.etc.ComExpoApp;
 import com.example.JumpExpo.Entity.user.UserReview;
 import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.comuser.ExpoAppComRepository;
+import com.example.JumpExpo.Repository.etc.ComExpoAppRepository;
 import com.example.JumpExpo.Repository.user.UserExpoApplyRepository;
 import com.example.JumpExpo.Repository.user.UserReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ExpoService {
@@ -24,6 +28,9 @@ public class ExpoService {
 
     @Autowired
     UserReviewRepository userReviewRepository;
+
+    @Autowired
+    ComExpoAppRepository comExpoAppRepository;
 
     //2024.01.08 정정빈
     //박람회 전체 페이징 서비스
@@ -163,4 +170,12 @@ public class ExpoService {
         Pageable pageable = PageRequest.of(page,6);
         return this.userReviewRepository.UserReHit2(pageable,expoCate);
     }
+
+    //2024.01.27 정정빈
+    //기업 박람회 신청 마이페이지 리스트
+    public Page<ComExpoApp> getComEAppList(int page, int comCode){
+        Pageable pageable = PageRequest.of(page,6);
+        return this.comExpoAppRepository.getComExpoAppList(pageable,comCode);
+    }
+
 }

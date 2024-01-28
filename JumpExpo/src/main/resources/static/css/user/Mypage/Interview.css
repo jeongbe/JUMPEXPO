@@ -125,3 +125,33 @@ tr {
     background-color: #374658;
     color: white;
 }
+
+.inter_td{
+    display: flex;
+    /* padding: 10px; */
+    position: relative;
+    bottom: 40px;
+
+    width: 30px;
+    border-radius: 50%;
+    height: 30px;
+     text-align: center;
+/*    padding-left: 10px;*/
+
+    margin-left: 10px;
+    flex-direction: column;
+}
+
+.ic{
+    bottom: 20px;
+}
+
+.sch {
+    color:#808080;
+    margin-left:10px;
+}
+
+.cle_{
+    color:white;
+    background-color: #374658;
+}

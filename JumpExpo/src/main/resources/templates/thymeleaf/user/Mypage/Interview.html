@@ -39,7 +39,7 @@
                         <h1 id="YearText" class="YearText"></h1>
                         <h1 id="MonthText" class="MonthText"></h1>
                         <button class="MonthUp">></button>
-                        <button class="ins_" th:onclick="'javascript:openPopup(\'/users/save/inter/' + ${userCode} + '\')'">일정 추가</button>
+                        <button class="ins_" th:onclick="'javascript:openPopup(\'/users/save/inter/' + ${userCode} + '\', 300, 300)'">일정 추가</button>
                     </div>
 
                     <div id="calendar">
@@ -70,6 +70,7 @@
     </footer>
     <!-- footer 끝 -->
 </main>
+</body>
 <script  th:inline="javascript">
     <!--    // header script-->
         $(document).ready(function () {
@@ -88,19 +89,17 @@ let userSc = [[${list}]];
     console.log(userSc);
 
 
-    function openPopup(url) {
-       var width = 500;
-       var height = 400;
-
+function openPopup(url, width, height) {
        var left = (screen.availWidth - width) / 2;
        var top = (screen.availHeight - height) / 2;
 
        var popup = window.open(url, 'popup', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
        popup.focus();
-   }
+    }
 
 <!--    let info = [[${EInfo}]];-->
 <!--    console.log(info);-->
+document.addEventListener('DOMContentLoaded', function() {
 
 // 현재 날짜 정보 가져옴
 var date = new Date();
@@ -140,6 +139,7 @@ monthup.onclick = () => {
    updateCalendar();
 };
 
+
 // 달력 생성 함수
 function generateCalendar(year, month) {
    var calenderYear = year;
@@ -176,42 +176,49 @@ function generateCalendar(year, month) {
            var isSunday = index2 === 0; // 일요일 확인
            var isSaturday = index2 === 6; // 토요일 확인
            var cellStyle =
-               'border: solid 1px black; width:150px; height:150px;';
+               'border: solid 1px black; width:150px; height:130px;';
            if (isSunday) {
                cellStyle += 'color: red;';
            } else if (isSaturday) {
                cellStyle += 'color: blue;';
            }
-           html += `<td style="${cellStyle}">`;
+           html += `<td class="td_c"  style="${cellStyle}">`;
            if (
                calMonthStartDate <= calendarPos &&
                calendarDay < calMonthLastDate
            ) {
                calendarDay++;
                html +=
-                   '<span style="display: flex; padding: 10px; position: relative; bottom: 20px;">' +
+                   `<span  id="day${calendarDay}" class="inter_td ic" style="display: flex; position: relative; ">` +
                    calendarDay +
                    '</span>';
-               for(let i = 0; i < userSc.length; i++) {
-                    let user_sc_start = userSc[i].sc_start;
 
-                    let startDate = user_sc_start.split('-');
-                    d1 = startDate[0];
-                    d2 = startDate[1];
-                    d3 = startDate[2];
 
-                    console.log("sdfsdf",d1,d2,d3);
-                    if(calenderYear == d1 && calendarDay == d3 && calMonth == d2){
-                        html += `<span class="sch" style="display:flex; cursor: pointer;" onclick="openPopup('/users/update/sc/${userSc[i].sc_num}', 500, 400)">${userSc[i].sc_title}</span>`;
 
-                    }
-               }
+                   for(let i = 0; i < userSc.length; i++) {
+                        let user_sc_start = userSc[i].sc_start;
+
+                        let startDate = user_sc_start.split('-');
+                        d1 = startDate[0];
+                        d2 = startDate[1];
+                        d3 = startDate[2];
+
+                        console.log("sdfsdf",d1,d2,d3);
+                        if(parseInt(calenderYear) == parseInt(d1) && parseInt(calendarDay) == parseInt(d3) && parseInt(calMonth) == parseInt(d2)){
+
+                            html += `<span class="sch ic" style="display:flex; cursor: pointer;" onclick="openPopup('/users/update/sc/${userSc[i].sc_num}', 300, 300)">${userSc[i].sc_title}</span>`;
+
+                        }
+                   }
+
            } else {
                html +=
                    '<span style="display: block; padding: 10px 10px;"></span>';
            }
            html += '</td>';
+
            calendarPos++;
+
        }
        html += '</tr>';
    }
@@ -227,6 +234,22 @@ function updateCalendar() {
    // 새로운 월과 연도에 대한 달력을 생성하고 업데이트합니다.
    var calendar = generateCalendar(Year, Month);
    $('#calendar').html(calendar);
+
+   var tdElements = document.querySelectorAll('#calendar td');
+
+   tdElements.forEach(function(tdElement) {
+
+       var spanElements = tdElement.querySelectorAll('span');
+
+       if (spanElements.length >= 2 && !tdElement.classList.contains('cle_')) {
+           var spanElements = tdElement.querySelectorAll('span');
+
+           if (spanElements.length > 0) {
+               spanElements[0].classList.add('cle_');
+           }
+       }
+   });
+
 }
 
 // 페이지 로드 시 달력 업데이트
@@ -239,8 +262,7 @@ function openPopup(url, width, height) {
 
     window.open(url, '_blank', options);
 }
-
+});
 </script>
-</body>
 
 </html>

@@ -1,6 +1,7 @@
 package com.example.JumpExpo.Repository.admin;
 
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
+import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -158,4 +159,12 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "and s.expo_title like %:text%" , nativeQuery = true)
     Page<ScheduleInsert> UserAppExpoListSerch(Pageable pageable, @Param("userCode") int userCode,@Param("text") String text,@Param("StartDate") String StartDate, @Param("EndDate") String EndDate);
 
+    //2024.01.27 정정빈
+    //기업 박람회 신청 리스트
+    @Query(value = "select s.*\n" +
+            "from schedule_insert s\n" +
+            "join c_expo_apply c\n" +
+            "on s.expo_code = c.expo_code\n" +
+            "where c.com_code = :comCode", nativeQuery = true)
+    public Page<ScheduleInsert> getComExpoAppList(Pageable pageable, @Param("comCode") int comCode);
 }

@@ -10,7 +10,7 @@
 
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
 
-    <title>공고 보기</title>
+    <title>기업 유저 페이지</title>
 </head>
 
 <div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
@@ -31,30 +31,34 @@
 
             <!-- 주요내용 -->
             <div class="contents">
-                <form method="get" th:action="@{/com/myPage/resign/{comcode}(comcode=${company.com_code})}">
+                <form class="fo_css" method="get" th:action="@{/com/myPage/resign/{comcode}(comcode=${company.com_code})}">
                 <hr>
                 <div class="UserInfo_title">
                     <h3>내 정보 확인</h3>
                 </div>
                 <hr>
                 <div class="UserInfo_content">
-                    <div class="UserInfo_content_text">
-                        <p>회사명 :</p><p th:text="${company.com_name}"></p>
+                    <div class="div1">
+                        <div class="UserInfo_content_text">
+                            <p class="ti">회사명</p><p th:text="${company.com_name}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">담당자 번호</p><p th:text="${company.manager_phone}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">이메일</p><p th:text="${company.com_email}"></p>
+                        </div>
                     </div>
-                    <div class="UserInfo_content_text">
-                        <p>담당자 번호 :</p><p th:text="${company.manager_phone}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>이메일 :</p><p th:text="${company.com_email}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>회사 주소 :</p><p th:text="${company.com_addr}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>홈페이지 :</p><p th:text="${company.com_home}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>구분 :</p><p>기업</p>
+                    <div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">회사 주소</p><p th:text="${company.com_addr}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">홈페이지</p><p th:text="${company.com_home}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">구분</p><p>기업</p>
+                        </div>
                     </div>
                 </div>
                 <hr>

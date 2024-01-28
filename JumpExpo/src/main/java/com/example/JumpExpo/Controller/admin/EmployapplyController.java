@@ -203,13 +203,13 @@ public class EmployapplyController {
     @PostMapping("/com/audit/{expo_code}/{capp_num}")
     public String ComAudit(@RequestParam(name = "approval") int approval,@PathVariable("expo_code")  int expoCode,
                            @PathVariable("capp_num")  int cappNum){
-        log.info(String.valueOf(approval));
+        log.info("승인 정보"+String.valueOf(approval));
         log.info(String.valueOf(cappNum));
 
         ExpoAppCom target = expoAppComRepository.findById(cappNum).orElse(null);
         log.info(target.toString());
 
-        target.setRecog_check(1);
+        target.setRecog_check(approval);
 
         expoAppComRepository.save(target);
 
@@ -225,7 +225,7 @@ public class EmployapplyController {
 
         Company cominfo = companyRepository.findById(comCode).orElse(null);
         model.addAttribute("ComInfo",cominfo);
-        log.info(cominfo.toString());
+//        log.info(cominfo.toString());
 
 
 

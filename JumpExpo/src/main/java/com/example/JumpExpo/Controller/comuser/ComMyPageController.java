@@ -12,6 +12,8 @@ import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import com.example.JumpExpo.Entity.comuser.ComInterview;
 import com.example.JumpExpo.Entity.comuser.Company;
+import com.example.JumpExpo.Entity.comuser.ExpoAppCom;
+import com.example.JumpExpo.Entity.etc.ComExpoApp;
 import com.example.JumpExpo.Entity.user.PeremApplyUser;
 import com.example.JumpExpo.Entity.user.UserInterview;
 
@@ -21,8 +23,10 @@ import com.example.JumpExpo.Repository.comuser.ComInterviewRepository;
 import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import com.example.JumpExpo.Repository.user.PeremApplyRepository;
 import com.example.JumpExpo.Repository.user.UserInterviewRepository;
+import com.example.JumpExpo.Service.user.expo.ExpoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,14 +58,23 @@ public class ComMyPageController {
     @Autowired
     PeremApplyRepository peremApplyRepository;
 
+    @Autowired
+    ExpoService expoService;
+
     //2024.01.18 정정빈
     //기업 면접 일정 관리
-    @GetMapping("/interv/calen/{com_code}")
-    public String UserInterview(Model model, @PathVariable("com_code") int comCode){
-        model.addAttribute("comCode", comCode);
+    @GetMapping("/interv/calen")
+    public String UserInterview(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
+        model.addAttribute("comCode",company.getCom_code());
 
 
-        List<ComInterview> list = comInterviewRepository.getComIntervList(comCode);
+        List<ComInterview> list = comInterviewRepository.getComIntervList(company.getCom_code());
         model.addAttribute("list",list);
 //        log.info(list.toString());
 
@@ -409,4 +422,23 @@ public class ComMyPageController {
         return "redirect:/com/mypage/show/employlist/{com_code}/{emnot_code}";
     }
 
+    //2024.01.27 정정빈
+    //기업 박람회 신청 내역
+    @GetMapping("/expo/app")
+    public String ComExpoApp(Model model,@RequestParam(value="page", defaultValue="0")int page){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
+
+        Page<ComExpoApp> getList = expoService.getComEAppList(page,company.getCom_code());
+        model.addAttribute("getList",getList);
+        log.info(getList.getContent().toString());
+        model.addAttribute("TotalPage",getList.getTotalPages());
+
+        return "comuser/mypage/ComExpoAppList";
+    }
 }
