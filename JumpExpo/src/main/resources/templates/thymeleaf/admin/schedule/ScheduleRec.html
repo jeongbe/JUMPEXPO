@@ -8,68 +8,89 @@
     <link rel="stylesheet" href="/static/css/admin/schedule/ScheduleEmp.css" />
     <title>채용 박람회 일정등록</title>
 </head>
-<body>
-<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
+<body style="width: 1550px;">
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader4 :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/ScheduleSide2 :: scheduleSide}"></div>
 <div class="container">
     <p class="p-title">채용 박람회 일정 등록</p>
     <p class="line"></p>
     <form action="">
         <table>
-            <tr>
-                <td>
+            <tr class="first_table">
+                <td class="schedule_main">
                     <span class="info">박람회 이름</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="text" name="RExpoTitle" id="RExpoTitle" required /></span>
                 </td>
-                <td>
+                <td class="schedule_main">
                     <span class="info">주최</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="text" name="RExpoHost" id="RExpoHost" required /></span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="schedule_main">
                     <span class="info">진행시간</span>
-                    <span><input type="time" name="RExpoTime" id="RExpoTime" /> ~ <input type="time" id="RExpoEndTime" name="RExpoEndTime" /></span>
                 </td>
-                <td>
+                <td class="schedule_input">
+                    <span><input type="time" name="RExpoTime" id="RExpoTime" />
+                        <div class="wild"> ~ </div>
+                        <input type="time" id="RExpoEndTime" name="RExpoEndTime" /></span>
+                </td>
+                <td class="schedule_main">
                     <span class="info">주관</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="text" id="RExpoManage" name="RExpoManage" required /></span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="schedule_main">
                     <span class="info">장소</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="text" id="RExpoAdd" name="RExpoAdd" required /></span>
                 </td>
-                <td>
+                <td class="schedule_main">
                     <span class="info">전시품목</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="text" id="RExpoExhibit" name="RExpoExhibit" required /></span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="schedule_main">
                     <span class="info">썸네일 이미지</span>
-                    <span
-                    ><input type="file" id="RExpoImage" name="RExpoImage" required
-                    /></span>
                 </td>
-                <td>
+                <td class="schedule_input">
+                    <span>
+                        <input type="file" id="RExpoImage" name="RExpoImage" required />
+                    </span>
+                </td>
+                <td class="schedule_main">
                     <span class="info">담당자</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="text" id="RMasterName" name="RMasterName" required /></span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="schedule_main">
                     <span class="info">신청기간</span>
-                    <span class="start-date"
-                    ><input type="date" name="RApplyStart" id="RApplyStart" required
+                </td>
+                <td class="schedule_input">
+                    <input type="date" name="RApplyStart" id="RApplyStart" required
                     /></span>
                     <span
                     ><input type="date" name="RApplyEnd" id="RApplyEnd" required
                     /></span>
                 </td>
-                <td>
-                    <span class="info" >전화번호</span>
+                <td class="schedule_main">
+                    <span class="info">전화번호</span>
+                </td>
+                <td class="schedule_input">
                     <span
                     ><input
                             type="number"
@@ -80,8 +101,11 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="schedule_main">
                     <span class="info">진행기간</span>
+
+                </td>
+                <td class="schedule_input">
                     <span class="start-date"
                     ><input type="date" name="RExpoStart" id="RExpoStart" required
                     /></span>
@@ -89,25 +113,31 @@
                     ><input type="date" name="RExpoEnd" id="RExpoEnd" required
                     /></span>
                 </td>
-                <td>
+                <td class="schedule_main">
                     <span class="info">이메일</span>
+                </td>
+                <td class="schedule_input">
                     <span><input type="email" name="RMasterEmail" id="RMasterEmail" required /></span>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="schedule_main">
                     <span class="info">전시 개요</span>
+                    </td>
+                <td class="schedule_input">
                     <span
                     ><input type="text" name="RExpoOutline" id="RExpoOutline" required maxlength="50"
                     /></span>
                 </td>
-                <td>
+                <td class="schedule_main">
                     <span class="info">직종</span>
+                    </td>
+                <td class="schedule_input">
                     <span><input type="text" name="RExpoOccCate" id="RExpoOccCate" required /></span>
                 </td>
             </tr>
             <tr class="notice-row">
-                <td colspan="2">
+                <td colspan="4">
                     <textarea required name="RExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
                 </td>
             </tr>
