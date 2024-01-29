@@ -5,51 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/admin/employapply/AdExpoAudit.css" />
     <title>채용 박람회 심사</title>
-</head>
-<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-<body style="width:950px;">
+    <style>
+        /* 추가된 CSS 스타일 */
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
 
-<div class="container">
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+        }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
+
+<body style="width:1600px;">
+<div class="container" style="width:1600px;">
     <div class="main_title">
-        <p>채용 박람회 심사</p>
+        <p>신청 기업 리스트</p>
     </div>
     <div class="cho">
-        <p  th:onclick="'javascript:location.href=&quot;/admin/show/employapply/com/' + ${ExpoCode} + '&quot;'">심사전</p>
+        <p class="cno" th:onclick="'javascript:location.href=&quot;/admin/show/employapply/com/' + ${ExpoCode} + '&quot;'">심사전</p>
         <p class="clo" th:onclick="'javascript:location.href=&quot;/admin/show/ok/employapply/com/' + ${ExpoCode} + '&quot;'">심사완료</p>
     </div>
 </div>
-<table th:each="list : ${ComList}">
+<!--<table th:each="list : ${ComList}">-->
+<!--    <tr>-->
+<!--        <th>번호</th>-->
+<!--        <th >회사명</th>-->
+<!--        <th >제목</th>-->
+<!--        <th >신청파일</th>-->
+<!--&lt;!&ndash;        <th>승인 여부</th>&ndash;&gt;-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--&lt;!&ndash;        th:text="${list.app_file_name}"&ndash;&gt;-->
+<!--        <td >1</td>-->
+<!--        <td th:text="${list.com_addr}">예일회사</td>-->
+<!--        <td th:text="${list.app_title}">제목ㅇㅇ</td>-->
+<!--        <td>-->
+<!--            <span>-->
+<!--                <a alt=""-->
+<!--                   th:href="@{'http://192.168.2.3/images/a/' + ${list.app_file_name}}"-->
+<!--                   class="file"-->
+<!--                download>-->
+<!--                 &nbsp;</a>-->
+<!--            </span>-->
+<!--        </td>-->
+<!--&lt;!&ndash;        <form th:action="@{/admin/com/audit/{ExpoCode}/{cappNum}(ExpoCode=${ExpoCode},cappNum=${list.capp_num})}" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;        <td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="hidden" name="action" class="a" style="display:none">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="1" type="submit" name="approval" value="1">승인</button>&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="2" type="submit" name="approval" value="0">비승인</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </td>&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--    </tr>-->
+<!--</table>-->
+<table>
     <tr>
         <th>번호</th>
         <th >회사명</th>
         <th >제목</th>
         <th >신청파일</th>
-<!--        <th>승인 여부</th>-->
+        <th>승인 여부</th>
     </tr>
-    <tr>
-<!--        th:text="${list.app_file_name}"-->
-        <td >1</td>
-        <td th:text="${list.com_addr}">예일회사</td>
+    <tr th:each="list : ${ComList}">
+        <!--        th:text="${list.app_file_name}"-->
+        <td class="number_ad">1</td>
+        <td th:text="${list.com_addr}" th:onclidd="'javascript:openPopup(\'/admin/cominfo/' + ${list.com_code} + '\')'">예일회사</td>
         <td th:text="${list.app_title}">제목ㅇㅇ</td>
         <td>
             <span>
                 <a alt=""
                    th:href="@{'http://192.168.2.3/images/a/' + ${list.app_file_name}}"
                    class="file"
-                download>
+                   download>
                  &nbsp;</a>
             </span>
         </td>
-<!--        <form th:action="@{/admin/com/audit/{ExpoCode}/{cappNum}(ExpoCode=${ExpoCode},cappNum=${list.capp_num})}" method="post">-->
-<!--        <td>-->
-<!--            <input type="hidden" name="action" class="a" style="display:none">-->
-<!--            <button class="1" type="submit" name="approval" value="1">승인</button>-->
-<!--            <button class="2" type="submit" name="approval" value="0">비승인</button>-->
-<!--        </td>-->
-<!--        </form>-->
+            <td>
+            </td>
     </tr>
 </table>
-<div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
+<nav aria-label="Page navigation example" class="pageBtn">
+    <ul class="pagination" >
+    </ul>
+</nav>
+<p  class="total_page" th:text="${TotalPage}"></p>
+
 <script>
 
 </script>

@@ -21,17 +21,13 @@
 
         .pagination a {
             text-decoration: none;
-            color: #007bff;
+            color: #000;
             background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
+            border: none;
+            outline: none;
             border-radius: 4px;
         }
 
-        .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
 
         .pagination .active a {
             background-color: #007bff;
@@ -40,8 +36,8 @@
     </style>
 </head>
 <div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-<div class="sidebar" th:replace="~{admin/side/AdJudgeSide :: JudgeSide}"></div>
-<body style="width:950px;">
+<div class="sidebar" th:replace="~{admin/side/AdJudgeSide3 :: JudgeSide}"></div>
+<body style="width:1600px;">
 <div class="container" >
     <div class="title-box">
         <div class="body_title">
@@ -75,6 +71,7 @@
         <ul class="pagination" >
         </ul>
     </nav>
+<!--    <p  class="total_page"></p>-->
     <p  class="total_page" th:text="${TotalPage}"></p>
 </div>
 <script>
@@ -92,7 +89,7 @@
         // 이전 버튼
         var prevButton = document.createElement("li");
         prevButton.classList.add("page-item");
-        prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/rec/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/rec/list?page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
         paginationContainer.appendChild(prevButton);
 
         // 페이지 번호 생성
@@ -107,7 +104,7 @@
         // 다음 버튼
         var nextButton = document.createElement("li");
         nextButton.classList.add("page-item");
-        nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/rec/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/rec/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
         paginationContainer.appendChild(nextButton);
     }
 

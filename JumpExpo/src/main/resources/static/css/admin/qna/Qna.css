@@ -3,6 +3,25 @@
         top: 0;
         left: -60px;
  }
+
+ .span_title{position: absolute;top: 90px;left: 300px;font-size: 35px;font-weight: bold;color: #374658;}
+
+ .p_1 {
+ display: inline-block;
+ left: 170px;
+ font-weight: bold;
+ font-size: 23px;
+ color: #374658;
+ }
+
+ .p_2 {
+ left: 170px;
+ display: inline-block;
+ font-weight: bold;
+ font-size: 23px;
+ color: #374658;
+ }
+
  .body_title {
      position: absolute;
       top: 110px;

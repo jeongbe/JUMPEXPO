@@ -10,6 +10,7 @@ body {
     display: flex;
     position:fixed;
     left:66px;
+    top: 0px;
 }
 
 .header-title {

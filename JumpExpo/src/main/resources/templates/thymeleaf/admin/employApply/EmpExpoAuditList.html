@@ -21,16 +21,11 @@
 
         .pagination a {
             text-decoration: none;
-            color: #007bff;
+            color: #000;
             background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
+            border: none;
+            outline: none;
             border-radius: 4px;
-        }
-
-        .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
         }
 
         .pagination .active a {
@@ -77,6 +72,7 @@
         </ul>
     </nav>
     <p  class="total_page" th:text="${TotalPage}"></p>
+<!--    <p  class="total_page"></p>-->
 </div>
 <script>
 
@@ -90,7 +86,7 @@
         // 이전 버튼
         var prevButton = document.createElement("li");
         prevButton.classList.add("page-item");
-        prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/fair/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/fair/list?page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
         paginationContainer.appendChild(prevButton);
 
         // 페이지 번호 생성
@@ -105,7 +101,7 @@
         // 다음 버튼
         var nextButton = document.createElement("li");
         nextButton.classList.add("page-item");
-        nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
         paginationContainer.appendChild(nextButton);
     }
 

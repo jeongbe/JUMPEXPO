@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/user/employ/Employdetail.css" />
+    <title>공고 보기 디테일</title>
+</head>
+    <div class="s_header" th:replace="~{user/header/userHeader2 :: userHeader2}"></div>
+
+<body>
+    <!-- 본문 -->
+    <div class="body_data" th:object="${applyEmploy}">
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var applyEmploy = [[${applyEmploy}]];
+            /*]]>*/
+        </script>
+        <span class="span_title">회사명 데이터</span>
+        <div class="header_a">
+            <p class="p_1" th:text="${applyEmploy.emnot_title}">채용 공고 제목</a></p>
+            <p class="p_2" >직종: </p>
+            <p class="p_3" th:text="${applyEmploy.emnot_occ}">공고 직종</a></p>
+        </div>
+
+        <div class="table-container" th:object="${company}">
+            <table class="body_table">
+                <tr>
+                    <td rowspan="5" class="company_logo">
+                        <img th:src="@{'http://192.168.2.3/images/a/' + ${company.com_image}}" alt="" />
+                    </td>
+                    <td class="semi_title">회사명</td>
+                    <td class="semi_body" th:text="${company.com_name}"></td>
+                    <td class="semi_title">이메일</td>
+                    <td class="semi_body" th:text="${company.com_email}"></td>
+                </tr>
+                <tr>
+                    <td class="semi_title">담당자</td>
+                    <td class="semi_body" th:text="${company.com_manager}"></td>
+                    <td class="semi_title">전화번호</td>
+                    <td class="semi_body" th:text="${company.manager_phone}"></td>
+                </tr>
+                <tr>
+                    <td class="semi_title">회사주소</td>
+                    <td colspan="3" class="semi_body" th:text="${company.com_addr}"></td>
+                </tr>
+                <tr>
+
+                    <td class="semi_title">홈페이지 링크</td>
+                    <td colspan="3" class="semi_body" th:text="${company.com_home}"></td>
+
+                </tr>
+                <tr>
+
+                    <td class="semi_title">면접 유형
+                    </td>
+                    <td colspan="3" class="semi_body">
+                        <span th:if="${applyEmploy.inter_cate == 0}">비대면</span>
+                        <span th:if="${applyEmploy.inter_cate == 1}">대면</span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="body_table2">
+                <tr>
+                    <td class="semi_title">경력</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_career}"></td>
+                    <td class="semi_title">근무형태</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_state}"></td>
+                    <td class="semi_title" rowspan="2">근무지역</td>
+                    <td class="semi_body2" rowspan="2" th:text="${applyEmploy.emnot_area}"></td>
+                </tr>
+                <tr>
+                    <td class="semi_title">학력</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_education}"></td>
+                    <td class="semi_title">급여</td>
+                    <td class="semi_body2" th:text="${applyEmploy.emnot_salary}"></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="smart_editor_content">
+            <div class="semi_content" th:utext="${applyEmploy.emnot_content}">내용</div>
+            <div class="apply_button">
+                <a th:href="@{/com/show/employlist}">
+                    <button>목록으로</button>
+                </a>
+
+<!--                <button type="button" id="submitResumeBtn">이력서 넣기</button>-->
+
+            </div>
+        </div>
+    </div>
+<!--    JavaScript 코드 내에서 변수를 초기화 < th:inline="javascript"-->
+    <script th:inline="javascript">
+
+<!--        Thymeleaf 변수를 JavaScript 변수로 초기화-->
+            var userCode = [[${userCode}]];
+
+            document.getElementById('submitResumeBtn').addEventListener('click', function() {
+                if (applyEmploy) {
+                    var emnot_code = applyEmploy.emnot_code;
+                    var popupUrl = "/users/submit/resume/" + emnot_code + "/" + userCode;
+                    window.open(popupUrl, "a", "width=550, height=300, left=650, top=330");
+                } else {
+                    // applyEmploy 객체가 없을 경우
+                    alert("찾을 수 없는 페이지입니다.");
+                }
+            });
+
+    </script>
+
+    </script>
+
+    </body>
+<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+</html>
