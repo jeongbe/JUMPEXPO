@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<header th:fragment="adCustomerside">
+<header th:fragment="Reviewside">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/admin/side/ScheduleSide.css" />
@@ -8,12 +8,8 @@
     <title>고객 센터 사이드바</title>
 <body>
 <div class="side">
-    <ul class="bac">
-        <li class="pad"  th:onclick="'javascript:location.href=&quot;/admin/show/nt &quot;'" style="cursor: pointer;">공지사항</li>
-    </ul>
-    <!-- class="back-c" -->
-    <ul class="inset-ul  back-3" style="margin: 0px; height: 50px">
-        <li class="sc_insert"  th:onclick="'javascript:location.href=&quot;/admin/show/qu &quot;'" style="cursor: pointer;">Q&A</li>
+    <ul class="bac back-3">
+        <li class="pad"  th:onclick="'javascript:location.href=&quot;/admin/review/list &quot;'" style="cursor: pointer;">리뷰관리</li>
     </ul>
 </div>
 <script>

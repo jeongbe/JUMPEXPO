@@ -7,24 +7,17 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>관리자 답변완료 질문 리스트</title>
 </head>
-<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-<div class="sidebar" th:replace="~{admin/side/AdCustomerside :: adCustomerside}"></div>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader2 :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/AdCustomerside2 :: adCustomerside}"></div>
 <body>
 <div class="content">
-    <div class="body_title">
-        <span>Q&</span>
-        <span>A</span>
-    </div>
-    <div class="state">
-        <span class="asn"><a th:href="@{/admin/show/nanswer}">미답변</a></span>
-        <span>|</span>
-        <span class="asy"><a th:href="@{/admin/show/yanswer}" style="color:#ea8874">답변완료</a></span>
-    </div>
-    <div class="body_title_right">
-        <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 고객 센터 > Q&A
+    <span class="span_title">Q&A</span>
+    <div class="header_a">
+        <p class="p_1"><a th:href="@{/admin/show/nanswer}">미답변</a></p>
+        <p class="p_2"><a th:href="@{/admin/show/yanswer}" style="color: #EA8874;">답변완료</a></p>
     </div>
 
-    <form>
+    <form class="qna_form">
         <table>
             <thead>
             <tr>
@@ -41,7 +34,7 @@
                 <td th:text="${list.qu_num}"></td>
                 <td th:text="${#strings.substring(userId, 0, 3)} + '****'"></td>
                 <td>
-                    <p th:onclick="'javascript:location.href=&quot;/admin/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}"></p>
+                    <p th:onclick="'javascript:location.href=&quot;/admin/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor: pointer;"></p>
                 </td>
                 <td th:text="${list.qu_date}"></td>
                 <td>

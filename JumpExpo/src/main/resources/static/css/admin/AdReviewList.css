@@ -1,11 +1,12 @@
-/* 기존 코드 */
+/* ê¸°ì¡´ ì½”ë“œ */
 * {
     margin: 0 auto;
 }
 
 .container{
     position:relative;
-    top: 100px;
+    top: 90px;
+    left: -110px;
 }
 
 body {
@@ -13,23 +14,30 @@ body {
 }
 
 .main_title {
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
+    color: #374658;
+    /* margin-top: -10px; */
+}
+
+.cho > p:hover{
+    color:#ea8874
 }
 
 .cho {
     margin-top: 30px;
     display: flex;
-    font-size: 25px;
-
+    font-size: 23px;
+    margin-top: 15px;
 }
 
 .cho > p {
-    font-size: 20px;
+    font-size: 23px;
     margin: 0px;
-    margin-right: 10px;
+    margin-right: 30px;
     font-weight: bold;
     cursor: pointer;
+    color: #374658;
 }
 
 .clo {
@@ -38,9 +46,9 @@ body {
 
 table {
     margin: 0px;
-    margin-top: 50px;
-    width: 950px;
-    border-collapse: collapse; /* 인접한 경계가 같은 경계로 병합되도록 설정 */
+    margin-top: 60px;
+    width: 1550px;
+    border-collapse: collapse; /* ì¸ì ‘í•œ ê²½ê³„ê°€ ê°™ì€ ê²½ê³„ë¡œ ë³‘í•©ë˜ë„ë¡ ì„¤ì • */
 }
 
 th{
@@ -48,30 +56,30 @@ th{
 }
 
 th {
-    font-size: 22px;
+    font-size: 20px;
     color: #666565;
-    font-weight: 100;
+    /* font-weight: 100; */
 }
 
 th:nth-child(1) {
-    width: 60px;
+    width: 80px;
 }
 
 th:nth-child(2) {
-    width: 200px;
+    width: 300px;
 }
 
 
 th:nth-child(3) {
-    width: 250px;
+    width: 400px;
 }
 
 th:nth-child(4) {
-    width: 100px;
+    width: 200px;
 }
 
 th:nth-child(5) {
-    width: 100px;
+    width: 200px;
 }
 
 th:nth-child(6) {
@@ -81,18 +89,21 @@ th:nth-child(6) {
 td,
 th {
     padding: 10px;
-    border-bottom: 1px solid #808080; /* 기본적으로 각 셀에 선을 추가 */
+    border-bottom: 1px solid #808080; /* ê¸°ë³¸ì ìœ¼ë¡œ ê° ì…€ì— ì„ ì„ ì¶”ê°€ */
 }
 
 td {
     text-align: center;
+    font-size: 18px;
 }
 
 td:last-child button {
     width: 100px;
     height: 30px;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
+    border: none;
+    outline: none;
 }
 
 td:last-child button:first-child {
