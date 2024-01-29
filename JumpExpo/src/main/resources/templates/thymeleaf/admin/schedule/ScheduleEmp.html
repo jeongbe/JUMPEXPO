@@ -8,88 +8,124 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>취업 박람회 일정등록</title>
 </head>
-<body>
-<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
-<div class="sidebar" th:replace="~{admin/side/ScheduleSide :: scheduleSide}"></div>
+<body style="width: 1550px;">
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader4 :: scheduleHeader}"></div>
+<div class="sidebar" th:replace="~{admin/side/ScheduleSide4 :: scheduleSide}"></div>
 <div class="container">
     <p class="p-title">취업 박람회 일정 등록</p>
     <p class="line"></p>
     <form enctype="multipart/form-data"  >
     <table class="notice-list">
-        <tr>
-            <td>
+        <tr class="first_table">
+            <td class="schedule_main">
                 <span class="info">박람회 이름</span>
+            </td>
+            <td class="schedule_input">
                 <span><input type="text" name="ExpoTitle" id="ExpoTitle" maxlength="25" required/></span>
             </td>
-            <td>
+            <td class="schedule_main">
                 <span class="info">주최</span>
+            </td>
+            <td class="schedule_input">
                 <span><input type="text" id="ExpoHost" placeholder="대표자 한명만 적어주세요" name="ExpoHost" maxlength="10" required/></span>
             </td>
         </tr>
+
         <tr>
-            <td>
+            <td class="schedule_main">
                 <span class="info">진행시간</span>
-                <span><input type="time" name="ExpoTime" id="ExpoTime" /> ~ <input type="time" id="ExpoEndTime" name="ExpoEndTime" /></span>
             </td>
-            <td>
+            <td class="schedule_input">
+                <span><input type="time" name="ExpoTime" id="ExpoTime" />
+                    <div class="wild"> ~ </div>
+                    <input type="time" id="ExpoEndTime" name="ExpoEndTime" /></span>
+            </td>
+            <td class="schedule_main">
                 <span class="info">주관</span>
+            </td>
+            <td class="schedule_input">
                 <span><input type="text" id="ExpoManage" placeholder="대표업체 하나만 적어주세요" name="ExpoManage" maxlength="10" required/></span>
             </td>
         </tr>
+
         <tr>
-            <td>
+            <td class="schedule_main">
                 <span class="info">장소</span>
-                <span><input type="text" id="ExpoAdd" name="ExpoAdd" maxlength="50" required/></span>
             </td>
-            <td>
+            <td class="schedule_input">
+                <span><input type="text" id="ExpoAdd" name="ExpoAdd" maxlength="50" required/></span>
+
+            </td>
+            <td class="schedule_main">
                 <span class="info">전시품목</span>
+            </td>
+            <td class="schedule_input">
                 <span><input type="text" id="ExpoExhibit" name="ExpoExhibit" maxlength="100" required/></span>
             </td>
         </tr>
+
         <tr>
-            <td>
+            <td class="schedule_main">
                 <span class="info">썸네일 이미지</span>
-<!--                <span><input type="file" id="ExpoImage" name="ExpoImage"  required/></span>-->
             </td>
-            <td>
+            <td class="schedule_input">
+                <span><input type="file" id="ExpoImage" name="ExpoImage"  required/></span>
+            </td>
+            <td class="schedule_main">
                 <span class="info">담당자</span>
+            </td>
+            <td class="schedule_input">
                 <span><input type="text" id="MasterName" name="MasterName"  required/></span>
             </td>
         </tr>
+
         <tr>
-            <td>
+            <td class="schedule_main">
                 <span class="info">신청기간</span>
+            </td>
+            <td class="schedule_input">
                 <span class="start-date"
                 ><input type="date" name="ApplyStart"  required id="ApplyStart"
                 /></span>
                 <span><input type="date" name="ApplyEnd"  required id="ApplyEnd"/></span>
             </td>
-            <td>
+            <td class="schedule_main">
                 <span class="info">전화번호</span>
-                <span><input type="number" name="MasterPhone" maxlength="11" id="MasterPhone" required placeholder="'-'빼고 입력해주세요"/></span>
+            </td>
+            <td class="schedule_input">
+            <span><input type="number" name="MasterPhone" maxlength="11" id="MasterPhone" required placeholder="'-'빼고 입력해주세요"/></span>
             </td>
         </tr>
+
         <tr>
-            <td>
+            <td class="schedule_main">
                 <span class="info">진행기간</span>
+
+            </td>
+            <td class="schedule_input">
                 <span class="start-date"
                 ><input type="date" name="ExpoStart"  required id="ExpoStart"
                 /></span>
                 <span><input type="date" name="ExpoEnd"  required id="ExpoEnd"/></span>
             </td>
-            <td>
+            <td class="schedule_main">
                 <span class="info">이메일</span>
+            </td>
+            <td class="schedule_input">
                 <span><input type="email" name="MasterEmail" maxlength="50" required id="MasterEmail" /></span>
             </td>
         </tr>
+
         <tr>
-            <td colspan="2">
+            <td colspan="1" class="schedule_main">
                 <span class="info">전시 개요</span>
+            </td>
+            <td colspan="3">
                 <span class="outline"><input type="text" name="ExpoOutline" nonce="250" id="ExpoOutline" required /></span>
             </td>
         </tr>
         <tr class="notice-row">
-            <td colspan="2">
+            <td colspan="4">
                 <textarea required name="ExpoContent" id="ir1" style="width: 100%; height: 500px;"></textarea>
             </td>
         </tr>

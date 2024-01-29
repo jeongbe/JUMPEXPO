@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="scheduleSide">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/side/ScheduleSide.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <title>일정 등록 사이드바</title>
+
+<body>
+<div class="side">
+    <ul class="bac">
+        <li class="pad" th:onclick="'javascript:location.href=&quot;/admin/Calender &quot;'" style="cursor: pointer;">일정 관리</li>
+    </ul>
+    <!-- class="back-c" -->
+    <ul class="inset-ul back-3" style="margin: 0px">
+        <li class="sc_insert" style="cursor: pointer;">일정 등록</li>
+        <div class="list">
+            <span th:onclick="'javascript:location.href=&quot;/admin/insert/Rec&quot;'">채용 박람회</span>
+            <span class="font-c" th:onclick="'javascript:location.href=&quot;/admin/insert/Fair&quot;'">페어 박람회</span>
+            <span th:onclick="'javascript:location.href=&quot;/admin/insert/emp&quot;'">취업 박람회</span>
+        </div>
+    </ul>
+</div>
+<script>
+    //일정 관리
+    let schedule = document.querySelector('.bac');
+    //일정 등록
+    let sc_insert = document.querySelector('.inset-ul');
+
+    schedule.onclick = () => {
+        // sc_insert.classList.remove('back-c');
+        sc_insert.classList.add('back-c2');
+        schedule.classList.add('back-3');
+        inset_list.style.visibility = 'hidden';
+    };
+
+    sc_insert.onclick = () => {
+        sc_insert.classList.remove('back-c2');
+        sc_insert.classList.add('back-c');
+        schedule.classList.remove('back-3');
+        inset_list.style.visibility = 'visible';
+    };
+</script>
+</body>
+</header>
+</html>

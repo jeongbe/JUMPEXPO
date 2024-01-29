@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="scheduleHeader">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/header/ScheduleHeader.css" />
+    <title>관리자 헤더</title>
+
+<body>
+<div class="con">
+    <div class="logo">
+        <a href="/admin/employapply/rec/list">
+        <img
+                class="logo-img"
+                src="/static/images/admin_logo.png"
+                alt=""
+        />
+        </a>
+    </div>
+    <div class="header-title">
+        <a href="/admin/employapply/rec/list"><p class="p1">심사</p></a>
+        <a href="/admin/show/nt"><p class=" p2">고객센터</p></a>
+        <a href="/admin/Calender"><p class="back-color p3">일정 등록</p></a>
+        <a href="/admin/review/list"><p class="p4">리뷰 관리</p></a>
+        <a href="/admin/UserManage"><p class="p5">회원 관리</p></a>
+        <p class=""></p>
+        <p class=""></p>
+        <p class=""></p>
+        <p class=""></p>
+        <p class=""></p>
+    </div>
+</div>
+<script>
+<!--    //심사-->
+<!--    let p1 = document.querySelector('.p1');-->
+<!--    //고객센터-->
+<!--    let p2 = document.querySelector('.p2');-->
+<!--    //일정 등록-->
+<!--    let p3 = document.querySelector('.p3');-->
+<!--    //리뷰 관리-->
+<!--    let p4 = document.querySelector('.p4');-->
+<!--    //회원 관리-->
+<!--    let p5 = document.querySelector('.p5');-->
+
+<!--    p1.onclick = () => {-->
+<!--        p2.classList.remove('back-color');-->
+<!--        p3.classList.remove('back-color');-->
+<!--        p4.classList.remove('back-color');-->
+<!--        p5.classList.remove('back-color');-->
+<!--        p1.classList.add('back-color');-->
+<!--    };-->
+
+<!--    p2.onclick = () => {-->
+<!--        p1.classList.remove('back-color');-->
+<!--        p3.classList.remove('back-color');-->
+<!--        p4.classList.remove('back-color');-->
+<!--        p5.classList.remove('back-color');-->
+<!--        p2.classList.add('back-color');-->
+<!--    };-->
+
+<!--    p3.onclick = () => {-->
+<!--        p1.classList.remove('back-color');-->
+<!--        p2.classList.remove('back-color');-->
+<!--        p4.classList.remove('back-color');-->
+<!--        p5.classList.remove('back-color');-->
+<!--        p3.classList.add('back-color');-->
+<!--    };-->
+
+<!--    p4.onclick = () => {-->
+<!--        p1.classList.remove('back-color');-->
+<!--        p2.classList.remove('back-color');-->
+<!--        p3.classList.remove('back-color');-->
+<!--        p5.classList.remove('back-color');-->
+<!--        p4.classList.add('back-color');-->
+<!--    };-->
+
+<!--    p5.onclick = () => {-->
+<!--        p1.classList.remove('back-color');-->
+<!--        p2.classList.remove('back-color');-->
+<!--        p3.classList.remove('back-color');-->
+<!--        p4.classList.remove('back-color');-->
+<!--        p5.classList.add('back-color');-->
+<!--    };-->
+</script>
+</body>
+</header>
+</html>
