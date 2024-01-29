@@ -9,61 +9,65 @@
 </head>
 
 <body>
+<h1>Jump</h1>
 <main>
     <form method="post" action="/JumpExpo/ChangePw">
-    <div class="searchinput">
-        <div class="searchform">
-            <div th:if="${findpw != null}">
+        <div th:if="${findpw != null}">
             <input th:value="${findpw}" name="id" style="display:none;">
-            </div>
-            <div th:if="${findCompw != null}">
-            <input th:value="${findCompw}" name="id"style="display:none;">
-            </div>
-            <div  class="idform">
-                새 비밀번호<br>
-                <input type="password" id="password" class="idbox" name="password"><br>
-                <div id="passwordError" class="error-message" style="color:red;"></div>
-            </div>
-            <div class="pwform">
-                비밀번호 확인<br>
-                <input type="password" class="pwbox">
-            </div>
         </div>
-    </div>
-    <div class="searchbtn">
-        <button type="submit" id="searbtn" class="searbtn">찾기</button>
-    </div>
+        <div th:if="${findCompw != null}">
+            <input th:value="${findCompw}" name="id"style="display:none;">
+        </div>
+        <div class="info_text">
+            재설정할 새 비밀번호를<br>
+            입력하세요
+        </div>
+        <div class="login_input_form">
+            <div class="email_text">
+                새 비밀번호
+            </div>
+            <input type="password" class="login_idtext_input" id="password" name="password" placeholder="비밀번호">
+        </div>
+        <div id="passwordError" class="error-message"></div>
+        <div class="login_input_form">
+            <div class="email_text">
+                비밀번호 확인
+            </div>
+            <input type="password" class="login_passtext_input" placeholder="비밀번호 확인">
+        </div>
+        <div class="login_btn_form">
+            <button type="submit">변경</button>
+        </div>
     </form>
 </main>
 
 <script>
-// 포커스 아웃 이벤트 처리 (비밀번호)
-document.getElementById('password').addEventListener('blur', function () {
-validatePassword();
-});
+    // 포커스 아웃 이벤트 처리 (비밀번호)
+    document.getElementById('password').addEventListener('blur', function () {
+    validatePassword();
+    });
 
 
-var searchbtn = document.getElementById('searbtn');
+    var searchbtn = document.getElementById('searbtn');
 
-// 비밀번호 유효성 검사 함수
-function validatePassword() {
-var passwordInput = document.getElementById('password');
-var passwordError = document.getElementById('passwordError');
+    // 비밀번호 유효성 검사 함수
+    function validatePassword() {
+    var passwordInput = document.getElementById('password');
+    var passwordError = document.getElementById('passwordError');
 
-var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+    var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
 
-if (!passwordRegex.test(passwordInput.value)) {
-// 비밀번호가 유효하지 않은 경우
-passwordError.textContent = "특수문자를 포함한 8~16자리로 입력하세요.";
-searchbtn.setAttribute('disabled', 'disabled');
-} else {
-// 비밀번호가 유효한 경우
-passwordError.textContent = ""; // 에러 메시지 초기화
-searchbtn.removeAttribute('disabled');
-}
-}
+    if (!passwordRegex.test(passwordInput.value)) {
+    // 비밀번호가 유효하지 않은 경우
+    passwordError.textContent = "특수문자를 포함한 8~16자리로 입력하세요.";
+    searchbtn.setAttribute('disabled', 'disabled');
+    } else {
+    // 비밀번호가 유효한 경우
+    passwordError.textContent = ""; // 에러 메시지 초기화
+    searchbtn.removeAttribute('disabled');
+    }
+    }
 </script>
-
 
 </body>
 

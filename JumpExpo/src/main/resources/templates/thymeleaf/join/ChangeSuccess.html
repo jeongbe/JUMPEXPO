@@ -1,14 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background-color: #f0f0f0;  */
+}
+
+main {
+    width: 550px;
+    height: 300px;
+    /* background-color: aqua; */
+    border: 1px solid #ccc;
+}
+
+.info_text{
+    margin-top: 110px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+
+}
+
+h1{
+    position: absolute;
+    top: 130px;
+
+}
+
+.login_btn_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+button{
+
+    margin-top: 75px;
+    width: 450px;
+    height: 50px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background-color: #374658;
+    color: white;
+    border-radius: 15px;
+
+}
+
+    </style>
 </head>
+
 <body>
-<div style="text-align: center; margin-top: 350px;">
-    <h1>변경이 완료되었습니다.</h1>
-   <a href="/JumpExpo/Login"> <button style="width: 250px; height: 50px; margin-top: 30px;  background-color: #374658; color: white;">로그인 하기</button></a>
-</div>
+<h1>Jump</h1>
+<main>
+    <div class="info_text">
+        비밀번호 변경에 성공하였습니다.
+    </div>
+    <div class="login_btn_form">
+        <a href="/JumpExpo/Login"><button>로그인하기</button></a>
+    </div>
+</main>
+
 </body>
+
 </html>

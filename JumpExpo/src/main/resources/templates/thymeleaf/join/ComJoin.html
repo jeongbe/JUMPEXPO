@@ -5,99 +5,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/join/ComJoin.css">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
+<h1>Jump</h1>
 <main>
-    <div class="logo"><img class="logo" src="/static/images/KakaoTalk_20240106_135536169.png"></div>
-    <h1>기업 회원 가입</h1>
     <form method="post" action="/JumpExpo/ComJoin">
-    <table>
-        <tr>
-            <td><label for="id">아이디 *</label></td>
-            <td>
-                <input type="text" id="id" name="id" placeholder="최대 20글자" required>
-                <button type="submit" class="idcheck" onclick="checkDuplicate()">중복체크</button>
-                <div id="idError" class="error-message"></div>
-            </td>
-        </tr>
-        <tr>
-            <td><label for="password">비밀번호 *</label></td>
-            <td>
-                <input type="password" id="password" name="password" placeholder="특수기호 포함 8~16자리" required>
-                <div id="passwordError" class="error-message"></div>
-            </td>
-        </tr>
-        <tr>
-            <td><label for="passwordch">비밀번호 확인 *</label></td>
-            <td>
-                <input type="password" id="passwordch" name="passwordch" placeholder="한번 더 입력해 주세요" required>
-                <div id="passwordchError" class="error-message"></div>
-            </td>
+        <div class="join_allform">
+            <div class="id_text_input">
+                <div class="join_title">아이디 * <button type="button" class="idcheck" onclick="checkDuplicate()">중복체크</button></div>
+                <input type="text" id="id" name="id" class="idbox_join" pattern="^[A-Za-z]{1}[A-Za-z0-9]{3,19}$" placeholder="4 ~ 20글자"
+                       required>
+            </div>
+            <div id="idError" class="error-message"></div>
+            <div class="id_text_input">
+                <div class="join_title">비밀번호 *</div>
+                <input type="password" class="idbox_join" id="password" name="password" placeholder="비밀번호를 입력하세요"
+                       required>
+            </div>
+            <div id="passwordError" class="error-message"></div>
+            <div class="id_text_input">
+                <input type="password" class="passCheck" id="passwordch" placeholder="한번더 입력해 주세요" required>
+            </div>
+            <div id="passwordchError" class="error-message"></div>
+            <div class="id_text_input">
+                <div class="join_title">사업자번호 * <button type="button" class="idcheck" onclick="brsec()">사업자 인증</button></div>
+                <input type="text" class="idbox_join" id="BRnumber" name="BRnumber" placeholder="번호만 입력" required>
+            </div>
+            <div class="id_text_input">
+                <div class="join_title">회사명 *</div>
+                <input type="text" class="idbox_join" id="Comname" name="Comname" placeholder="회사 이름" required>
+            </div>
+            <div class="id_text_input">
+                <input type="text" id="sample6_postcode" readonly style="display:none;">
+                <input type="text" id="sample6_extraAddress" readonly style="display:none;">
+                <div class="join_title">회사주소 * <button type="button" onclick="execution_daum_address()">주소검색</button></div>
+                <input type="text" class="idbox_join" id="sample6_address" name="addr" readonly required>
+            </div>
+            <div class="id_text_input">
+                <input type="text" class="passCheck" id="addr1" name="addr1" placeholder="상세주소">
+            </div>
+            <div class="id_text_input">
+                <div class="join_title">홈페이지 링크 *</div>
+                <div class="id_text_input">
+                    <input type="text" class="idbox_join" id="homepage" name="homepage" placeholder="웹주소" required>
+                </div>
+            </div>
+            <div class="id_text_input">
+                <div class="join_title">담당자 *</div>
+                <div class="id_text_input">
+                    <input type="text" class="idbox_join" id="name" name="name" placeholder="매니저 이름" required>
+                </div>
+            </div>
+            <div class="id_text_input">
+                <div class="join_title">담당자 번호 *</div>
+                <input type="text" class="idbox_join" id="phone" name="phone" placeholder="-없이 입력" required>
+            </div>
+            <div id="phoneError" class="error-message"></div>
+            <div class="id_text_input">
+                <div class="join_title">이메일 *</div>
+                <input type="text" class="idbox_join" id="email" name="email" placeholder="이메일 형식으로 적어주세요" required>
+            </div>
+            <div id="emailError" class="error-message"></div>
+            <div class="id_text_input">
+                <div class="join_title">회사소개 *</div>
+                <textarea class="text_join"  name="Cominfo"></textarea>
+            </div>
+            <div class="id_text_input">
+                <div class="join_title">회사로고 *</div>
+                <input type="file" class="idbox_join" id="Comlogo" name="Comlogo">
+            </div>
 
-        </tr>
-        <tr>
-            <td><label for="BRnumber">사업자번호 *</label></td>
-            <td><input type="text" id="BRnumber" name="BRnumber" placeholder="숫자만 입력" required></td>
-        </tr>
-        <tr>
-            <td><label for="Comname">회사명 *</label></td>
-            <td><input type="text" id="Comname" name="Comname" required></td>
-        </tr>
-        <tr>
-            <td><label for="sample6_address">회사 주소 *</label></td>
-            <td>
-                <input type="text" id="sample6_postcode" readonly>
-                <button type="button" class="addr_search" onclick="execution_daum_address()">주소 검색</button>
-                <input type="text" id="sample6_extraAddress" readonly>
-                <hr>
-                <input type="text" id="sample6_address" name="addr" required readonly>
-                <hr>
-                <input type="text" id="addr1" name="addr1" placeholder="상세주소를 입력 해주세요">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="homepage">홈페이지 링크 </label></td>
-            <td><input type="text" id="homepage" name="homepage"></td>
-        </tr>
-        <tr>
-            <td><label for="name">담당자 *</label></td>
-            <td><input type="text" id="name" name="name" required></td>
-        </tr>
-        <tr>
-            <td><label for="phone">담당자 번호 *</label></td>
-            <td>
-                <input type="text" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" required>
-                <div id="phoneError" class="error-message"></div>
-            </td>
-        </tr>
-        <tr>
-            <td><label for="email">이메일 *</label></td>
-            <td>
-                <input type="email" id="email" name="email" required>
-                <div id="emailError" class="error-message"></div>
-            </td>
-        </tr>
-        <tr>
-            <td><label>회사소개 *</label></td>
-            <td><textarea class="Cominfo" name="Cominfo"></textarea></td>
-        </tr>
-        <tr>
-            <td><label>회사 로고 </label></td>
-            <td>
-                <input type="file" name="Comlogo">
-            </td>
-        </tr>
-
-    </table>
-    <button type="submit" class="joinbtn">가입하기</button>
+        </div>
+        <div class="join_button_form">
+            <button type="submit" class="join_button">가입하기</button>
+        </div>
     </form>
 </main>
+<script>
+    function brsec(){
+    var data = {
+        "b_no": ["xxxxxxx"] // 사업자번호 "xxxxxxx" 로 조회 시,
+       };
+
+    $.ajax({
+      url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=fiyy8mlxWGToMLKs02mNKcPfqWsxhHXL9K5leMSHB28IwGqslPR6tMWoNHlY%2FjG9tSX6vj7p2%2FUZFYx8K2CX7Q%3D%3D",  // serviceKey 값을 xxxxxx에 입력
+      type: "POST",
+      data: JSON.stringify(data), // json 을 string으로 변환하여 전송
+      dataType: "JSON",
+      contentType: "application/json",
+      accept: "application/json",
+      success: function(result) {
+          console.log(result);
+      },
+      error: function(result) {
+          console.log(result.responseText); //responseText의 에러메세지 확인
+      }
+    });}
+
+</script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
-    var joinbtn = document.querySelector('.joinbtn');
+    var joinbtn = document.querySelector('.join_button');
 
     //아이디 중복체크시 정규식 체크 and Ajax 처리
     function checkDuplicate() {
@@ -286,10 +298,6 @@
     }).open();
 
 }
-
-
-
-
 
 
 </script>

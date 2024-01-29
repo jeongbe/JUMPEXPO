@@ -1,49 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background-color: #f0f0f0;  */
+}
+
 main {
-    width: 700px;
-    height: 350px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid black;
-    border-radius: 25px;
+    width: 550px;
+    height: 450px;
+    /* background-color: aqua; */
+    border: 1px solid #ccc;
 }
 
-.showform{
+.info_text{
+    margin-top: 30px;
     text-align: center;
-    margin-top: 100px;
-}
-.showinput{
-    width: 350px;
-    height: 40px;
+
 }
 
-.loginpage{
-    margin-top: 200px;
-    width: 250px;
-    height: 60px;
-    margin-left: 220px;
+h1{
+    position: absolute;
+    top: 100px;
+
+}
+
+.login_input_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+
+}
+
+.login_idtext_input{
+
+    width: 450px;
+    height: 55px;
+    border: none;
+    border-bottom: 2px solid rgba(20, 18, 18, 0.192);
+    margin-top: 70px;
+    font-size: 13px;
+    padding: 7px;
+    outline: none;
+    
+}
+
+.login_passtext_input{
+
+    width: 450px;
+    height: 55px;
+    border: none;
+    border-bottom: 2px solid rgba(20, 18, 18, 0.192);
+    margin-top: 70px;
+    font-size: 13px;
+    padding: 7px;
+    outline: none;
+
+}
+
+.login_btn_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+button{
+
+    margin-top: 30px;
+    width: 450px;
+    height: 50px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
     background-color: #374658;
     color: white;
+    border-radius: 15px;
+
 }
 
-.logo{
 
-    width: 350px;
-    height: 100px;
-    background-color: aqua;
-}
 
-.title{
+
+
+
+.join_btn{
     display: flex;
-
+    justify-content: center;
+    align-items: center;
 }
 
-.title_text{
-
+.join_btn_login{
+    margin-top: 50px;
+    width: 450px;
+    height: 30px;
+    background-color: #ccc;
 }
 
 
-
-
-
+.email_text{
+    position: absolute;
+    left: 737px;
+}

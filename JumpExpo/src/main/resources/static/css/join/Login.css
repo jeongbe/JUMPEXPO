@@ -1,117 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background-color: #f0f0f0;  */
+}
+
 main {
-    width: 700px;
-    height: 350px;
+    width: 550px;
+    height: 480px;
+    /* background-color: aqua; */
+    border: 1px solid #ccc;
+}
+
+h1{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 25px;
-    }
+    top: 90px;
 
-.logo_form{
-  width:1910px;
-  height: 271px;
-  text-align:center;
 }
 
-.selectradio {
-    width: 100%;
-    height: 80px;
-    /* background-color: blue; */
+.login_input_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
 
-.logininput {
-    height: 250px;
-    width: 500px;
-    /* background-color: blueviolet; */
-    float: left;
-}
+.login_idtext_input{
 
-.loginbtn {
-    width: 100%;
-    height: 250px;
-    /* background-color: orange; */
-}
-
-.com_radio {
-    margin-left: 520px;
+    width: 450px;
+    height: 55px;
+    border: none;
+    border-bottom: 2px solid rgba(20, 18, 18, 0.192);
     margin-top: 50px;
-    width: 18px;
-    height: 18px;
-}
-
-.per_radio {
-    margin-left: 20px;
-    width: 18px;
-    height: 18px;
-}
-
-.loginform {
-    margin-left: 80px;
-    margin-top: 20px;
+    font-size: 18px;
+    padding: 10px;
+    outline: none;
 
 }
 
-.idbox,.pwbox{
-    width: 350px;
-    height: 40px;
-    box-shadow: 0px 3px 0px 0px  #ccc;
+.login_passtext_input{
+
+    width: 450px;
+    height: 55px;
+    border: none;
+    border-bottom: 2px solid rgba(20, 18, 18, 0.192);
+    margin-top: 10px;
+    font-size: 18px;
+    padding: 10px;
+    outline: none;
 
 }
 
-.idform, .pwform{
-   font-size: larger;
+.login_btn_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.pwform{
-    margin-top: 20px;
-}
 
-.logbtn{
-    margin-top: 40px;
-    width: 150px;
-    height: 140px;
+
+button{
+
+    margin-top: 30px;
+    width: 450px;
+    height: 50px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
     background-color: #374658;
-    font-size: larger;
     color: white;
-    border-radius: 15px;
+
+}
+
+.kakao_btn{
+    margin-top: 0px;
+    width: 450px;
+    height: 50px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background-color: rgb(180, 180, 104);
+
+}
+
+.line_or {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 0;
+    line-height: 0;
+}
+
+.line_or:before {
+    display: inline-block;
+    width: calc(50% - 20px);
+    height: 1px;
+    margin: 8px 0;
+    background-color: rgba(0,0,0,.06);
+    vertical-align: top;
+    content: "";
+}
+
+.line_or:after,.line_or:before {
+    display: inline-block;
+    width: calc(50% - 20px);
+    height: 1px;
+    margin: 8px 0;
+    background-color: rgba(0,0,0,.06);
+    vertical-align: top;
+    content: "";
+}
+
+.line_or .txt_or {
+    display: inline-block;
+    width: 40px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #828282;
+}
+
+.login_idsearch_form {
+    display: flex;
+    margin-top: 15px;
+    position: absolute;
+    left: 735px;
+}
+
+.pwsearch{
+    margin-left: 20px;
+}
+
+
+.join_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join_btn_login{
+    margin-top: 70px;
+    width: 450px;
+    height: 30px;
+    background-color: #ccc;
+}
+
+.idserach, .pwsearch{
     cursor: pointer;
 }
 
-.join_search{
-    display: flex;
-    margin-top: 10px;
+.kakao_btn{
+ background-color:#fee500;
+ color:black;
 }
 
-.join{
-    color: gray;
+.join_link_text{
+    cursor:pointer;
+    margin-right: 200px;
+
+  }
+
+.join_link_text a {
+    text-decoration: none; /* 언더라인 제거 */
+    border-bottom: 1px solid transparent; /* 초기 상태의 투명한 선 생성 */
+    transition: border-bottom 0.3s ease; /* 트랜지션 효과 추가 */
+    color:#ccc;
 }
 
-.search{
-    margin-left: 480px;
-    color: gray;
+.join_link_text a:hover {
+    border-bottom: 1px solid black; /* 호버 시 언더라인 표시 및 색상 지정 */
 }
 
-.kakaologin{
-  margin-top: 50px;
-  text-align: center;
+.idserach a, .pwsearch a{
+
+    text-decoration: none; /* 언더라인 제거 */
+    border-bottom: 1px solid transparent; /* 초기 상태의 투명한 선 생성 */
+    transition: border-bottom 0.3s ease; /* 트랜지션 효과 추가 */
+    color:#ccc;
+
 }
 
-.kakaobtn{
-    width: 550px;
-    height: 60px;
-    background-color: yellow;
-}
-
-.login_logo{
-
- width: 350px;
- margin-top:200px;
-}
-
-.kakao_png{
-
-width: 700px;
-height: 60px;
-
+.idserach a:hover, .pwsearch a:hover {
+    border-bottom: 1px solid black; /* 호버 시 언더라인 표시 및 색상 지정 */
 }

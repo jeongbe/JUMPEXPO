@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/join/ShowPw.css">
     <title>Document</title>
 </head>
+
 <body>
-<div class="logo_form">
-    <img src="/static/images/KakaoTalk_20240106_135536169.png" class="login_logo">
-</div>
+<h1>Jump</h1>
 <main>
     <form method="post" action="/JumpExpo/SearchPw">
-    <div class="searchinput">
-        <div class="searchform">
-            <div  class="idform">
-                아이디<br>
-                <input type="text" class="idbox" name="id"><br>
-            </div>
-            <div class="pwform">
-                이름<br>
-                <input type="text" class="pwbox" name="name">
-            </div>
-            <div class="pwform">
-                이메일<br>
-                <input type="email" class="pwbox" name="email">
-            </div>
+        <div class="info_text">
+            비밀번호 재설정을 위해<br>
+            아이디,이름,이메일을 입력해 주세요
         </div>
-    </div>
-    <div class="searchbtn">
-        <button type="submit" class="searbtn">찾기</button>
-    </div>
+        <div class="login_input_form">
+            <div class="email_text">
+                아이디
+            </div>
+            <input type="text" class="login_idtext_input" name="id" placeholder="아이디">
+        </div>
+        <div class="login_input_form">
+            <div class="email_text">
+                이름
+            </div>
+            <input type="text" class="login_passtext_input" name="name" placeholder="이름">
+        </div>
+        <div class="login_input_form">
+            <div class="email_text">
+                이메일
+            </div>
+            <input type="email" class="login_passtext_input" name="email" placeholder="이메일">
+        </div>
+        <div class="login_btn_form">
+            <button type="submit">찾기</button>
+        </div>
     </form>
 </main>
-<div class="reset_btn">
-<a href="/JumpExpo/Login"><button class="btn_reset_pw">처음으로</button></a>
-</div>
 </body>
+
 </html>

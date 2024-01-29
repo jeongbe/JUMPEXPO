@@ -1,51 +1,62 @@
-    main {
-        width: 1100px;
-        height: 400px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-    }
-
-    .per_join_form, .com_join_form{
-       margin-left: 50px;
-       margin-top: 50px;
-    }
-
-    .fa-solid{
-        margin-right: 10px;
-    }
-
-    .per_join_btn, .com_join_btn{
-        width: 500px;
-        height: 120px;
-        font-size: larger;
-    }
-
-    .logo{
-        margin-left: 50px;
-        width: 300px;
-        height: 80px;
-
-    }
+body{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
 
 
-    .infotext{
-        color: gray;
-        margin-top: 30px;
-        text-align: center;
-    }
+section{
+    width: 960px;
+    height: 870px;
+    float: left;
+    border-right: 2px solid #ccc;
+     cursor: pointer;
+}
 
-    .per_join_btn:hover, .com_join_btn:hover{
-        background-color: #374658;
-        color: white; /* 텍스트 색상도 변경하고 싶다면 추가 */
-        /* 기타 원하는 스타일 변경 사항도 여기에 추가할 수 있습니다. */
-    }
 
-    .login_select_form{
 
-    display:flex;
+main{
+    width: 960px;
+    height: 870px;
+    float: left;
+     cursor: pointer;
+}
 
-    }
+.person_png{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.person{
+    position: absolute;
+    top: 250px;
+    width: 250px;
+}
+
+.person_text{
+    position: absolute;
+    top: 450px;
+}
+
+.person_text2{
+
+    position: absolute;
+    top: 510px;
+
+}
+
+/* 호버 효과 */
+section:hover,
+main:hover {
+    background-color: #EA8874; /* 바꿀 색상 설정 */
+}
+
+a {
+    color: black; /* 원하는 색상으로 변경 */
+    text-decoration: none;
+}
+
+a:hover {
+    color: white; /* 호버 시 색상 변경 */
+}

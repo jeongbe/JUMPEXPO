@@ -9,17 +9,28 @@
 </head>
 
 <body>
+<h1>Jump</h1>
 <main>
-    <div class="showform">
-        <h3>아이디를 찾았습니다 !!</h3><br>
+    <div class="info_text">
+        입력한 정보와 일치하는 아이디 입니다.
+    </div>
+    <div class="login_input_form">
+        <input type="email" class="login_idtext_input" name="email" placeholder="로그인을 오랫동안 하지 않았다면 비밀번호 재설정 후 로그인 하는것이 안전합니다">
+    </div>
+    <div class="login_input_form">
+        <div class="email_text">
+            아이디
+        </div>
         <div th:if="${comid != null}">
-        <input type="text" id="comid" class="showinput" th:value="${comid}">
+            <input type="text" id="comid" class="login_passtext_input" th:value="${comid}">
         </div>
         <div th:if="${userid != null}">
-        <input type="text" id="userid" class="showinput" th:value="${userid}">
+            <input type="text" id="userid" class="login_passtext_input" th:value="${userid}">
         </div>
     </div>
-    <a href="/JumpExpo/Login"><button class="loginpage">로그인하기</button></a>
+    <div class="login_btn_form">
+        <a href="/JumpExpo/Login"><button>로그인하기</button></a>
+    </div>
 </main>
 
 <script>

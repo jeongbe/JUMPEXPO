@@ -9,46 +9,45 @@
 </head>
 
 <body>
-<div class="logo_form">
-    <img src="/static/images/KakaoTalk_20240106_135536169.png" class="login_logo">
-</div>
+<h1>Jump</h1>
 <main>
     <form action="/JumpExpo/AppLogin" method="post">
-    <div class="selectradio">
-    </div>
-    <hr>
-    <div class="logininput">
-        <div class="loginform">
-            <div  class="idform">
-                아이디<br>
-                <input type="text" class="idbox" name="user_id"><br>
-            </div>
-            <div class="pwform">
-                비밀번호<br>
-                <input type="password" class="pwbox" name="password">
-            </div>
+        <div class="login_input_form">
+            <input type="text" class="login_idtext_input" name="user_id" placeholder="아이디 입력">
         </div>
-    </div>
-    <div class="loginbtn">
-        <button type="submit" class="logbtn">로그인</button>
-    </div>
+        <div class="login_input_form">
+            <input type="password" class="login_passtext_input" name="password" placeholder="패스워드 입력">
+        </div>
+        <div class="login_btn_form">
+            <button type="submit">로그인</button>
+        </div>
     </form>
-    <div class="join_search">
-        <a href="/JumpExpo/JoinSelect"><div class="join">회원가입</div></a>
-        <a href="/JumpExpo/IdSearch"><div class="search">아이디/비밀번호 찾기</div></a>
-    </div>
-    <div class="kakaologin">
-        <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bcf283702c88974c445ca041bb3d6ad6&redirect_uri=http://localhost:8080/JumpExpo/kakaologin">
-            <img src="/static/images/kakao_login_large_wide.png" class="kakao_png">
+    <span class="line_or">
+            <span class="txt_or">또는</span>
+        </span>
+    <div class="login_btn_form">
+        <a
+                href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=bcf283702c88974c445ca041bb3d6ad6&redirect_uri=http://localhost:8080/JumpExpo/kakaologin">
+<!--            <button class="kakao_btn">카카오 로그인</button>-->
+            <img src="/static/images/kakao_login_large_wide.png" class="kakao_btn">
         </a>
     </div>
-
+    <div class="login_idsearch_form">
+        <div class="join_link_text">
+           <a href="/JumpExpo/JoinSelect">회원가입</a>
+        </div>
+        <div class="idserach">
+           <a href="/JumpExpo/IdSearch">계정찾기</a>
+        </div>
+        <div class="pwsearch">
+            <a href="/JumpExpo/PwSearch">비밀번호 찾기</a>
+        </div>
+    </div>
 </main>
 
 <script th:if="${error != null}" type="text/javascript">
-        alert('아이디 또는 비밀번호를 확인하세요.');
+    alert('아이디 또는 비밀번호를 확인하세요.');
 </script>
-
 </body>
 
 </html>
