@@ -35,7 +35,6 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-  
 
 }
 
@@ -50,6 +49,20 @@ h1{
     padding: 7px;
     outline: none;
     
+}
+
+.login_idtext_input1{
+
+    width: 450px;
+    height: 55px;
+    border: none;
+    border-bottom: 2px solid rgba(20, 18, 18, 0.192);
+    margin-top: 70px;
+    font-size: 13px;
+    padding: 7px;
+    outline: none;
+    color:#ccc;
+
 }
 
 .login_passtext_input{

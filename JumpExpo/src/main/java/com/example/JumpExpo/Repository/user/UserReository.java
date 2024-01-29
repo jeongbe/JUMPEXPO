@@ -2,6 +2,9 @@ package com.example.JumpExpo.Repository.user;
 
 import com.example.JumpExpo.Controller.join.OAuthToken;
 import com.example.JumpExpo.Entity.user.Users;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -77,7 +80,7 @@ public interface UserReository extends JpaRepository<Users,Integer> {
     @Query(value = "SELECT *\n" +
             "FROM usertable\n" +
             "WHERE user_sec = 1;", nativeQuery = true)
-    ArrayList<Users> userM();
+    Page<Users> userM(Pageable pageable, @Param("expoCate") int expoCate);
 
 
 

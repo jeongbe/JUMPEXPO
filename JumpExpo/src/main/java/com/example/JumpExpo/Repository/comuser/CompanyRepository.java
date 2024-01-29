@@ -2,6 +2,8 @@ package com.example.JumpExpo.Repository.comuser;
 
 import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Entity.user.Users;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -55,7 +57,7 @@ public interface CompanyRepository extends JpaRepository<Company,Integer> {
     @Query(value = "SELECT *\n" +
             "FROM company\n" +
             "WHERE com_sec = 1;", nativeQuery = true)
-    ArrayList<Company> comM();
+    Page<Company> comM(Pageable pageable, @Param("expoCate") int expoCate);
 
 
 

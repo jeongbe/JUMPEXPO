@@ -14,14 +14,14 @@ body {
 
 main {
     width: 550px;
-    height: 480px;
+    height: 430px;
     /* background-color: aqua; */
     border: 1px solid #ccc;
 }
 
 h1{
     position: absolute;
-    top: 90px;
+    top: 150px;
 
 }
 

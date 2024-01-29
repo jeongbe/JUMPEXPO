@@ -109,193 +109,211 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
-    var joinbtn = document.querySelector('.join_button');
+    function setMainHeight() {
+      var mainElement = document.querySelector('main');
+      var errorMessages = document.querySelectorAll('.error-message');
+      var totalHeight = Array.from(errorMessages).reduce((acc, errorMessage) => {
+          return acc + errorMessage.clientHeight;
+      }, 0);
 
-    //아이디 중복체크시 정규식 체크 and Ajax 처리
-    function checkDuplicate() {
-        var idInput = document.getElementById('id');
-        var idError = document.getElementById('idError');
+      // 1520px에 현재까지의 높이를 더하여 설정
+      mainElement.style.height = 1880 + totalHeight + 'px';
+  }
 
-        if (!idInput.checkValidity()) {
-            // 정규식 검증 실패 시
-            idError.textContent = "아이디는 영문자로 시작하고, 영문자 및 숫자로 4~20자리여야 합니다.";
-            joinbtn.setAttribute('disabled', 'disabled');
-        } else {
-            // 정규식 검증 통과 시
-            idError.textContent = ""; // 에러 메시지 초기화
-            joinbtn.removeAttribute('disabled');
-            //여기에 중복체크 ajax 들어갈 예정
+var joinbtn = document.querySelector('.join_button');
 
-              // 아이디 중복체크
-        function check() {
-            // 사용자가 입력한 아이디
-            var id = idInput.value;
+//아이디 중복체크시 정규식 체크 and Ajax 처리
+function checkDuplicate() {
+    var idInput = document.getElementById('id');
+    var idError = document.getElementById('idError');
 
-            fetch('/JumpExpo/ComDupCheck?id=' + encodeURIComponent(id), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.isDuplicate) {
-                        idError.textContent = "이미 존재하는 아이디 입니다.";
-                        joinbtn.setAttribute('disabled', 'disabled');
-                    } else {
-                        idError.textContent = "사용 가능한 아이디 입니다.";
-                        joinbtn.removeAttribute('disabled');
-                    }
-                })
-                .catch(error => {
-                    idError.textContent = "오류가 발생했습니다";
-                });
-        }
+    if (!idInput.checkValidity()) {
+        // 정규식 검증 실패 시
+        idError.textContent = "아이디는 영문자로 시작하고, 영문자 및 숫자로 4~20자리여야 합니다.";
+        joinbtn.setAttribute('disabled', 'disabled');
+        setMainHeight()
+    } else {
+        // 정규식 검증 통과 시
+        idError.textContent = ""; // 에러 메시지 초기화
+        joinbtn.removeAttribute('disabled');
+        //여기에 중복체크 ajax 들어갈 예정
 
-        // check 함수 호출
-        check();
+          // 아이디 중복체크
+    function check() {
+        // 사용자가 입력한 아이디
+        var id = idInput.value;
 
-        }
-    }
-
-    // 포커스 아웃 이벤트 처리 (비밀번호)
-    document.getElementById('password').addEventListener('blur', function () {
-        validatePassword();
-    });
-
-    // 비밀번호 유효성 검사 함수
-    function validatePassword() {
-        var passwordInput = document.getElementById('password');
-        var passwordError = document.getElementById('passwordError');
-
-        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
-
-        if (!passwordRegex.test(passwordInput.value)) {
-            // 비밀번호가 유효하지 않은 경우
-            passwordError.textContent = "특수문자를 포함한 8~16자리로 입력하세요.";
-            joinbtn.setAttribute('disabled', 'disabled');
-        } else {
-            // 비밀번호가 유효한 경우
-            passwordError.textContent = ""; // 에러 메시지 초기화
-            joinbtn.removeAttribute('disabled');
-        }
-    }
-
-    // 포커스 아웃 이벤트 처리 (비밀번호 확인)
-    document.getElementById('passwordch').addEventListener('blur', function () {
-        validatePasswordch();
-    });
-
-    function validatePasswordch() {
-
-        var passwordInput = document.getElementById('password');
-        var passwordInputch = document.getElementById('passwordch');
-        var passwordchError = document.getElementById('passwordchError');
-
-        if (passwordInput.value != passwordInputch.value) {
-            //비밀번호가 다를경우
-            passwordchError.textContent = "비밀번호가 다릅니다.";
-            joinbtn.setAttribute('disabled', 'disabled');
-        }
-        else {
-            passwordchError.textContent = "";  //에러 메세지 초기화
-            joinbtn.removeAttribute('disabled');
-        }
-    }
-
-
-       // 포커스 아웃 이벤트 처리 (전화 번호)
-       document.getElementById('phone').addEventListener('blur', function () {
-        validatephone();
-    })
-
-    function validatephone(){
-        var phone = document.getElementById('phone');
-        var phoneError = document.getElementById('phoneError');
-        var phoneRegex = /^\d{11}$/;
-
-        if(!phoneRegex.test(phone.value)){
-            phoneError.textContent = "-없이 11자리만 입력해 주세요";
-            joinbtn.setAttribute('disabled', 'disabled');
-        }
-        else{
-            phoneError.textContent = ""; //에러 메세지 초기화
-            joinbtn.removeAttribute('disabled');
-        }
-
-    }
-
-         // 포커스 아웃 이벤트 처리 (이메일)
-         document.getElementById('email').addEventListener('blur', function () {
-        validateemail();
-    })
-
-    function validateemail(){
-        var email = document.getElementById('email');
-        var emailError = document.getElementById('emailError');
-        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        if(!emailRegex.test(email.value)){
-            emailError.textContent = "이메일 형식을 맞춰서 적어주세요";
-            joinbtn.setAttribute('disabled', 'disabled');
-        }
-        else{
-            emailError.textContent = ""; //에러 메세지 초기화
-            joinbtn.removeAttribute('disabled');
-        }
-
-    }
-
-     //주소 api 사용
-
-    function execution_daum_address(){
-
-     new daum.Postcode({
-        oncomplete: function(data) {
-                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
-
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("sample6_extraAddress").value = extraAddr;
-
+        fetch('/JumpExpo/ComDupCheck?id=' + encodeURIComponent(id), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.isDuplicate) {
+                    idError.textContent = "이미 존재하는 아이디 입니다.";
+                    joinbtn.setAttribute('disabled', 'disabled');
+                    setMainHeight()
                 } else {
-                    document.getElementById("sample6_extraAddress").value = '';
+                    idError.textContent = "사용 가능한 아이디 입니다.";
+                    joinbtn.removeAttribute('disabled');
+                    setMainHeight()
                 }
+            })
+            .catch(error => {
+                idError.textContent = "오류가 발생했습니다";
+            });
+    }
 
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+    // check 함수 호출
+    check();
+
+    }
+}
+
+// 포커스 아웃 이벤트 처리 (비밀번호)
+document.getElementById('password').addEventListener('blur', function () {
+    validatePassword();
+});
+
+// 비밀번호 유효성 검사 함수
+function validatePassword() {
+    var passwordInput = document.getElementById('password');
+    var passwordError = document.getElementById('passwordError');
+
+    var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+
+    if (!passwordRegex.test(passwordInput.value)) {
+        // 비밀번호가 유효하지 않은 경우
+        passwordError.textContent = "특수문자를 포함한 8~16자리로 입력하세요.";
+        joinbtn.setAttribute('disabled', 'disabled');
+        setMainHeight()
+    } else {
+        // 비밀번호가 유효한 경우
+        passwordError.textContent = ""; // 에러 메시지 초기화
+        joinbtn.removeAttribute('disabled');
+    }
+}
+
+// 포커스 아웃 이벤트 처리 (비밀번호 확인)
+document.getElementById('passwordch').addEventListener('blur', function () {
+    validatePasswordch();
+});
+
+function validatePasswordch() {
+
+    var passwordInput = document.getElementById('password');
+    var passwordInputch = document.getElementById('passwordch');
+    var passwordchError = document.getElementById('passwordchError');
+
+    if (passwordInput.value != passwordInputch.value) {
+        //비밀번호가 다를경우
+        passwordchError.textContent = "비밀번호가 다릅니다.";
+        joinbtn.setAttribute('disabled', 'disabled');
+        setMainHeight()
+    }
+    else {
+        passwordchError.textContent = "";  //에러 메세지 초기화
+        joinbtn.removeAttribute('disabled');
+    }
+}
+
+
+   // 포커스 아웃 이벤트 처리 (전화 번호)
+   document.getElementById('phone').addEventListener('blur', function () {
+    validatephone();
+})
+
+function validatephone(){
+    var phone = document.getElementById('phone');
+    var phoneError = document.getElementById('phoneError');
+    var phoneRegex = /^\d{11}$/;
+
+    if(!phoneRegex.test(phone.value)){
+        phoneError.textContent = "-없이 11자리만 입력해 주세요";
+        joinbtn.setAttribute('disabled', 'disabled');
+        setMainHeight()
+    }
+    else{
+        phoneError.textContent = ""; //에러 메세지 초기화
+        joinbtn.removeAttribute('disabled');
+    }
+
+}
+
+     // 포커스 아웃 이벤트 처리 (이메일)
+     document.getElementById('email').addEventListener('blur', function () {
+    validateemail();
+})
+
+function validateemail(){
+    var email = document.getElementById('email');
+    var emailError = document.getElementById('emailError');
+    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if(!emailRegex.test(email.value)){
+        emailError.textContent = "이메일 형식을 맞춰서 적어주세요";
+        joinbtn.setAttribute('disabled', 'disabled');
+        setMainHeight()
+    }
+    else{
+        emailError.textContent = ""; //에러 메세지 초기화
+        joinbtn.removeAttribute('disabled');
+    }
+
+}
+
+ //주소 api 사용
+
+function execution_daum_address(){
+
+ new daum.Postcode({
+    oncomplete: function(data) {
+                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.getElementById("sample6_extraAddress").value = extraAddr;
+
+            } else {
+                document.getElementById("sample6_extraAddress").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample6_postcode').value = data.zonecode;
+            document.getElementById("sample6_address").value = addr;
 
 
 
-        }
-    }).open();
+    }
+}).open();
 
 }
 

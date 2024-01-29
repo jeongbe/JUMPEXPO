@@ -8,32 +8,32 @@
     <style>
     /* 추가된 CSS 스타일 */
 
-    .pagination {
-        display: flex;
-        list-style: none;
-        padding: 0;
-        margin-top: 20px;
-        margin-left: 400px;
-    }
+   .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    /* margin-left: 400px; */
+    justify-content: center;
+    color: black;
+
+}
+
 
     .pagination li {
         margin: 0 5px;
         display: inline;
     }
 
-    .pagination a {
-        text-decoration: none;
-        color: #007bff;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        padding: 8px 12px;
-        border-radius: 4px;
-    }
-
-    .pagination a:hover {
-        background-color: #007bff;
-        color: #fff;
-    }
+   .pagination a {
+    text-decoration: none;
+    color: black;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    /* padding: 8px 12px; */
+    border-radius: 4px;
+    border: none;
+}
 
     .pagination .active a {
         background-color: #007bff;
@@ -41,7 +41,7 @@
     }
     </style>
 </head>
-<div class="s_header" th:replace="~{admin/header/ScheduleHeader :: scheduleHeader}"></div>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader3 :: ScheduleHeader3}"></div>
 <div class="sidebar" th:replace="~{admin/side/Reviewside :: Reviewside}"></div>
 
 <body>
@@ -79,7 +79,6 @@
             <span style="display:none;" class="reNum" th:text="${list.re_num}">1</span>
             <button onclick="deleteReview(this)">삭제하기</button>
         </td>
-
     </tr>
 </table>
     <nav aria-label="Page navigation example" class="pageBtn">
@@ -87,113 +86,112 @@
         </ul>
     </nav>
     <span style="display:none;" class="total_page" th:text="${TotalPage}"></span>
-</div>
 
+</div>
 <script>
 
-    function deleteReview(target) {
-    let reNum = target.parentElement.querySelector('.reNum');
-    let reNumtext = reNum.textContent;
+   function deleteReview(target) {
+   let reNum = target.parentElement.querySelector('.reNum');
+   let reNumtext = reNum.textContent;
 
-    if (confirm("삭제하시겠습니까?")) {
-        // 사용자가 확인하면 서버로 DELETE 요청 보내기
-        fetch(`/admin/review/de/${reNumtext}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => {
-            window.location.reload();
-            if (!response.ok) {
-                throw new Error('삭제 실패');
-            }
-            return response.json();
-        })
-        .then(data => {
+   if (confirm("삭제하시겠습니까?")) {
+       // 사용자가 확인하면 서버로 DELETE 요청 보내기
+       fetch(`/admin/review/de/${reNumtext}`, {
+           method: 'DELETE',
+           headers: {
+               'Content-Type': 'application/json',
+           },
+       })
+       .then(response => {
+           window.location.reload();
+           if (!response.ok) {
+               throw new Error('삭제 실패');
+           }
+           return response.json();
+       })
+       .then(data => {
 
-        })
-        .catch(error => {
-            console.error('삭제 에러:', error);
-        });
-    }
+       })
+       .catch(error => {
+           console.error('삭제 에러:', error);
+       });
+   }
 }
 
 
-
-    <!--    클릭 정보-->
-        function setEventType(value) {
-        document.getElementById("eventType").value = value;
+   <!--    클릭 정보-->
+       function setEventType(value) {
+       document.getElementById("eventType").value = value;
 <!--        console.log(value);-->
-        document.querySelector("form").submit();
-    }
+       document.querySelector("form").submit();
+   }
 
-        let total_page = document.querySelector('.total_page').textContent;
+       let total_page = document.querySelector('.total_page').textContent;
 <!--            console.log(total_page);-->
 
 
 
-            // 부모 요소
-        var paginationContainer = document.querySelector(".pagination");
+           // 부모 요소
+       var paginationContainer = document.querySelector(".pagination");
 
 
 
-        if (paginationContainer) {
-            // 이전 버튼
-            var prevButton = document.createElement("li");
-            prevButton.classList.add("page-item");
+       if (paginationContainer) {
+           // 이전 버튼
+           var prevButton = document.createElement("li");
+           prevButton.classList.add("page-item");
 
-            const urlParams = new URL(location.href).searchParams;
-            const evType = urlParams.get('eventType');
-            console.log(evType);
+           const urlParams = new URL(location.href).searchParams;
+           const evType = urlParams.get('eventType');
+           console.log(evType);
 
-            if(evType == 0){
-                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=0&page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            }else if(evType == 1){
-                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=1&page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            }else if(evType == 2){
-                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=2&page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            }else{
-                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            }
+           if(evType == 0){
+               prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=0&page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+           }else if(evType == 1){
+               prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=1&page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+           }else if(evType == 2){
+               prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=2&page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+           }else{
+               prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+           }
 
 
-            paginationContainer.appendChild(prevButton);
+           paginationContainer.appendChild(prevButton);
 
-            // 페이지 번호 생성
-            for (var i = 1; i <= total_page; i++) {
-                var pageItem = document.createElement("li");
-                pageItem.classList.add("page-item");
+           // 페이지 번호 생성
+           for (var i = 1; i <= total_page; i++) {
+               var pageItem = document.createElement("li");
+               pageItem.classList.add("page-item");
 
-                if(evType == 0){
-                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=0&page=${i-1}">${i}</a>`;
-                }else if(evType == 1){
-                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=1&page=${i-1}">${i}</a>`;
-                }else if(evType == 2){
-                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=2&page=${i-1}">${i}</a>`;
-                }else{
-                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?page=${i-1}">${i}</a>`;
-                }
+               if(evType == 0){
+                   pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=0&page=${i-1}">${i}</a>`;
+               }else if(evType == 1){
+                   pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=1&page=${i-1}">${i}</a>`;
+               }else if(evType == 2){
+                   pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=2&page=${i-1}">${i}</a>`;
+               }else{
+                   pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?page=${i-1}">${i}</a>`;
+               }
 
-                paginationContainer.appendChild(pageItem);
-            }
+               paginationContainer.appendChild(pageItem);
+           }
 
-            // 다음 버튼
-            var nextButton = document.createElement("li");
-            nextButton.classList.add("page-item");
+           // 다음 버튼
+           var nextButton = document.createElement("li");
+           nextButton.classList.add("page-item");
 
-            if(evType == 0){
-                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=0&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            }else if(evType == 1){
-                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=1&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            }else if(evType == 2){
-                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=2&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            }else{
-                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            }
+           if(evType == 0){
+               nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=0&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+           }else if(evType == 1){
+               nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=1&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+           }else if(evType == 2){
+               nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=2&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+           }else{
+               nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+           }
 
-            paginationContainer.appendChild(nextButton);
-        }
+           paginationContainer.appendChild(nextButton);
+       }
 </script>
 
 </body>

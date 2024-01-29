@@ -2,22 +2,22 @@ body{
  display: flex;
  justify-content: center;
  align-items: center;
+ height:860px;
 }
 
 
 section{
     width: 960px;
-    height: 870px;
+    height: 100vh;
     float: left;
     border-right: 2px solid #ccc;
      cursor: pointer;
 }
 
 
-
 main{
     width: 960px;
-    height: 870px;
+    height: 100vh;
     float: left;
      cursor: pointer;
 }
@@ -34,9 +34,17 @@ main{
     width: 250px;
 }
 
-.person_text{
+.company{
     position: absolute;
-    top: 450px;
+    top: 235px;
+    width: 250px;
+}
+
+.person_text {
+    position: absolute;
+    top: 463px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .person_text2{
