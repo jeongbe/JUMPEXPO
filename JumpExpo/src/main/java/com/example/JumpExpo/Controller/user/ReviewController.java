@@ -1,6 +1,8 @@
 package com.example.JumpExpo.Controller.user;
 
 import com.example.JumpExpo.Entity.user.UserReview;
+import com.example.JumpExpo.Entity.user.Users;
+import com.example.JumpExpo.Repository.user.UserReository;
 import com.example.JumpExpo.Repository.user.UserReviewRepository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
 import com.example.JumpExpo.Service.user.user.UserService;
@@ -8,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +27,10 @@ public class ReviewController {
     @Autowired
     UserReviewRepository userReviewRepository;
 
+    @Autowired
+    UserReository userReository;
+
+
     //2024.01.24 정정빈
     //페어 리뷰 리스트
 
@@ -31,6 +39,12 @@ public class ReviewController {
                             @RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,
                                  @RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                                  @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
         log.info(serch);
         log.info(target);
         Page<UserReview> list = null;
@@ -71,6 +85,12 @@ public class ReviewController {
     public String UserReviewEmp(@RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,Model model,@RequestParam(value="page", defaultValue="0")int page,
                                 @RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                                 @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
 
         log.info(serch);
         log.info(target);
@@ -114,6 +134,12 @@ public class ReviewController {
                                 @RequestParam(value = "serch",required = false)String serch,@RequestParam(value = "target",required = false) String target,
                                 @RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                                 @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
         log.info(serch);
         log.info(target);
         Page<UserReview> list = null;
@@ -152,6 +178,12 @@ public class ReviewController {
     @GetMapping("/review/read/{re_num}")
     public String ReviewRead(Model model,@PathVariable("re_num") int renum){
 //        log.info(String.valueOf(renum));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
 
         UserReview reList = userReviewRepository.findById(renum).orElse(null);
 

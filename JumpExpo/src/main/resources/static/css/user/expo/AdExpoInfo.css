@@ -1,77 +1,77 @@
-p {
-margin-bottom:none;
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
 }
 .container {
     position:relative;
-    top: -50PX;
-    left:-50px;
+    top: -5PX;
+    left: 80px;
     margin:0 auto;
+    width: 920px;
 }
 
 .title-box {
-            display: flex;
-            width: 950px;
-            position: absolute;
-            top: 130px;
-            left: 70px;
+    width: 920px;
+    display: flex;
 }
 
 .body_title {
-    margin: 0px;
-    width: 700px;
+     position: absolute;
+    top: 93px;
+    left: -60px;
+    width: 920px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
 }
-
-.body_title > span:first-child {
+.body_title span {
+    font-weight: 800;
     font-size: 30px;
-    color: #808080;
-    font-weight: bold;
 }
-
-.body_title > span:last-child {
-    font-size: 30px;
+.body_title span:last-child {
     color: #374658;
-    font-weight: bold;
 }
 
 .body_title_right {
    position:absolute;
    right:70px;
-   bottom: 0;
+   top: 100px;
+   font-weight: 700;
+   font-size: 15px;
 }
-
-.line1 {
+.body_title_right img {
     position: absolute;
-        border-bottom: 3px solid #374658;
-        width: 920px;
-        top: 190px;
-        left: 70px;
+    left: -26px;
+    top: 2px;
 }
-
 .expo_name_box {
         font-size: 20px;
-        position: absolute;
-        top: 200px;
-        text-align: center;
-        margin: 0 auto;
-        width: 920px;
-        font-weight: 700;
-        border-bottom: 3px solid #ccc;
-        margin-left: 60px;
-        height: 35px;
+            position: absolute;
+            top: 160px;
+            text-align: center;
+            margin: 0 auto;
+            width: 920px;
+            font-weight: 700;
+            border-bottom: 3px solid #ccc;
+            margin-left: 0px;
+            height: 35px;
+            left: -60px;
 }
 
 .line2 {
-      border-bottom: 3px solid #ccc;
-      margin-top: 30px;
-      margin-left: 60px;
+    border-bottom: 3px solid #374658;
+    margin-top: 30px;
+    margin-left: -60px;
+    width:920px;
 }
 
 .expo_info_box {
     display: flex;
-        margin-left: 80px;
-        margin-top: 20px;
-        position: relative;
-        top: 260px;
+    position: relative;
+        top: 230px;
+        left: -40px;
 }
 
 .img_box {
@@ -91,7 +91,10 @@ margin-bottom:none;
         font-size: 15px;
         color: #808080;
 }
-
+.expo_info span {
+    margin-top: 13px;
+    margin-left: 15px;
+}
 .info_box1 {
     display: flex;
 }
@@ -104,17 +107,18 @@ margin-bottom:none;
     content: '● ';
     color: #787878;
     font-size: 7px;
+    margin-top: 15px;
     display: flex;
     align-items: center;
-    margin-top: -15px;
 }
 
 .outline_box {
-    display: flex;
-    height: 130px;
-    position: relative;
-    top: 260px;
-    left: 20px;
+        display: flex;
+        height: 130px;
+        position: relative;
+        top: 240px;
+        left: -100px;
+        width: 920px;
 }
 
 .o_box1 {
@@ -132,15 +136,17 @@ margin-bottom:none;
 }
 
 .o_box2 {
-    margin-left: 20px;
-        margin-top: 20px;
-        width: 100%;
+    width: 770px;
         background-color: #ccc;
         word-wrap: break-word;
         max-height: 200px;
         overflow-y: auto;
         text-align: center;
         line-height: 110px;
+        /* margin-right: 0px; */
+        position: absolute;
+        top: 20px;
+        left: 190px;
 }
 
 .o_box2 p {
@@ -149,10 +155,9 @@ margin-bottom:none;
 }
 
 .expo_info_box2 {
-    margin-top: 30px;
-        margin-left: 90px;
-        position: relative;
-        top: 260px
+   position: relative;
+   top: 260px;
+   left: -40px;
 }
 
 .info_box2 {
@@ -177,29 +182,20 @@ margin-bottom:none;
 }
 
 .expo_explanation {
-    /* background-color: aqua; */
-        margin-top: 300px;
-        margin-left: 60px;
-        text-align: center;
-}
-
-.expo_explanation > textarea {
-    width: 900px;
-    resize: none;
-    font-size: 20px;
-    overflow: hidden;
-    /* 자동으로 높이를 조절하도록 수정 */
-}
-
-textarea:focus {
-    outline: 0;
+    margin-top: 300px;
+    text-align: center;
+    width: 920px;
+    border: 2px solid #ccc;
+    height: 130px;
+    margin-left: -60px;
+    line-height: 130px;
 }
 
 .btn_box {
-        text-align: center;
-        margin-top: 100px;
-        display: flex;
-        margin-left: 320px;
+   text-align: center;
+   margin-top: 40px;
+   display: flex;
+   margin-left: 240px;
 }
 
 .btn_box button {

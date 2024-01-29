@@ -27,7 +27,6 @@
                 <p class="cate" style="display:none" th:text="${ExpoInfo.expo_cate}"></p>
             </div>
         </div>
-        <div class="line1"></div>
         <div class="expo_name_box">
             <p th:text="${ExpoInfo.expo_title}">엑스포이름</p>
         </div>
@@ -37,21 +36,22 @@
             </div>
             <div class="expo_info">
                 <div class="expo_name info_box1">
-                    <p>행사명 :</p>
-                    <p th:text="${ExpoInfo.expo_title}">행사 이름</p>
+                    <span>행사명 :</span>
+                    <span th:text="${ExpoInfo.expo_title}">행사 이름</span>
                 </div>
                 <div class="expo_Period info_box1">
-                    <p>개최 기간 :</p>
-                    <span th:text="${ExpoInfo.expo_start}"></span>~
+                    <span>개최 기간 :</span>
+                    <span th:text="${ExpoInfo.expo_start}"></span>
+                    <span>~</span>
                     <span th:text="${ExpoInfo.expo_end}"></span>
                 </div>
                 <div class="expo_time info_box1">
-                    <p>관람시간 :</p>
-                    <p th:text="${ExpoInfo.expo_time}">시간</p>
+                    <span>관람시간 :</span>
+                    <span th:text="${ExpoInfo.expo_time}">시간</span>
                 </div>
                 <div class="expo_place info_box1">
-                    <p>개최장소 :</p>
-                    <p th:text="${ExpoInfo.expo_add}">장소</p>
+                    <span>개최장소 :</span>
+                    <span th:text="${ExpoInfo.expo_add}">장소</span>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                 <p>전시 개요</p>
             </div>
             <div class="o_box2">
-                <p th:text="${ExpoInfo.expo_outline}">전시내용</p>
+                <span th:text="${ExpoInfo.expo_outline}">전시내용</span>
             </div>
         </div>
         <div class="expo_info_box2">
@@ -89,18 +89,7 @@
                 <p th:text="${ExpoInfo.master_mail}">정보</p>
             </div>
         </div>
-        <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}">
-    <!--                <textarea-->
-    <!--                        name=""-->
-    <!--                        id=""-->
-    <!--                        cols="30"-->
-    <!--                        rows="10"-->
-    <!--                        oninput="autoResizeTextArea(this)"-->
-    <!--                        readonly-->
-    <!--                        -->
-    <!--                >-->
-    <!--                </textarea>-->
-        </div>
+        <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}"></div>
         <div class="line2"></div>
 
         <div class="btn_box">

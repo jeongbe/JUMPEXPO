@@ -1,7 +1,10 @@
 .container_ {
     width: 920px;
-    margin-top: 30px;
-    margin-left: 30px;
+    /* margin-top: 30px; */
+    /* margin-left: 30px; */
+    position: absolute;
+    top: 210px;
+    left: 510px;
 }
 
 .r_title_box {
@@ -39,34 +42,36 @@
 }
 
 .r1 {
-    margin: 0px;
-    width: 100px;
-    background-color: #f6f3f3;
-    height: auto;
-    text-align: center;
-    padding-top: 5px;
-    color: #808080;
-    font-weight: bold;
+        margin: 0px;
+        width: 100px;
+        background-color: #f6f3f3;
+        height: auto;
+        text-align: center;
+        /* padding-top: 5px; */
+        color: #808080;
+        font-weight: bold;
+        line-height: 26px;
 }
 
 .r2 {
-    margin: 0px;
-    height: auto;
-    padding-top: 5px;
-    margin-left: 5px;
-    color: #808080;
-    width: 400px;
-    /* height: 30px; */
+        margin: 0px;
+        height: auto;
+        /* padding-top: 5px; */
+        margin-left: 5px;
+        color: #808080;
+        width: 400px;
+        line-height: 26px;
 }
 
 .r3,
 .r4 {
     margin: 0px;
     height: auto;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     margin-left: 5px;
     color: #808080;
     /* height: 30px; */
+    line-height: 26px;
 }
 
 .r3 {
@@ -74,12 +79,11 @@
 }
 
 .r_cont {
-    /* background-color: aqua; */
-    width: 920px;
-    min-height: 300px;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+        width: 920px;
+        min-height: 500px;
+        margin-top: 20px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
 }
 
 .r_btn_box {
@@ -105,6 +109,8 @@
 .r_b {
     background-color: #374658;
     color: white;
-    width: 100px;
-    /* height: ; */
-}
+    width: 110px;
+    height: 30px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    }

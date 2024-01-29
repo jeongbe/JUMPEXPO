@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/static/css/user/expo/ExpoAllList.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-    <title>박람회 전체 일정 리스트</title>
+    <title>취업 박람회 일정 리스트</title>
     <style>
         /* 추가된 CSS 스타일 */
 
@@ -22,24 +22,26 @@
             margin: 0 5px;
             display:inline;
         }
-
+        .page-item{
+        border:1px solid #ccc;
+        }
         .pagination a {
             text-decoration: none;
-            color: #007bff;
             background-color: #fff;
             border: 1px solid #ddd;
             padding: 8px 12px;
             border-radius: 4px;
+             color: #787878;
         }
 
         .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
 
         .pagination .active a {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
 
     </style>
@@ -60,7 +62,7 @@
                     alt="홈 아이콘"
                     style="width: 20px"
             />
-            > 행사 일정 > 취업박람회일정
+            > 행사 일정 > 취업 박람회 일정
         </div>
     </div>
     <div class="imgs">
@@ -107,8 +109,8 @@
                        <button type="button">6개월</button>
                    </div>
                    <div class="date-box">
-                       <span><input type="date" class="d1" name="date_start" id="" /></span>
-                       <span><input type="date" class="d2" name="date_end" id="" /></span>
+                       <span><input type="date" class="d1" name="date_start" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
+                       <span><input type="date" class="d2" name="date_end" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
                    </div>
                </div>
            </form>
@@ -147,7 +149,15 @@
 <div class="s_header" th:replace="~{user/side/expo/expoSide_2 :: expoSide_2}"></div>
 <!--<div class="footer" th:replace="~{user/footer/userFooter2 :: userFooter2}"></div>-->
 <script>
-
+    setInterval(function(){
+            $('.slidelist').delay(2000);
+            $('.slidelist').animate({marginLeft:-920});
+            $('.slidelist').delay(2000);
+            $('.slidelist').animate({marginLeft:-1840});
+            $('.slidelist').delay(2000);
+            $('.slidelist').animate({marginLeft:0});
+            $('.slidelist').delay(2000);
+            });
     let S_btn = document.querySelector('.S_btn');
 
     S_btn.onclick = () => {
@@ -163,58 +173,58 @@
         }
     }
 
-    let total_page = document.querySelector('.total_page').textContent;
-    console.log(total_page);
+   let total_page = document.querySelector('.total_page').textContent;
+console.log(total_page);
 
+// 부모 요소
+var paginationContainer = document.querySelector(".pagination");
 
+if (paginationContainer && total_page > 0) {
+    // Pagination buttons
+    // 이전 버튼
+    var prevButton = document.createElement("li");
+    prevButton.classList.add("page-item");
 
-    // 부모 요소
-    var paginationContainer = document.querySelector(".pagination");
+    let d1 = document.querySelector('.d1');
+    console.log(d1)
 
-    if (paginationContainer) {
-        // 이전 버튼
-        var prevButton = document.createElement("li");
-        prevButton.classList.add("page-item");
+    const urlParams = new URL(location.href).searchParams;
+    const Search = urlParams.get('serch');
+    const start = urlParams.get('date_start');
+    const end = urlParams.get('date_end');
 
-        let d1 = document.querySelector('.d1');
-        console.log(d1)
-
-        const urlParams = new URL(location.href).searchParams;
-        const Search = urlParams.get('serch');
-        const start = urlParams.get('date_start');
-        const end = urlParams.get('date_end');
-
-        if(start != null){
-            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-        }else{
-            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-        }
-
-        paginationContainer.appendChild(prevButton);
-
-        // 페이지 번호 생성
-        for (var i = 1; i <= total_page; i++) {
-            var pageItem = document.createElement("li");
-            pageItem.classList.add("page-item");
-            if(start != null){
-                pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
-            }else{
-                pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
-            }
-            paginationContainer.appendChild(pageItem);
-        }
-
-        // 다음 버튼
-        var nextButton = document.createElement("li");
-        nextButton.classList.add("page-item");
-        if(start != null){
-            nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-        }else{
-            nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-        }
-
-        paginationContainer.appendChild(nextButton);
+    if(start != null){
+        prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+    } else {
+        prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
     }
+
+    paginationContainer.appendChild(prevButton);
+
+    // 페이지 번호 생성
+    for (var i = 1; i <= total_page; i++) {
+        var pageItem = document.createElement("li");
+        pageItem.classList.add("page-item");
+        if(start != null){
+            pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
+        } else {
+            pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
+        }
+        paginationContainer.appendChild(pageItem);
+    }
+
+    // 다음 버튼
+    var nextButton = document.createElement("li");
+    nextButton.classList.add("page-item");
+    if(start != null){
+        nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+    } else {
+        nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+    }
+
+    paginationContainer.appendChild(nextButton);
+}
+
 
 // 기간 선택 버튼에 이벤트 리스너 추가
 document.querySelectorAll('.btns button').forEach(function(button) {
