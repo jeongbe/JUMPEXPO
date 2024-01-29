@@ -15,22 +15,26 @@
             list-style: none;
             padding: 0;
              margin-top: 300px;
-            margin-left: 300px;
+            margin-left: 330px;
         }
+
         .pagination li {
-            margin: 0 5px;
+            margin: 0 3px;
             display:inline;
         }
         .page-item{
-        border:1px solid #ccc;
+        border-radius: 4px;
         }
         .pagination a {
             text-decoration: none;
             background-color: #fff;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             padding: 8px 12px;
             border-radius: 4px;
              color: #787878;
+             font-size:14px;
+             font-weight: 700;
+             width:34px;
         }
 
         .pagination a:hover {
@@ -123,7 +127,7 @@
                 <tr class="expo-info" th:each="list : ${list}">
                     <td th:text="${list.re_num}"></td>
                     <td th:text="${#strings.substring(list.user_id, 0, 3)} + '****'"></td>
-                    <td style="cursor:pointer;" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/read/' + ${list.re_num} + '&quot;'"></td>
+                    <td style="cursor:pointer" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/read/' + ${list.re_num} + '&quot;'"></td>
                     <td th:utext="${list.expo_title}"></td>
                     <td th:utext="${list.re_date}"></td>
                     <td th:text="${list.re_cnt}">조회수</td>
@@ -168,8 +172,7 @@
                 return false;
             }
         }
-
-       let total_page = document.querySelector('.total_page').textContent;
+let total_page = document.querySelector('.total_page').textContent;
     console.log(total_page);
 
     // 부모 요소

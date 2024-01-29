@@ -9,9 +9,8 @@
 .container {
     position: relative;
     top: 96px;
-    left: 70px;
+    left: 80px;
      width: 920px;
-     height: 500px;
      margin: 0 auto;
 }
 .title-box {
@@ -180,10 +179,6 @@ input[type='date'] {
     width: 150px;
     height: 25px;
     margin-right: 3px;
-}
-
-.content {
-    position: absolute;
 }
  /* 테이블 */
 table {

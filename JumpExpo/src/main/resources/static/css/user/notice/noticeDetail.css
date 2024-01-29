@@ -1,6 +1,6 @@
 .detail_wrap {
     position: absolute;
-    top: 0px;
+    top: 80px;
     left: 510px;
 }
     .nt_title {
@@ -46,7 +46,7 @@
 margin-left: 400px
  }
  .nt_cnt {
-    margin-left: 165px
+    margin-left: 170px;
  }
  .download {
     width: 920px;

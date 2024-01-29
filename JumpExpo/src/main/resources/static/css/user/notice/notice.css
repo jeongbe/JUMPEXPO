@@ -9,7 +9,7 @@
 
 .content{
     position: absolute;
-    top: 65px;
+    top: 69px;
     right: 420px;
     width: 920px;
     height: 200px;
@@ -112,27 +112,30 @@ color:#000;
 opacity:0.8;
 }
 .paging {
-position: absolute;
-top: 650px;
-left: 265px;
-width: 100px;
+    margin-top: 550px;
+    margin-left: 325px;
 }
-#pageNumbers {
-display:inline;
-cursor: pointer;
-color:#787878;
-font-weight:700;
-width:10px;
-margin:5px;
-}
+
 .paging button {
-cursor: pointer;
-border: none;
-background-color: white;
+    cursor: pointer;
+    background-color: white;
+    width: 34px;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 3px;
+    font-weight: 700;
+    color: #787878;
 }
+.paging button:hover {
+background-color: #ccc;
+color: #787878;
+}
+
 .total_post {
 position:absolute;
-top:140px;
+top: 145px;
 left:800px;
 }
 .total_post span {
