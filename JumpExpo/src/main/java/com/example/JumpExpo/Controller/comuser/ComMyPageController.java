@@ -362,15 +362,21 @@ public class ComMyPageController {
 
     //2024.01.22 박은채
     //채용 공고 신청 현황<분야별 리스트>
-    @GetMapping("/mypage/show/employlist/{com_code}")
-    public String empoyList(Model model, @PathVariable("com_code") int comCode){
-        model.addAttribute("comCode", comCode);
+    @GetMapping("/mypage/show/employlist")
+    public String empoyList(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
-        ArrayList<ApplyEmploy> allList = applyEmployRepository.AllComEmployList(comCode);
-        ArrayList<ApplyEmploy> DesignList = applyEmployRepository.DesignComEmployList(comCode);
-        ArrayList<ApplyEmploy> FrontList = applyEmployRepository.FrontComEmployList(comCode);
-        ArrayList<ApplyEmploy> BackendList = applyEmployRepository.BackendComEmployList(comCode);
-        ArrayList<ApplyEmploy> EtcList = applyEmployRepository.EtcComEmployList(comCode);
+        model.addAttribute("comCode", company.getCom_code());
+
+        ArrayList<ApplyEmploy> allList = applyEmployRepository.AllComEmployList(company.getCom_code());
+        ArrayList<ApplyEmploy> DesignList = applyEmployRepository.DesignComEmployList(company.getCom_code());
+        ArrayList<ApplyEmploy> FrontList = applyEmployRepository.FrontComEmployList(company.getCom_code());
+        ArrayList<ApplyEmploy> BackendList = applyEmployRepository.BackendComEmployList(company.getCom_code());
+        ArrayList<ApplyEmploy> EtcList = applyEmployRepository.EtcComEmployList(company.getCom_code());
 
         model.addAttribute("allList", allList);
         model.addAttribute("designList", DesignList);
@@ -425,7 +431,9 @@ public class ComMyPageController {
     //2024.01.27 정정빈
     //기업 박람회 신청 내역
     @GetMapping("/expo/app")
-    public String ComExpoApp(Model model,@RequestParam(value="page", defaultValue="0")int page){
+    public String ComExpoApp(Model model,@RequestParam(value="page", defaultValue="0")int page,
+                             @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
+                             @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 현재 인증된 사용자의 사용자명을 가져옵니다.
@@ -433,10 +441,20 @@ public class ComMyPageController {
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
 
+//        log.info("시작날" + dateStart);
+//        log.info("끝날" + dateEnd);
 
-        Page<ComExpoApp> getList = expoService.getComEAppList(page,company.getCom_code());
+        Page<ComExpoApp> getList = null;
+
+        if(serch != null && dateStart != null && dateEnd != null){
+            getList = expoService.getSearchList(page,serch,dateStart,dateEnd,company.getCom_code());
+//            log.info(getList.getContent().toString());
+        }else {
+            getList = expoService.getComEAppList(page,company.getCom_code());
+        }
+
         model.addAttribute("getList",getList);
-        log.info(getList.getContent().toString());
+//        log.info(getList.getContent().toString());
         model.addAttribute("TotalPage",getList.getTotalPages());
 
         return "comuser/mypage/ComExpoAppList";

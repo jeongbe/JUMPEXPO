@@ -20,7 +20,7 @@
     <content>
         <div class="body">
             <div class="body_title">
-                <span>나의</span>
+                <span>나의 기업</span>
                 <span>정보</span>
             </div>
 
@@ -33,9 +33,9 @@
             <div class="contents">
                 <form class="fo_css" method="get" th:action="@{/com/myPage/resign/{comcode}(comcode=${company.com_code})}">
                 <hr>
-                <div class="UserInfo_title">
-                    <h3>내 정보 확인</h3>
-                </div>
+<!--                <div class="UserInfo_title">-->
+<!--                    <h3>내 정보 확인</h3>-->
+<!--                </div>-->
                 <hr>
                 <div class="UserInfo_content">
                     <div class="div1">
@@ -61,7 +61,6 @@
                         </div>
                     </div>
                 </div>
-                <hr>
                 <button type="submit" class="sec_btn">탈퇴하기</button>
                 </form>
             </div>
@@ -69,7 +68,7 @@
         </div>
     </content>
 
-    <div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+    <div class="sidefooter" th:replace="~{comuser/Side/Mypage/MyPageSide :: MyPageSide}"></div>
 
     <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 

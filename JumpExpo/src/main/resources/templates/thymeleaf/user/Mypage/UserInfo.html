@@ -17,7 +17,7 @@
     <content>
         <div class="body">
             <div class="body_title">
-                <span>내</span>
+                <span>나의</span>
                 <span>정보</span>
             </div>
 
@@ -27,33 +27,34 @@
 
             <!-- 주요내용 -->
             <div class="contents">
-                <form method="get" th:action="@{/users/myPage/resign/{usercode}(usercode=${users.user_code})}">
-                <hr>
-                <div class="UserInfo_title">
-                    <h3>내 정보 확인</h3>
-                </div>
-                <hr>
+                <form class="fo_css" method="get" th:action="@{/users/myPage/resign/{usercode}(usercode=${users.user_code})}">
+                <hr class="hr_">
+
+                <hr  class="hr_2">
                 <div class="UserInfo_content">
-                    <div class="UserInfo_content_text">
-                        <p>이름 :</p><p th:text="${users.user_name}"></p>
+                    <div  class="div1">
+                        <div class="UserInfo_content_text">
+                            <p class="ti">이름</p><p th:text="${users.user_name}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">연락처</p><p th:text="${users.user_phone}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">이메일</p><p th:text="${users.user_email}"></p>
+                        </div>
                     </div>
-                    <div class="UserInfo_content_text">
-                        <p>연락처 :</p><p th:text="${users.user_phone}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>이메일 :</p><p th:text="${users.user_email}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>주소 :</p><p th:text="${users.user_addr}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>생년월일 :</p><p th:text="${users.user_birth}"></p>
-                    </div>
-                    <div class="UserInfo_content_text">
-                        <p>구분 :</p><p>개인</p>
+                    <div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">주소</p><p th:text="${users.user_addr}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">생년월일</p><p th:text="${users.user_birth}"></p>
+                        </div>
+                        <div class="UserInfo_content_text">
+                            <p class="ti">구분</p><p>개인</p>
+                        </div>
                     </div>
                 </div>
-                <hr>
                 <button class="sec_btn">탈퇴하기</button>
                 </form>
             </div>

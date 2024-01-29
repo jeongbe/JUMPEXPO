@@ -81,7 +81,7 @@
                             </div>
                             <div class="date-box">
                                 <span><input type="date" class="d1" name="date_start" id="" /></span>
-                                <span><input type="date" class="d2" name="date_end" id="" /></span>
+                                <span><input type="date" class="d2" name="date_end" id=""  /></span>
                             </div>
                         </div>
                     </form>
@@ -92,10 +92,14 @@
                 <div class="content">
                     <div class="expo-info-box" th:each="lists : ${getList}">
                         <div class="cont-img">
-                            <!--                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />-->
+                                                        <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />
                         </div>
                         <div class="expo-info">
                             <p class="expo-name" th:text="${lists.expo_title}"></p>
+<!--                            신청 제목-->
+                            <p class="appTitle" th:text="${lists.app_title}"></p>
+<!--                            신청 날짜-->
+                            <p class="appTitle" th:text="${lists.app_date}"></p>
                             <div class="period-box2">
                                 <p th:text="${lists.expo_start}"></p>
                                 <p th:text="${lists.expo_end}"></p>
@@ -121,7 +125,7 @@
         </div>
     </content>
 
-    <div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+    <div class="sidefooter" th:replace="~{comuser/Side/Mypage/MyPageSide_3 :: MyPageSide_3}"></div>
 
     <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 
@@ -137,11 +141,11 @@
         console.log(exCheck[i].textContent);
 
         if(exCheck[i].textContent == 1){
-            changeText[i].textContent = "합격";
+            changeText[i].textContent = "승인";
             changeText[i].classList.remove('change_btn')
             changeText[i].classList.add('chreview');
         }else if(exCheck[i].textContent == 2){
-            changeText[i].textContent = "불합격";
+            changeText[i].textContent = "비승인";
             changeText[i].classList.remove('change_btn')
             changeText[i].classList.add('change_btn2');
         }
@@ -226,9 +230,9 @@
             const end = urlParams.get('date_end');
 
             if(start != null){
-                prevButton.innerHTML = `<a class="page-link"  href="/users/app/list?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+                prevButton.innerHTML = `<a class="page-link"  href="/com/expo/app?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
             }else{
-                prevButton.innerHTML = `<a class="page-link"  href="/users/app/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+                prevButton.innerHTML = `<a class="page-link"  href="/com/expo/app?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
             }
 
             paginationContainer.appendChild(prevButton);
@@ -239,9 +243,9 @@
                 pageItem.classList.add("page-item");
 
                 if(start != null){
-                    pageItem.innerHTML = `<a class="page-link"  href="/users/app/list?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
+                    pageItem.innerHTML = `<a class="page-link"  href="/com/expo/app?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
                 }else{
-                    pageItem.innerHTML = `<a class="page-link" href="/users/app/list?page=${i - 1}">${i}</a>`;
+                    pageItem.innerHTML = `<a class="page-link" href="/com/expo/app?page=${i - 1}">${i}</a>`;
                 }
 
                 paginationContainer.appendChild(pageItem);
@@ -251,9 +255,9 @@
             var nextButton = document.createElement("li");
             nextButton.classList.add("page-item");
             if(start != null){
-                nextButton.innerHTML = `<a class="page-link"  href="/users/app/list?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+                nextButton.innerHTML = `<a class="page-link"  href="/com/expo/app?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
             }else{
-                nextButton.innerHTML = `<a class="page-link" href="/users/app/list?page=${total_page - 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+                nextButton.innerHTML = `<a class="page-link" href="/com/expo/app?page=${total_page - 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
             }
             paginationContainer.appendChild(nextButton);
         }

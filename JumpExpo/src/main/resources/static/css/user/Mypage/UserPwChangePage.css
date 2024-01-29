@@ -2,7 +2,7 @@
     display: flex;
     height: 350px;
     border-radius:35px;
-    background-color: antiquewhite;
+/*    background-color: antiquewhite;*/
 }
 
 .searchinput {
@@ -10,7 +10,6 @@
     width: 500px;
     /* background-color: blueviolet; */
     float: left;
-    margin-left: 130px;
 }
 
 .searchbtn {
@@ -29,12 +28,14 @@
 .idbox,.pwbox{
     width: 350px;
     height: 40px;
-    box-shadow: 0px 3px 0px 0px  #ccc;
-
+    /*box-shadow: 0px 3px 0px 0px  #ccc;*/
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .idform, .pwform{
    font-size: larger;
+   display:flex;
 }
 
 .pwform{
@@ -42,12 +43,18 @@
 }
 
 .searbtn{
-    margin-top: 100px;
+    margin-top: 50px;
     width: 150px;
     height: 140px;
     background-color: #374658;
     font-size: larger;
     color: white;
-    border-radius: 25px;
-    margin-left: 50px;
+    border-radius: 10px;
+    margin-left: 60px;
+}
+
+.searchform span{
+    width: 130px;
+    font-size: 18px;
+    padding-top: 5px;
 }

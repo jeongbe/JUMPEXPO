@@ -187,15 +187,27 @@ public class EmployapplyController {
     }
 
     //2024.01.15 정정빈
-    //박람회 기업 심사 완료 리스트 (심사후)
+    //박람회 기업 심사 완료 리스트 (승인)
     @GetMapping("/show/ok/employapply/com/{expo_code}")
     public String OkComList(Model model,@PathVariable("expo_code") int expoCode,@RequestParam(value = "page", defaultValue = "0") int page){
-        Page<ExpoAppCom> ComList = expoService.getComOKList(page,expoCode);
+        Page<ExpoAppCom> ComList = expoService.getComOKList(page,expoCode,1);
 //    log.info(ComList.getContent().toString());
         model.addAttribute("ComList",ComList);
         model.addAttribute("ExpoCode",expoCode);
 
         return "admin/employApply/AdExpoAuditOk";
+    }
+
+    //2024.01.29 정정빈
+    //박람회 기업 심사 완료 리스트 (비승인)
+    @GetMapping("/show/no/employapply/com/{expo_code}")
+    public String NoComList(Model model,@PathVariable("expo_code") int expoCode,@RequestParam(value = "page", defaultValue = "0") int page){
+        Page<ExpoAppCom> ComList = expoService.getComOKList(page,expoCode,2);
+//    log.info(ComList.getContent().toString());
+        model.addAttribute("ComList",ComList);
+        model.addAttribute("ExpoCode",expoCode);
+
+        return "admin/employApply/AdExpoAuditNO";
     }
 
     //2024.01.15 정정빈

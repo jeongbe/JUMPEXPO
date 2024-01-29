@@ -43,4 +43,10 @@ public class ComExpoApp {
 
     @Column
     int recog_check;
+
+    @Column
+    String app_title;
+
+    @Temporal(TemporalType.DATE)
+    Date app_date;
 }

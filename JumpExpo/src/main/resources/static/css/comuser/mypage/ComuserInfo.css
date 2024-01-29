@@ -4,7 +4,7 @@
 }
 
 .UserInfo_content{
-  margin-top: 50px;
+ /* margin-top: 50px;*/
   display:flex;
 }
 
@@ -17,7 +17,7 @@ p{
 }
 
 .sec_btn{
-    background-color: #374658;
+    background-color: #70767d;
     margin-top: 10px;
     width: 100px;
     height: 35px;
@@ -25,6 +25,7 @@ p{
     left: 820px;
     color: white;
     border-radius: 5px;
+    border: none;
 }
 
 .fo_css{
@@ -34,7 +35,7 @@ p{
 }
 
 .ti{
-    background-color: #EA8874;
+    background-color: #374658;
     text-align:center;
     color: white;
     width: 120px;

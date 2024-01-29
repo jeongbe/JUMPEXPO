@@ -79,9 +79,9 @@ public class ExpoService {
 
     //2024.01.15 정정빈
     //박람회 신청 기업 리스트 (심사 후)
-    public Page<ExpoAppCom> getComOKList(int page, int expoCode){
+    public Page<ExpoAppCom> getComOKList(int page, int expoCode,int recogCheck){
         Pageable pageable = PageRequest.of(page,2);
-        return this.expoAppComRepository.getComOkList(pageable,expoCode);
+        return this.expoAppComRepository.getComOkList(pageable,expoCode,recogCheck);
     }
 
     //2024.01.17 정정빈
@@ -150,19 +150,19 @@ public class ExpoService {
     //2024.01.23 정정빈
     //관리자 리뷰 리스트
     public Page<UserReview> getAdUserReviewList(int page, int expoCate) {
-        Pageable pageable = PageRequest.of(page, 10); // 여기서 6은 페이지 크기
+        Pageable pageable = PageRequest.of(page, 6); // 여기서 6은 페이지 크기
         return this.userReviewRepository.AdReviewList(pageable, expoCate);
     }
 
     //2024.01.24 정정빈
     // 리뷰 검색 했을때
     public Page<UserReview> getUserReSearchList(int page, String search,int expoCate,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,10);
+        Pageable pageable = PageRequest.of(page,6);
         return this.userReviewRepository.UserReSerch(pageable,search,expoCate,StartDate,EndDate);
     }
 
     public Page<UserReview> getUserReHitList(int page,String search,int expoCate){
-        Pageable pageable = PageRequest.of(page,10);
+        Pageable pageable = PageRequest.of(page,6);
         return this.userReviewRepository.UserReHit(pageable,search,expoCate);
     }
 
@@ -176,6 +176,13 @@ public class ExpoService {
     public Page<ComExpoApp> getComEAppList(int page, int comCode){
         Pageable pageable = PageRequest.of(page,6);
         return this.comExpoAppRepository.getComExpoAppList(pageable,comCode);
+    }
+
+    //2024.01.29 정정빈
+    // 기업 발람회 신청 내역 검색
+    public Page<ComExpoApp> getSearchList(int page, String text,String StartDate,String EndDate,int comCode) {
+        Pageable pageable = PageRequest.of(page,6);
+        return this.comExpoAppRepository.getSerchList(pageable,text,StartDate,EndDate,comCode);
     }
 
 }

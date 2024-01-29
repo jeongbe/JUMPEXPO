@@ -32,8 +32,8 @@ public interface ExpoAppComRepository extends JpaRepository<ExpoAppCom,Integer> 
     @Query(value = "select *\n" +
             "from c_expo_apply\n" +
             "where expo_code = :expoCode\n" +
-            "and recog_check = 1;", nativeQuery = true)
-    public Page<ExpoAppCom> getComOkList(Pageable pageable, @Param("expoCode") int expoCode);
+            "and recog_check = :recogCheck", nativeQuery = true)
+    public Page<ExpoAppCom> getComOkList(Pageable pageable, @Param("expoCode") int expoCode,@Param("recogCheck") int recogCheck);
 
     //2024.01.20 정정빈
     // 기업 박람회 신청 여부확인

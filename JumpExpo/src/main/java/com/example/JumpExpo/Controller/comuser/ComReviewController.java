@@ -35,7 +35,7 @@ public class ComReviewController {
         Page<UserReview> list = null;
 
         //검색 했을때
-        if(serch != null){
+        if(serch != null && !serch.trim().isEmpty()){
 
             //전체
             if("all".equals(target)){
@@ -76,7 +76,7 @@ public class ComReviewController {
         Page<UserReview> list = null;
 
         //검색 했을때
-        if(serch != null){
+        if(serch != null && !serch.trim().isEmpty()){
 
             //전체
             if("all".equals(target)){
@@ -118,7 +118,7 @@ public class ComReviewController {
         Page<UserReview> list = null;
 
         //검색 했을때
-        if(serch != null){
+        if(serch != null && !serch.trim().isEmpty()){
 
             //전체
             if("all".equals(target)){

@@ -50,7 +50,7 @@ public class ReviewController {
         Page<UserReview> list = null;
 
         //검색 했을때
-        if(serch != null){
+        if(serch != null && !serch.trim().isEmpty()){
 
             //전체
             if("all".equals(target)){
@@ -97,8 +97,7 @@ public class ReviewController {
         Page<UserReview> list = null;
 
         //검색 했을때
-        if(serch != null){
-
+        if(serch != null && !serch.trim().isEmpty()){
             //전체
             if("all".equals(target)){
                 list = expoService.getUserReSearchList(page,serch,0,dateStart,dateEnd);
@@ -108,10 +107,9 @@ public class ReviewController {
             }
 
         }else {  //검색어 없을때
-
-            if(target == "all"){
+            if("all".equals(target)){
                 list = expoService.getAdUserReviewList(page,0);
-            }else if(target == "hits"){ //조회수 많은 순
+            }else if("hits".equals(target)){ //조회수 많은 순
                 list = expoService.getUserReHitList2(page,0);
             }else {
                 list = expoService.getAdUserReviewList(page,0);
@@ -145,7 +143,7 @@ public class ReviewController {
         Page<UserReview> list = null;
 
         //검색 했을때
-        if(serch != null){
+        if(serch != null && !serch.trim().isEmpty()){
 
             //전체
             if("all".equals(target)){

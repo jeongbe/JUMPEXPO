@@ -129,28 +129,27 @@
 
     // 기간 선택 버튼에 이벤트 리스너 추가
     document.querySelectorAll('.btns button').forEach(function(button) {
-    button.addEventListener('click', function() {
-        // 현재 날짜 구하기
-        var today = new Date();
+        button.addEventListener('click', function() {
+            // 현재 날짜 구하기
+            var today = new Date();
 
-        // 오늘 날짜를 "YYYY-MM-DD" 형식으로 포맷
-        var formattedToday = today.toISOString().split('T')[0];
+            // 오늘 날짜를 "YYYY-MM-DD" 형식으로 포맷
+            var formattedToday = today.toISOString().split('T')[0];
 
-        // 버튼에 따라 기간 설정
-        var monthsToAdd = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
+            // 버튼에 따라 기간 설정
+            var monthsToSubtract = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
 
-        // 선택된 기간 후의 날짜 계산
-        today.setMonth(today.getMonth() + monthsToAdd);
+            // 선택된 기간 전의 날짜 계산
+            today.setMonth(today.getMonth() - monthsToSubtract);
 
-        // 선택된 기간 후의 날짜를 "YYYY-MM-DD" 형식으로 포맷
-        var formattedNextDate = today.toISOString().split('T')[0];
+            // 선택된 기간 전의 날짜를 "YYYY-MM-DD" 형식으로 포맷
+            var formattedPrevDate = today.toISOString().split('T')[0];
 
-        // "date_start"와 "date_end" 입력 필드의 값을 설정
-        document.querySelector('input[name="date_start"]').value = formattedToday;
-        document.querySelector('input[name="date_end"]').value = formattedNextDate;
+            // "date_start"와 "date_end" 입력 필드의 값을 설정
+            document.querySelector('input[name="date_start"]').value = formattedPrevDate;
+            document.querySelector('input[name="date_end"]').value = formattedToday;
+        });
     });
-});
-
 
 
 
