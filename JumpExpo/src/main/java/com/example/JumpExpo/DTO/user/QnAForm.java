@@ -22,8 +22,12 @@ public class QnAForm {
 
     int quScr; //비밀글
 
+    private String  UserId;
+
+    int UserCode;
+
     public QnA toEntity(){
         return new QnA(quNum,
-                quTitle,quContent,quState,quScr);
+                quTitle,quContent,quState,quScr,UserId,UserCode);
     }
 }

@@ -33,14 +33,14 @@
 
 .search_background button {
     position: relative;
-    top: -1px;
-    width: 90px;
-    height: 26px;
-    border: 0;
-    cursor: pointer;
-    background-color: white;
-    color: #303030;
-    font-weight: bold;
+        top: 0px;
+        width: 100px;
+        height: 25px;
+        cursor: pointer;
+        background-color: #374658;
+        color: #fff;
+        /* font-weight: bold; */
+        right: -2px;
 }
 
 /*컨텐츠*/
@@ -102,7 +102,7 @@
 .tabBG {
     position: absolute;
     overflow: hidden;
-    height: 550px;
+    height: 650px;
     /* chrome inspect(검사) 보고 수치 계산 */
     background: #ffffff;
 }
@@ -114,7 +114,6 @@
 }
 
 .tabMenu>li.active div .pagenum {
-    border: none;
     z-index: 1;
 }
 
@@ -235,17 +234,16 @@ td {
     display: flex;
     text-align: center;
     position: absolute;
-    top: 515px;
-    left: 400px;
+    top: 600px;
+    left: 350px;
     border: none;
 }
 
 .paging .pagenum {
     display: inline-block; /* 페이지 번호를 인라인 블록으로 변경 */
     cursor: pointer;
-    margin-right: 10px;
-    margin-left: 10px;
     width: auto; /* 페이지 번호의 너비를 자동으로 설정 */
+    margin-top: 10px;
 }
 
 .paging button {
@@ -262,7 +260,7 @@ td {
         height: 500px;
         position: relative;
         top: 118px;
-        left: 10px;
+        left: 20px;
   }
   .body_title {
     position: absolute;
@@ -279,8 +277,29 @@ td {
   .body_title span:last-child{
     color: #374658;
   }
-  .body_title_right{
-    position: absolute;
-    top: 70px;
-    right: 40px;
+
+  .body_title_right {
+          position: absolute;
+          top: 80px;
+          right: 20px;
+          font-weight: 700;
+          font-size: 15px;
+  }
+  .body_title_right img {
+      position: absolute;
+      left: -26px;
+      top: 2px;
+  }
+  .paging button, .page-number {
+      cursor: pointer;
+      background-color: white;
+      width: 34px;
+      height: 38px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 3px;
+      font-weight: 700;
+      color: #787878;
+      font-size: 15px;
   }

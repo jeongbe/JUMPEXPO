@@ -35,7 +35,7 @@
                 </td>
             </tr>
         </table>
-        <div class="sub-btn"><button class="in_btn" type="submit">작성하기</button></div>
+        <div class="sub-btn"><button class="in_btn" type="button">작성하기</button></div>
     </form>
     <!-- 목록으로돌아가기 -->
 </div>
@@ -73,6 +73,7 @@
               data: formData,
               success: (response) => {
                    alert('질문이 등록되었습니다.');
+                   location.replace("/users/show/qu");
               },
               error: (error) => {
                  alert('실패');
@@ -101,6 +102,5 @@
 
 </script>
 <div class="s_header" th:replace="~{user/side/qnaSide :: qnaSide}"></div>
-<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </body>
 </html>

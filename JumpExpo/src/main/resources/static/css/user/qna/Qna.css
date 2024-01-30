@@ -100,11 +100,11 @@ th:nth-child(4),
 td:nth-child(4) {
   width: 20%;
 }
-table a {
+table p {
 color:#787878;
 text-decoration:none;
 }
-table a:hover {
+.hover:hover {
 font-weight:800;
 color:#000;
 opacity:0.8;

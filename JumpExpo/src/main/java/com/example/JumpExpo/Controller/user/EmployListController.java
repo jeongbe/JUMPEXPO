@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,9 +51,14 @@ public class EmployListController {
 
     //2024.01.15 박은채
     //공고 보기 리스트<분야별 리스트>
-    @GetMapping("/show/employlist/{user_code}")
-    public String empoyList(Model model, @PathVariable("user_code") int userCode){
-        model.addAttribute("userCode", userCode);
+    @GetMapping("/show/employlist")
+    public String empoyList(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+        model.addAttribute("userCode", users.getUser_code());
 
         ArrayList<ApplyEmploy> allList = applyEmployRepository.AllEmployList();
         ArrayList<ApplyEmploy> DesignList = applyEmployRepository.DesignEmployList();
@@ -60,6 +67,7 @@ public class EmployListController {
         ArrayList<ApplyEmploy> EtcList = applyEmployRepository.EtcEmployList();
 
         model.addAttribute("allList", allList);
+        log.info(allList.toString());
         model.addAttribute("designList", DesignList);
         model.addAttribute("frontList", FrontList);
         model.addAttribute("backendList", BackendList);

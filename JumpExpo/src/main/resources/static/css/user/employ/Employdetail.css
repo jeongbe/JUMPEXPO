@@ -4,6 +4,9 @@ margin: 0 auto;
 
 .body_data{
 display: flex;
+position:relative;
+left: 60px;
+top: -2px;
 }
 
 .span_title {
@@ -23,30 +26,25 @@ display: flex;
 }
 
 table{
-border: 1px solid #bbbbbb;
 border-collapse: collapse;
-/* text-align: left; */
 }
-
 .body_table {
-    display: flex;
-    position: absolute;
-    left: 450px;
-    top: 250px;
+        position: absolute;
+        left: 450px;
+        top: 250px;
+        width: 920px;
 }
-
 tr {
 border-width:1px;
 }
 tbody {
 border-width:1px;
 }
-
 .body_table2 {
-    display: flex;
     position: absolute;
-    left: 450px;
-    top: 520px;
+        left: 450px;
+        top: 520px;
+        width: 920px;
 }
 
 .p_1{
@@ -149,3 +147,6 @@ color: #414141;
         text-align: center;
 
     }
+td {
+    border: 1px solid #ccc;
+}

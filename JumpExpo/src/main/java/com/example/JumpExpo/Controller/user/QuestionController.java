@@ -43,17 +43,24 @@ public class QuestionController {
         Users users = userReository.finduser(username);
         model.addAttribute("users", users);
 
+        model.addAttribute("userCode",users.getUser_id());
         return "user/qna/Qna_New";
     }
     //질문 등록
     @PostMapping("/save/qu")
-    public String SaveQu(QnAForm form){
+    public String SaveQu(QnAForm form,Model model){
         log.info(form.toString());
         QnA qna = form.toEntity();
         log.info(qna.toString());
 
-        qna.setQu_state(0);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
+        qna.setQu_state(0);
+        qna.setUser_id(users.getUser_id());
         QnA saved = qnARepository.save(qna);
         log.info(form.toString());
 
@@ -125,7 +132,6 @@ public class QuestionController {
         String username = authentication.getName();
         Users users = userReository.finduser(username);
         model.addAttribute("users", users);
-        model.addAttribute("userId",users.getUser_id());
 
         List<QnA> QnAList = qnARepository.getSate();
         model.addAttribute("QnAList", QnAList);
@@ -139,7 +145,6 @@ public class QuestionController {
         String username = authentication.getName();
         Users users = userReository.finduser(username);
         model.addAttribute("users", users);
-        model.addAttribute("userId",users.getUser_id());
 
         List<QnA> QnAList = qnARepository.getState();
         model.addAttribute("QnAList", QnAList);

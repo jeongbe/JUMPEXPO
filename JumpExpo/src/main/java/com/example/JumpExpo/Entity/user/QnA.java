@@ -28,4 +28,10 @@ public class QnA extends DateEntity {
 
     @Column
     int qu_scr;//비밀글
+
+    @Column
+    String user_id;
+
+    @Column
+    int user_code;
 }

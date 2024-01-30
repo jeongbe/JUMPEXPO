@@ -524,14 +524,19 @@ public class UserMyPageController {
 
     //2024.01.24 박은채
     //유저 채용 신청 내역
-    @GetMapping("/mypage/employ/apply/{user_code}")
-    public String emAccept(Model model, @PathVariable("user_code") int userCode) {
+    @GetMapping("/mypage/employ/apply")
+    public String emAccept(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
-        model.addAttribute("userCode", userCode);
+        model.addAttribute("userCode", users.getUser_code());
 
         //applyemploy da
-        ArrayList<ApplyEmploy> applyUser = applyEmployRepository.UserApplyList(userCode);
-        PeremApplyUser peremApplyUser = peremApplyRepository.findById(userCode).orElse(null);
+        ArrayList<ApplyEmploy> applyUser = applyEmployRepository.UserApplyList(users.getUser_code());
+        PeremApplyUser peremApplyUser = peremApplyRepository.findById(users.getUser_code()).orElse(null);
 
         model.addAttribute("apply", applyUser);
         model.addAttribute("perem", peremApplyUser);
