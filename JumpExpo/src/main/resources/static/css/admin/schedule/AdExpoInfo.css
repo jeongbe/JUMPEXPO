@@ -193,3 +193,9 @@ textarea:focus {
 .info_box2 p:first-child{
 margin-left: 10px
 }
+
+button{
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+}

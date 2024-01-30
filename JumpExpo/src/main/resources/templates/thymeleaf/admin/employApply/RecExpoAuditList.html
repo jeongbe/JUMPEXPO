@@ -72,9 +72,9 @@
         </ul>
     </nav>
 <!--    <p  class="total_page"></p>-->
-    <p  class="total_page" th:text="${TotalPage}"></p>
+    <p style="display: none;"  class="total_page" th:text="${TotalPage}"></p>
 </div>
-<script>
+<script th:if="${not #lists.isEmpty(RecList)}">
 
 
     let total_page = document.querySelector('.total_page').textContent;
@@ -85,7 +85,7 @@
     // 부모 요소
     var paginationContainer = document.querySelector(".pagination");
 
-    if (paginationContainer) {
+    if (paginationContainer && total_page > 0) {
         // 이전 버튼
         var prevButton = document.createElement("li");
         prevButton.classList.add("page-item");

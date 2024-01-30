@@ -49,7 +49,7 @@
 
             <tr th:each="list : ${QnAList}">
                 <td th:text="${list.qu_num}"></td>
-                <td th:text="${#strings.substring(list.user_id, 0, 3)} + '****'"></td>
+                <td th:text="${#strings.substring(userId, 0, 3)} + '****'"></td>
                 <td>
                     <p th:onclick="'javascript:location.href=&quot;/admin/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor: pointer;"></p>
                 </td>

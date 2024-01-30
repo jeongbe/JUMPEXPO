@@ -84,25 +84,15 @@
     </ul>
 </nav>
 <p style="display:none;"  class="total_page" th:text="${TotalPage}"></p>
-<script>
-    function openPopup(url) {
-        var width = 500;
-        var height = 300;
-
-        var left = (screen.width - width) / 2;
-        var top = (screen.height - height) / 2;
-
-        var popup = window.open(url, 'popup', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
-        popup.focus();
-    }
-
-        let total_page = document.querySelector('.total_page').textContent;
+<script th:if="${not #lists.isEmpty(ComList)}">
+    // 데이터가 있는 경우에만 아래 스크립트 실행
+    let total_page = document.querySelector('.total_page').textContent;
     console.log(total_page);
 
     // 부모 요소
     var paginationContainer = document.querySelector(".pagination");
 
-    if (paginationContainer) {
+    if (paginationContainer && total_page > 0) {  // 페이지 번호가 0보다 큰 경우에만 버튼 생성
         // 이전 버튼
         var prevButton = document.createElement("li");
         prevButton.classList.add("page-item");

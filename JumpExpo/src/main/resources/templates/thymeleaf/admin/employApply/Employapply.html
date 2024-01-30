@@ -70,14 +70,17 @@
             }
         }
 
-        function generatePageNumbers() {
-            let pageNumbersHTML = '';
-            for (let i = 1; i <= totalPages; i++) {
-                pageNumbersHTML += `<span class="page-number" onclick="goToPage(${i})">${i}</span>`;
-            }
-            pagination.innerHTML = pageNumbersHTML;
+    function generatePageNumbers() {
+        let pageNumbersHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbersHTML += `<span class="page-number" onclick="goToPage(${i})">${i}</span>`;
         }
+        pagination.innerHTML = pageNumbersHTML;
 
+        // 이전 페이지와 다음 페이지 버튼의 표시 여부 설정
+        document.querySelector('button[onclick="previousPage"]').style.display = currentPage > 1 ? 'inline-block' : 'none';
+        document.querySelector('button[onclick="nextPage"]').style.display = currentPage < totalPages ? 'inline-block' : 'none';
+    }
         function goToPage(page) {
             if (page >= 1 && page <= totalPages) {
                 currentPage = page;
