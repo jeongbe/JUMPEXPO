@@ -1,63 +1,53 @@
-body{
- display: flex;
- justify-content: center;
- align-items: center;
- height:860px;
+h1 {
+    position: absolute;
+    top: 90px;
+    font-size: 35px;
 }
 
-
-section{
-    width: 960px;
-    height: 100vh;
-    float: left;
-    border-right: 2px solid #ccc;
-     cursor: pointer;
-}
-
-
-main{
-    width: 960px;
-    height: 100vh;
-    float: left;
-     cursor: pointer;
-}
-
-.person_png{
+.select_form {
+    height: 880px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.person{
-    position: absolute;
-    top: 250px;
-    width: 250px;
+
+section {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #aaa;
+    margin-right: 40px;
+
 }
 
-.company{
-    position: absolute;
-    top: 235px;
-    width: 250px;
+main {
+    width: 500px;
+    height: 500px;
+    border: 1px solid #aaa;
+
 }
 
-.person_text {
-    position: absolute;
-    top: 463px;
-    font-size: 25px;
-    font-weight: bold;
+.person_png_form{
+    text-align: center;
+    margin-top: 100px;
+
 }
 
-.person_text2{
+.company_png_form{
+    text-align: center;
+    margin-top: 88px;
 
-    position: absolute;
-    top: 510px;
+}
 
+.person_png, .company_png{
+    width: 200px;
 }
 
 /* 호버 효과 */
 section:hover,
 main:hover {
-    background-color: #EA8874; /* 바꿀 색상 설정 */
+    background-color: #fff0ed; /* 바꿀 색상 설정 */
+
 }
 
 a {
@@ -65,6 +55,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: white; /* 호버 시 색상 변경 */
-}
+/* 
+  a:hover {
+    color: white; 
+}  */

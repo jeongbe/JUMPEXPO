@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/join/JoinSelect.css">
     <title>Document</title>
 </head>
+
 <body>
-<a href="/JumpExpo/PerJoinPage">
-<section>
-    <div class="person_png">
-        <img src="/static/images/person.png" class="person">
-        <div class="person_text">
-            일반회원
-        </div>
-        <div class="person_text2">
-            만 14세이상 개인
-        </div>
-    </div>
-</section>
-</a>
-<a href="/JumpExpo/ComJoinPage">
-<main>
-    <div class="person_png">
-        <img src="/static/images/company.png" class="company">
-        <div class="person_text">
-            기업회원
-        </div>
-        <div class="person_text2">
-            사업자 및 기타단체
-        </div>
-    </div>
-</main>
-</a>
+
+<div class="select_form">
+    <h1>Jump</h1>
+    <a href="/JumpExpo/PerJoinPage">
+        <section>
+            <div class="person_png_form">
+                <img src="/static/images/person.png" class="person_png" id="personImage">
+                <h2>일반회원</h2>
+                14세 이상 개인
+            </div>
+        </section>
+    </a>
+    <a href="/JumpExpo/ComJoinPage">
+        <main>
+            <div class="company_png_form">
+                <img src="/static/images/company.png" class="company_png" id="companyImage">
+                <h2>기업회원</h2>
+                사업자 및 기타 단체
+            </div>
+        </main>
+    </a>
+</div>
+
+<script>
+    // 이미지 소스를 변경하기 위한 이 JavaScript를 추가합니다.
+
+document.addEventListener("DOMContentLoaded", function () {
+var personImage = document.getElementById("personImage");
+var companyImage = document.getElementById("companyImage");
+
+// 원본 이미지 소스를 저장합니다.
+var originalPersonSrc = personImage.src;
+var originalCompanySrc = companyImage.src;
+
+// 호버 효과를 위한 새 이미지 소스를 설정합니다.
+var personHoverSrc = "/static/images/hover_person.png"; // 원하는 호버 이미지로 변경하세요
+var companyHoverSrc = "/static/images/hover_company.png"; // 원하는 호버 이미지로 변경하세요
+
+// person 섹션에 대한 호버 효과를 추가합니다.
+document.querySelector("section").addEventListener("mouseover", function () {
+    personImage.src = personHoverSrc;
+});
+
+document.querySelector("section").addEventListener("mouseout", function () {
+    personImage.src = originalPersonSrc;
+});
+
+// company 섹션에 대한 호버 효과를 추가합니다.
+document.querySelector("main").addEventListener("mouseover", function () {
+    companyImage.src = companyHoverSrc;
+});
+
+document.querySelector("main").addEventListener("mouseout", function () {
+    companyImage.src = originalCompanySrc;
+});
+});
+</script>
+
 </body>
 
 </html>
