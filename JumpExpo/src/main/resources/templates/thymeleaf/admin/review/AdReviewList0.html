@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin/AdReviewList.css" />
+    <title>관리자 리뷰 관리</title>
+    <style>
+        /* 추가된 CSS 스타일 */
+
+       .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        /* margin-left: 400px; */
+        justify-content: center;
+        color: black;
+
+    }
+
+        .pagination li {
+            margin: 0 5px;
+            display: inline;
+        }
+
+       .pagination a {
+        text-decoration: none;
+        color: black;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        /* padding: 8px 12px; */
+        border-radius: 4px;
+        border: none;
+    }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<div class="s_header" th:replace="~{admin/header/ScheduleHeader3 :: ScheduleHeader3}"></div>
+<div class="sidebar" th:replace="~{admin/side/Reviewside :: Reviewside}"></div>
+
+<body>
+<div class="container">
+    <div class="main_title">
+        <p>리뷰 관리</p>
+
+        <form action="/admin/review/list" method="get">
+            <div class="cho">
+                <input type="hidden" name="eventType" id="eventType" value="">
+                <p class="emp clo" onclick="setEventType(0)" style="color: #ea8874;">취업박람회 리뷰 보기</p>
+                <p class="fair" onclick="setEventType(1)">페어박람회 리뷰 보기</p>
+                <p class=" rec" onclick="setEventType(2)" >채용박람회 리뷰 보기</p>
+            </div>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>박람회명</th>
+            <th>리뷰 제목</th>
+            <th>작성자</th>
+            <th>작성 날짜</th>
+            <th>조회수</th>
+            <th></th>
+        </tr>
+        <tr class="add_tag" th:each="list : ${reList}">
+            <td th:text="${list.re_num}">1</td>
+            <td th:text="${list.expo_title}">예일회사</td>
+            <td th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/admin/review/read/' + ${list.re_num} + '&quot;'" class="review_enter">제목ㅇㅇ</td>
+            <td th:text="${list.user_id}">dd</td>
+            <td th:text="${list.re_date}">2024.01.01</td>
+            <td th:text="${list.re_cnt}">5</td>
+            <td>
+                <span style="display:none;" class="reNum" th:text="${list.re_num}">1</span>
+                <button onclick="deleteReview(this)">삭제하기</button>
+            </td>
+        </tr>
+    </table>
+    <nav aria-label="Page navigation example" class="pageBtn" >
+        <ul class="pagination">
+        </ul>
+    </nav>
+    <span style="display:none;" class="total_page" th:text="${TotalPage}"></span>
+
+</div>
+<script>
+
+    function deleteReview(target) {
+    let reNum = target.parentElement.querySelector('.reNum');
+    let reNumtext = reNum.textContent;
+
+    if (confirm("삭제하시겠습니까?")) {
+        // 사용자가 확인하면 서버로 DELETE 요청 보내기
+        fetch(`/admin/review/de/${reNumtext}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => {
+            window.location.reload();
+            if (!response.ok) {
+                throw new Error('삭제 실패');
+            }
+            return response.json();
+        })
+        .then(data => {
+
+        })
+        .catch(error => {
+            console.error('삭제 에러:', error);
+        });
+    }
+ }
+
+
+    <!--    클릭 정보-->
+        function setEventType(value) {
+        document.getElementById("eventType").value = value;
+ <!--        console.log(value);-->
+        document.querySelector("form").submit();
+    }
+
+        let total_page = document.querySelector('.total_page').textContent;
+ <!--            console.log(total_page);-->
+
+
+
+            // 부모 요소
+        var paginationContainer = document.querySelector(".pagination");
+
+
+        if (paginationContainer) {
+            // 이전 버튼
+            var prevButton = document.createElement("li");
+            prevButton.classList.add("page-item");
+
+            const urlParams = new URL(location.href).searchParams;
+            const evType = urlParams.get('eventType');
+            console.log(evType);
+
+            if(evType == 0){
+                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=0&page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+            }else if(evType == 1){
+                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=1&page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+            }else if(evType == 2){
+                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?eventType=2&page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+            }else{
+                prevButton.innerHTML = `<a class="page-link"  href="/admin/review/list?page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+            }
+
+
+            paginationContainer.appendChild(prevButton);
+
+            // 페이지 번호 생성
+            for (var i = 1; i <= total_page; i++) {
+                var pageItem = document.createElement("li");
+                pageItem.classList.add("page-item");
+
+                if(evType == 0){
+                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=0&page=${i-1}">${i}</a>`;
+                }else if(evType == 1){
+                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=1&page=${i-1}">${i}</a>`;
+                }else if(evType == 2){
+                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=2&page=${i-1}">${i}</a>`;
+                }else{
+                    pageItem.innerHTML = `<a class="page-link" href="/admin/review/list?page=${i-1}">${i}</a>`;
+                }
+
+                paginationContainer.appendChild(pageItem);
+            }
+
+            // 다음 버튼
+            var nextButton = document.createElement("li");
+            nextButton.classList.add("page-item");
+
+            if(evType == 0){
+                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=0&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+            }else if(evType == 1){
+                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=1&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+            }else if(evType == 2){
+                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?eventType=2&page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+            }else{
+                nextButton.innerHTML = `<a class="page-link" href="/admin/review/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+            }
+
+            paginationContainer.appendChild(nextButton);
+        }
+</script>
+
+</body>
+</html>

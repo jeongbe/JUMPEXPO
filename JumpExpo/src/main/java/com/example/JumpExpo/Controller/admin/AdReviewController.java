@@ -35,23 +35,37 @@ public class AdReviewController {
         if (eventType == 0) {
             // 취업 리뷰
             reList = expoService.getAdUserReviewList(page, eventType);
+            model.addAttribute("reList", reList);
+            model.addAttribute("TotalPage",reList.getTotalPages());
+            return "admin/review/AdReviewList0";
+
         } else if (eventType == 1) {
             // 페어 리뷰
             reList = expoService.getAdUserReviewList(page, eventType);
+            model.addAttribute("reList", reList);
+            model.addAttribute("TotalPage",reList.getTotalPages());
+            return "admin/review/AdReviewList1";
         } else if (eventType == 2) {
             // 채용 리뷰
             reList = expoService.getAdUserReviewList(page, eventType);
+            model.addAttribute("reList", reList);
+            model.addAttribute("TotalPage",reList.getTotalPages());
+            return "admin/review/AdReviewList2";
+
         } else {
             reList = expoService.getAdUserReviewList(page, 0);
+            model.addAttribute("reList", reList);
+            model.addAttribute("TotalPage",reList.getTotalPages());
             return "redirect:/admin/review/list";
+
         }
 
-        model.addAttribute("reList", reList);
-        model.addAttribute("TotalPage",reList.getTotalPages());
+
+
 //        log.info(reList.getContent().toString());
 
 
-        return "admin/review/AdReviewList";
+
     }
 
     //2024.01.23 정정빈

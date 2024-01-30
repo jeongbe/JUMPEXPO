@@ -19,7 +19,6 @@
 
 }
 
-
     .pagination li {
         margin: 0 5px;
         display: inline;
@@ -71,7 +70,7 @@
     <tr class="add_tag" th:each="list : ${reList}">
         <td th:text="${list.re_num}">1</td>
         <td th:text="${list.expo_title}">예일회사</td>
-        <td th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/admin/review/read/' + ${list.re_num} + '&quot;'">제목ㅇㅇ</td>
+        <td th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/admin/review/read/' + ${list.re_num} + '&quot;'" class="review_enter">제목ㅇㅇ</td>
         <td th:text="${list.user_id}">dd</td>
         <td th:text="${list.re_date}">2024.01.01</td>
         <td th:text="${list.re_cnt}">5</td>
@@ -86,9 +85,9 @@
         </ul>
     </nav>
     <span style="display:none;" class="total_page" th:text="${TotalPage}"></span>
-
 </div>
 <script>
+
 
    function deleteReview(target) {
    let reNum = target.parentElement.querySelector('.reNum');
@@ -133,8 +132,6 @@
 
            // 부모 요소
        var paginationContainer = document.querySelector(".pagination");
-
-
 
        if (paginationContainer) {
            // 이전 버튼

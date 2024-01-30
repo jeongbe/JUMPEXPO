@@ -128,3 +128,10 @@ img {
 .add_tag{
 cursor:pointer;
 }
+
+.review_enter:hover {
+    font-weight: 800;
+    color: #000;
+    opacity: 0.8;
+}
+
