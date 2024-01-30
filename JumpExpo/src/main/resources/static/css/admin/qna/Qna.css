@@ -123,7 +123,7 @@ font-weight:800;
 color:#000;
 opacity:0.8;
 }
-.paging {position:absolute;top: 800px;left: 1000px;width:100px;}
+.paging {position:absolute;top: 820px;left: 1000px;width:100px;}
 #pageNumbers {
 display:inline;
 cursor: pointer;
