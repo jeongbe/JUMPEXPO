@@ -16,7 +16,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,8 +109,23 @@ public class JoinController {
 
     //기업 회원가입 매핑
     @PostMapping("/JumpExpo/ComJoin")
-    public String ComJoin(CompanyForm form){
+    public String ComJoin(CompanyForm form, @RequestParam("Comlogo") MultipartFile file){
 
+        //서버 이미지링크 변수
+        String link =  "\\\\192.168.2.3\\images\\a";
+
+
+        try {
+            if (file != null && !file.isEmpty()){
+                Path filePath = Path.of(link,file.getOriginalFilename());
+                Files.copy(file.getInputStream(),filePath, StandardCopyOption.REPLACE_EXISTING);
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+
+            return "";
+        }
 
         //기업 회원가입 서비스
         companyService.addCom(form);

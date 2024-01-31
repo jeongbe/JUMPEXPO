@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.multipart.MultipartFile;
 
 //2024-01-08 기업 회원가입 폼 맹성우
 @Data
@@ -34,14 +35,14 @@ public class CompanyForm {
 
     String email;
 
-    String Comlogo;
+    MultipartFile Comlogo;
 
     int comsec = 1;
 
 
   @Builder
   public CompanyForm(String id, String password, String BRnumber, String comname, String addr, String addr1, String homepage, String name, String phone
-  , String cominfo, String email, String comlogo, int comsec)  {
+  , String cominfo, String email, MultipartFile comlogo, int comsec)  {
 
       this.id = id;
       this.password = password;
@@ -71,7 +72,7 @@ public class CompanyForm {
               .manager_phone(phone)
               .com_intro(Cominfo)
               .com_email(email)
-              .com_image(Comlogo)
+              .com_image(Comlogo.getOriginalFilename())
               .com_sec(comsec)
               .role(Role.COM) //기업 권한 부여
               .build();
