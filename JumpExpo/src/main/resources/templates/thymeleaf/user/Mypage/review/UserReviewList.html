@@ -107,7 +107,7 @@
 
                             <tr class="expo-info" th:each="list : ${UserReList}">
                                 <td th:text="${list.re_num}"></td>
-                                <td style="cursor:pointer" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/re/' + ${list.re_num} + '&quot;'"></td>
+                                <td style="cursor:pointer" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/read/' + ${list.re_num} + '&quot;'"></td>
                                 <td th:utext="${list.expo_title}"></td>
                                 <td th:utext="${list.re_date}"></td>
                                 <td th:text="${list.re_cnt}">조회수</td>
