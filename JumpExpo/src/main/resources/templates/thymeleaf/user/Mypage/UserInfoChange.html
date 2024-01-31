@@ -6,85 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/css/user/Mypage/UserInfoChange.css" rel="stylesheet"/>
     <link href="/static/css/user/Side/users_body.css" rel="stylesheet"/>
-
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
-
-    <title>공고 보기</title>
-
+    <title>정보 수정</title>
 </head>
-<!-- <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>-->
-<header>
-    <a class="logo" href="/users/JumpExpo/main"><img src="/static/images/KakaoTalk_20240106_135536169.png" alt="로고"></a>
-    <nav class="mainMenu">
-        <a href="#">행사일정</a>
-        <a href="#">고객센터</a>
-        <a href="#">채용공고</a>
-        <a href="#">리뷰</a>
-    </nav>
-    <div class="header_right">
-        <!-- 유저 모델이 존재하는 경우 -->
-        <th:block th:if="${users ne null}">
-            <a th:href="@{/users/myPage}">
-                <div>
-                    마이페이지
-                </div>
-            </a>
-            <a th:href="@{/logout}">
-                <div>
-                    로그아웃
-                </div>
-            </a>
-        </th:block>
-
-        <!-- 유저 모델이 존재하지 않는 경우 -->
-        <th:block th:unless="${users ne null}">
-            <a th:href="@{/JumpExpo/Login}">
-                <div>
-                    로그인하기
-                </div>
-            </a>
-        </th:block>
-    </div>
-</header>
-<!-- header 끝 -->
-<!-- 서브메뉴 시작 -->
-<div class="subMenu">
-    <nav class="subMenuWrap">
-        <ul>
-            <li><a href="/users/allexpo">전체일정</a></li>
-            <li><a  href="/users/emp/expolist">취업박람회 일정</a></li>
-            <li><a href="/users/fair/expolist">페어 일정</a></li>
-            <li><a href="/users/rec/expolist">채용박람회</a></li>
-        </ul>
-        <ul>
-            <li><a href="/users/show/nt">공지사항</a></li>
-            <li><a href="#">Q&A</a></li>
-        </ul>
-        <ul>
-            <li><a href="/users/show/employlist">공고보기</a></li>
-        </ul>
-        <ul>
-            <li><a href="#">전체 리뷰</a></li>
-            <li><a href="#">취업박람회 리뷰</a></li>
-            <li><a href="#">페어 리뷰</a></li>
-            <li><a href="#">채용박람회 리뷰</a></li>
-        </ul>
-    </nav>
-</div>
-<script>
-    $(document).ready(function () {
-        //**** 마우스오버  ****//
-        //서브메뉴 숨기고 시작
-        $(".subMenu").hide();
-        // 마우스 오버
-        $(".mainMenu, .subMenu").mouseover(function () {
-            $(".subMenu").stop().slideDown(500);
-        }).mouseout(function () {
-            $(".subMenu").stop().slideUp(500);
-        });
-    });
-</script>
-<!-- header 끝 -->
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <body>
 <main>
     <content>
@@ -146,25 +71,10 @@
             <!--  -->
         </div>
     </content>
-
-    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
-
-     <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+    <div class="side" th:replace="~{user/side/mypage/MyPageSide5 :: MyPageSide5}"></div>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    // header script
-    $(document).ready(function () {
-        //**** 마우스오버  ****//
-        //서브메뉴 숨기고 시작
-        $(".subMenu").hide();
-        // 마우스 오버
-        $(".mainMenu, .subMenu").mouseover(function () {
-            $(".subMenu").stop().slideDown(500);
-        }).mouseout(function () {
-            $(".subMenu").stop().slideUp(500);
-        });
-    });
 
     //주소 api 사용
 

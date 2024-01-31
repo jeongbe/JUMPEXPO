@@ -10,7 +10,7 @@
 
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
 
-    <title>유저 박람회 신청 내역</title>
+    <title>마이 리뷰</title>
     <style>
         /* 추가된 CSS 스타일 */
 
@@ -18,42 +18,45 @@
             display: flex;
             list-style: none;
             padding: 0;
-            margin-top: 20px;
-            margin-left: 400px;
+             margin-top: 300px;
+            margin-left: 330px;
         }
 
         .pagination li {
-            margin: 0 5px;
+            margin: 0 3px;
             display: inline;
         }
-
+        .page-item{
+         border-radius: 4px;
+        }
         .pagination a {
-            text-decoration: none;
-            color: #007bff;
+           text-decoration: none;
             background-color: #fff;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             padding: 8px 12px;
             border-radius: 4px;
+             color: #787878;
+             font-size:14px;
+             font-weight: 700;
+             width:34px;
         }
 
         .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
 
         .pagination .active a {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
     </style>
 </head>
 
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 
-<body>
-<main>
-    <content>
-        <div class="body">
+<div class="container" style="width:920px;">
+        <div class="title-box">
             <div class="body_title">
                 <span>마이</span>
                 <span>리뷰</span>
@@ -62,7 +65,7 @@
             <div class="body_title_right">
                 <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 마이 리뷰
             </div>
-
+        </div>
 
 
             <!-- 주요내용 -->
@@ -78,8 +81,8 @@
                                 <button type="button">6개월</button>
                             </div>
                             <div class="r_date">
-                                <span><input type="date" class="d1" name="date_start" id="" /></span>
-                                <span><input type="date" class="d2" name="date_end" id="" /></span>
+                                <span><input type="date" class="d1" name="date_start" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
+                                <span><input type="date" class="d2" name="date_end" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
                             </div>
                             <div class="r_search_box">
                                 <button type="submit" class="S_btn r_s_btn">검색</button>
@@ -87,45 +90,108 @@
                         </div>
                     </form>
                 </div>
+            </div>
+                <div class="content" >
+                    <form>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>박람회</th>
+                                <th>등록일</th>
+                                <th>조회수</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-
-
-                <div class="content_">
-                    <div class="re_box">
-<!--                        <div class="cont-img">-->
-<!--                            &lt;!&ndash;                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />&ndash;&gt;-->
-<!--                        </div>-->
-                        <div class="expo-info">
-                            <p class="expo-name"></p>
-                            <div class="period-box2_" th:each="list : ${UserReList}">
-                                <p th:text="${list.expo_title}">박람회 이름</p>
-                                <p th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/re/' + ${list.re_num} + '&quot;'">리뷰 제목</p>
-                                <div class="r_sdf">
-                                    <p th:text="${list.re_date}">등록 날짜</p>
-                                    <p>10</p>
-                                </div>
-                                <div class="line"></div>
-                            </div>
-                        </div>
-                    </div>
+                            <tr class="expo-info" th:each="list : ${UserReList}">
+                                <td th:text="${list.re_num}"></td>
+                                <td style="cursor:pointer" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/re/' + ${list.re_num} + '&quot;'"></td>
+                                <td th:utext="${list.expo_title}"></td>
+                                <td th:utext="${list.re_date}"></td>
+                                <td th:text="${list.re_cnt}">조회수</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
-
                 <nav aria-label="Page navigation example" class="pageBtn">
                     <ul class="pagination">
                     </ul>
                 </nav>
-            </div>
             <span style="display:none;" class="total_page" th:text="${totalPage}"></span>
         </div>
-    </content>
 
-    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
+    <div class="side" th:replace="~{user/side/mypage/MyPageSide7 :: MyPageSide7}"></div>
 
-    <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
-
-</main>
 <script th:inline="javascript">
 
+    let S_btn = document.querySelector('.S_btn');
+
+        S_btn.onclick = () => {
+            let d1 = document.querySelector('.d1').value;
+            let d2 = document.querySelector('.d2').value;
+
+            console.log(d1);
+            console.log(d2);
+
+            if(!d1 || !d2){
+                alert("기간을 선택해주세요");
+                return false;
+            }
+        }
+    let total_page = document.querySelector('.total_page').textContent;
+    console.log(total_page);
+
+    // 부모 요소
+    var paginationContainer = document.querySelector(".pagination");
+
+    if (paginationContainer && total_page > 0) {
+        // Pagination buttons
+        // 이전 버튼
+        var prevButton = document.createElement("li");
+        prevButton.classList.add("page-item");
+
+        let d1 = document.querySelector('.d1');
+        console.log(d1)
+
+        const urlParams = new URL(location.href).searchParams;
+        const Search = urlParams.get('serch');
+        const start = urlParams.get('date_start');
+        const end = urlParams.get('date_end');
+
+        if(start != null){
+            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        } else {
+            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+        }
+
+        paginationContainer.appendChild(prevButton);
+
+        // 페이지 번호 생성
+        for (var i = 1; i <= total_page; i++) {
+            var pageItem = document.createElement("li");
+            pageItem.classList.add("page-item");
+            if(start != null){
+                pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
+            } else {
+                pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
+            }
+            paginationContainer.appendChild(pageItem);
+        }
+
+        // 다음 버튼
+        var nextButton = document.createElement("li");
+        nextButton.classList.add("page-item");
+        if(start != null){
+            nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        } else {
+            nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+        }
+
+        paginationContainer.appendChild(nextButton);
+    }
 
     // 기간 선택 버튼에 이벤트 리스너 추가
     document.querySelectorAll('.btns button').forEach(function(button) {
@@ -137,97 +203,21 @@
             var formattedToday = today.toISOString().split('T')[0];
 
             // 버튼에 따라 기간 설정
-            var monthsToSubtract = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
+            var monthsToAdd = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
 
-            // 선택된 기간 전의 날짜 계산
-            today.setMonth(today.getMonth() - monthsToSubtract);
+            // 선택된 기간 후의 날짜 계산
+            today.setMonth(today.getMonth() + monthsToAdd);
 
-            // 선택된 기간 전의 날짜를 "YYYY-MM-DD" 형식으로 포맷
-            var formattedPrevDate = today.toISOString().split('T')[0];
+            // 선택된 기간 후의 날짜를 "YYYY-MM-DD" 형식으로 포맷
+            var formattedNextDate = today.toISOString().split('T')[0];
 
             // "date_start"와 "date_end" 입력 필드의 값을 설정
-            document.querySelector('input[name="date_start"]').value = formattedPrevDate;
-            document.querySelector('input[name="date_end"]').value = formattedToday;
+            document.querySelector('input[name="date_start"]').value = formattedToday;
+            document.querySelector('input[name="date_end"]').value = formattedNextDate;
         });
-    });
-
-
-
-
-
-
-
-
-
-    // header script
-    $(document).ready(function () {
-        //**** 마우스오버  ****//
-        //서브메뉴 숨기고 시작
-        $(".subMenu").hide();
-        // 마우스 오버
-        $(".mainMenu, .subMenu").mouseover(function () {
-            $(".subMenu").stop().slideDown(500);
-        }).mouseout(function () {
-            $(".subMenu").stop().slideUp(500);
-        });
-
-
-        let total_page = document.querySelector('.total_page').textContent;
-        console.log(total_page);
-
-
-
-        // 부모 요소
-        var paginationContainer = document.querySelector(".pagination");
-
-        if (paginationContainer) {
-            // 이전 버튼
-            var prevButton = document.createElement("li");
-            prevButton.classList.add("page-item");
-
-            let d1 = document.querySelector('.d1');
-            console.log(d1);
-
-            const urlParams = new URL(location.href).searchParams;
-            const Search = urlParams.get('serch');
-            const start = urlParams.get('date_start');
-            const end = urlParams.get('date_end');
-
-            if(start != null){
-                prevButton.innerHTML = `<a class="page-link"  href="/users/app/list?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            }else{
-                prevButton.innerHTML = `<a class="page-link"  href="/users/app/list?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-            }
-
-            paginationContainer.appendChild(prevButton);
-
-            // 페이지 번호 생성
-            for (var i = 1; i <= total_page; i++) {
-                var pageItem = document.createElement("li");
-                pageItem.classList.add("page-item");
-
-                if(start != null){
-                    pageItem.innerHTML = `<a class="page-link"  href="/users/app/list?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
-                }else{
-                    pageItem.innerHTML = `<a class="page-link" href="/users/app/list?page=${i - 1}">${i}</a>`;
-                }
-
-                paginationContainer.appendChild(pageItem);
-            }
-
-            // 다음 버튼
-            var nextButton = document.createElement("li");
-            nextButton.classList.add("page-item");
-            if(start != null){
-                nextButton.innerHTML = `<a class="page-link"  href="/users/app/list?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            }else{
-                nextButton.innerHTML = `<a class="page-link" href="/users/app/list?page=${total_page - 1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-            }
-            paginationContainer.appendChild(nextButton);
-        }
     });
 
 </script>
-</body>
+</div>
 
 </html>

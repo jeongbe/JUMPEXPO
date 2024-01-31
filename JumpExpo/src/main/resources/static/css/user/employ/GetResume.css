@@ -84,7 +84,6 @@ input:focus {
     display: flex;
     margin-top: -50px;
 }
-
 .btn_box > button {
     width: 170px;
     height: 40px;
@@ -92,6 +91,7 @@ input:focus {
     color: white;
     font-size:15px;
     cursor: pointer;
+        border: none;
 }
 
 .btn_box > div > button {
@@ -102,4 +102,15 @@ input:focus {
     font-size:15px;
     margin-left: -150px;
     cursor: pointer;
+        border: none;
+}
+
+.ybutton{
+    width: 170px;
+    height: 40px;
+    background-color: #374658;
+    color: white;
+    font-size:15px;
+    cursor: pointer;
+    border: none;
 }

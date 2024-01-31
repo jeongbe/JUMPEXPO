@@ -10,7 +10,7 @@
 
     <script src="js/jquery-3.7.0.min.js"></script>
 
-    <title>공고 보기</title>
+    <title>비밀번호 변경</title>
 </head>
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <body>
@@ -55,30 +55,10 @@
             <!--  -->
         </div>
     </content>
-    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
-
-     <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+    <div class="side" th:replace="~{user/side/mypage/MyPageSide6 :: MyPageSide6}"></div>
 </main>
 <script th:if="${param.error}" type="text/javascript">
     alert('비밀번호를 다시 확인하세요.');
 </script>
-<script>
-    // header script
-    $(document).ready(function () {
-        //**** 마우스오버  ****//
-        //서브메뉴 숨기고 시작
-        $(".subMenu").hide();
-        // 마우스 오버
-        $(".mainMenu, .subMenu").mouseover(function () {
-            $(".subMenu").stop().slideDown(500);
-        }).mouseout(function () {
-            $(".subMenu").stop().slideUp(500);
-        });
-    });
-</script>
-
-
-
 </body>
-
 </html>

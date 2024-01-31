@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="MyPageSide4">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>마이페이지 사이드</title>
+        <style>
+            .side {
+                position: fixed;
+                top: 130px;
+                left: 200px
+            }
+            .side_header {
+                width: 200px;
+                height: 120px;
+                border: 2px solid #ccc;
+                box-sizing: border-box;
+                background: #f2f2f2;
+              }
+              .side_header a {
+                margin-left: 18px;
+                margin-top: 60px;
+                font-size: 25px;
+                font-weight: 700;
+                color: #EA8874;
+              }
+              .side_body{
+                width: 200px;
+                height: 50px;
+                border: 2px solid #ccc;
+                box-sizing: border-box;
+                border-top: none;
+              }
+              .side_body a {
+                padding: 15px;
+                color: #787878;
+                font-weight: 700;
+              }
+              .side_body:last-child a:hover {
+                background: #EA8874;
+                color: #fff;
+                height: 48px;
+              }
+        </style>
+    </head>
+    <body>
+    <div class="side">
+        <div class="side_header">
+            <a href="/users/maPage">내 정보</a>
+        </div>
+
+        <div class="side_body" >
+            <a href="/users/myPage" >내 정보</a>
+        </div>
+
+        <div class="side_body">
+            <a href="/users/interv/calen">면접 일정 관리</a>
+        </div>
+
+        <div class="side_body" >
+            <a href="/users/mypage/employ/apply">채용 신청 내역</a>
+        </div>
+
+        <div class="side_body" style=" background-color: #EA8874;">
+            <a href="/users/app/list" style="color: white;">박람회 신청 내역</a>
+        </div>
+
+        <div class="side_body">
+            <a href="/users/myPage/ChangeInfo">정보 수정</a>
+        </div>
+
+        <div class="side_body">
+            <a href="/users/myPage/PwChangePage">비밀번호 변경</a>
+        </div>
+
+        <div class="side_body">
+            <a href="/users/mypage/review">마이 리뷰</a>
+        </div>
+    </div>
+    </body>
+</header>
+</html>
+

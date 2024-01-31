@@ -381,7 +381,11 @@ public class UserMyPageController {
     public String UserReview(Model model,@PathVariable("user_code") int userCode,@PathVariable("expo_code") int expoCode){
         log.info(String.valueOf(userCode));
         log.info(String.valueOf(expoCode));
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
         log.info("리뷰 작성 페이지");
 
@@ -559,13 +563,13 @@ public class UserMyPageController {
             peremApplyUser.setPem_can(value);
             try {
                 peremApplyRepository.save(peremApplyUser);
-                return "redirect:/users/mypage/employ/apply/{user_code}";
+                return "redirect:/users/mypage/employ/apply";
             } catch (Exception e) {
                 // 업데이트 실패한 경우 예외 처리 가능
-                return "redirect:/users/mypage/employ/apply/{user_code}";
+                return "redirect:/users/mypage/employ/apply";
             }
         }
-        return "redirect:/users/mypage/employ/apply/{user_code}";
+        return "redirect:/users/mypage/employ/apply";
     }
 
     //2024.01.25 박은채

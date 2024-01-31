@@ -85,7 +85,11 @@ public class EmployListController {
     public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode,
                                @PathVariable(name = "com_code") int comCode,
                                @PathVariable("user_code") int userCode){
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
         model.addAttribute("userCode", userCode);
 
         ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);

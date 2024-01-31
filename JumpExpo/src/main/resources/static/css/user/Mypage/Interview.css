@@ -1,11 +1,76 @@
-/**{
-    margin: 0 auto;
+/*초기 설정*/
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
 }
 
-body{
-    width: 950px;
-}*/
+table {
+    border: 2px solid #808080;
+}
 
+/*컨텐츠*/
+.contents {
+    position: absolute;
+    top: 140px;
+    right: 55px;
+    width: 920px;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+/*컨텐츠 공통사항*/
+.contents div {
+    width: 100%;
+}
+
+.contents>div:nth-of-type(2) {
+    margin: 0 10px;
+}
+
+
+.body {
+    width: 920px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+    left: 80px;
+    top: 130px;
+}
+
+.body_title {
+    position: absolute;
+    top: 60px;
+    left: -60px;
+    width: 920px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #374658;
+}
+
+.body_title span {
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.body_title span:last-child {
+    color: #374658;
+}
+
+   .body_title_right {
+   position: absolute;
+       top: 80px;
+       right: 80px;
+       font-weight:700;
+       font-size:15px;
+   }
+   .body_title_right img {
+          position: absolute;
+          left: -26px;
+          top: 2px;
+      }
 tr {
     /* background-color: aquamarine; */
 }
@@ -81,20 +146,22 @@ tr {
     bottom: 10px;
     background: none;
     right: 10px;
+    color: #787878;
 }
 
 .YearText, .MonthText{
-    font-size: 40px;
+    font-size: 30px;
     margin: 0px;
 }
 
 .YearText{
-    color: #808080;
+    color: #374658;
     width: 120px;
 }
 
 .MonthText{
     margin: 0px;
+    color: #374658;
 }
 
 .MonthUp{
@@ -102,28 +169,31 @@ tr {
     bottom: 10px;
     background: none;
     left: 10px;
+    color: #787878;
 }
 
 .days{
     background-color: #e7e3e3;
     border-top: 5px solid #374658;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-left: 1px solid #787878;
+    border-right: 1px solid #787878;
 }
 
 .days > th{
-    border-right: 1px solid black;
+    border-right: 1px solid #787878;
 }
 
 .ins_{
     margin: 0px;
     position: relative;
     left: 300px;
-    width: 90px;
-    height: 40px;
-    margin-top: 5px;
+    width: 100px;
+    height: 35px;
+    margin-top: 3px;
     background-color: #374658;
     color: white;
+    font-size: 15px;
+    border: 1px solid #ccc;
 }
 
 .inter_td{
@@ -141,6 +211,8 @@ tr {
     margin-left: 10px;
     flex-direction: column;
 }
+
+span#day6 {}
 
 .ic{
     bottom: 20px;

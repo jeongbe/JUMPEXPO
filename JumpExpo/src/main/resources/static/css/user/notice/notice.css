@@ -36,6 +36,11 @@
        font-weight:700;
        font-size:15px;
    }
+   .body_title_right img {
+          position: absolute;
+          left: -26px;
+          top: 2px;
+      }
  .con_search{
     position: absolute;
     top: 110px;

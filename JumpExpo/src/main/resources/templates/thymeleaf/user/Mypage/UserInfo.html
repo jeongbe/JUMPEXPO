@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/css/user/Mypage/UserInfo.css" rel="stylesheet" />
-    <link href="/static/css/user/Side/users_body.css" rel="stylesheet" />
-
     <script src="js/jquery-3.7.0.min.js"></script>
 
-    <title>공고 보기</title>
+    <title>내 정보</title>
 </head>
  <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 <body>
@@ -28,9 +26,6 @@
             <!-- 주요내용 -->
             <div class="contents">
                 <form class="fo_css" method="get" th:action="@{/users/myPage/resign/{usercode}(usercode=${users.user_code})}">
-                <hr class="hr_">
-
-                <hr  class="hr_2">
                 <div class="UserInfo_content">
                     <div  class="div1">
                         <div class="UserInfo_content_text">
@@ -43,7 +38,7 @@
                             <p class="ti">이메일</p><p th:text="${users.user_email}"></p>
                         </div>
                     </div>
-                    <div>
+                    <div class="div2">
                         <div class="UserInfo_content_text">
                             <p class="ti">주소</p><p th:text="${users.user_addr}"></p>
                         </div>
@@ -62,10 +57,8 @@
         </div>
     </content>
 
-     <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
+    <div class="side" th:replace="~{user/side/mypage/MyPageSide :: MyPageSide}"></div>
 
-    <!-- side 끝 -->
-     <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
 </main>
 <script th:if="${param.success}" type="text/javascript">
     alert('정보변경 완료.');
@@ -73,20 +66,7 @@
 <script th:if="${param.successPw}" type="text/javascript">
     alert('비밀번호 변경 완료.');
 </script>
-<script>
-    // header script
-    $(document).ready(function () {
-        //**** 마우스오버  ****//
-        //서브메뉴 숨기고 시작
-        $(".subMenu").hide();
-        // 마우스 오버
-        $(".mainMenu, .subMenu").mouseover(function () {
-            $(".subMenu").stop().slideDown(500);
-        }).mouseout(function () {
-            $(".subMenu").stop().slideUp(500);
-        });
-    });
-</script>
+
 </body>
 
 </html>

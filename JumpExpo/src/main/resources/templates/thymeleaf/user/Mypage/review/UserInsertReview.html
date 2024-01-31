@@ -59,35 +59,10 @@
 
         </div>
     </content>
-
-    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
-    <!-- side 끝 -->
-
-    <!-- <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div> -->
-    <footer>
-        <div>
-            <a class="logo" href="/users/JumpExpo/main"><img src="/static/images/footer_logo.png" alt="로고"></a>
-        </div>
-        <div>
-            <a href="http://www.yeilit.com/main.html" target="_blank">http://www.yeilit.com/main.html</a>
-            <span>정빈 | 성우 | 은채 | 수민</span>
-        </div>
-    </footer>
-    <!-- footer 끝 -->
+    <div class="side" th:replace="~{user/side/mypage/MyPageSide :: MyPageSide}"></div>
 </main>
 <script  th:inline="javascript">
 
-        $(document).ready(function () {
-
-            //서브메뉴 숨기고 시작
-            $(".subMenu").hide();
-
-            $(".mainMenu, .subMenu").mouseover(function () {
-                $(".subMenu").stop().slideDown(500);
-            }).mouseout(function () {
-                $(".subMenu").stop().slideUp(500);
-            });
-        });
 
     let oEditors = [];
     nhn.husky.EZCreator.createInIFrame({
@@ -127,13 +102,8 @@
        })
    }
 
-
     // 스마트 에디터에서의 CORS 문제 해결
     document.domain = "localhost";  // 스마트 에디터를 로드하는 페이지의 도메인을 지정
-
-
-
-
 
 </script>
 </body>

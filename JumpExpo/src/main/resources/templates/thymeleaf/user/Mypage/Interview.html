@@ -4,16 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="/static/css/user/Mypage/users_body.css" rel="stylesheet" />
-    <link href="/static/css/user/Mypage/users_header.css" rel="stylesheet" />
-    <link href="/static/css/user/Mypage/users_side.css" rel="stylesheet" />
-    <link href="/static/css/user/Mypage/users_footer.css" rel="stylesheet" />
     <script src="/static/js/comuser/jquery-3.7.0.min.js"></script>
     <link rel="stylesheet" href="/static/css/user/Mypage/Interview.css" />
-    <title>공고 보기</title>
+    <title>면접 일정 관리</title>
 </head>
-<!-- <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div> -->
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 
 <body>
@@ -55,35 +49,11 @@
         </div>
     </content>
 
-    <div class="sidefooter" th:replace="~{user/side/MyPageSide :: MyPageSide}"></div>
-    <!-- side 끝 -->
+    <div class="side" th:replace="~{user/side/mypage/MyPageSide2 :: MyPageSide2}"></div>
 
-    <!-- <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div> -->
-    <footer>
-        <div>
-            <a class="logo" href="/users/JumpExpo/main"><img src="/static/images/footer_logo.png" alt="로고"></a>
-        </div>
-        <div>
-            <a href="http://www.yeilit.com/main.html" target="_blank">http://www.yeilit.com/main.html</a>
-            <span>정빈 | 성우 | 은채 | 수민</span>
-        </div>
-    </footer>
-    <!-- footer 끝 -->
 </main>
 </body>
 <script  th:inline="javascript">
-    <!--    // header script-->
-        $(document).ready(function () {
-    <!--        //**** 마우스오버  ****//-->
-            //서브메뉴 숨기고 시작
-            $(".subMenu").hide();
-    <!--        // 마우스 오버-->
-            $(".mainMenu, .subMenu").mouseover(function () {
-                $(".subMenu").stop().slideDown(500);
-            }).mouseout(function () {
-                $(".subMenu").stop().slideUp(500);
-            });
-        });
 
 let userSc = [[${list}]];
     console.log(userSc);
@@ -167,7 +137,7 @@ function generateCalendar(year, month) {
    //날짜
    var calendarDay = 0;
    html +=
-       '<tr class="days" style="height:50px";><th style="color: red; text-align:center;">일요일</th><th style="text-align:center;">월요일</th><th style="text-align:center;">화요일</th><th style="text-align:center;">수요일</th><th style="text-align:center;">목요일</th><th style="text-align:center;">금요일</th><th style="color: blue; text-align:center;">토요일</th></tr>';
+       '<tr class="days" style="height:50px";><th style="color: #ea8874; text-align:center;">일요일</th><th style="text-align:center;">월요일</th><th style="text-align:center;">화요일</th><th style="text-align:center;">수요일</th><th style="text-align:center;">목요일</th><th style="text-align:center;">금요일</th><th style="color: #374658; text-align:center;">토요일</th></tr>';
    for (var index1 = 0; index1 < calWeekCount; index1++) {
        //tr을 weekCount만큼 반복해줌 즉 6번
        html += '<tr>';
@@ -176,11 +146,11 @@ function generateCalendar(year, month) {
            var isSunday = index2 === 0; // 일요일 확인
            var isSaturday = index2 === 6; // 토요일 확인
            var cellStyle =
-               'border: solid 1px black; width:150px; height:130px;';
+               'border: solid 1px #787878; width:150px; height:130px;';
            if (isSunday) {
-               cellStyle += 'color: red;';
+               cellStyle += 'color: #ea8874;';
            } else if (isSaturday) {
-               cellStyle += 'color: blue;';
+               cellStyle += 'color: #374658;';
            }
            html += `<td class="td_c"  style="${cellStyle}">`;
            if (
