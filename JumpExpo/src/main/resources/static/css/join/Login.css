@@ -66,19 +66,33 @@ h1{
 
 }
 
+.login_btn_form a {
+    text-decoration: none;
+}
+
 
 
 button{
 
-    margin-top: 30px;
-    width: 450px;
-    height: 50px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    background-color: #374658;
-    color: white;
+margin-top: 30px;
 
+width: 450px;
+
+height: 50px;
+
+border: 0;
+
+outline: 0;
+
+cursor: pointer;
+
+background-color: #374658;
+
+color: white;
+
+font-size: 15px;
+
+font-weight: 600;
 }
 
 .kakao_btn{
@@ -98,9 +112,9 @@ position: absolute;
 
 left: 750px;
 
-top: 553px;
-
 width: 27px;
+
+top: 553px;
 }
 
 .line_or {
@@ -211,6 +225,8 @@ width: 27px;
 .kako_btn_text{
     position: absolute;
     left: 910px;
-    top: 553px;
     color: #3e2723;
+    line-height: 50px;
+    font-weight: 600;
+    font-size: 16px;
 }

@@ -15,16 +15,14 @@ h1 {
 section {
     width: 500px;
     height: 500px;
-    border: 1px solid #aaa;
+    border: 2px solid #aaa;
     margin-right: 40px;
-
 }
 
 main {
     width: 500px;
     height: 500px;
-    border: 1px solid #aaa;
-
+    border: 2px solid #aaa;
 }
 
 .person_png_form{
@@ -43,15 +41,15 @@ main {
     width: 200px;
 }
 
-/* 호버 효과 */
+/* í˜¸ë²„ íš¨ê³¼ */
 section:hover,
 main:hover {
-    background-color: #fff0ed; /* 바꿀 색상 설정 */
-
+    background-color: #fff0ed; /* ë°”ê¿€ ìƒ‰ìƒ ì„¤ì • */
+    border-color:#EA8874;
 }
 
 a {
-    color: black; /* 원하는 색상으로 변경 */
+    color: black; /* ì›í•˜ëŠ” ìƒ‰ìƒìœ¼ë¡œ ë³€ê²½ */
     text-decoration: none;
 }
 
