@@ -6,7 +6,7 @@ body {
 
 .imgs img {
     width: 1100px;
-    height: 500px;
+    height: 350px;
 }
 .carousel {
     position: relative;
@@ -65,9 +65,10 @@ body {
     height: auto;
     /* align-items: center; */
     /* justify-content: center; */
+    margin-bottom: 10px;
 }
 
-.expo_img {
+.expo_img > img {
     margin-top: 10px;
     margin-left: 10px;
     background-color: antiquewhite;
@@ -85,6 +86,7 @@ body {
 .expo_info_ {
     font-size: 15px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .expo_days {

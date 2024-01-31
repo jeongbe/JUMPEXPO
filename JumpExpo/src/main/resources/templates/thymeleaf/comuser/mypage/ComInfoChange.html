@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="/static/css/comuser/mypage/ComUserInfoChange.css" rel="stylesheet"/>
     <link href="/static/css/user/Side/users_body.css" rel="stylesheet"/>
+    <link href="/static/css/comuser/mypage/ComUserInfoChange.css" rel="stylesheet"/>
 
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
 
@@ -29,44 +29,84 @@
             <!-- 주요내용 -->
             <div class="contents">
                 <form method="post" action="/com/myPage/ChangeSubmit">
-                    <table>
-                        <tr>
-                            <td><label for="name">회사명 *</label></td>
-                            <td><input type="text" id="name" name="Comname" ></td>
-                        </tr>
-                        <tr>
-                            <td><label for="sample6_address">회사 주소 *</label></td>
-                            <td>
-                                <input type="text" id="sample6_postcode" readonly>
+                    <div class="join_allform">
+                        <div class="id_text_input">
+                            <div class="join_title  point">회사명</div>
+                            <input type="text" class="idbox_join"  id="name" name="Comname" placeholder="회사 이름" required>
+                        </div>
+                        <div class="id_text_input">
+                            <div class="join_title  point">주소</div>
+                            <div class="type">
+                                <input class="idbox_join" style="width:120px;" type="text" id="sample6_postcode" readonly>
                                 <button type="button" class="addr_search" onclick="execution_daum_address()">주소 검색</button>
-                                <input type="text" id="sample6_extraAddress" readonly>
-                                <hr>
-                                <input type="text" id="sample6_address" name="addr" required readonly >
-                                <hr>
-                                <input type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="phone">홈페이지 *</label></td>
-                            <td>
-                                <input type="text" id="homepage" name="homepage" placeholder="-없이 숫자만 11자리 입력" >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="phone">담당자 연락처 *</label></td>
-                            <td>
-                                <input type="text" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" >
-                                <div id="phoneError" class="error-message"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="email">이메일 *</label></td>
-                            <td>
-                                <input type="email" id="email" name="email" >
-                                <div id="emailError" class="error-message"></div>
-                            </td>
-                        </tr>
-                    </table>
+
+                            <input class="idbox_join" style="display:none;" type="text" id="sample6_extraAddress" readonly>
+                            </div>
+                            <div class="type">
+                            <input class="idbox_join" type="text" id="sample6_address" name="addr" required readonly >
+                            <input class="idbox_join" type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
+                            </div>
+                            <!--                            <input type="text" id="sample6_postcode" readonly style="display:none;">-->
+<!--                            <input type="text" id="sample6_extraAddress" readonly style="display:none;">-->
+<!--                            <div class="join_title">회사주소 * <button type="button" onclick="execution_daum_address()">주소검색</button></div>-->
+<!--                            <input type="text" class="idbox_join" id="sample6_address" name="addr" readonly required>-->
+                        </div>
+<!--                        <div class="id_text_input">-->
+<!--                            <input type="text" class="passCheck" id="addr1" name="addr1" placeholder="상세주소">-->
+<!--                        </div>-->
+                        <div class="id_text_input">
+                            <div class="join_title point" for="phone" >홈페이지 링크</div>
+                            <div class="id_text_input">
+                                <input type="text"  class="idbox_join" id="homepage" name="homepage" placeholder="웹주소" required>
+                            </div>
+                        </div>
+                        <div class="id_text_input">
+                            <div class="join_title point" for="phone">담당자 번호</div>
+                            <input type="text" class="idbox_join" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" required>
+                        </div>
+                        <div id="phoneError" class="error-message"></div>
+                        <div class="id_text_input">
+                            <div class="join_title point">이메일</div>
+                            <input type="text" class="idbox_join"  id="email" name="email" placeholder="이메일 형식으로 적어주세요" required>
+                        </div>
+                        <div id="emailError" class="error-message"></div>
+                    </div>
+<!--                    <table>-->
+<!--                        <tr>-->
+<!--                            <td class="dk"><label for="name" class="point">회사명</label></td>-->
+<!--                            <td><input type="text" id="name" name="Comname" ></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td class="dk"><label for="sample6_address" class="point">회사 주소</label></td>-->
+<!--                            <td>-->
+<!--                                <input style="width:120px;" type="text" id="sample6_postcode" readonly>-->
+<!--                                <button type="button" class="addr_search" onclick="execution_daum_address()">주소 검색</button>-->
+<!--                                <input style="display:none;" type="text" id="sample6_extraAddress" readonly>-->
+<!--                                <input type="text" id="sample6_address" name="addr" required readonly >-->
+<!--                                <input type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td class="dk"><label for="phone" class="point">홈페이지</label></td>-->
+<!--                            <td>-->
+<!--                                <input type="text" id="homepage" name="homepage" placeholder="-없이 숫자만 11자리 입력" >-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td class="dk"><label for="phone" class="point">담당자 연락처</label></td>-->
+<!--                            <td>-->
+<!--                                <input type="text" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" >-->
+<!--                                <div id="phoneError" class="error-message"></div>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td class="dk"><label for="email" class="point">이메일</label></td>-->
+<!--                            <td>-->
+<!--                                <input type="email" id="email" name="email" >-->
+<!--                                <div id="emailError" class="error-message"></div>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
                     <button type="submit" class="joinbtn">수정하기</button>
                 </form>
             </div>
@@ -74,7 +114,7 @@
         </div>
     </content>
 
-    <div class="sidefooter" th:replace="~{comuser/Side/MyPageSide :: MyPageSide}"></div>
+    <div class="sidefooter" th:replace="~{comuser/Side/Mypage/MyPageSide_5 :: MyPageSide_5}"></div>
 
     <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </main>

@@ -1,14 +1,19 @@
+
+
 body {
     margin: 0 auto;
 }
 
 .imgs img {
     width: 1100px;
-    height: 500px;
+    height: 350px;
 }
-
+.carousel {
+    position: relative;
+    top: 100px;
+}
 .imp_expo {
-    margin-top: 40px;
+    margin-top: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,7 +109,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 
 .more_expo > button {
@@ -158,4 +163,15 @@ ul > span {
 
 .h > p:last-child:hover {
     transform: rotate(90deg);
+}
+.bac {
+margin-top:60px;
+}
+
+.expo_img > img {
+/*    margin-top: 10px;
+    margin-left: 10px;*/
+    background-color: antiquewhite;
+    width: 130px;
+    height: 70px;
 }

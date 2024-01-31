@@ -41,21 +41,21 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img
-                            src="/static/images/웨덱스-홈피.jpg"
+                            src="/static/images/KakaoTalk_20240130_123158469.png"
                             class="d-block w-100"
                             alt="..."
                     />
                 </div>
                 <div class="carousel-item">
                     <img
-                            src="/static/images/인터배터리-24_홈페이지-롤링배너-국문_1227-최종.jpg"
+                            src="/static/images/KakaoTalk_20240130_122346919_02.png"
                             class="d-block w-100"
                             alt="..."
                     />
                 </div>
                 <div class="carousel-item">
                     <img
-                            src="/static/images/제29회-서울리빙디자인페어-웹배너.jpg"
+                            src="/static/images/KakaoTalk_20240130_122346919_01.png"
                             class="d-block w-100"
                             alt="..."
                     />
@@ -90,20 +90,20 @@
     <div class="imp_expo">
         <div class="dd">
             <p class="imp_tit">주요 행사 일정</p>
-            <p class="imp_tit2">2024년 1월</p>
+            <p class="imp_tit2">2024년 2월</p>
             <div class="ddd">
                 <div class="line fq"></div>
-                <div class="expos">
+                <div class="expos" th:each="list : ${expolist}">
                     <div class="expo_img">
-                        <img src="" alt="" />
+                        <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
                     </div>
                     <div class="expo_info_">
-                        <p>이름</p>
+                        <p th:text="${list.expo_title}">이름</p>
                         <div class="expo_days">
-                            <p>시작일</p>
-                            <p>종료일</p>
+                            <p  th:text="${list.expo_start}">시작일</p>
+                            <p  th:text="${list.expo_end}">종료일</p>
                         </div>
-                        <p>장소</p>
+                        <p  th:text="${list.expo_add}">장소</p>
                     </div>
                 </div>
                 <div class="line2"></div>
@@ -120,56 +120,24 @@
             <div class="ann_list_box tts">
                 <div class="h">
                     <p>공지</p>
-                    <p>+</p>
+                    <p><a href="/com/show/nt">+</a></p>
                 </div>
-                <div class="a_list">
+                <div class="a_list" th:each="list2 : ${noList}">
                     <ul class="main_ul">
-                        <li>공지 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>공지 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>공지 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
+                        <li th:text="${list2.not_title}" th:onclick="'javascript:location.href=&quot;/com/show/nt/' + ${list2.not_code} + '&quot;'">공지 이름1</li>
+                        <span th:text="${list2.not_date}">날짜</span>
                     </ul>
                 </div>
             </div>
             <div class="ann_list_box">
                 <div class="h">
                     <p>Q&A</p>
-                    <p>+</p>
+                    <p><a href="/com/show/qu">+</a></p>
                 </div>
-                <div class="a_list">
+                <div class="a_list" th:each="list3 : ${qnaList}">
                     <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
-                    </ul>
-                    <ul class="main_ul">
-                        <li>qn 이름1</li>
-                        <span>날짜</span>
+                        <li th:text="${list3.qu_title}">qn 이름1</li>
+                        <span th:text="${list3.qu_date}">날짜</span>
                     </ul>
                 </div>
             </div>

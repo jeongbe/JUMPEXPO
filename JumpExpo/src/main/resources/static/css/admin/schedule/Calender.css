@@ -12,10 +12,15 @@ tr {
 
 .container{
 
-        position: relative;
-        bottom: 0px;
-        left: -150px;
-        top: 100px;
+position: relative;
+
+bottom: 0px;
+
+left: -195px;
+
+top: 100px;
+
+height:1500px;
 }
 
 .header_box{
@@ -26,12 +31,17 @@ tr {
 
 .clo{
     margin: 0px;
+    position: relative;
+    left: 580px;
+    bottom: 10px;
 }
 
 .tit{
     margin: 0px;
-    font-size: 40px;
+    font-size: 35px;
     color: #374658;
+    font-weight: bold;
+    position: relative;
 }
 
 .c1{
@@ -61,13 +71,17 @@ tr {
 }
 
 .line{
-    border-bottom: 1px solid #808080;
-    width: 1100px;
-    margin-top: 10px;
+    border-bottom: 2px solid #808080;
+    width: 1550px;
+    /* margin-top: 10px; */
+    margin-bottom: 15px;
 }
 
 .c_box{
     display: flex;
+    margin-bottom: 15px;
+    position: relative;
+    left: 300px;
 }
 
 .MonthDown, .MonthUp {
@@ -121,4 +135,13 @@ tr {
 
 .YearText::after{
     content: '³â';
+}
+
+.sch{
+    cursor:pointer;
+}
+
+#calendar{
+    left: 300px;
+    position: relative;
 }

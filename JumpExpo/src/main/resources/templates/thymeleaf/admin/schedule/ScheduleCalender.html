@@ -131,7 +131,7 @@ function generateCalendar(year, month) {
             var isSunday = index2 === 0; // 일요일 확인
             var isSaturday = index2 === 6; // 토요일 확인
             var cellStyle =
-                'border: solid 1px black; width:150px; height:150px;';
+                'border: solid 1px black; width:150px; height:130px;';
             if (isSunday) {
                 cellStyle += 'color: red;';
             } else if (isSaturday) {
@@ -144,7 +144,7 @@ function generateCalendar(year, month) {
             ) {
                 calendarDay++;
                 html +=
-                    '<span style="display: flex; padding: 10px; position: relative; bottom: 20px; font-size:25px;">' +
+                    '<span style="display: flex; padding: 10px; position: relative; bottom: 40px; font-size:20px;">' +
                     calendarDay +
                     '</span>';
 
@@ -163,11 +163,11 @@ function generateCalendar(year, month) {
                     if (calenderYear == d1 && calendarDay == d3 && calMonth == d2) {
                         let expoName = info[i].expo_title;
                         if(info[i].expo_cate == 1){
-                            SpanStyle += 'background-color:#EA8874; color:white; font-weight: bold; cursor: pointer; margin-bottom: 2px;';
+                            SpanStyle += 'background-color:#EA8874; color:black; font-weight: bold;';
                         }else if(info[i].expo_cate == 0){
-                            SpanStyle += 'background-color:#374658; color:white; font-weight: bold; cursor: pointer; margin-bottom: 2px;';
+                            SpanStyle += 'background-color:#374658; color:white; font-weight: bold;';
                         }else if(info[i].expo_cate == 2){
-                            SpanStyle += 'background-color:#F1D2B0; color:black; font-weight: bold; cursor: pointer; margin-bottom: 2px;';
+                            SpanStyle += 'background-color:#F1D2B0; color:black; font-weight: bold;';
                         }
                         html += `<span class="sch" onclick="location.href='/admin/expo/info/' + ${info[i].expo_code}"; style="${SpanStyle}">${expoName}</span>`;
                     }

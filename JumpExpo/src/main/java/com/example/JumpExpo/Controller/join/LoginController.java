@@ -6,9 +6,15 @@ import com.example.JumpExpo.DTO.Login.ChangePwForm;
 import com.example.JumpExpo.DTO.Login.LoginForm;
 import com.example.JumpExpo.DTO.Login.SearchPwForm;
 import com.example.JumpExpo.DTO.Login.SearhIdForm;
+import com.example.JumpExpo.Entity.admin.Notice;
+import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.Company;
+import com.example.JumpExpo.Entity.user.QnA;
 import com.example.JumpExpo.Entity.user.Users;
+import com.example.JumpExpo.Repository.admin.NoticeRepository;
+import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.comuser.CompanyRepository;
+import com.example.JumpExpo.Repository.user.QnARepository;
 import com.example.JumpExpo.Repository.user.UserReository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +29,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 
 //로그인 관련 컨트롤러 2024-01-08 맹성우
@@ -36,10 +43,16 @@ public class LoginController {
     UserReository userReository;
 
     @Autowired
-    UserSecurityService userSecurityService;
+    PasswordEncoder passwordEncoder;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    SchInsetExpoRepository schInsetExpoRepository;
+
+    @Autowired
+    NoticeRepository noticeRepository;
+
+    @Autowired
+    QnARepository qnARepository;
 
 
     @GetMapping("/JumpExpo/Login")
@@ -202,6 +215,16 @@ public class LoginController {
         Users users = userReository.finduser(username);
         model.addAttribute("users", users);
 
+        List<ScheduleInsert> expolist = schInsetExpoRepository.getMainExpoList();
+        model.addAttribute("expolist",expolist);
+
+        List<Notice> noticeList = noticeRepository.mainNotice();
+        model.addAttribute("noList",noticeList);
+
+        List<QnA> qnaList = qnARepository.getList();
+        model.addAttribute("qnaList",qnaList);
+
+
 
         return "user/userMain";
     }
@@ -214,6 +237,15 @@ public class LoginController {
         String username = authentication.getName();
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
+
+        List<ScheduleInsert> expolist = schInsetExpoRepository.getMainExpoList();
+        model.addAttribute("expolist",expolist);
+
+        List<Notice> noticeList = noticeRepository.mainNotice();
+        model.addAttribute("noList",noticeList);
+
+        List<QnA> qnaList = qnARepository.getList();
+        model.addAttribute("qnaList",qnaList);
 
         return "/comuser/comMain";
     }

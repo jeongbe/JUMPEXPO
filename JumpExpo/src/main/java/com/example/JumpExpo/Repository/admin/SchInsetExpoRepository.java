@@ -167,4 +167,14 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "on s.expo_code = c.expo_code\n" +
             "where c.com_code = :comCode", nativeQuery = true)
     public Page<ScheduleInsert> getComExpoAppList(Pageable pageable, @Param("comCode") int comCode);
+
+    // 메인페이지 박람회 3개
+    @Query(value = "SELECT *\n" +
+            "FROM schedule_insert\n" +
+            "WHERE \n" +
+            "    (MONTH(expo_start) = MONTH(CURDATE()) AND expo_start >= CURDATE()) OR\n" +
+            "    (MONTH(expo_start) > MONTH(CURDATE()))\n" +
+            "ORDER BY expo_start\n" +
+            "LIMIT 3;\n", nativeQuery = true)
+    public List<ScheduleInsert> getMainExpoList();
 }

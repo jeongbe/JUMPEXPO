@@ -178,8 +178,9 @@ input[type='date'] {
 
 
 .content {
-    position: absolute;
-    top: 550px;
+    position: relative;
+    top: 120px;
+
 }
 
 .expo-info-box {
@@ -206,8 +207,8 @@ input[type='date'] {
     display: flex;
         font-size: 15px;
         /* margin-top: -10px; */
-        position: absolute;
-        top: 75px;
+        position: relative;
+        /*top: 75px;*/
 }
 
 .period-box2 > p:nth-child(1)::after {
