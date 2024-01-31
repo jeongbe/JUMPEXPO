@@ -7,6 +7,7 @@ import com.example.JumpExpo.DTO.user.UserReviewForm;
 import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import com.example.JumpExpo.Entity.comuser.Company;
+import com.example.JumpExpo.Entity.etc.UserEmployApplyList;
 import com.example.JumpExpo.Entity.user.PeremApplyUser;
 import com.example.JumpExpo.Entity.user.UserInterview;
 import com.example.JumpExpo.Entity.user.UserReview;
@@ -62,7 +63,7 @@ public class UserMyPageController {
     UserReviewRepository userReviewRepository;
 
     @Autowired
-    ApplyEmployRepository applyEmployRepository;
+    UserEmployApplyListRepository userEmployApplyListRepository;
 
     @Autowired
     PeremApplyRepository peremApplyRepository;
@@ -381,11 +382,7 @@ public class UserMyPageController {
     public String UserReview(Model model,@PathVariable("user_code") int userCode,@PathVariable("expo_code") int expoCode){
         log.info(String.valueOf(userCode));
         log.info(String.valueOf(expoCode));
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // 현재 인증된 사용자의 사용자명을 가져옵니다.
-        String username = authentication.getName();
-        Users users = userReository.finduser(username);
-        model.addAttribute("users", users);
+
 
         log.info("리뷰 작성 페이지");
 
@@ -539,13 +536,15 @@ public class UserMyPageController {
         model.addAttribute("userCode", users.getUser_code());
 
         //applyemploy da
-        ArrayList<ApplyEmploy> applyUser = applyEmployRepository.UserApplyList(users.getUser_code());
-        PeremApplyUser peremApplyUser = peremApplyRepository.findById(users.getUser_code()).orElse(null);
+//        ArrayList<ApplyEmploy> applyUser = applyEmployRepository.UserApplyList(users.getUser_code());
+//        PeremApplyUser peremApplyUser = peremApplyRepository.findById(users.getUser_code()).orElse(null);
+        ArrayList<UserEmployApplyList> applyList = userEmployApplyListRepository.applyList(users.getUser_code());
+        log.info(applyList.toString());
 
-        model.addAttribute("apply", applyUser);
-        model.addAttribute("perem", peremApplyUser);
+        model.addAttribute("apply", applyList);
+//        model.addAttribute("perem", peremApplyUser);
 
-        log.info(applyUser.toString());
+
 
         return "user/MyPage/UserEmployAccept";
     }

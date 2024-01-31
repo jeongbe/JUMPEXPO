@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //2024.01.11 박은채 채용 공고 보기 Repository
 //채용 공고 보기 Repository
@@ -34,10 +35,17 @@ public interface PeremApplyRepository extends JpaRepository<PeremApplyUser,Integ
     ArrayList<PeremApplyUser> EmcodeUserList(@Param("emnotCode") int emnotCode);
 
     //2024.01.24 박은채
-    //user_code별 채용 신청 리스트
+//    user_code별 채용 신청 리스트
 //    @Query(value = "SELECT *\n" +
 //            "FROM perem_apply_user\n" +
 //            "WHERE user_code = :userCode", nativeQuery = true)
-//    ArrayList<PeremApplyUser> UserApplyList(@Param("userCode") int userCode);
+//    List<PeremApplyUser> UserApplyList(@Param("userCode") int userCode);
+
+    @Query(value = "select P.pem_appnum, P.user_code, P.emnot_code, P.\n" +
+            "from apply_employ A\n" +
+            "inner join perem_apply_user P\n" +
+            "on A.emnot_code = P.emnot_code\n" +
+            "where P.user_code = :userCode", nativeQuery = true)
+    ArrayList<PeremApplyUser> UserApplyList(@Param("userCode") int userCode);
 
 }
