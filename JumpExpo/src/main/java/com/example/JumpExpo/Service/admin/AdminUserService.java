@@ -24,13 +24,13 @@ public class AdminUserService {
     CompanyRepository companyRepository;
 
     public Page<Users> getuserList(int page, int expoCate){
-        Pageable pageable = PageRequest.of(page,5);
+        Pageable pageable = PageRequest.of(page,10);
         return this.userReository.userM(pageable,expoCate);
 
     }
 
     public Page<Company> getcomList(int page, int expoCate){
-        Pageable pageable = PageRequest.of(page,5);
+        Pageable pageable = PageRequest.of(page,10);
         return this.companyRepository.comM(pageable,expoCate);
 
     }
