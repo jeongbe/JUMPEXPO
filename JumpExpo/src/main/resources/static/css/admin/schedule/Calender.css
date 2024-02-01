@@ -130,11 +130,11 @@ height:1500px;
 }
 
 .MonthText::after{
-    content: '¿ù';
+    content: 'ì›”';
 }
 
 .YearText::after{
-    content: '³â';
+    content: 'ë…„';
 }
 
 .sch{

@@ -106,20 +106,20 @@
      }
  }
 
-<!--    window.onload = function () {-->
-<!--        target = document.getElementById('file'); // file 아이디 선언-->
-<!--        target.addEventListener('change', function () {-->
-<!--            // change 함수-->
+   window.onload = function () {
+        target = document.getElementById('file'); // file 아이디 선언
+       target.addEventListener('change', function () {
+           // change 함수
 
-<!--            if (target.value.length) {-->
-<!--                // 파일 첨부인 상태일경우 파일명 출력-->
-<!--                $('#originName').html(target.files[0].name);-->
-<!--            } else {-->
-<!--                //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게-->
-<!--                $('#originName').html('');-->
-<!--            }-->
-<!--        });-->
-<!--    };-->
+            if (target.value.length) {
+                // 파일 첨부인 상태일경우 파일명 출력
+              $('#originName').html(target.files[0].name);
+           } else {
+               //버튼 클릭후 취소(파일 첨부 없을 경우)할때 파일명값 안보이게
+                $('#originName').html('');
+           }
+       })
+   };
 </script>
 <div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide :: applyEmploySide}"></div>
 <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>

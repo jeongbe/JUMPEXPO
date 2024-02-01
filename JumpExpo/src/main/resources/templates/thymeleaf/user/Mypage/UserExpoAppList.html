@@ -98,7 +98,7 @@
                 <div class="content" th:each="lists : ${list}">
                     <div class="expo-info-box" >
                         <div class="cont-img">
-                            <!--                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />-->
+                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />
                         </div>
                         <div class="expo-info">
                             <p class="expo-name" th:text="${lists.expo_title}"></p>

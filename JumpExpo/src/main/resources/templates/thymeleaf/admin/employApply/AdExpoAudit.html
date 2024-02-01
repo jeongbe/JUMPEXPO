@@ -44,7 +44,8 @@
     </div>
     <div class="cho">
         <p class="clo" th:onclick="'javascript:location.href=&quot;/admin/show/employapply/com/' + ${ExpoCode} + '&quot;'">심사전</p>
-        <p class="cno" th:onclick="'javascript:location.href=&quot;/admin/show/ok/employapply/com/' + ${ExpoCode} + '&quot;'">심사완료</p>
+        <p class="cno" th:onclick="'javascript:location.href=&quot;/admin/show/ok/employapply/com/' + ${ExpoCode} + '&quot;'">승인</p>
+        <p class="cno" th:onclick="'javascript:location.href=&quot;/admin/show/no/employapply/com/' + ${ExpoCode} + '&quot;'">비승인</p>
     </div>
 </div>
 <table>
@@ -74,7 +75,7 @@
             <td>
                 <input type="hidden" name="action" class="a" style="display:none">
                 <button class="ad_button_1" type="submit" name="approval" value="1">승인</button>
-                <button class="ad_button_2" type="submit" name="approval" value="0">비승인</button>
+                <button class="ad_button_2" type="submit" name="approval" value="2">비승인</button>
             </td>
         </form>
     </tr>
