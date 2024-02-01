@@ -29,5 +29,13 @@ public interface QnARepository extends JpaRepository<QnA, Integer> {
             "where qu_state = 0", nativeQuery = true)
     public List<QnA> getSate();
 
+    //2024.01.31 정정빈
+    //메인페이지 qna
+    @Query(value = "select *\n" +
+            "from qna\n" +
+            "order by qu_date desc\n" +
+            "limit 5" ,nativeQuery = true)
+    public List<QnA> getList();
+
 }
 
