@@ -20,7 +20,7 @@ main{
     margin:0 auto;
     position:relative; /* 서브 메뉴 때문에 반드시 필요함   */
   }
-  
+
   /* 메뉴와 로고가 들어가는 header */
   header{
     width:100%;
@@ -28,17 +28,19 @@ main{
     display:flex;
     justify-content: space-between;
     align-items: center;
+
   }
-     header:first-child {
-         box-shadow: 2px 2px 6px #f2dcd8;
-         position: fixed;
-         top: 0;
-         left: 0;
-         right: 0;
-         bottom: 0;
-         background:#fff;
-         z-index: 3;
-     }
+  /*헤더 있는 부분 다 적용돼서 첫번째 헤더만 그림자 적용함*/
+   header:first-child {
+       box-shadow: 2px 2px 6px #f2dcd8;
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background:#fff;
+       z-index: 3;
+   }
   .logo{
     width:20%;
     height:100%;
@@ -47,20 +49,19 @@ main{
     align-items: center; /* 수직 가운데 정렬 */
   }
   .logo > img {
-    width:200px; 
-    height:70px; 
+    width:200px;
+    height:70px;
     /* 로고 위치 조정 */
     margin-left: 250px;
   }
-  
+
   /*메인메뉴*/
   .mainMenu {
     width:70%;
     height:100%;
     display:flex;
     align-items: center;
-        position: relative;
-        left: -100px;
+
   }
   .mainMenu > a {
     padding:20px 0;
@@ -73,7 +74,7 @@ main{
   .mainMenu > a:hover {
     color: #EA8874;
   }
-  
+
   /*서브메뉴*/
   .subMenu{
     width:100%;
@@ -83,7 +84,6 @@ main{
     position:absolute;
     z-index: 1;
     top: 50px;
-    left: -100px;
   }
   .subMenuWrap{
     width:70%; /*메인메뉴 위치랑 동일하게*/
@@ -96,39 +96,34 @@ main{
   .subMenuWrap > ul:hover{
     background-color: #f2dcd8;
   }
-
-    .header_right a{
-      text-decoration: none;
-      color: black;
-    }
-
   .subMenuWrap > ul > li > a {
     text-align: center;
     padding:8px 0;
     color:#787878;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
     width:170px;
+  }
+
+  .header_right a{
+    text-decoration: none;
+    color: black;
   }
   .subMenuWrap > ul > li > a:hover{
     background: #ebbfb7;
     color:#787878;
-    
+
   }
   .header_right{
     position: absolute;
-    right: 420px;
-    display: flex;
+    right: 350px;
+    width:150px;
   }
   .header_right a {
-  color:#374658;
-  font-weight:700;
+  display:flex;
+  float:left;
   }
-  .header_right a:hover {
-  color:#ccc;
-  }
-  ul{
-    padding-left: 0rem;
-    margin-bottom: 0rem;
-  }
-
+    ul{
+      padding-left: 0rem;
+      margin-bottom: 0rem;
+    }

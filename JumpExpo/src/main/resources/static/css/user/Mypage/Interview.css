@@ -231,3 +231,6 @@ span#day6 {}
 .MonthText::after{
     content: '월';
 }
+.YearText::after{
+    content: '년';
+}
