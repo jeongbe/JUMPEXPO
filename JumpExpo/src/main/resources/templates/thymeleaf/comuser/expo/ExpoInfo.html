@@ -42,13 +42,15 @@
                 </div>
                 <div class="expo_Period info_box1">
                     <p>개최 기간 :</p>
-                    <span th:text="${ExpoInfo.expo_start}"></span>~
+                    <span th:text="${ExpoInfo.expo_start}"></span>
+                    <span>~</span>
                     <span th:text="${ExpoInfo.expo_end}"></span>
                 </div>
                 <div class="expo_time info_box1">
                     <p>관람시간 :</p>
-                    <p th:text="${ExpoInfo.expo_time}">시간</p>
-                    <p th:text="${ExpoInfo.expo_end_time}">시간</p>
+                    <span th:text="${ExpoInfo.expo_time}">시간</span>
+                    <span>~</span>
+                    <span th:text="${ExpoInfo.expo_end_time}">시간</span>
                 </div>
                 <div class="expo_place info_box1">
                     <p>개최장소 :</p>
@@ -91,19 +93,10 @@
             </div>
         </div>
         <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}">
-    <!--                <textarea-->
-    <!--                        name=""-->
-    <!--                        id=""-->
-    <!--                        cols="30"-->
-    <!--                        rows="10"-->
-    <!--                        oninput="autoResizeTextArea(this)"-->
-    <!--                        readonly-->
-    <!--                        -->
-    <!--                >-->
-    <!--                </textarea>-->
+
         </div>
         <div class="line2"></div>
-
+        <button class="list" style="margin-left:-50px;"><a href="/com/allexpo" style="color:#fff; text-decoration:none;">목록</a></button>
     </div>
 
 <script>

@@ -169,6 +169,12 @@ public class ExpoComController {
     public String AllExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                               @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                               @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
 
@@ -200,6 +206,11 @@ public class ExpoComController {
     public String EmpExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                               @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                               @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
@@ -231,6 +242,11 @@ public class ExpoComController {
     public String RecExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                               @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                               @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);
@@ -262,6 +278,11 @@ public class ExpoComController {
     public String FairExpoList(Model model, @RequestParam(value="page", defaultValue="0")int page,
                                @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
                                @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
         log.info("시작날" + dateStart);
         log.info("끝날" + dateEnd);

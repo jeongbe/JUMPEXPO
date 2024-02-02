@@ -97,17 +97,22 @@
 }
 .info_box1 {
     display: flex;
+    /* margin-top: 10px; */
 }
 
 .info_box1 p:first-child {
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-top: 13px;
 }
-
+.info_box1 p:last-child {
+    margin-left: 15px;
+    margin-top: 13px;
+}
 .info_box1::before {
     content: '● ';
     color: #787878;
     font-size: 7px;
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
 }
@@ -188,7 +193,6 @@
     border: 2px solid #ccc;
     height: 130px;
     margin-left: -60px;
-    line-height: 130px;
 }
 
 .btn_box {
@@ -209,3 +213,15 @@
 .btn_box button:last-child {
 margin-left:20px;
 }
+ .list {
+    border: 2px solid #ccc;
+    width: 110px;
+    height: 30px;
+    color: #fff;
+    background-color: #374658;
+    position: absolute;
+    top: 1070px;
+    left: 400px;
+    bottom: 120px;
+    cursor: pointer;
+  }

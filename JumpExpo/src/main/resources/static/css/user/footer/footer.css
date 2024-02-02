@@ -2,9 +2,14 @@
     footer {
       width: 100%;
       height: 100px;
-      position: fixed;
-      bottom: 0;
+      position: relative;
+      top: 60px;
       background-color: #374658;
+    }
+    .ft_logo {
+        position: absolute;
+        top: 0px;
+        left: -110px;
     }
     footer > div{
       position: absolute;
@@ -13,7 +18,7 @@
     }
     footer div:nth-child(2){
       position: absolute;
-      left: 430px;
+      left: 470px;
       top: 30px;
     }
     footer div:nth-child(2) a,

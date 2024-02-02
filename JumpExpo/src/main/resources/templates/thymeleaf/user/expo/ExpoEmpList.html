@@ -9,41 +9,42 @@
     <title>취업 박람회 일정 리스트</title>
     <style>
         /* 추가된 CSS 스타일 */
-        .pagination {
-            display: flex;
-            list-style: none;
-            padding: 0;
-             margin-top: 300px;
-            margin-left: 330px;
-        }
-        .pagination li {
-            margin: 0 3px;
-            display:inline;
-        }
-        .page-item{
-        border-radius: 4px;
-        }
-        .pagination a {
-            text-decoration: none;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 8px 12px;
-            border-radius: 4px;
-             color: #787878;
-             font-size:14px;
-             font-weight: 700;
-             width:34px;
-        }
 
-        .pagination a:hover {
-            background-color: #ccc;
+       .pagination {
+           display: flex;
+           list-style: none;
+           padding: 0;
+            margin-top: 300px;
+           margin-left: 300px;
+       }
+       .pagination li {
+           margin: 0 3px;
+           display:inline;
+       }
+       .page-item{
+       border-radius: 4px;
+       }
+       .pagination a {
+           text-decoration: none;
+           background-color: #fff;
+           border: 1px solid #ccc;
+           padding: 8px 12px;
+           border-radius: 4px;
             color: #787878;
-        }
+            font-size:14px;
+            font-weight: 700;
+            width:34px;
+       }
 
-        .pagination .active a {
-            background-color: #ccc;
-            color: #787878;
-        }
+       .pagination a:hover {
+           background-color: #ccc;
+           color: #787878;
+       }
+
+       .pagination .active a {
+          background-color: #ccc;
+           color: #787878;
+       }
 
     </style>
 </head>
@@ -130,6 +131,7 @@
                     <p th:text="${list.expo_start}">2024-01-10</p>
                     <p th:text="${list.expo_end}">2024-01-10</p>
                     <p th:text="${list.expo_time}">10:00</p>
+                    <p th:text="${list.expo_end_time}">10:00</p>
 <!--                    <p>20:00</p>-->
                 </div>
                 <span class="place" th:text="${list.expo_add}">장소</span>

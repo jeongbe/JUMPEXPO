@@ -48,6 +48,8 @@
                 <div class="expo_time info_box1">
                     <span>관람시간 :</span>
                     <span th:text="${ExpoInfo.expo_time}">시간</span>
+                    <span>~</span>
+                    <span th:text="${ExpoInfo.expo_end_time}">시간</span>
                 </div>
                 <div class="expo_place info_box1">
                     <span>개최장소 :</span>
@@ -99,7 +101,7 @@
                 <input type="hidden" name="ExpoCate" th:value="${ExpoInfo.expo_cate}">
                 <button type="submit">신청하기</button>
             </form>
-                <button>목록</button>
+            <button class="list"><a href="/users/allexpo" style="color:#fff; text-decoration:none;">목록</a></button>
         </div>
     </div>
 

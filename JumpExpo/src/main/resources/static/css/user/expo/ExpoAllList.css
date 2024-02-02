@@ -215,7 +215,10 @@ input[type='date'] {
     content: ' ~ ';
     /* background-color: azure; */
 }
-
+.period-box2 > p:nth-child(3)::after {
+    content: ' ~ ';
+    /* background-color: azure; */
+}
 .period-box2 > p:nth-child(2) {
     margin-left: 5px;
 }

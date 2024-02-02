@@ -10,38 +10,41 @@
     <style>
         /* 추가된 CSS 스타일 */
 
-        .pagination {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin-top: 300PX;
-            margin-left:300PX;
-        }
+       .pagination {
+           display: flex;
+           list-style: none;
+           padding: 0;
+            margin-top: 300px;
+           margin-left: 300px;
+       }
+       .pagination li {
+           margin: 0 3px;
+           display:inline;
+       }
+       .page-item{
+       border-radius: 4px;
+       }
+       .pagination a {
+           text-decoration: none;
+           background-color: #fff;
+           border: 1px solid #ccc;
+           padding: 8px 12px;
+           border-radius: 4px;
+            color: #787878;
+            font-size:14px;
+            font-weight: 700;
+            width:34px;
+       }
 
-        .pagination li {
-            margin: 0 5px;
-            display:inline;
-        }
+       .pagination a:hover {
+           background-color: #ccc;
+           color: #787878;
+       }
 
-        .pagination a {
-            text-decoration: none;
-            color: #007bff;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            border-radius: 4px;
-        }
-
-        .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .pagination .active a {
-            background-color: #007bff;
-            color: #fff;
-        }
-
+       .pagination .active a {
+          background-color: #ccc;
+           color: #787878;
+       }
     </style>
 </head>
 
@@ -64,7 +67,29 @@
         </div>
     </div>
     <div class="imgs">
-        <img src="" alt="" />
+        <div class="imgslide">
+            <div class="slidelist">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="/static/images/1.png" alt="이미지1">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="/static/images/2.png" alt="이미지2">
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="/static/images/3.png" alt="이미지3">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="contents">
         <div class="select-box">
@@ -104,6 +129,7 @@
                     <p th:text="${list.expo_start}">2024-01-10</p>
                     <p th:text="${list.expo_end}">2024-01-10</p>
                     <p th:text="${list.expo_time}">10:00</p>
+                    <p th:text="${list.expo_end_time}">10:00</p>
 <!--                    <p>20:00</p>-->
                 </div>
                 <span  class="place" th:text="${list.expo_add}">장소</span>
@@ -124,99 +150,105 @@
 <div class="s_header" th:replace="~{comuser/side/expo/expoSide_3 :: expoSide_3}"></div>
 <!--<div class="footer" th:replace="~{user/footer/userFooter :: userFooter}"></div>-->
 <script>
+    setInterval(function(){
+               $('.slidelist').delay(2000);
+               $('.slidelist').animate({marginLeft:-920});
+               $('.slidelist').delay(2000);
+               $('.slidelist').animate({marginLeft:-1840});
+               $('.slidelist').delay(2000);
+               $('.slidelist').animate({marginLeft:0});
+               $('.slidelist').delay(2000);
+               });
+       let S_btn = document.querySelector('.S_btn');
 
-    let S_btn = document.querySelector('.S_btn');
+       S_btn.onclick = () => {
+           let d1 = document.querySelector('.d1').value;
+           let d2 = document.querySelector('.d2').value;
 
-    S_btn.onclick = () => {
-        let d1 = document.querySelector('.d1').value;
-        let d2 = document.querySelector('.d2').value;
+           console.log(d1);
+           console.log(d2);
 
-        console.log(d1);
-        console.log(d2);
+           if(!d1 || !d2){
+               alert("기간을 선택해주세요");
+               return false;
+           }
+       }
 
-        if(!d1 || !d2){
-            alert("기간을 선택해주세요");
-            return false;
-        }
-    }
+      let total_page = document.querySelector('.total_page').textContent;
+   console.log(total_page);
 
-    let total_page = document.querySelector('.total_page').textContent;
-    console.log(total_page);
+   // 부모 요소
+   var paginationContainer = document.querySelector(".pagination");
 
+   if (paginationContainer && total_page > 0) {
+       // Pagination buttons
+       // 이전 버튼
+       var prevButton = document.createElement("li");
+       prevButton.classList.add("page-item");
 
+       let d1 = document.querySelector('.d1');
+       console.log(d1)
 
-    // 부모 요소
-    var paginationContainer = document.querySelector(".pagination");
+       const urlParams = new URL(location.href).searchParams;
+       const Search = urlParams.get('serch');
+       const start = urlParams.get('date_start');
+       const end = urlParams.get('date_end');
 
-    if (paginationContainer) {
-        // 이전 버튼
-        var prevButton = document.createElement("li");
-        prevButton.classList.add("page-item");
+       if(start != null){
+           prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+       } else {
+           prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+       }
 
-        let d1 = document.querySelector('.d1');
-        console.log(d1)
+       paginationContainer.appendChild(prevButton);
 
-        const urlParams = new URL(location.href).searchParams;
-        const Search = urlParams.get('serch');
-        const start = urlParams.get('date_start');
-        const end = urlParams.get('date_end');
+       // 페이지 번호 생성
+       for (var i = 1; i <= total_page; i++) {
+           var pageItem = document.createElement("li");
+           pageItem.classList.add("page-item");
+           if(start != null){
+               pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
+           } else {
+               pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
+           }
+           paginationContainer.appendChild(pageItem);
+       }
 
-        if(start != null){
-            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-        }else{
-            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
-        }
+       // 다음 버튼
+       var nextButton = document.createElement("li");
+       nextButton.classList.add("page-item");
+       if(start != null){
+           nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+       } else {
+           nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+       }
 
-        paginationContainer.appendChild(prevButton);
+       paginationContainer.appendChild(nextButton);
+   }
 
-        // 페이지 번호 생성
-        for (var i = 1; i <= total_page; i++) {
-            var pageItem = document.createElement("li");
-            pageItem.classList.add("page-item");
-            if(start != null){
-                pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
-            }else{
-                pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
-            }
-            paginationContainer.appendChild(pageItem);
-        }
+   // 기간 선택 버튼에 이벤트 리스너 추가
+   document.querySelectorAll('.btns button').forEach(function(button) {
+       button.addEventListener('click', function() {
+           // 현재 날짜 구하기
+           var today = new Date();
 
-        // 다음 버튼
-        var nextButton = document.createElement("li");
-        nextButton.classList.add("page-item");
-        if(start != null){
-            nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-        }else{
-            nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
-        }
+           // 오늘 날짜를 "YYYY-MM-DD" 형식으로 포맷
+           var formattedToday = today.toISOString().split('T')[0];
 
-        paginationContainer.appendChild(nextButton);
-    }
+           // 버튼에 따라 기간 설정
+           var monthsToAdd = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
 
-// 기간 선택 버튼에 이벤트 리스너 추가
-document.querySelectorAll('.btns button').forEach(function(button) {
-    button.addEventListener('click', function() {
-        // 현재 날짜 구하기
-        var today = new Date();
+           // 선택된 기간 후의 날짜 계산
+           today.setMonth(today.getMonth() + monthsToAdd);
 
-        // 오늘 날짜를 "YYYY-MM-DD" 형식으로 포맷
-        var formattedToday = today.toISOString().split('T')[0];
+           // 선택된 기간 후의 날짜를 "YYYY-MM-DD" 형식으로 포맷
+           var formattedNextDate = today.toISOString().split('T')[0];
 
-        // 버튼에 따라 기간 설정
-        var monthsToAdd = parseInt(this.textContent); // 클릭된 버튼의 텍스트를 숫자로 변환
-
-        // 선택된 기간 후의 날짜 계산
-        today.setMonth(today.getMonth() + monthsToAdd);
-
-        // 선택된 기간 후의 날짜를 "YYYY-MM-DD" 형식으로 포맷
-        var formattedNextDate = today.toISOString().split('T')[0];
-
-        // "date_start"와 "date_end" 입력 필드의 값을 설정
-        document.querySelector('input[name="date_start"]').value = formattedToday;
-        document.querySelector('input[name="date_end"]').value = formattedNextDate;
-    });
-});
-
+           // "date_start"와 "date_end" 입력 필드의 값을 설정
+           document.querySelector('input[name="date_start"]').value = formattedToday;
+           document.querySelector('input[name="date_end"]').value = formattedNextDate;
+       });
+   });
 
 </script>
 </body>

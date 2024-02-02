@@ -1,11 +1,10 @@
-@charset "utf-8";
-
 /*초기 설정*/
-*{
-  margin: 0;
-  padding: 0;
-  list-style:none;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 body{
   background: #ffffff;
@@ -69,6 +68,7 @@ main{
     width:170px;
     text-align: center;
     color:#787878;
+    font-size:20px;
   }
   .mainMenu > a:hover {
     color: #EA8874;
@@ -117,7 +117,8 @@ main{
   }
   .header_right{
     position: absolute;
-    right: 350px;
+    right: 420px;
+    display: flex;
   }
   .header_right a {
   color:#374658;
