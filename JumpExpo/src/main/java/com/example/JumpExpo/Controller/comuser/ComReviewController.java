@@ -1,12 +1,16 @@
 package com.example.JumpExpo.Controller.comuser;
 
+import com.example.JumpExpo.Entity.comuser.Company;
 import com.example.JumpExpo.Entity.user.UserReview;
+import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import com.example.JumpExpo.Repository.user.UserReviewRepository;
 import com.example.JumpExpo.Service.user.expo.ExpoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +26,9 @@ public class ComReviewController {
     @Autowired
     UserReviewRepository userReviewRepository;
 
+    @Autowired
+    CompanyRepository companyRepository;
+
     //2024.01.24 정정빈
     //페어 리뷰 리스트
 
@@ -32,6 +39,13 @@ public class ComReviewController {
                             @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
         log.info(serch);
         log.info(target);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
         Page<UserReview> list = null;
 
         //검색 했을때
@@ -73,6 +87,13 @@ public class ComReviewController {
 
         log.info(serch);
         log.info(target);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
         Page<UserReview> list = null;
 
         //검색 했을때
@@ -115,6 +136,13 @@ public class ComReviewController {
                                 @RequestParam(name = "date_end", defaultValue = "0") String dateEnd){
         log.info(serch);
         log.info(target);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
+
         Page<UserReview> list = null;
 
         //검색 했을때
@@ -151,6 +179,11 @@ public class ComReviewController {
     @GetMapping("/review/read/{re_num}")
     public String ReviewRead(Model model,@PathVariable("re_num") int renum){
 //        log.info(String.valueOf(renum));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
         UserReview reList = userReviewRepository.findById(renum).orElse(null);
 
