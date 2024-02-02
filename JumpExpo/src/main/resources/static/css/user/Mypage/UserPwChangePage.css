@@ -65,3 +65,24 @@
     font-size: 18px;
     padding-top: 5px;
 }
+.body {
+    width: 920px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+    top: 130px;
+    left: 70px;
+}
+.body_title_right {
+     position: absolute;
+     top: 80px;
+     right: 80px;
+     font-weight: 700;
+     font-size: 15px;
+ }
+ .body_title_right img {
+     position: absolute;
+     left: -26px;
+     top: 2px;
+ }

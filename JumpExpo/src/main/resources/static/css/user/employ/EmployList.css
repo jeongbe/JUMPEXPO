@@ -1,4 +1,4 @@
-/*초기 설정*/
+
 * {
     margin: 0;
     padding: 0;
@@ -43,7 +43,6 @@
         right: -2px;
 }
 
-/*컨텐츠*/
 .contents {
     position: absolute;
     top: 200px;
@@ -55,10 +54,8 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    /* 탭메뉴의 콘텐츠 영역 absolute 때문에 넣어줌 */
 }
 
-/*컨텐츠 공통사항*/
 .contents div {
     width: 100%;
 }
@@ -67,7 +64,6 @@
     margin: 0 10px;
 }
 
-/*탭메뉴 : 공지사항 갤러리 */
 .tabMenu {
     display: flex;
 }
@@ -87,27 +83,22 @@
     background-color: #eeeeee;
 }
 
-/* 공지사항과 갤러리 탭 맞닿는 부분에 보더를 없애줌 */
 .tabMenu>li:first-child a {
     border-right: none;
 }
 
-/* 활성화된 탭의 스타일 */
 .tabMenu>li.active>a {
     font-weight: bold;
     background-color: #ffffff;
 }
 
-/*탭 콘텐츠 영역 스타일*/
 .tabBG {
     position: absolute;
     overflow: hidden;
     height: 650px;
-    /* chrome inspect(검사) 보고 수치 계산 */
     background: #ffffff;
 }
 
-/*active 클래스가 추가된 탭 콘텐츠 영역 스타일*/
 .tabMenu>li.active .tabBG {
     border: 1px solid #dddddd;
     z-index: 1;
@@ -122,17 +113,18 @@
     z-index: 1;
 }
 
-/*  탭 안에 내용  */
-/*  탭 안에 내용  */
-/*  탭 안에 내용  */
-/*  탭 안에 내용  */
-
 a{
     text-decoration: none;
     color: #222328;
 }
 
-/* 공지사항 */
+td a:hover {
+    font-weight: 800;
+    color:#000;
+    opacity:0.8;
+}
+
+/* ê³µì§€ì‚¬í•­ */
 .notice ul {
     padding: 20px 0;
 }
@@ -143,7 +135,6 @@ a{
     font-size: 14px;
 }
 
-/* 날짜 오른쪽 정렬 */
 .notice li span {
     float: right;
 }
@@ -164,17 +155,10 @@ a{
 
 }
 
-/* .gallery li:hover {
-    color: #222328;
-    background: rgba(246, 182, 44, 0.1);
-} */
 
 .gallery li span {
     float: right;
 }
-
-
-/* 내코드따옴 내부 내부 */
 
 table,
 th,
@@ -229,7 +213,7 @@ td {
     width: 100px;
 }
 
-/* 페이징 */
+/* íŽ˜ì´ì§• */
 .paging {
     display: flex;
     text-align: center;
@@ -240,9 +224,9 @@ td {
 }
 
 .paging .pagenum {
-    display: inline-block; /* 페이지 번호를 인라인 블록으로 변경 */
+    display: inline-block;
     cursor: pointer;
-    width: auto; /* 페이지 번호의 너비를 자동으로 설정 */
+    width: auto;
     margin-top: 10px;
 }
 

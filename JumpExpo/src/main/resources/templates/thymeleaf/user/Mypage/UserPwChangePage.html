@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/user/Side/users_body.css" rel="stylesheet" />
     <link href="/static/css/user/Mypage/UserPwChangePage.css" rel="stylesheet" />
     <script src="js/jquery-3.7.0.min.js"></script>
 
@@ -25,28 +26,28 @@
 
             <!-- 주요내용 -->
             <div class="contents">
-                <form method="post" action="/users/myPage/ChangingPw">
-                <div class="allform">
-                    <div class="searchinput">
-                        <div class="searchform">
-                            <div class="idform">
-                                <span>현재 비밀번호</span>
-                                <input type="password" class="idbox" name="id"><br>
-                            </div>
-                            <div class="pwform">
-                                <span>새 비밀번호</span>
-                                <input type="password" class="pwbox" name="password">
-                            </div>
-                            <div class="pwform">
-                                <span>비밀번호 확인</span>
-                                <input type="password" class="pwbox">
+                <form method="post" action="/com/myPage/ComChangingPw">
+                    <div class="allform">
+                        <div class="searchinput">
+                            <div class="searchform">
+                                <div class="idform">
+                                    <span>현재 비밀번호</span>
+                                    <input type="password" class="idbox" name="id"><br>
+                                </div>
+                                <div class="pwform">
+                                    <span>새 비밀번호</span>
+                                    <input type="password" class="pwbox" name="password">
+                                </div>
+                                <div class="pwform">
+                                    <span>비밀번호 확인</span>
+                                    <input type="password" class="pwbox">
+                                </div>
                             </div>
                         </div>
+                        <div class="searchbtn">
+                            <button type="submit" class="searbtn">변경하기</button>
+                        </div>
                     </div>
-                    <div class="searchbtn">
-                        <button type="submit" class="searbtn">변경하기</button>
-                    </div>
-                </div>
                 </form>
             </div>
             <!--  -->

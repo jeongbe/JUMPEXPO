@@ -162,9 +162,9 @@
         const end = urlParams.get('date_end');
 
         if(start != null){
-            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+            prevButton.innerHTML = `<a class="page-link"  href="/users/mypage/review?page=0&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
         } else {
-            prevButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
+            prevButton.innerHTML = `<a class="page-link"  href="/users/mypage/review?page=0" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>`;
         }
 
         paginationContainer.appendChild(prevButton);
@@ -174,9 +174,9 @@
             var pageItem = document.createElement("li");
             pageItem.classList.add("page-item");
             if(start != null){
-                pageItem.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
+                pageItem.innerHTML = `<a class="page-link"  href="/users/mypage/review?page=${i-1}&serch=${Search}&date_start=${start}&date_end=${end}">${i}</a>`;
             } else {
-                pageItem.innerHTML = `<a class="page-link" href="/users/allexpo?page=${i-1}">${i}</a>`;
+                pageItem.innerHTML = `<a class="page-link" href="/users/mypage/review?page=${i-1}">${i}</a>`;
             }
             paginationContainer.appendChild(pageItem);
         }
@@ -185,9 +185,9 @@
         var nextButton = document.createElement("li");
         nextButton.classList.add("page-item");
         if(start != null){
-            nextButton.innerHTML = `<a class="page-link"  href="/users/allexpo?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+            nextButton.innerHTML = `<a class="page-link"  href="/users/mypage/review?page=${total_page-1}&serch=${Search}&date_start=${start}&date_end=${end}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
         } else {
-            nextButton.innerHTML = `<a class="page-link" href="/users/allexpo?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
+            nextButton.innerHTML = `<a class="page-link" href="/users/mypage/review?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>`;
         }
 
         paginationContainer.appendChild(nextButton);

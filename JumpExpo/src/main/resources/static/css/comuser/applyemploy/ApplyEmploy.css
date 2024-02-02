@@ -1,15 +1,17 @@
 .body {
-    width: 1100px;
+    width: 920px;
     margin: 0 auto;
     /* border: 1px solid #000; */
     height: 500px;
     position: relative;
+    top: 130px;
+    left: 20px;
   }
   .body_title {
     position: absolute;
     top: 60px;
     left: 0px;
-    width: 1100px;
+    width: 920px;
     padding-bottom: 15px;
     border-bottom: 3px solid #374658;
   }
@@ -24,18 +26,28 @@
     position: absolute;
     top: 70px;
     right: 40px;
+    position: absolute;
+    top: 55px;
+    right: 10px;
+    font-weight: 700;
+    font-size: 15px;
   }
+
+.body_title_right img {
+    position: absolute;
+    left: -26px;
+    top: 2px;
+}
 
 table, td{
     /* border: 1px solid #000; */
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
 }
 
 table{
     position: absolute;
-    top: 162px;
+    top: 140px;
     border-top: 1px solid #929292;
-
 }
 
 .table_title{
@@ -43,40 +55,49 @@ table{
     padding: 2px;
     font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    /* text-align: center; */
     width: 120px;
-    height: 28px;
+    /* height: 28px; */
     background-color: #f2f2f2;
     border-bottom: 1px solid #929292;
+    display: block;
+    box-sizing: border-box;
+    margin-left: -2px;
+    padding-left: 15px;
 }
 
 .table_content{
-    padding: 2px;
-    font-size: 13px;
-    width: 430px;
+    /* padding: 2px; */
+    font-size: 15px;
+    width: 340px;
     height: 25px;
     border-bottom: 1px solid #929292;
-
+    font-weight: bold;
+    /* display: flex; */
+    /* box-sizing: border-box; */
 }
 
 .input_text{
     color: #505050;
     font-weight: bold;
-    width: 420px;
-    height: 17px;
+    width: 330px;
+    height: 20px;
     border: none;
     outline: none;
 }
 
 .input_date{
-    margin-left: 5px;
+    /* margin-left: 5px; */
     padding-left: 10px;
+    /* padding: 2px; */
+    height: 23px;
+    margin-bottom: 2px;
 }
 
 .write_button{
     position: absolute;
-    top: 125px;
-    left: 1008px;
+    top: 80px;
+    left: 820px;
     background-color: #374658;
     color: white;
     width: 90px;

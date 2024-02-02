@@ -11,31 +11,37 @@
         .pagination {
             display: flex;
             list-style: none;
-             margin-top: 300px;
-            margin-left: 300px;
+            padding: 0;
+           margin-top: 490px;
+            margin-left: 330px;
         }
-
         .pagination li {
-            margin: 0 5px;
+            margin: 0 3px;
+            display:inline;
         }
-
+        .page-item{
+        border-radius: 4px;
+        }
         .pagination a {
             text-decoration: none;
-            color: #007bff;
             background-color: #fff;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             padding: 8px 12px;
             border-radius: 4px;
+             color: #787878;
+             font-size:14px;
+             font-weight: 700;
+             width:34px;
         }
 
         .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
 
         .pagination .active a {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
     </style>
 </head>
@@ -84,7 +90,6 @@
                 <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
             </div>
             <div class="expo-info">
-                <p>예정행사</p>
                 <p th:text="${list.expo_title}" class="expo-name">2024 예일 박람회</p>
                 <div class="period-box2">
                     <p th:text="${list.expo_start}">2024-01-10</p>
@@ -95,7 +100,7 @@
                 <span class="place" th:text="${list.expo_add}">장소</span>
             </div>
             <div class="app-btn">
-                <button th:onclick="'javascript:location.href=&quot;/com/app/'+ ${list.expo_cate}+ '/' + ${list.expo_code}+ '/' + ${company.com_code} + '&quot;'">신청하기</button>
+                <button class="btn" th:onclick="'javascript:location.href=&quot;/com/app/'+ ${list.expo_cate}+ '/' + ${list.expo_code}+ '/' + ${company.com_code} + '&quot;'">신청하기</button>
             </div>
         </div>
         <div class="line"></div>
@@ -136,7 +141,6 @@
         paginationContainer.appendChild(nextButton);
     }
 </script>
-<div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide :: applyEmploySide}"></div>
-<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+<div class="sidefooter" th:replace="~{comuser/side/ApplyEmploySide_2 :: applyEmploySide}"></div>
 </body>
 </html>

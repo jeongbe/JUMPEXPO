@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/static/css/user/Mypage/UserInfoChange.css" rel="stylesheet"/>
     <link href="/static/css/user/Side/users_body.css" rel="stylesheet"/>
+    <link href="/static/css/user/Mypage/UserInfoChange.css" rel="stylesheet"/>
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
     <title>정보 수정</title>
 </head>
@@ -26,46 +26,42 @@
             <!-- 주요내용 -->
             <div class="contents">
                 <form method="post" action="/users/myPage/ChangeSubmit">
-                <table>
-                    <tr>
-                        <td><label for="name">이름 *</label></td>
-                        <td><input type="text" id="name" name="name" ></td>
-                    </tr>
-                    <tr>
-                        <td><label for="birth">생년월일 *</label></td>
-                        <td>
-                            <input type="text" id="birth" name="birth" placeholder="6자리 입력 (ex.001231)" >
-                            <div id="birthError" class="error-message"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="sample6_address">주소 *</label></td>
-                        <td>
-                            <input type="text" id="sample6_postcode" readonly>
-                            <button type="button" class="addr_search" onclick="execution_daum_address()">주소 검색</button>
-                            <input type="text" id="sample6_extraAddress" readonly>
-                            <hr>
-                            <input type="text" id="sample6_address" name="addr" required readonly >
-                            <hr>
-                            <input type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="phone">전화번호 *</label></td>
-                        <td>
-                            <input type="text" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" >
-                            <div id="phoneError" class="error-message"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="email">이메일 *</label></td>
-                        <td>
-                            <input type="email" id="email" name="email" >
-                            <div id="emailError" class="error-message"></div>
-                        </td>
-                    </tr>
-                </table>
-                <button type="submit" class="joinbtn">수정하기</button>
+                    <div class="join_allform">
+                        <div class="id_text_input">
+                            <div class="join_title  point">이름</div>
+                            <input type="text" class="idbox_join"  id="name" name="Comname" placeholder="회사 이름" required>
+                        </div>
+                        <div class="id_text_input">
+                            <div class="join_title  point">주소</div>
+                            <div class="type">
+                                <input class="idbox_join" style="width:120px;" type="text" id="sample6_postcode" readonly>
+                                <button type="button" class="addr_search" onclick="execution_daum_address()">주소 검색</button>
+
+                                <input class="idbox_join" style="display:none;" type="text" id="sample6_extraAddress" readonly>
+                            </div>
+                            <div class="type">
+                                <input class="idbox_join" type="text" id="sample6_address" name="addr" required readonly >
+                                <input class="idbox_join" type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
+                            </div>
+                        </div>
+                        <div class="id_text_input">
+                            <div class="join_title point" for="phone" >생년월일</div>
+                            <div class="id_text_input">
+                                <input type="text"  class="idbox_join" id="homepage" name="homepage" placeholder="웹주소" required>
+                            </div>
+                        </div>
+                        <div class="id_text_input">
+                            <div class="join_title point" for="phone">전화번호</div>
+                            <input type="text" class="idbox_join" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" required>
+                        </div>
+                        <div id="phoneError" class="error-message"></div>
+                        <div class="id_text_input">
+                            <div class="join_title point">이메일</div>
+                            <input type="text" class="idbox_join"  id="email" name="email" placeholder="이메일 형식으로 적어주세요" required>
+                        </div>
+                        <div id="emailError" class="error-message"></div>
+                    </div>
+                    <button type="submit" class="joinbtn">수정하기</button>
                 </form>
             </div>
             <!--  -->

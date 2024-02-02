@@ -3,6 +3,7 @@ package com.example.JumpExpo.Controller.comuser;
 import com.example.JumpExpo.DTO.comuser.EmployForm;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
 import com.example.JumpExpo.Entity.comuser.Company;
+import com.example.JumpExpo.Entity.user.Users;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import com.example.JumpExpo.Repository.comuser.CompanyRepository;
 import com.example.JumpExpo.Repository.user.PeremApplyRepository;
@@ -65,6 +66,11 @@ public class ApplyEmployController {
 
     @GetMapping("/show/employlist")
     public String empoyList(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
 
         ArrayList<ApplyEmploy> allList = applyEmployRepository.AllEmployList();
@@ -90,9 +96,14 @@ public class ApplyEmployController {
     @GetMapping("/show/employlist/{emnot_code}/{com_code}")
     public String employDetail(Model model, @PathVariable(name="emnot_code") int emnotCode,
                                @PathVariable(name = "com_code") int comCode){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Company company = companyRepository.findcom(username);
+        model.addAttribute("company", company);
 
         ApplyEmploy applyEmploy = applyEmployRepository.findById(emnotCode).orElse(null);
-        Company company = companyRepository.findById(comCode).orElse(null);
+        Company cpy = companyRepository.findById(comCode).orElse(null);
 
         if (applyEmploy == null) {
             // 데이터가 없을 경우
@@ -100,7 +111,7 @@ public class ApplyEmployController {
         }
 
         model.addAttribute("applyEmploy", applyEmploy);
-        model.addAttribute("company",company);
+        model.addAttribute("cpy",cpy);
 
         return "comuser/employ/EmployListDetail";
     }

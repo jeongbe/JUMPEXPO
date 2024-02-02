@@ -62,10 +62,10 @@
                                     </tr>
 
                                 </table>
-                                <div class="paging" id="pagination-all">
-                                    <button onclick="previousPageAll()"><</button>
+                                <div class="paging">
+                                    <button onclick="previousPageAll()">&laquo;</button>
                                     <div class="pagenum" id="pageNumbers-all"></div>
-                                    <button onclick="nextPageAll()">></button>
+                                    <button onclick="nextPageAll()">&raquo;</button>
                                 </div>
                             </div>
                         </li>
@@ -95,10 +95,10 @@
                                     </tr>
 
                                 </table>
-                                <div class="paging" id="pagination-design">
-                                    <button onclick="previousPageDesign()"><</button>
+                                <div class="paging">
+                                    <button onclick="previousPageDesign()">&laquo;</button>
                                     <div class="pagenum" id="pageNumbers-design"></div>
-                                    <button onclick="nextPageDesign()">></button>
+                                    <button onclick="nextPageDesign()">&raquo;</button>
                                 </div>
                             </div>
                         </li>
@@ -130,10 +130,10 @@
                                     </tr>
 
                                 </table>
-                                <div class="paging" id="pagination-front">
-                                    <button onclick="previousPageFront()"><</button>
+                                <div class="paging">
+                                    <button onclick="previousPageFront()">&laquo;</button>
                                     <div class="pagenum" id="pageNumbers-front"></div>
-                                    <button onclick="nextPageFront()">></button>
+                                    <button onclick="nextPageFront()">&raquo;</button>
                                 </div>
                             </div>
                         </li>
@@ -164,10 +164,10 @@
                                     </tr>
 
                                 </table>
-                                <div class="paging" id="pagination-backend">
-                                    <button onclick="previousPageBackend()"><</button>
+                                <div class="paging">
+                                    <button onclick="previousPageBackend()">&laquo;</button>
                                     <div class="pagenum" id="pageNumbers-backend"></div>
-                                    <button onclick="nextPageBackend()">></button>
+                                    <button onclick="nextPageBackend()">&raquo;</button>
                                 </div>
                             </div>
                         </li>
@@ -199,10 +199,10 @@
                                     </tr>
 
                                 </table>
-                                <div class="paging" id="pagination-etc">
-                                    <button onclick="previousPageEtc()"><</button>
+                                <div class="paging">
+                                    <button onclick="previousPageEtc()">&laquo;</button>
                                     <div class="pagenum" id="pageNumbers-etc"></div>
-                                    <button onclick="nextPageEtc()">></button>
+                                    <button onclick="nextPageEtc()">&raquo;</button>
                                 </div>
                             </div>
                         </li>
@@ -329,19 +329,19 @@ $('.tabMenu>li>a').click(function () {
         showPageAll(page);
     }
 
-    function nextPageAll() {
-        if (currentPageAll < totalPagesAll) {
-            currentPageAll++;
-            showPageAll(currentPageAll);
-        }
+   function previousPageAll() {
+    if (currentPageAll > 1) {
+        currentPageAll--;
+        showPageAll(currentPageAll);
     }
+}
 
-    function previousPageAll() {
-        if (currentPageAll > 1) {
-            currentPageAll--;
-            showPageAll(currentPageAll);
-        }
+function nextPageAll() {
+    if (currentPageAll < totalPagesAll) {
+        currentPageAll++;
+        showPageAll(currentPageAll);
     }
+}
 
     //디자인 탭
     function initializePagingForDesignTab() {
@@ -380,19 +380,19 @@ $('.tabMenu>li>a').click(function () {
         showPageDesign(page);
     }
 
-    function nextPageDesign() {
-        if (currentPageDesign < totalPagesDesign) {
-            currentPageDesign++;
-            showPageDesign(currentPageDesign);
-        }
+   function previousPageDesign() {
+    if (currentPageDesign > 1) {
+        currentPageDesign--;
+        showPageDesign(currentPageDesign);
     }
+}
 
-    function previousPageDesign() {
-        if (currentPageDesign > 1) {
-            currentPageDesign--;
-            showPageDesign(currentPageDesign);
-        }
+function nextPageDesign() {
+    if (currentPageDesign < totalPagesDesign) {
+        currentPageDesign++;
+        showPageAll(currentPageDesign);
     }
+}
 
 
 
@@ -433,19 +433,19 @@ $('.tabMenu>li>a').click(function () {
         showPageFront(page);
     }
 
-    function nextPageFront() {
-        if (currentPageFront < totalPagesFront) {
-            currentPageFront++;
-            showPageFront(currentPageFront);
-        }
+   function previousPageFront() {
+    if (currentPageFront > 1) {
+        currentPageFront--;
+        showPageFront(currentPageFront);
     }
+}
 
-    function previousPageFront() {
-        if (currentPageFront > 1) {
-            currentPageFront--;
-            showPageFront(currentPageFront);
-        }
+function nextPageFront() {
+    if (currentPageFront < totalPagesFront) {
+        currentPageFront++;
+        showPageFront(currentPageFront);
     }
+}
 
 
     //백엔드(backend Backend) 탭
@@ -499,7 +499,6 @@ $('.tabMenu>li>a').click(function () {
         }
     }
 
-
     //기타(etc Etc) 탭
     function initializePagingForEtcTab() {
         currentPageEtc = 1;
@@ -552,6 +551,5 @@ $('.tabMenu>li>a').click(function () {
     }
 </script>
 </body>
-<!--<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>-->
-<!--<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>-->
+<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
 </html>

@@ -1,13 +1,18 @@
+/*ì´ˆê¸° ì„¤ì •*/
 * {
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
 }
 .container {
     position: relative;
-    left: -50px;
-    top: 45px;
+    left: 510px;
+    top: 190px;
     width:950px;
 }
 .title-box {
+    width: 920px;
     display: flex;
 }
 
@@ -17,17 +22,25 @@
     width: 500px;
 }
 
-.body_title > span {
-    font-size: 40px;
-    color: #808080;
-    font-weight: bold;
+.body_title span {
+    font-weight: 800;
+    font-size: 30px;
+}
+.body_title span:last-child {
+    color: #374658;
 }
 
 .body_title_right {
-position: absolute;
-    right: 30px;
-    top: 20px;
-
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-weight: 700;
+        font-size: 15px;
+}
+.body_title_right img {
+    position: absolute;
+    left: -26px;
+    top: 2px;
 }
 
 .line {
@@ -58,6 +71,7 @@ position: absolute;
 
 .box1 p:first-child {
     margin-right: 20px;
+    font-weight: 700;
 }
 
 .box2 {
@@ -73,6 +87,7 @@ position: absolute;
 .box2 p {
     font-size: 22px;
     margin-right: 20px;
+    font-weight: 700;
 }
 
 .box2 input {
@@ -97,12 +112,13 @@ input:focus {
 .file-box {
     margin: 0px;
     font-weight: bold;
-    border: 1px solid #374658;
+    border: 2px solid #374658;
     width: 180px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #374658;
 }
 
 #originName {
@@ -134,6 +150,7 @@ input:focus {
     background-color: #374658;
     color: white;
     font-size: 22px;
+    border: 1px solid #ccc;
 }
 .box3 {
     margin-top: 20px;
@@ -153,4 +170,7 @@ input:focus {
 
 .c_input{
     border: none;
+    font-size: 20px;
+    color: #ea8874;
+    font-weight: 700;
 }

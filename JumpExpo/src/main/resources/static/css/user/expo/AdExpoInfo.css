@@ -191,7 +191,7 @@
     text-align: center;
     width: 920px;
     border: 2px solid #ccc;
-    height: 130px;
+    /* height: 130px; */
     margin-left: -60px;
 }
 
@@ -220,8 +220,8 @@ margin-left:20px;
     color: #fff;
     background-color: #374658;
     position: absolute;
-    top: 1070px;
+    /* top: 1070px; */
     left: 400px;
-    bottom: 120px;
+    bottom: 0px;
     cursor: pointer;
   }
