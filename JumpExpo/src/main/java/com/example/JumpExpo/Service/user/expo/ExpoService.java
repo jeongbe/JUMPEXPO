@@ -35,14 +35,14 @@ public class ExpoService {
     //2024.01.08 정정빈
     //박람회 전체 페이징 서비스
     public Page<ScheduleInsert> getAllList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.AllExpoList(pageable);
     }
 
     //2024.01.08 정정빈
     //전체일정 검색 단어 있을때
     public Page<ScheduleInsert> getSerchList(int page,String serch,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.serch1(pageable,serch,StartDate,EndDate);
     }
 
@@ -50,21 +50,21 @@ public class ExpoService {
     //2024.01.12 정정빈
     //박람회 심사 채용 리스트
     public Page<ScheduleInsert> getRecList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,6);
         return this.schInsetExpoRepository.RecList(pageable);
     }
 
     //2024.01.15 정정빈
     //페어 박람회 심사 리스트
     public Page<ScheduleInsert> getFairList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,6);
         return this.schInsetExpoRepository.FairList(pageable);
     }
 
     //2024.01.15 정정빈
     //취업 박람회 심사 리스트
     public Page<ScheduleInsert> getEmpList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,6);
         return this.schInsetExpoRepository.EmpList(pageable);
     }
 
@@ -73,70 +73,70 @@ public class ExpoService {
     //2024.01.15 정정빈
     //박람회 신청 기업 리스트
     public Page<ExpoAppCom> getComList(int page, int expoCode){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,10);
         return this.expoAppComRepository.getComList(pageable,expoCode);
     }
 
     //2024.01.15 정정빈
     //박람회 신청 기업 리스트 (심사 후)
     public Page<ExpoAppCom> getComOKList(int page, int expoCode,int recogCheck){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,10);
         return this.expoAppComRepository.getComOkList(pageable,expoCode,recogCheck);
     }
 
     //2024.01.17 정정빈
     //박람회(유저) 페어 리스트
     public Page<ScheduleInsert> getUserFairList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.FairAllList(pageable);
     }
 
     //2024.01.17 정정빈
     //박람회(유저) 취업 리스트
     public Page<ScheduleInsert> getUserEmpList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.EmpAllList(pageable);
     }
 
     //2024.01.17 정정빈
     //박람회(유저) 채용 리스트
     public Page<ScheduleInsert> getUserRecList(int page){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.RecAllList(pageable);
     }
 
     //2024.01.17 정정빈
     //박람회(유저) 페어 검색 단어 있을때
     public Page<ScheduleInsert> getSerchFairList(int page,String serch,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.serchFair(pageable,serch,StartDate,EndDate);
     }
 
     //2024.01.17 정정빈
     //박람회(유저) 취업 검색 단어 있을때
     public Page<ScheduleInsert> getSerchEmpList(int page,String serch,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.serchEmp(pageable,serch,StartDate,EndDate);
     }
 
     //2024.01.17 정정빈
     //박람회(유저) 채용 검색 단어 있을때
     public Page<ScheduleInsert> getSerchRecList(int page,String serch,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.serchRec(pageable,serch,StartDate,EndDate);
     }
 
     //2024.01.18 정정빈
     // 유저 박람회 신청 내역
     public Page<ScheduleInsert> getUserAppExpoList(int page,int userCode){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,6);
         return this.schInsetExpoRepository.UserAppExpoList(pageable,userCode);
     }
 
     //2024.01.18 정정빈
     // 유저 박람회 신청 내역 검색
     public Page<ScheduleInsert> getUserAppExpoListSearch(int page,int userCode,String search,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,2);
+        Pageable pageable = PageRequest.of(page,6);
         return this.schInsetExpoRepository.UserAppExpoListSerch(pageable,userCode,search,StartDate,EndDate);
     }
 

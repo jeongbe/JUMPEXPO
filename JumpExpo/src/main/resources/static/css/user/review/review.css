@@ -59,7 +59,7 @@
     width: 920px;
     height: 200px;
     padding: 0;
-    margin: 10px 0;
+/*    margin: 10px 0;*/
 }
 .imgs {
         margin-top: 180px;
@@ -96,7 +96,7 @@
     width: 920px;
     margin-top: 290px;
     background-color: #ddd;
-    height: 50px;
+    height: 80px;
     margin-left: -5px;
 }
 

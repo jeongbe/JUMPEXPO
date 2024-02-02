@@ -1,9 +1,15 @@
 package com.example.JumpExpo.Controller.All;
 
+import com.example.JumpExpo.Entity.admin.Notice;
+import com.example.JumpExpo.Entity.admin.ScheduleInsert;
 import com.example.JumpExpo.Entity.comuser.ApplyEmploy;
+import com.example.JumpExpo.Entity.user.QnA;
 import com.example.JumpExpo.Entity.user.Users;
+import com.example.JumpExpo.Repository.admin.NoticeRepository;
+import com.example.JumpExpo.Repository.admin.SchInsetExpoRepository;
 import com.example.JumpExpo.Repository.comuser.ApplyEmployRepository;
 import com.example.JumpExpo.Repository.user.PeremApplyRepository;
+import com.example.JumpExpo.Repository.user.QnARepository;
 import com.example.JumpExpo.Repository.user.UserReository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -32,11 +39,29 @@ public class AllEmployListController {
     @Autowired
     UserReository userReository;
 
+    @Autowired
+    SchInsetExpoRepository schInsetExpoRepository;
+
+    @Autowired
+    NoticeRepository noticeRepository;
+
+    @Autowired
+    QnARepository qnARepository;
+
 
 
     //로그인전 디폴트 메인페이지
     @GetMapping("/main")
-    public String defaultmain(){
+    public String defaultmain(Model model){
+
+        List<ScheduleInsert> expolist = schInsetExpoRepository.getMainExpoList();
+        model.addAttribute("expolist",expolist);
+
+        List<Notice> noticeList = noticeRepository.mainNotice();
+        model.addAttribute("noList",noticeList);
+
+        List<QnA> qnaList = qnARepository.getList();
+        model.addAttribute("qnaList",qnaList);
 
         return "user/userMain";
     }
