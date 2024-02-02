@@ -7,7 +7,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>유저 미답변 질문 리스트</title>
 </head>
-<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
 <div class="content">
     <div class="body_title">
@@ -15,9 +15,9 @@
         <span>A</span>
     </div>
     <div class="state">
-        <span class="asn"><a th:href="@{/users/show/nanswer}" style="color:#ea8874">미답변</a></span>
+        <span class="asn"><a th:href="@{/com/show/nanswer}" style="color:#ea8874">미답변</a></span>
         <span>|</span>
-        <span class="asy"><a th:href="@{/users/show/yanswer}">답변완료</a></span>
+        <span class="asy"><a th:href="@{/com/show/yanswer}">답변완료</a></span>
     </div>
     <div class="body_title_right">
         <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 고객 센터 > Q&A

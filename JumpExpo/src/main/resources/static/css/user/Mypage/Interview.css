@@ -156,7 +156,7 @@ tr {
 
 .YearText{
     color: #374658;
-    width: 120px;
+    width: 100px;
 }
 
 .MonthText{
@@ -226,4 +226,8 @@ span#day6 {}
 .cle_{
     color:white;
     background-color: #374658;
+}
+
+.MonthText::after{
+    content: '월';
 }

@@ -8,7 +8,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>유저 답변 완료 상세 페이지</title>
 </head>
-<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
 
 <div class="detail_wrap">
@@ -30,7 +30,7 @@
         <div class="andate">등록일</div><div th:text="${answer.an_date}" class="dt"></div>
     </div>
     <div class="cn" th:utext="${answer.an_content}"></div>
-    <button class="list"><a href="/users/show/qu" style="color:#fff; text-decoration:none;">목록</a></button>
+    <button class="list"><a href="/com/show/qu" style="color:#fff; text-decoration:none;">목록</a></button>
 
 </div>
 <div class="s_header" th:replace="~{user/side/qnaSide :: qnaSide}"></div>

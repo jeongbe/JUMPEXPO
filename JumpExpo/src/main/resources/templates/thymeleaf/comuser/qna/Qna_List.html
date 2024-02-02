@@ -15,16 +15,16 @@
         <span>A</span>
     </div>
     <div class="state">
-        <span class="asn"><a th:href="@{/users/show/nanswer}">미답변</a></span>
+        <span class="asn"><a th:href="@{/com/show/nanswer}">미답변</a></span>
         <span>|</span>
-        <span class="asy"><a th:href="@{/users/show/yanswer}">답변완료</a></span>
+        <span class="asy"><a th:href="@{/com/show/yanswer}">답변완료</a></span>
     </div>
     <div class="body_title_right">
         <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 고객 센터 > Q&A
     </div>
 
     <div class="con_search">
-        <button class="not_button"><a href ="/users/insert/qu" style="color:#fff; text-decoration:none;">글쓰기</a></button>
+        <button class="not_button"><a href ="/com/insert/qu" style="color:#fff; text-decoration:none;">글쓰기</a></button>
     </div>
     <form>
         <table>
@@ -41,9 +41,9 @@
 
             <tr th:each="list : ${QnAList}">
                 <td th:text="${list.qu_num}"></td>
-                <td th:text="${#strings.substring(userId, 0, 3)} + '****'"></td>
+                <td th:text="${#strings.substring(comCode, 0, 3)} + '****'"></td>
                 <td>
-                    <p th:unless="${list.qu_scr == 1}" th:onclick="'javascript:location.href=&quot;/users/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor:pointer;"></p>
+                    <p th:unless="${list.qu_scr == 1}" th:onclick="'javascript:location.href=&quot;/com/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor:pointer;"></p>
                     <p th:if="${list.qu_scr == 1}"><img src="/static/images/lock.png" style="width:15px; height:15px; opacity:0.6; margin-right:5px; margin-bottom:5px;">비밀글입니다.</p>
                 </td>
                 <td th:utext="${list.qu_date}"></td>

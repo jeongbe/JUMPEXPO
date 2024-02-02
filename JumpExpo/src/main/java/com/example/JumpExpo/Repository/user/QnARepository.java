@@ -37,5 +37,12 @@ public interface QnARepository extends JpaRepository<QnA, Integer> {
             "limit 5" ,nativeQuery = true)
     public List<QnA> getList();
 
+    //큐엔에이 기업,유저 나누기
+    //2024.02.02
+    @Query(value = "select *\n" +
+            "from qna\n" +
+            "where divide_code = :divCode",nativeQuery = true)
+    public List<QnA> getQnAList(@Param("divCode") int divCode);
+
 }
 

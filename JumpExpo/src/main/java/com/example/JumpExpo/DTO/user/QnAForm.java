@@ -26,8 +26,10 @@ public class QnAForm {
 
     int UserCode;
 
+    int DivideCode;  //유저인지 기업인지
+
     public QnA toEntity(){
         return new QnA(quNum,
-                quTitle,quContent,quState,quScr,UserId,UserCode);
+                quTitle,quContent,quState,quScr,UserId,UserCode,DivideCode);
     }
 }

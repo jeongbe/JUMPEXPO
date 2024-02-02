@@ -92,13 +92,13 @@
                 <div class="content">
                     <div class="expo-info-box" th:each="lists : ${getList}">
                         <div class="cont-img">
-                            <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />
+                                                        <img th:src="@{'http://192.168.2.3/images/a/' + ${lists.expo_image}}" alt="" />
                         </div>
                         <div class="expo-info">
                             <p class="expo-name" th:text="${lists.expo_title}"></p>
-                            <!--                            신청 제목-->
+<!--                            신청 제목-->
                             <p class="appTitle" th:text="${lists.app_title}"></p>
-                            <!--                            신청 날짜-->
+<!--                            신청 날짜-->
                             <p class="appTitle" th:text="${lists.app_date}"></p>
                             <div class="period-box2">
                                 <p th:text="${lists.expo_start}"></p>

@@ -61,6 +61,7 @@ public class QuestionController {
 
         qna.setQu_state(0);
         qna.setUser_id(users.getUser_id());
+        qna.setDivide_code(0);
         QnA saved = qnARepository.save(qna);
         log.info(form.toString());
 
@@ -78,7 +79,7 @@ public class QuestionController {
 
         model.addAttribute("userId",users.getUser_id());
 
-        ArrayList<QnA> QnAList = qnARepository.findAll();
+        List<QnA> QnAList = qnARepository.getQnAList(0);
         model.addAttribute("QnAList", QnAList);
         return  "user/qna/Qna_List";
     }

@@ -34,4 +34,7 @@ public class QnA extends DateEntity {
 
     @Column
     int user_code;
+
+    @Column
+    int divide_code;
 }

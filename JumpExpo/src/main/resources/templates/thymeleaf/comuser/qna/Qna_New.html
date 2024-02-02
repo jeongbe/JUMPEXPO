@@ -9,7 +9,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <title>질문 등록 페이지</title>
 </head>
-<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+<div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
 <div class="wrap">
     <div class="body_title">
@@ -35,7 +35,7 @@
                 </td>
             </tr>
         </table>
-        <div class="sub-btn"><button class="in_btn" type="submit">작성하기</button></div>
+        <div class="sub-btn"><button class="in_btn" type="button">작성하기</button></div>
     </form>
     <!-- 목록으로돌아가기 -->
 </div>
@@ -66,13 +66,14 @@
           $.ajax({
               async: false,
               type: "post",
-              url: "/users/save/qu",
+              url: "/com/save/qu",
               enctype: "multipart/form-data",
               contentType: false,
               processData: false,
               data: formData,
               success: (response) => {
                    alert('질문이 등록되었습니다.');
+                   window.location.replace("/com/show/qu");
               },
               error: (error) => {
                  alert('실패');
@@ -101,6 +102,6 @@
 
 </script>
 <div class="s_header" th:replace="~{user/side/qnaSide :: qnaSide}"></div>
-<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<!--<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>-->
 </body>
 </html>
