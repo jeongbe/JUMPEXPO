@@ -1,4 +1,4 @@
-/*초기 설정*/
+/*ì´ˆê¸° ì„¤ì •*/
 * {
     margin: 0;
     padding: 0;
@@ -14,14 +14,14 @@ a{
   text-decoration:none;
   display:block;
 }
-/*본문시작*/
+/*ë³¸ë¬¸ì‹œìž‘*/
 main{
     width:100%;
     margin:0 auto;
-    position:relative; /* 서브 메뉴 때문에 반드시 필요함   */
+    position:relative; /* ì„œë¸Œ ë©”ë‰´ ë•Œë¬¸ì— ë°˜ë“œì‹œ í•„ìš”í•¨   */
   }
 
-  /* 메뉴와 로고가 들어가는 header */
+  /* ë©”ë‰´ì™€ ë¡œê³ ê°€ ë“¤ì–´ê°€ëŠ” header */
   header{
     width:100%;
     height:100px;
@@ -30,7 +30,7 @@ main{
     align-items: center;
 
   }
-  /*헤더 있는 부분 다 적용돼서 첫번째 헤더만 그림자 적용함*/
+  /*í—¤ë” ìžˆëŠ” ë¶€ë¶„ ë‹¤ ì ìš©ë¼ì„œ ì²«ë²ˆì§¸ í—¤ë”ë§Œ ê·¸ë¦¼ìž ì ìš©í•¨*/
    header:first-child {
        box-shadow: 2px 2px 6px #f2dcd8;
        position: fixed;
@@ -44,18 +44,18 @@ main{
   .logo{
     width:20%;
     height:100%;
-    display: flex; /*로고 이미지를 중앙에 위치 시키기 위해 flex로 지정하여 수평, 수직 정렬이 되도록 하기 위해.*/
-    justify-content: center; /* 수평 가운데 정렬 */
-    align-items: center; /* 수직 가운데 정렬 */
+    display: flex; /*ë¡œê³  ì´ë¯¸ì§€ë¥¼ ì¤‘ì•™ì— ìœ„ì¹˜ ì‹œí‚¤ê¸° ìœ„í•´ flexë¡œ ì§€ì •í•˜ì—¬ ìˆ˜í‰, ìˆ˜ì§ ì •ë ¬ì´ ë˜ë„ë¡ í•˜ê¸° ìœ„í•´.*/
+    justify-content: center; /* ìˆ˜í‰ ê°€ìš´ë° ì •ë ¬ */
+    align-items: center; /* ìˆ˜ì§ ê°€ìš´ë° ì •ë ¬ */
   }
   .logo > img {
     width:200px;
     height:70px;
-    /* 로고 위치 조정 */
+    /* ë¡œê³  ìœ„ì¹˜ ì¡°ì • */
     margin-left: 250px;
   }
 
-  /*메인메뉴*/
+  /*ë©”ì¸ë©”ë‰´*/
   .mainMenu {
     width:70%;
     height:100%;
@@ -75,7 +75,7 @@ main{
     color: #EA8874;
   }
 
-  /*서브메뉴*/
+  /*ì„œë¸Œë©”ë‰´*/
   .subMenu{
     width:100%;
     display:flex;
@@ -86,7 +86,7 @@ main{
     top: 50px;
   }
   .subMenuWrap{
-    width:70%; /*메인메뉴 위치랑 동일하게*/
+    width:70%; /*ë©”ì¸ë©”ë‰´ ìœ„ì¹˜ëž‘ ë™ì¼í•˜ê²Œ*/
     height:100%;
     display:flex;
   }
@@ -116,7 +116,7 @@ main{
   }
   .header_right{
     position: absolute;
-    right: 350px;
+    right: 10px;
     width:150px;
   }
   .header_right a {

@@ -1,4 +1,4 @@
-/*초기 설정*/
+/*ì´ˆê¸° ì„¤ì •*/
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@
     left: 80px;
 }
 
-/*컨텐츠*/
+/*ì»¨í…ì¸ */
 .contents {
     position: absolute;
     top: 160px;
@@ -62,10 +62,16 @@
     position: absolute;
     top: 70px;
     right: 60px;
+    font-weight: 700;
+    font-size: 15px;
 }
-
+.body_title_right img {
+    position: absolute;
+    left: -26px;
+    top: 2px;
+}
 .select-box {
-    width: 910px;
+    width: 920px;
     margin-top: 20px;
     background-color: #ddd;
     height: 90px;
@@ -99,6 +105,7 @@
     border: none;
     outline: none;
     cursor: pointer;
+    height: 25px;
 }
 
 .Period-box {
@@ -109,35 +116,36 @@
 .Period-box > p {
     font-size: 15px;
     margin-left: 18px;
-    margin-top: 5px;
+    margin-top: 10px;
     font-weight: bold;
 }
 
 .btns {
-    /* margin-top: 5px; */
+    margin-top: 10px;
     display: flex;
     position: relative;
     width: 400px;
     right: 70px;
     /* background-color: aqua; */
     align-items: start;
-    margin-left: 115px;
-    /* justify-content: space-around; */
+    margin-left: 111px;
+    height: 25px;
 }
 
 .btns > button {
     width: 90px;
-    height: 28px;
+    height: 25px;
     margin: 0px;
     margin-right: 10px;
     cursor: pointer;
-    border: 1px solid #000;
+    border: 1px solid #787878;
 }
 
 .date-box {
     /* background-color: aqua; */
     position: relative;
-    right: 136px;
+    right: 133px;
+    margin-top: 10px;
 }
 
 input[type='date'] {
@@ -157,6 +165,7 @@ input[type='date'] {
     margin-top: 20px;
     display: flex;
     border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
 }
 
 .cont-img {
@@ -169,9 +178,9 @@ input[type='date'] {
 }
 
 .expo-info {
-    margin-top: 15px;
+    margin-top: 5px;
     /* background-color: yellowgreen; */
-    margin-left: 40px;
+    margin-left: 30px;
 }
 
 
@@ -206,8 +215,9 @@ input[type='date'] {
 }
 
 .expo-name {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
+    margin-left: 0px;
 }
 
 .line {
@@ -233,6 +243,10 @@ input[type='date'] {
 }
 p {
     margin-bottom:none;
+}
+
+p.appTitle {
+    display: inline;
 }
 
 .change_btn{

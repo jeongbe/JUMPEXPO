@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="/static/css/comuser/mypage/ComExpoAppList.css">
     <script src="/static/js/user/jquery-3.7.0.min.js"></script>
 
@@ -16,33 +15,38 @@
             display: flex;
             list-style: none;
             padding: 0;
-            margin-top: 20px;
-            margin-left: 400px;
+           margin-top: 490px;
+            margin-left: 330px;
         }
-
         .pagination li {
-            margin: 0 5px;
-            display: inline;
+            margin: 0 3px;
+            display:inline;
         }
-
+        .page-item{
+        border-radius: 4px;
+        }
         .pagination a {
             text-decoration: none;
-            color: #007bff;
             background-color: #fff;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
             padding: 8px 12px;
             border-radius: 4px;
+             color: #787878;
+             font-size:14px;
+             font-weight: 700;
+             width:34px;
         }
 
         .pagination a:hover {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
 
         .pagination .active a {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #ccc;
+            color: #787878;
         }
+
     </style>
 </head>
 
@@ -99,7 +103,7 @@
 <!--                            신청 제목-->
                             <p class="appTitle" th:text="${lists.app_title}"></p>
 <!--                            신청 날짜-->
-                            <p class="appTitle" th:text="${lists.app_date}"></p>
+                            <span>신청 날짜 : </span><p class="appTitle" th:text="${lists.app_date}"></p>
                             <div class="period-box2">
                                 <p th:text="${lists.expo_start}"></p>
                                 <p th:text="${lists.expo_end}"></p>

@@ -65,9 +65,10 @@ body {
     height: auto;
     /* align-items: center; */
     /* justify-content: center; */
+    margin-bottom: 10px;
 }
 
-.expo_img {
+.expo_img > img {
     margin-top: 10px;
     margin-left: 10px;
     background-color: antiquewhite;
@@ -85,6 +86,7 @@ body {
 .expo_info_ {
     font-size: 15px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .expo_days {
@@ -133,6 +135,8 @@ body {
 .ann_list_box {
     background-color: white;
     width: 500px;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px #ccc;
 }
 
 .h {
@@ -140,8 +144,9 @@ body {
     justify-content: space-between;
     font-size: 20px;
     font-weight: bold;
-    margin-left: 10px;
+    padding-left: 10px;
     margin-top: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
 .h > p:last-child {
@@ -150,11 +155,25 @@ body {
     /* margin-bottom: 50px; */
     transition: all ease 0.5s;
     cursor: pointer;
+    color: #374658;
 }
 
 .main_ul {
     display: flex;
     justify-content: space-between;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    padding-right: 0px;
+    border-bottom: 1px solid #ccc;
+    padding-top: 5px;
+}
+
+ul.main_ul:nth-child(1) {
+    /* border-top: 1px solid #ccc; */
+}
+
+.a_list:nth-child(2),.a_list:nth-child(4),.a_list:nth-child(6) {
+    /* background: #f3f3f3; */
 }
 
 ul > span {
@@ -166,12 +185,4 @@ ul > span {
 }
 .bac {
 margin-top:60px;
-}
-
-.expo_img > img {
-/*    margin-top: 10px;
-    margin-left: 10px;*/
-    background-color: antiquewhite;
-    width: 130px;
-    height: 70px;
 }
