@@ -59,7 +59,7 @@
     <tr th:each="list : ${ComList}">
         <!--        th:text="${list.app_file_name}"-->
         <td class="number_ad">1</td>
-        <td th:text="${list.com_addr}" th:onclick="'javascript:openPopup(\'/admin/cominfo/' + ${list.com_code} + '\')'">예일회사</td>
+        <td th:text="${list.com_addr}" th:onclick="'javascript:openPopup(\'/admin/cominfo/' + ${list.com_code} + '\',400,300)'">예일회사</td>
         <td th:text="${list.app_title}">제목ㅇㅇ</td>
         <td>
             <span>
@@ -86,35 +86,46 @@
 </nav>
 <p style="display:none;"  class="total_page" th:text="${TotalPage}"></p>
 <script th:if="${not #lists.isEmpty(ComList)}">
-    // 데이터가 있는 경우에만 아래 스크립트 실행
-    let total_page = document.querySelector('.total_page').textContent;
-    console.log(total_page);
 
-    // 부모 요소
-    var paginationContainer = document.querySelector(".pagination");
 
-    if (paginationContainer && total_page > 0) {  // 페이지 번호가 0보다 큰 경우에만 버튼 생성
-        // 이전 버튼
-        var prevButton = document.createElement("li");
-        prevButton.classList.add("page-item");
-        prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/fair/list?page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
-        paginationContainer.appendChild(prevButton);
+    function openPopup(url, width, height) {
+           var left = (screen.availWidth - width) / 2;
+           var top = (screen.availHeight - height) / 2;
 
-        // 페이지 번호 생성
-        for (var i = 1; i <= total_page; i++) {
-            var pageItem = document.createElement("li");
-            pageItem.classList.add("page-item");
-            pageItem.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${i-1}">${i}</a>`;
-
-            paginationContainer.appendChild(pageItem);
+           var popup = window.open(url, 'popup', 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left);
+           popup.focus();
         }
 
-        // 다음 버튼
-        var nextButton = document.createElement("li");
-        nextButton.classList.add("page-item");
-        nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
-        paginationContainer.appendChild(nextButton);
-    }
+
+        // 데이터가 있는 경우에만 아래 스크립트 실행
+        let total_page = document.querySelector('.total_page').textContent;
+        console.log(total_page);
+
+        // 부모 요소
+        var paginationContainer = document.querySelector(".pagination");
+
+        if (paginationContainer && total_page > 0) {  // 페이지 번호가 0보다 큰 경우에만 버튼 생성
+            // 이전 버튼
+            var prevButton = document.createElement("li");
+            prevButton.classList.add("page-item");
+            prevButton.innerHTML = `<a class="page-link"  href="/admin/employapply/fair/list?page=0" aria-label="Previous"><span aria-hidden="true"><</span></a>`;
+            paginationContainer.appendChild(prevButton);
+
+            // 페이지 번호 생성
+            for (var i = 1; i <= total_page; i++) {
+                var pageItem = document.createElement("li");
+                pageItem.classList.add("page-item");
+                pageItem.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${i-1}">${i}</a>`;
+
+                paginationContainer.appendChild(pageItem);
+            }
+
+            // 다음 버튼
+            var nextButton = document.createElement("li");
+            nextButton.classList.add("page-item");
+            nextButton.innerHTML = `<a class="page-link" href="/admin/employapply/fair/list?page=${total_page-1}" aria-label="Next"><span aria-hidden="true">></span></a>`;
+            paginationContainer.appendChild(nextButton);
+        }
 </script>
 
 </body>

@@ -10,7 +10,7 @@
 <table>
     <tr>
         <td class="a g" colspan="2"><span class="d"><img th:src="@{'http://192.168.2.3/images/a/' + ${ComInfo.com_image}}" alt=""></span></td>
-        <td class="a b" colspan="2">회사명</td>
+        <td class="a b" colspan="2">회사소개</td>
     </tr>
     <tr class="f">
         <td class="c">회사명</td>
@@ -26,11 +26,11 @@
     </tr>
     <tr class="f">
         <td class="c">회사주소</td>
-        <td colspan="3"  th:text="${ComInfo.com_intro}">ㄴㅇㄹㄴ</td>
+        <td colspan="3"  th:text="${ComInfo.com_addr}">ㄴㅇㄹㄴ</td>
     </tr>
     <tr class="f">
         <td class="c">홈페이지 링크</td>
-        <td colspan="3"  th:text="${ComInfo.com_addr}">ㅇㄴㄹㅇ</td>
+        <td colspan="3" th:text="${ComInfo.com_home}" >ㅇㄴㄹㅇ</td>
     </tr>
 </table>
 <div class="btn_box_">

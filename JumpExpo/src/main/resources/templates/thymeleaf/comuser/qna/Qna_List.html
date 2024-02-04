@@ -41,7 +41,7 @@
 
             <tr th:each="list : ${QnAList}">
                 <td th:text="${list.qu_num}"></td>
-                <td th:text="${#strings.substring(comCode, 0, 3)} + '****'"></td>
+                <td th:text="${#strings.substring(list.user_id, 0, 3)} + '****'"></td>
                 <td>
                     <p th:unless="${list.qu_scr == 1}" th:onclick="'javascript:location.href=&quot;/com/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor:pointer;"></p>
                     <p th:if="${list.qu_scr == 1}"><img src="/static/images/lock.png" style="width:15px; height:15px; opacity:0.6; margin-right:5px; margin-bottom:5px;">비밀글입니다.</p>

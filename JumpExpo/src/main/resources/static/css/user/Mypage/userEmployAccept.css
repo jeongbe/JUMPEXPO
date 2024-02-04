@@ -1,4 +1,4 @@
-/*ì´ˆê¸° ì„¤ì •*/
+/*Ã¬Â´Ë†ÃªÂ¸Â° Ã¬â€žÂ¤Ã¬Â â€¢*/
 * {
     margin: 0;
     padding: 0;
@@ -50,7 +50,7 @@
 .contents {
     position: absolute;
     top: 160px;
-    right: 30px;
+    right: 50px;
     width: 920px;
     height: 200px;
     padding: 0;
@@ -149,8 +149,8 @@ input[type='date'] {
 
 .content {
     position: relative;
-    top: 100px;
-    left: -385px;
+    top: 380px;
+    left: 565px;
 }
 
 .expo-info-box {
@@ -248,7 +248,7 @@ p {
 
 .accept_btn{
     position: absolute;
-    right: 110px;
+    right: 1100px;
     /* margin-top: 30px; */
     width: 100px;
     height: 30px;
