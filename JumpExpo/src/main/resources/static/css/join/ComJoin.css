@@ -48,6 +48,17 @@ main {
     outline: none;
 }
 
+.idbox_join1{
+    width: 318px;
+    height: 55px;
+    border: none;
+    border-bottom: 2px solid rgba(20, 18, 18, 0.192);
+    margin-top: 90px;
+    font-size: 13px;
+    padding: 5px;
+    outline: none;
+}
+
 .join_title{
     position: absolute;
     left: 729px;
@@ -102,4 +113,19 @@ button {
     background-color: #374658;
     color: white;
     border-radius: 10px;
+    border: 0;
+    outline: 0;
+}
+
+.join_title::after {
+    content: '*';
+    color: red;
+}
+
+.idcheck{
+    border-radius: 5px;
+    width: 120px;
+    height: 40px;
+    margin-top: 101px;
+    background-color: #aaa;
 }

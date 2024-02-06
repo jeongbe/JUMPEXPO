@@ -14,13 +14,15 @@
     <form action="/JumpExpo/PerJoin" method="post">
         <div class="join_allform">
             <div class="id_text_input">
-                <div class="join_title">아이디 * <button type="button" class="idcheck" onclick="checkDuplicate()">중복체크</button></div>
-                <input type="text" id="id" name="userid" class="idbox_join" pattern="^[A-Za-z]{1}[A-Za-z0-9]{3,19}$" placeholder="4 ~ 20글자"
+                <div class="join_title">아이디 </div>
+                <input type="text" id="id" name="userid" class="idbox_join1" pattern="^[A-Za-z]{1}[A-Za-z0-9]{3,19}$" placeholder="4 ~ 20글자"
                        required>
+                <button type="button" class="idcheck" onclick="checkDuplicate()">중복체크</button>
             </div>
+
             <div id="idError" class="error-message"></div>
             <div class="id_text_input">
-                <div class="join_title">비밀번호 *</div>
+                <div class="join_title">비밀번호 </div>
                 <input type="password" class="idbox_join" id="password" name="password" placeholder="비밀번호를 입력하세요"
                        required>
             </div>
@@ -30,25 +32,26 @@
             </div>
             <div id="passwordchError" class="error-message"></div>
             <div class="id_text_input">
-                <div class="join_title">이름 *</div>
+                <div class="join_title">이름 </div>
                 <input type="text" class="idbox_join" id="name" name="name" placeholder="이름을 입력하세요" required>
             </div>
             <div class="id_text_input">
-                <div class="join_title">생년월일 *</div>
+                <div class="join_title">생년월일 </div>
                 <input type="text" class="idbox_join" id="birth" name="birth" placeholder="ex)981230" required>
             </div>
             <div id="birthError" class="error-message"></div>
             <div class="id_text_input">
                 <input type="text" id="sample6_postcode" readonly style="display:none;">
                 <input type="text" id="sample6_extraAddress" readonly style="display:none;">
-                <div class="join_title">주소 * <button type="button" onclick="execution_daum_address()">주소검색</button></div>
-                <input type="text" class="idbox_join" id="sample6_address" name="addr" readonly required>
+                <div class="join_title">주소 </div>
+                <input type="text" class="idbox_join1" id="sample6_address" name="addr" readonly required>
+                <button type="button" class="idcheck" onclick="execution_daum_address()">주소검색</button>
             </div>
             <div class="id_text_input">
                 <input type="text" class="passCheck" id="addr1" name="addr1" placeholder="상세주소">
             </div>
             <div class="id_text_input">
-                <div class="join_title">성별 *</div>
+                <div class="join_title">성별 </div>
                 <div class="id_text_input">
                     <select class="idbox_join" name="sex">
                         <option value="남성">남성</option>
@@ -57,12 +60,12 @@
                 </div>
             </div>
             <div class="id_text_input">
-                <div class="join_title">휴대전화 번호 *</div>
+                <div class="join_title">휴대전화 번호 </div>
                 <input type="text" class="idbox_join" id="phone" name="phone" placeholder="-없이 입력" required>
             </div>
             <div id="phoneError" class="error-message"></div>
             <div class="id_text_input">
-                <div class="join_title">이메일 *</div>
+                <div class="join_title">이메일 </div>
                 <input type="text" class="idbox_join" id="email" name="email" placeholder="이메일 형식으로 적어주세요" required>
             </div>
             <div id="emailError" class="error-message"></div>
@@ -74,7 +77,6 @@
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-
     function setMainHeight() {
           var mainElement = document.querySelector('main');
           var errorMessages = document.querySelectorAll('.error-message');
@@ -85,7 +87,6 @@
           // 1520px에 현재까지의 높이를 더하여 설정
           mainElement.style.height = 1430 + totalHeight + 'px';
       }
-
 
 
       var joinbtn = document.querySelector('.join_button');
@@ -137,8 +138,6 @@
           check();
       }
   }
-
-
 
      // 포커스 아웃 이벤트 처리 (비밀번호)
      document.getElementById('password').addEventListener('blur', function () {
@@ -307,8 +306,6 @@
       }).open();
 
   }
-
-
 
 </script>
 </body>
