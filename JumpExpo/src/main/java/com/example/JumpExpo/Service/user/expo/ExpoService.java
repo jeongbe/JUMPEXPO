@@ -143,31 +143,31 @@ public class ExpoService {
     //유저 마이 리뷰
     public Page<UserReview> getUserReList(int page,int userCode){
 
-        Pageable pageable = PageRequest.of(page,6);
+        Pageable pageable = PageRequest.of(page,10);
         return this.userReviewRepository.UserReList(pageable,userCode);
     }
 
     //2024.01.23 정정빈
     //관리자 리뷰 리스트
     public Page<UserReview> getAdUserReviewList(int page, int expoCate) {
-        Pageable pageable = PageRequest.of(page, 6); // 여기서 6은 페이지 크기
+        Pageable pageable = PageRequest.of(page, 10); // 여기서 6은 페이지 크기
         return this.userReviewRepository.AdReviewList(pageable, expoCate);
     }
 
     //2024.01.24 정정빈
     // 리뷰 검색 했을때
     public Page<UserReview> getUserReSearchList(int page, String search,int expoCate,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,6);
+        Pageable pageable = PageRequest.of(page,10);
         return this.userReviewRepository.UserReSerch(pageable,search,expoCate,StartDate,EndDate);
     }
 
     public Page<UserReview> getUserReHitList(int page,String search,int expoCate){
-        Pageable pageable = PageRequest.of(page,6);
+        Pageable pageable = PageRequest.of(page,10);
         return this.userReviewRepository.UserReHit(pageable,search,expoCate);
     }
 
     public Page<UserReview> getUserReHitList2(int page,int expoCate){
-        Pageable pageable = PageRequest.of(page,6);
+        Pageable pageable = PageRequest.of(page,10);
         return this.userReviewRepository.UserReHit2(pageable,expoCate);
     }
 
