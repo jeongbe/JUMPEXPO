@@ -1,4 +1,4 @@
-/*Ã¬Â´Ë†ÃªÂ¸Â° Ã¬â€žÂ¤Ã¬Â â€¢*/
+/*ÃƒÂ¬Ã‚Â´Ã‹â€ ÃƒÂªÃ‚Â¸Ã‚Â° ÃƒÂ¬Ã¢â‚¬Å¾Ã‚Â¤ÃƒÂ¬Ã‚Â Ã¢â‚¬Â¢*/
 * {
     margin: 0;
     padding: 0;
@@ -171,6 +171,7 @@ input[type='date'] {
 .expo-info {
         margin-top: 0;
         margin-left: -40px;
+        width: 400px;
 }
 
 
@@ -273,10 +274,9 @@ p {
 .line2{
     z-index = 1;
     position: relative;
-    left: 110px;
+    /* left: 110px; */
     top: 10px;
     width: 300px;
     height: 4px;
     margin-top: 15px;
-    border-bottom: 2px solid red;
 }

@@ -96,12 +96,12 @@ table{
 
 .write_button{
     position: absolute;
-    top: 80px;
-    left: 820px;
+    top: 660px;
+    left: 402px;
     background-color: #374658;
     color: white;
-    width: 90px;
-    height: 30px;
+    width: 120px;
+    height: 35px;
     cursor: pointer;
     border: none;
     outline: none;
