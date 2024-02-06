@@ -1,5 +1,6 @@
 package com.example.JumpExpo.Controller.comuser;
 
+import com.example.JumpExpo.DTO.admin.notice.AnswerForm;
 import com.example.JumpExpo.DTO.user.QnAForm;
 import com.example.JumpExpo.Entity.admin.Answer;
 import com.example.JumpExpo.Entity.admin.DateEntity;
@@ -52,7 +53,7 @@ public class ComQnAController {
         String username = authentication.getName();
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
-        model.addAttribute("comCode",company.getCom_id());
+        model.addAttribute("comId",company.getCom_id());
 
         List<QnA> QnAList = qnARepository.getQnAList(1);
         model.addAttribute("QnAList", QnAList);
@@ -68,7 +69,8 @@ public class ComQnAController {
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
 
-        model.addAttribute("userCode",company.getCom_code());
+        model.addAttribute("comCode",company.getCom_id());
+
         return "comuser/qna/Qna_New";
     }
 
@@ -85,7 +87,7 @@ public class ComQnAController {
         model.addAttribute("company", company);
 
         qna.setQu_state(0);
-        qna.setUser_id(company.getCom_id());
+        qna.setCom_id(company.getCom_id());
         qna.setDivide_code(1);
         qna.setQu_date(new Date());
         QnA saved = qnARepository.save(qna);
@@ -104,7 +106,7 @@ public class ComQnAController {
         String username = authentication.getName();
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
-        model.addAttribute("comid",company.getCom_id());
+        model.addAttribute("comName",company.getCom_name());
 
 
         log.info("quNum = " + quNum);
@@ -122,7 +124,21 @@ public class ComQnAController {
             return "comuser/qna/Qna_Detail";
         }
     }
+    @PostMapping("/qu/{quNum}/answer")
+    public String Update(@PathVariable("quNum")int quNum, AnswerForm form) {
+        QnA qna = qnARepository.findById(quNum).orElse(null);
+        log.info(qna.toString());
+        qna.setQu_state(1);
+        QnA save = qnARepository.save(qna);
 
+        log.info(form.toString());
+        Answer answer = form.toEntity();
+        log.info(answer.toString());
+        Answer saved = answerRepository.save(answer);
+        log.info(form.toString());
+
+        return "redirect:/comuser/show/qu";
+    }
     //미답변 리스트
     @GetMapping("/show/nanswer")
     public String noAnswer(Model model){
@@ -132,9 +148,9 @@ public class ComQnAController {
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
 
-        List<QnA> QnAList = qnARepository.getSate();
+        List<QnA> QnAList = qnARepository.getComSate();
         model.addAttribute("QnAList", QnAList);
-        return "user/qna/Qna_List_No";
+        return "comuser/qna/Qna_List_No";
     }
     //답변완료 리스트
     @GetMapping("/show/yanswer")
@@ -145,9 +161,8 @@ public class ComQnAController {
         Company company = companyRepository.findcom(username);
         model.addAttribute("company", company);
 
-        List<QnA> QnAList = qnARepository.getState();
+        List<QnA> QnAList = qnARepository.getComState();
         model.addAttribute("QnAList", QnAList);
-        log.info(QnAList.toString());
-        return "user/qna/Qna_List_Yes";
+        return "comuser/qna/Qna_List_Yes";
     }
 }

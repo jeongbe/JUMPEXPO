@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/user/qna/Qna.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <title>유저 질문 리스트</title>
+    <title>기업 질문 리스트</title>
 </head>
 <div class="s_header" th:replace="~{comuser/header/comHeader :: comHeader}"></div>
 <body>
@@ -39,12 +39,12 @@
             </thead>
             <tbody>
 
-            <tr th:each="list : ${QnAList}">
-                <td th:text="${list.qu_num}"></td>
-                <td th:text="${#strings.substring(list.user_id, 0, 3)} + '****'"></td>
+            <tr th:each="list,iterStat : ${QnAList}">
+                <td th:text="${iterStat.index + 1}">1</td>
+                <td th:text="${#strings.substring(list.com_id, 0, 3)} + '****'"></td>
                 <td>
-                    <p th:unless="${list.qu_scr == 1}" th:onclick="'javascript:location.href=&quot;/com/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor:pointer;"></p>
-                    <p th:if="${list.qu_scr == 1}"><img src="/static/images/lock.png" style="width:15px; height:15px; opacity:0.6; margin-right:5px; margin-bottom:5px;">비밀글입니다.</p>
+                    <p class="hover" th:unless="${list.qu_scr == 1}" th:onclick="'javascript:location.href=&quot;/com/show/qu/' + ${list.qu_num} + '&quot;'" th:text="${list.qu_title}" style="cursor:pointer;"></p>
+                    <p th:if="${list.qu_scr == 1}"><img src="/static/images/lock.png" style="width:15px; height:15px; opacity:0.6; margin-right:5px; margin-bottom:0px;">비밀글입니다.</p>
                 </td>
                 <td th:utext="${list.qu_date}"></td>
                 <td>
@@ -57,68 +57,81 @@
     </form>
 
     <div class="paging" id="pagination">
-        <button onclick="previousPage()"><</button>
-        <div id="pageNumbers"></div>
-        <button onclick="nextPage()">></button>
+
+        <div id="pageNumbers">
+            <button onclick="previousPage()">&laquo;</button>
+            <button onclick="nextPage()">&raquo;</button>
+        </div>
+
     </div>
     <!--    게시물 총 개수 구하기-->
     <div class="total_post"><span>총 <span th:text="${QnAList.size()}"></span>개</span></div>
 </div>
 <script>
     // 페이징
-            // 초기 페이지 설정
-            let currentPage = 1;
-            let rowsPerPage = 10;
-            let table = document.querySelector('table');
-            let rows = table.querySelectorAll('tr');
-            let totalRows = rows.length - 1; // 헤더 제외
-            let totalPages = Math.ceil(totalRows / rowsPerPage);
-            let pagination = document.getElementById('pageNumbers');
+             // 초기 페이지 설정
+             let currentPage = 1;
+             let rowsPerPage = 10;
+             let table = document.querySelector('table');
+             let rows = table.querySelectorAll('tr');
+             let totalRows = rows.length - 1; // 헤더 제외
+             let totalPages = Math.ceil(totalRows / rowsPerPage);
+             let pagination = document.getElementById('pageNumbers');
 
-            function showPage(page) {
-                for (let i = 1; i <= totalRows; i++) {
-                    if (i <= page * rowsPerPage && i > (page - 1) * rowsPerPage) {
-                        rows[i].style.display = '';
-                    } else {
-                        rows[i].style.display = 'none';
-                    }
-                }
-            }
+             function showPage(page) {
+                 for (let i = 1; i <= totalRows; i++) {
+                     if (i <= page * rowsPerPage && i > (page - 1) * rowsPerPage) {
+                         rows[i].style.display = '';
+                     } else {
+                         rows[i].style.display = 'none';
+                     }
+                 }
+             }
 
-            function generatePageNumbers() {
-                let pageNumbersHTML = '';
-                for (let i = 1; i <= totalPages; i++) {
-                    pageNumbersHTML += `<span class="page-number" onclick="goToPage(${i})">${i}</span>`;
-                }
-                pagination.innerHTML = pageNumbersHTML;
-            }
+        function generatePageNumbers() {
+     let pageNumbersHTML = '';
 
-            function goToPage(page) {
-                if (page >= 1 && page <= totalPages) {
-                    currentPage = page;
-                    showPage(currentPage);
-                    generatePageNumbers();
-                }
-            }
+     if (totalRows > 0) {
+         // Add a "Previous" button
+         pageNumbersHTML += `<button onclick="previousPage()">«</button>`;
 
-            function nextPage() {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    showPage(currentPage);
-                    generatePageNumbers();
-                }
-            }
+         // Add individual page buttons
+         for (let i = 1; i <= totalPages; i++) {
+             pageNumbersHTML += `<button class="page-number" onclick="goToPage(${i})">${i}</button>`;
+         }
 
-            function previousPage() {
-                if (currentPage > 1) {
-                    currentPage--;
-                    showPage(currentPage);
-                    generatePageNumbers();
-                }
-            }
+         // Add a "Next" button
+         pageNumbersHTML += `<button onclick="nextPage()">»</button>`;
+     }
 
-            showPage(currentPage);
-            generatePageNumbers();
+     pagination.innerHTML = pageNumbersHTML;
+ }
+             function goToPage(page) {
+                 if (page >= 1 && page <= totalPages) {
+                     currentPage = page;
+                     showPage(currentPage);
+                     generatePageNumbers();
+                 }
+             }
+
+             function nextPage() {
+                 if (currentPage < totalPages) {
+                     currentPage++;
+                     showPage(currentPage);
+                     generatePageNumbers();
+                 }
+             }
+
+             function previousPage() {
+                 if (currentPage > 1) {
+                     currentPage--;
+                     showPage(currentPage);
+                     generatePageNumbers();
+                 }
+             }
+
+             showPage(currentPage);
+             generatePageNumbers();
 
 </script>
 

@@ -24,12 +24,15 @@ public class QnAForm {
 
     private String  UserId;
 
+    private String  ComId;
+
     int UserCode;
+
 
     int DivideCode;  //유저인지 기업인지
 
     public QnA toEntity(){
         return new QnA(quNum,
-                quTitle,quContent,quState,quScr,UserId,UserCode,DivideCode);
+                quTitle,quContent,quState,quScr,UserId,ComId,UserCode,DivideCode);
     }
 }

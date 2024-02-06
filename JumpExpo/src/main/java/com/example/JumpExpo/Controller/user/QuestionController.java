@@ -149,7 +149,6 @@ public class QuestionController {
 
         List<QnA> QnAList = qnARepository.getState();
         model.addAttribute("QnAList", QnAList);
-        log.info(QnAList.toString());
         return "user/qna/Qna_List_Yes";
     }
 }

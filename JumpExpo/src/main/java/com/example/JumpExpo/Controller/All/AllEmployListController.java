@@ -60,7 +60,7 @@ public class AllEmployListController {
         List<Notice> noticeList = noticeRepository.mainNotice();
         model.addAttribute("noList",noticeList);
 
-        List<QnA> qnaList = qnARepository.getList();
+        List<QnA> qnaList = qnARepository.getList(0);
         model.addAttribute("qnaList",qnaList);
 
         return "user/userMain";

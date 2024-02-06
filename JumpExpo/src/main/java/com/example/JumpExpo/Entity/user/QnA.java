@@ -33,6 +33,9 @@ public class QnA extends DateEntity {
     String user_id;
 
     @Column
+    String com_id;
+
+    @Column
     int user_code;
 
     @Column

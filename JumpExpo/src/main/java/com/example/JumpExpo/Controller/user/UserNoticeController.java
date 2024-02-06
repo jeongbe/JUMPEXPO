@@ -71,11 +71,7 @@ public class UserNoticeController {
 
         Notice data = form.toEntity();
         data.setNot_code(0);
-        log.info(data.toString());
-
         Notice save = noticeRepository.save(data);
-        log.info(save.toString());
-
         return "redirect:/users/show/nt";
     }
     //공지사항 리스트
@@ -106,7 +102,6 @@ public class UserNoticeController {
         String username = authentication.getName();
         Users users = userReository.finduser(username);
         model.addAttribute("users", users);
-        log.info("notCode = " + notCode);
 
         Notice board = noticeService.selectNoticeDetail(notCode);
 

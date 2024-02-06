@@ -1,21 +1,21 @@
 .detail_wrap {
         position: absolute;
-            top: 0px;
-            left: 510px;
+        top: 60px;
+        left: 510px;
 }
     .nt_title {
     position: absolute;
-        top: 130px;
-        left: 0;
-        width: 920px;
-        text-align: center;
-        color: #787878;
-        font-weight: 700;
-        font-size: 20px;
+    top: 130px;
+    left: 0;
+    width: 920px;
+    text-align: center;
+    color: #787878;
+    font-weight: 700;
+    font-size: 20px;
  }
  .view_info {
     position: absolute;
-    top: 165px;
+    top: 185px;
     width: 920px;
     border-top: 2px solid #ccc;
     border-bottom: 2px solid #ccc;
@@ -26,7 +26,7 @@
  border-bottom: 2px solid #ccc;
  position: absolute;
  top: 785px;
- height:30px;
+ height: 34px;
  }
  .view_info > div {
     display: inline-block;
@@ -83,6 +83,7 @@ margin-left: 80px;
     position: absolute;
     top:240px;
     left: 0px;
+    padding:15px;
  }
  .list {
     border: 2px solid #ccc;
@@ -139,11 +140,4 @@ position: absolute;
     width: 920px;
     font-size: 20px;
    }
-   .cn {
-position: absolute;
-    top: 830px;
-    left: 0px;
-    width: 920px;
-    border: 2px solid #ccc;
-    height: 200px;
-   }
+   .cn {position: absolute;top: 830px;left: 0px;width: 920px;border: 2px solid #ccc;height: 200px;padding: 15px;}
