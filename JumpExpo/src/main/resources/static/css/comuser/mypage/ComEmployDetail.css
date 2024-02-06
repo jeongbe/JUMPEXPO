@@ -5,8 +5,8 @@
  }
  .body_title {
      position: absolute;
-     top: 40px;
-     left: 350px;
+     top: 140px;
+     left: 410px;
      width: 700px;
  }
    .body_title span{
@@ -17,11 +17,11 @@
    .body_title span:last-child{
      color: #374658;
    }
- /* 테이블 */
+ /* í…Œì´ë¸” */
 table {
   position:relative;
-  top:170px;
-  left:-70px;
+  top: 210px;
+  left: 410px;
   border-collapse: collapse;
   border-top:3px solid #374658;
   width: 918px;
@@ -32,7 +32,7 @@ table {
   color:#787878;
 }
 
-/* 테이블 행 */
+/* í…Œì´ë¸” í–‰ */
 th, td {
   padding: 8px;
   margin: 1rem auto;
@@ -44,7 +44,7 @@ th {
   background-color: #fff;
   color: #787878;
 }
-/* 테이블 비율 */
+/* í…Œì´ë¸” ë¹„ìœ¨ */
 th:nth-child(1),
 td:nth-child(1) {
   width: 10%;
@@ -68,12 +68,7 @@ font-weight:800;
 color:#000;
 opacity:0.8;
 }
-.paging {
-position:absolute;
-top:650px;
-left:380px;
-width:100px;
-}
+.paging {position:absolute;top:650px;left: 820px;width:100px;}
 #pageNumbers {
 display:inline;
 cursor: pointer;
