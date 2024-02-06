@@ -67,8 +67,8 @@
         <th>조회수</th>
         <th></th>
     </tr>
-    <tr class="add_tag" th:each="list : ${reList}">
-        <td th:text="${list.re_num}">1</td>
+    <tr class="add_tag" th:each="list,iterStat : ${reList}">
+        <td th:text="${iterStat.index + 1}"></td>
         <td th:text="${list.expo_title}">예일회사</td>
         <td th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/admin/review/read/' + ${list.re_num} + '&quot;'" class="review_enter">제목ㅇㅇ</td>
         <td th:text="${list.user_id}">dd</td>

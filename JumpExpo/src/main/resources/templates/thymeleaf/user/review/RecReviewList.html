@@ -136,8 +136,8 @@
                 </thead>
                 <tbody>
 
-                <tr class="expo-info" th:each="list : ${list}">
-                    <td th:text="${list.re_num}"></td>
+                <tr class="expo-info" th:each="list,iterStat : ${list}">
+                    <td th:text="${iterStat.index + 1}"></td>
                     <td th:text="${#strings.substring(list.user_id, 0, 3)} + '****'"></td>
                     <td style="cursor:pointer;" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/read/' + ${list.re_num} + '&quot;'"></td>
                     <td th:utext="${list.expo_title}"></td>
