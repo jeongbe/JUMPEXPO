@@ -18,6 +18,11 @@
 <body>
 <main>
     <content>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var applyEmploy = [[${applyEmploy}]];
+            /*]]>*/
+        </script>
         <div class="body">
             <div class="body_title">
                 <span>나의 기업</span>
@@ -27,11 +32,8 @@
             <div class="body_title_right">
                 <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 내 정보
             </div>
-
-
             <!-- 주요내용 -->
             <div class="contents">
-                <form class="fo_css" method="get" th:action="@{/com/myPage/resign/{comcode}(comcode=${company.com_code})}">
                 <div class="UserInfo_content">
                     <div class="div1">
                         <div class="UserInfo_content_text">
@@ -56,8 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="sec_btn">탈퇴하기</button>
-                </form>
+                <button type="submit" id="comrepop" class="sec_btn">탈퇴하기</button>
             </div>
 
         </div>
@@ -74,6 +75,7 @@
 <script th:if="${param.successPw}" type="text/javascript">
     alert('비밀번호 변경 완료.');
 </script>
+
 <script>
     <!--    // header script-->
     <!--    $(document).ready(function () {-->
@@ -88,6 +90,22 @@
     <!--        });-->
     <!--    });-->
 
+</script>
+
+<script th:inline="javascript">
+    <!--        Thymeleaf 변수를 JavaScript 변수로 초기화-->
+                var comCode = [[${company.com_code}]];
+
+                document.getElementById('comrepop').addEventListener('click', function() {
+                    if (comCode) {
+
+                        var popupUrl = "/com/myPage/rePoP/" + comCode;
+                        window.open(popupUrl, "a", "width=550, height=300, left=650, top=330");
+                    } else {
+
+                        alert("찾을 수 없는 페이지입니다.");
+                    }
+                });
 </script>
 </body>
 </html>

@@ -258,8 +258,29 @@ public class UserMyPageController {
         return "user/Mypage/UserInfo";
     }
 
+
+    //회원탈퇴 팝업
+    @GetMapping("/myPage/rePoP/{user_code}")
+    public String rePoP(Model model,@PathVariable(name = "user_code") int userCode){
+
+        model.addAttribute("userCode",userCode);
+
+        Users user = userReository.findById(userCode).orElse(null);
+        if (user != null) {
+            model.addAttribute("userName", user.getUser_name());
+        } else {
+            // 사용자를 찾을 수 없을 때
+            model.addAttribute("userName", "사용자 이름 없음");
+        }
+
+
+
+        return "user/MyPage/ResginPop";
+    }
+
+
     //회원 탈퇴 기능
-    @GetMapping("/myPage/resign/{usercode}")
+    @PostMapping("/myPage/resign/{usercode}")
     public String resign(Model model, @PathVariable("usercode") int usercode){
 
         //유저코드 기준으로 유저 정보 가져오기

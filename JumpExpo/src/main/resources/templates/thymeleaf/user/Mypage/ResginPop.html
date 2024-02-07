@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/user/employ/Resume.css" />
+    <!--    <link rel="stylesheet" href="/css/ComExpoApp.css" />-->
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    ></script>
+    <title>기업 박람회 신청페이지</title>
+</head>
+<body>
+    <input type="hidden" style="display: none;" id="userCode" th:value="${userCode}" name="UserCode">
+    <div class="container">
+        <!-- 이력서 업로드 폼 -->
+        <div class="line"></div>
+        <div class="po">
+            <div class="input_box">
+                <p class="warning_text" style="font-size: 35px; color: #374658;">
+                정말로 탈퇴 하시겠습니까?
+                </p>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="btn_box">
+            <button type="submit" id="submitBtn">예</button>
+            <div>
+                <button type="button" id="closePopupBtn">아니요</button>
+            </div>
+        </div>
+    </div>
+<script>
+
+    // 팝업 닫기 버튼 클릭 이벤트
+    $('#closePopupBtn').click(function () {
+        window.close();
+    });
+
+      // 제출 버튼 클릭 이벤트
+    $('#submitBtn').click(function (e) {
+
+        var formData = new FormData();
+        formData.append('UserCode', $('#userCode').val());
+
+        $.ajax({
+            type: 'POST',
+            url: '/users/myPage/resign/'+ $('#userCode').val(),
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                alert('탈퇴되었습니다.');
+                window.close();
+                window.opener.location.href = '/JumpExpo/Login';
+            },
+            error: function (xhr) {
+                if(xhr.status === 409) {
+                    // 409 Conflict 상태 코드인 경우
+                    alert(xhr.responseText); // 서버의 응답 메시지 표시
+                } else {
+                    // 다른 오류인 경우
+                    alert('이력서 파일을 넣어주세요.');
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

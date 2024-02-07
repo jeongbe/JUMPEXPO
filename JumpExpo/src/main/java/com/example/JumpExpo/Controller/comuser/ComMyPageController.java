@@ -170,11 +170,32 @@ public class ComMyPageController {
         return "comuser/mypage/ComuserInfopage";
     }
 
+
+    //회원탈퇴 팝업
+    @GetMapping("/myPage/rePoP/{com_code}")
+    public String rePoP(Model model,@PathVariable(name = "com_code") int comCode){
+
+        model.addAttribute("comCode",comCode);
+
+        Company company = companyRepository.findById(comCode).orElse(null);
+
+        if (company != null) {
+            model.addAttribute("comName", company.getCom_name());
+        } else {
+            // 사용자를 찾을 수 없을 때
+            model.addAttribute("comName", "사용자 이름 없음");
+        }
+
+        return "comuser/mypage/ComRePop";
+    }
+
+
+
     //2024-01-20 맹성우
     //회원 탈퇴하는 매핑
 
     //회원 탈퇴 기능
-    @GetMapping("/myPage/resign/{comcode}")
+    @PostMapping("/myPage/resign/{comcode}")
     public String resign(Model model, @PathVariable("comcode") int comcode){
 
         //유저코드 기준으로 유저 정보 가져오기

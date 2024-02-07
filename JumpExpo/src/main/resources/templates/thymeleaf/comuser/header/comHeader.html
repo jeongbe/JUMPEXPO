@@ -25,6 +25,7 @@
             </nav>
             <div class="header_right">
                 <th:block th:if="${company ne null}">
+                    <p th:text="${company.com_name}"></p>
                     <a th:href="@{/com/myPage}">
                         <div class="mypage" style="margin-right:40px;">
                             <img src="/static/images/mypage_icon.png" alt="마이페이지이미지" style="width:30px; height:30px;" onmouseover="this.src='/static/images/mypage_hover.png'">
