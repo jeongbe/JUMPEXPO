@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,18 +20,16 @@
                 <span>정보</span>
                 <span>수정</span>
             </div>
-
             <div class="body_title_right">
                 <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내정보 > 정보 수정
             </div>
-
             <!-- 주요내용 -->
             <div class="contents">
                 <form method="post" action="/com/myPage/ChangeSubmit">
                     <div class="join_allform">
                         <div class="id_text_input">
                             <div class="join_title  point">회사명</div>
-                            <input type="text" class="idbox_join"  id="name" name="Comname" placeholder="회사 이름" required>
+                            <input type="text" class="idbox_join"  id="name" name="Comname" th:value="${company.com_name}">
                         </div>
                         <div class="id_text_input">
                             <div class="join_title  point">주소</div>
@@ -43,8 +40,8 @@
                             <input class="idbox_join" style="display:none;" type="text" id="sample6_extraAddress" readonly>
                             </div>
                             <div class="type">
-                            <input class="idbox_join" type="text" id="sample6_address" name="addr" required readonly >
-                            <input class="idbox_join" type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
+                            <input class="idbox_join" type="text" id="sample6_address" name="addr" th:value="${company.com_addr}">
+                            <input class="idbox_join" type="text" id="addr1" name="addr1"  th:value="${company.com_addr1}">
                             </div>
                             <!--                            <input type="text" id="sample6_postcode" readonly style="display:none;">-->
 <!--                            <input type="text" id="sample6_extraAddress" readonly style="display:none;">-->
@@ -57,17 +54,17 @@
                         <div class="id_text_input">
                             <div class="join_title point" for="phone" >홈페이지 링크</div>
                             <div class="id_text_input">
-                                <input type="text"  class="idbox_join" id="homepage" name="homepage" placeholder="웹주소" required>
+                                <input type="text"  class="idbox_join" id="homepage" name="homepage" th:value="${company.com_home}">
                             </div>
                         </div>
                         <div class="id_text_input">
                             <div class="join_title point" for="phone">담당자 번호</div>
-                            <input type="text" class="idbox_join" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" required>
+                            <input type="text" class="idbox_join" id="phone" name="phone" th:value="${company.manager_phone}">
                         </div>
                         <div id="phoneError" class="error-message"></div>
                         <div class="id_text_input">
                             <div class="join_title point">이메일</div>
-                            <input type="text" class="idbox_join"  id="email" name="email" placeholder="이메일 형식으로 적어주세요" required>
+                            <input type="text" class="idbox_join"  id="email" name="email" th:value="${company.com_email}">
                         </div>
                         <div id="emailError" class="error-message"></div>
                     </div>
@@ -113,13 +110,10 @@
             <!--  -->
         </div>
     </content>
-
     <div class="sidefooter" th:replace="~{comuser/Side/Mypage/MyPageSide_5 :: MyPageSide_5}"></div>
-
     <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 <script>
     //주소 api 사용
 
@@ -173,9 +167,6 @@
     }).open();
 
 }
-
-
 </script>
 </body>
-
 </html>

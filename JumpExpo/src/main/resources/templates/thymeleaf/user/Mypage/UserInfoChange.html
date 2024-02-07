@@ -29,7 +29,7 @@
                     <div class="join_allform">
                         <div class="id_text_input">
                             <div class="join_title  point">이름</div>
-                            <input type="text" class="idbox_join"  id="name" name="Comname" placeholder="회사 이름" required>
+                            <input type="text" class="idbox_join"  id="name" name="name" th:value="${users.user_name}">
                         </div>
                         <div class="id_text_input">
                             <div class="join_title  point">주소</div>
@@ -40,24 +40,24 @@
                                 <input class="idbox_join" style="display:none;" type="text" id="sample6_extraAddress" readonly>
                             </div>
                             <div class="type">
-                                <input class="idbox_join" type="text" id="sample6_address" name="addr" required readonly >
-                                <input class="idbox_join" type="text" id="addr1" name="addr1"  placeholder="상세주소를 적어주세요">
+                                <input class="idbox_join" type="text" id="sample6_address" name="addr" th:value="${users.user_addr}" readonly >
+                                <input class="idbox_join" type="text" id="addr1" name="addr1" th:value="${users.user_deaddr}"  placeholder="상세주소를 적어주세요">
                             </div>
                         </div>
                         <div class="id_text_input">
                             <div class="join_title point" for="phone" >생년월일</div>
                             <div class="id_text_input">
-                                <input type="text"  class="idbox_join" id="homepage" name="homepage" placeholder="웹주소" required>
+                                <input type="text"  class="idbox_join" id="homepage" name="birth" th:value="${users.user_birth}">
                             </div>
                         </div>
                         <div class="id_text_input">
                             <div class="join_title point" for="phone">전화번호</div>
-                            <input type="text" class="idbox_join" id="phone" name="phone" placeholder="-없이 숫자만 11자리 입력" required>
+                            <input type="text" class="idbox_join" id="phone" name="phone" th:value="${users.user_phone}">
                         </div>
                         <div id="phoneError" class="error-message"></div>
                         <div class="id_text_input">
                             <div class="join_title point">이메일</div>
-                            <input type="text" class="idbox_join"  id="email" name="email" placeholder="이메일 형식으로 적어주세요" required>
+                            <input type="text" class="idbox_join"  id="email" name="email" th:value="${users.user_email}">
                         </div>
                         <div id="emailError" class="error-message"></div>
                     </div>
