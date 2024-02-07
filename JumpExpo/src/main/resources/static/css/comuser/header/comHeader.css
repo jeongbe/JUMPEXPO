@@ -127,3 +127,8 @@ main{
       padding-left: 0rem;
       margin-bottom: 0rem;
     }
+
+.comname_text{
+    position:absolute;
+    left:-110px;
+}
