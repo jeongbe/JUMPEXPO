@@ -180,9 +180,9 @@ public class ExpoUserController {
     }
 
     //2024.01.10 정정빈
-    //박람회 디테일정보 페이지
-    @GetMapping("/expo/info/{expo_code}/{expo_cate}")
-    public String ExpoInfo(Model model, @PathVariable("expo_code")  int expoCode, @PathVariable("expo_cate")  int expoCate){
+    //박람회 디테일정보 페이지 [취업]
+    @GetMapping("/expo/info/{expo_code}/0")
+    public String ExpoInfoRec(Model model, @PathVariable("expo_code")  int expoCode){
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -194,18 +194,67 @@ public class ExpoUserController {
 
 
         ScheduleInsert data = schInsetExpoRepository.findById(expoCode).orElse(null);
-//        log.info(data.toString());
 
         model.addAttribute("ExpoInfo",data);
 
         UserExpoApply Check = userExpoApplyRepository.UserAppCheck(expoCode, users.getUser_code());
-//        log.info(Check.toString());
         if(Check != null){
             model.addAttribute("Check",Check);
         }
 
+        return "user/expo/expoInfoRec";
+    }
 
-        return "user/expo/expoInfo";
+    //2024.01.10 정정빈
+    //박람회 디테일정보 페이지 [페어]
+    @GetMapping("/expo/info/{expo_code}/1")
+    public String ExpoInfoFair(Model model, @PathVariable("expo_code")  int expoCode){
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+        log.info(users.toString());
+
+
+        ScheduleInsert data = schInsetExpoRepository.findById(expoCode).orElse(null);
+
+        model.addAttribute("ExpoInfo",data);
+
+        UserExpoApply Check = userExpoApplyRepository.UserAppCheck(expoCode, users.getUser_code());
+        if(Check != null){
+            model.addAttribute("Check",Check);
+        }
+
+        return "user/expo/expoInfoFair";
+    }
+
+    //2024.01.10 정정빈
+    //박람회 디테일정보 페이지 [채용]
+    @GetMapping("/expo/info/{expo_code}/2")
+    public String ExpoInfoEmp(Model model, @PathVariable("expo_code")  int expoCode){
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+        log.info(users.toString());
+
+
+        ScheduleInsert data = schInsetExpoRepository.findById(expoCode).orElse(null);
+
+        model.addAttribute("ExpoInfo",data);
+
+        UserExpoApply Check = userExpoApplyRepository.UserAppCheck(expoCode, users.getUser_code());
+        if(Check != null){
+            model.addAttribute("Check",Check);
+        }
+
+        return "user/expo/expoInfoEmp";
     }
 
     //2024.01.17 정정빈

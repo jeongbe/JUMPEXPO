@@ -225,3 +225,7 @@ margin-left:20px;
     bottom: 0px;
     cursor: pointer;
   }
+
+  .expo_explanation > p > img{
+  width: 920px;
+  }

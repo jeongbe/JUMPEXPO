@@ -85,7 +85,7 @@
                                     <tr th:each="designList, iterStat : ${designList}">
                                         <td class="td_number" th:text="${iterStat.index + 1}">1</td>
                                         <td>
-                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${designList.emnot_code}, com_code=${designList.com_code})}" th:text="${designList.emnot_title}"></a>
+                                            <a th:href="@{'/users/show/employlist/' + ${designList.emnot_code} + '/' + ${designList.com_code} + '/' + ${userCode}}" th:text="${designList.emnot_title}"></a>
                                         </td>
                                         <td>
                                             <span th:text="${designList.emnot_start}">2024-01-04</span>
@@ -121,8 +121,7 @@
                                     <tr th:each="frontList, iterStat : ${frontList}">
                                         <td class="td_number" th:text="${iterStat.index + 1}">1</td>
                                         <td>
-                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${frontList.emnot_code}, com_code=${frontList.com_code})}" th:text="${frontList.emnot_title}"></a>
-                                        </td>
+                                            <a th:href="@{'/users/show/employlist/' + ${frontList.emnot_code} + '/' + ${frontList.com_code} + '/' + ${userCode}}" th:text="${frontList.emnot_title}"></a>                                        </td>
                                         <td>
                                             <span th:text="${frontList.emnot_start}">2024-01-04</span>
                                             <span>~</span>
@@ -155,8 +154,7 @@
                                     <tr th:each="backendList, iterStat : ${backendList}">
                                         <td class="td_number" th:text="${iterStat.index + 1}">1</td>
                                         <td>
-                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${backendList.emnot_code}, com_code=${backendList.com_code})}" th:text="${backendList.emnot_title}"></a>
-                                        </td>
+                                            <a th:href="@{'/users/show/employlist/' + ${backendList.emnot_code} + '/' + ${backendList.com_code} + '/' + ${userCode}}" th:text="${backendList.emnot_title}"></a>                                        </td>
                                         <td>
                                             <span th:text="${backendList.emnot_start}">2024-01-04</span>
                                             <span>~</span>
@@ -189,8 +187,7 @@
                                     <tr th:each="etcList, iterStat : ${etcList}">
                                         <td class="td_number" th:text="${iterStat.index + 1}">1</td>
                                         <td>
-                                            <a th:href="@{/users/show/employlist/{emnot_code}/{com_code}(emnot_code=${etcList.emnot_code}, com_code=${etcList.com_code})}" th:text="${etcList.emnot_title}"></a>
-                                        </td>
+                                            <a th:href="@{'/users/show/employlist/' + ${etcList.emnot_code} + '/' + ${etcList.com_code} + '/' + ${userCode}}" th:text="${etcList.emnot_title}"></a>                                        </td>
                                         <td>
                                             <span th:text="${etcList.emnot_start}">2024-01-04</span>
                                             <span>~</span>

@@ -141,7 +141,7 @@ color: #414141;
     color: red;
 }
 
-    img{
+    td > img{
         width: 250px;
         height: 250px;
         text-align: center;

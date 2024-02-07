@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/user/expo/AdExpoInfo.css" />
+    <title>박람회 정보</title>
+</head>
+<div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
+<div class="s_header" th:replace="~{user/side/expo/expoSide_2 :: expoSide_2}"></div>
+
+<body>
+    <div class="container" style="width:920px;">
+        <div class="title-box">
+            <div class="body_title">
+                <span class="t1"></span>
+                <span class="t2"></span>
+            </div>
+
+            <div class="body_title_right">
+                <img
+                    src="/static/images/home.png"
+                    alt="홈 아이콘"
+                    style="width: 20px"
+                />
+                > 행사일정 > <span class="span">df</span>
+                <p class="cate" style="display:none" th:text="${ExpoInfo.expo_cate}"></p>
+            </div>
+        </div>
+        <div class="expo_name_box">
+            <p th:text="${ExpoInfo.expo_title}">엑스포이름</p>
+        </div>
+        <div class="expo_info_box">
+            <div class="img_box">
+                <img th:src="@{'http://192.168.2.3/images/a/' + ${ExpoInfo.expo_image}}" alt="" />
+            </div>
+            <div class="expo_info">
+                <div class="expo_name info_box1">
+                    <span>행사명 :</span>
+                    <span th:text="${ExpoInfo.expo_title}">행사 이름</span>
+                </div>
+                <div class="expo_Period info_box1">
+                    <span>개최 기간 :</span>
+                    <span th:text="${ExpoInfo.expo_start}"></span>
+                    <span>~</span>
+                    <span th:text="${ExpoInfo.expo_end}"></span>
+                </div>
+                <div class="expo_time info_box1">
+                    <span>관람시간 :</span>
+                    <span th:text="${ExpoInfo.expo_time}">시간</span>
+                    <span>~</span>
+                    <span th:text="${ExpoInfo.expo_end_time}">시간</span>
+                </div>
+                <div class="expo_place info_box1">
+                    <span>개최장소 :</span>
+                    <span th:text="${ExpoInfo.expo_add}">장소</span>
+                </div>
+            </div>
+        </div>
+        <div class="outline_box">
+            <div class="o_box1">
+                <p>전시 개요</p>
+            </div>
+            <div class="o_box2">
+                <span th:text="${ExpoInfo.expo_outline}">전시내용</span>
+            </div>
+        </div>
+        <div class="expo_info_box2">
+            <div class="info_box2">
+                <p>주최</p>
+                <p th:text="${ExpoInfo.expo_host}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>주관</p>
+                <p th:text="${ExpoInfo.expo_manage}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>전시품목</p>
+                <p th:text="${ExpoInfo.expo_exhibit}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>담당자</p>
+                <p th:text="${ExpoInfo.master_name}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>전화번호</p>
+                <p th:text="${ExpoInfo.master_phone}">정보</p>
+            </div>
+            <div class="info_box2">
+                <p>이메일</p>
+                <p th:text="${ExpoInfo.master_mail}">정보</p>
+            </div>
+        </div>
+        <div class="expo_explanation" th:utext="${ExpoInfo.expo_content}"></div>
+        <div class="line2"></div>
+
+        <div class="btn_box">
+            <form action="/users/apply/expo" method="post">
+                <input type="hidden" name="UserCode" th:value="${users.user_code}">
+                <input type="hidden" name="ExpoCode" th:value="${ExpoInfo.expo_code}">
+                <input type="hidden" name="ExpoCate" th:value="${ExpoInfo.expo_cate}">
+                <button type="submit">신청하기</button>
+            </form>
+            <button class="list"><a href="/users/allexpo" style="color:#fff; text-decoration:none;">목록</a></button>
+        </div>
+    </div>
+
+<script>
+    function autoResizeTextArea(element) {
+        // 스크롤 높이 초기화
+        element.style.height = 'auto';
+        // 현재 스크롤 높이 설정
+        element.style.height = element.scrollHeight + 'px';
+    }
+
+    // 페이지 로드시 자동으로 높이 조절
+    document.addEventListener('DOMContentLoaded', function () {
+        var textArea = document.querySelector(
+            '.expo_explanation textarea'
+        );
+        autoResizeTextArea(textArea);
+    });
+
+    let cate = document.querySelector('.cate').textContent;
+    console.log(cate);
+
+    let t1 = document.querySelector('.t1');
+    let t2 = document.querySelector('.t2');
+
+    let span = document.querySelector('.span');
+
+    if(cate == 2){
+        t1.textContent = '채용박람회';
+        t2.textContent = '일정';
+        span.textContent = '채용박람회 일정';
+    }else if(cate == 0){
+        t1.textContent = '취업박람회';
+        t2.textContent = '일정';
+        span.textContent = '취업박람회 일정';
+    }else if(cate == 1){
+        t1.textContent = '페어박람회';
+        t2.textContent = '일정';
+        span.textContent = '페어박람회 일정';
+    }
+
+</script>
+</body>
+<!--<div class="s_header" th:replace="~{user/footer/userFooter2 :: userFooter2}"></div>-->
+</html>

@@ -1,24 +1,11 @@
 .a{
-    /* background-color: aqua; */
     height: 100px;
     width: 350px;
 }
 
 .b{
     text-align: center;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     font-size: 30px;
-}
-
-.c{
-    background-color: #ccc;
-    width: 120px;
-}
-
-tr td{
-    height: 40px;
 }
 
 .d{
@@ -26,42 +13,96 @@ tr td{
     align-items: center;
     justify-content: center;
     text-align: center;
-    /* border: 1px solid #ccc; */
-    /* border-collapse: collapse; */
 }
 
-img{
-    /* background-color: aquamarine; */
-    min-width: 200px;
-    width: auto;
-    height: 100px;
+.cominfo_main_title{
+    width: 797px;
+    height: 50px;
+    /* background-color: yellow; */
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
 }
+
+.cominfo_main_title > span{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.cominfo_img{
+    width: 163px;
+    height: 167px;
+    margin: 0;
+    padding: 0;
+}
+
+.cominfo_img > img{
+    width: 100%;
+    height: 100%;
+        margin: 0;
+        padding: 0;
+}
+
+.cominfo_body_table{
+    width: 120px;
+    font-size: 14px;
+    padding: 5px;
+    color: #494949;
+}
+
+.cominfo_body_table2{
+    font-size: 14px;
+    padding: 5px;
+    color: #494949;
+}
+
+.cominfo_body_table3{
+    font-size: 14px;
+    padding: 5px;
+    color: #494949;
+    width: 200px;
+}
+
 
 table{
     width: auto;
     height: auto;
     border-collapse: collapse;
+    margin-left: 30px;
 }
 
-.f, .f > td{
-    border: 1px solid #808080;
+.c, .cominfo_body_table, .cominfo_body_table2, .cominfo_body_table3, .cominfo_img{
+    /* border-bottom: 1px solid #b1b1b1; */
+    border: 1px solid #bbbbbb;
 
+}
+
+.c{
+    background-color: #eeeeee;
+    width: 120px;
+    font-size: 14px;
+    padding: 5px;
+    color: #494949;
+    font-weight: 540;
 }
 
 .g{
-    border: 1px solid #808080;
+    /* border: 1px solid #808080; */
 }
 
+
+
 .btn_box_{
-    width: 700px;
+    width: 797px;
     /* background-color: aqua; */
     text-align: center;
     margin-top: 20px;
 }
 
 .btn_box_ > button {
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 35px;
     background-color: #374658;
     color: white;
+    border: none;
 }
