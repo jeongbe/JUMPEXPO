@@ -33,13 +33,12 @@
                         <h1 id="YearText" class=""></h1>
                         <h1 id="MonthText"></h1>
                         <button class="MonthUp">></button>
-                        <button class="ins_" th:onclick="'javascript:openPopup(\'/users/save/inter/' + ${userCode} + '\', 300, 300)'">일정 추가</button>
+                        <button class="ins_" th:onclick="'javascript:openPopup(\'/users/save/inter/' + ${userCode} + '\', 310, 320)'">일정 추가</button>
                     </div>
 
                     <div id="calendar">
                     </div>
-
-
+                    <div class="sdf"></div>
                 </div>
             </div>
 
@@ -137,7 +136,7 @@ function generateCalendar(year, month) {
    //날짜
    var calendarDay = 0;
    html +=
-       '<tr class="days" style="height:50px";><th style="color: #ea8874; text-align:center;">일요일</th><th style="text-align:center;">월요일</th><th style="text-align:center;">화요일</th><th style="text-align:center;">수요일</th><th style="text-align:center;">목요일</th><th style="text-align:center;">금요일</th><th style="color: #374658; text-align:center;">토요일</th></tr>';
+       '<tr class="days" style="height:50px";><th style="color: #ea8874; text-align:center;">일요일</th><th style="text-align:center;">월요일</th><th style="text-align:center;">화요일</th><th style="text-align:center;">수요일</th><th style="text-align:center;">목요일</th><th style="text-align:center;">금요일</th><th style="color: cornflowerblue;; text-align:center;">토요일</th></tr>';
    for (var index1 = 0; index1 < calWeekCount; index1++) {
        //tr을 weekCount만큼 반복해줌 즉 6번
        html += '<tr>';
@@ -146,11 +145,11 @@ function generateCalendar(year, month) {
            var isSunday = index2 === 0; // 일요일 확인
            var isSaturday = index2 === 6; // 토요일 확인
            var cellStyle =
-               'border: solid 1px #787878; width:150px; height:130px;';
+               'border: solid 1px #787878; width:150px; height:130px; position:relative;';
            if (isSunday) {
                cellStyle += 'color: #ea8874;';
            } else if (isSaturday) {
-               cellStyle += 'color: #374658;';
+               cellStyle += 'color: cornflowerblue;';
            }
            html += `<td class="td_c"  style="${cellStyle}">`;
            if (
@@ -159,7 +158,7 @@ function generateCalendar(year, month) {
            ) {
                calendarDay++;
                html +=
-                   `<span  id="day${calendarDay}" class="inter_td ic" style="display: flex; position: relative; ">` +
+                   `<span  id="day${calendarDay}" class="inter_td ic" style="display: flex; position: absolute; bottom: 85px;">` +
                    calendarDay +
                    '</span>';
 
@@ -176,7 +175,7 @@ function generateCalendar(year, month) {
                         console.log("sdfsdf",d1,d2,d3);
                         if(parseInt(calenderYear) == parseInt(d1) && parseInt(calendarDay) == parseInt(d3) && parseInt(calMonth) == parseInt(d2)){
 
-                            html += `<span class="sch ic" style="display:flex; cursor: pointer;" onclick="openPopup('/users/update/sc/${userSc[i].sc_num}', 300, 300)">${userSc[i].sc_title}</span>`;
+                            html += `<span class="sch ic" style="display:flex; cursor: pointer;  " onclick="openPopup('/users/update/sc/${userSc[i].sc_num}', 310, 320)">${userSc[i].sc_title}</span>`;
 
                         }
                    }
@@ -205,20 +204,23 @@ function updateCalendar() {
    var calendar = generateCalendar(Year, Month);
    $('#calendar').html(calendar);
 
-   var tdElements = document.querySelectorAll('#calendar td');
+var today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-   tdElements.forEach(function(tdElement) {
+    var tdElements = document.querySelectorAll('#calendar td');
 
-       var spanElements = tdElement.querySelectorAll('span');
+    tdElements.forEach(function (tdElement) {
+        var spanElements = tdElement.querySelectorAll('span');
 
-       if (spanElements.length >= 2 && !tdElement.classList.contains('cle_')) {
-           var spanElements = tdElement.querySelectorAll('span');
+        if (spanElements.length > 0) {
+            var dayNumber = parseInt(spanElements[0].innerText);
+            var currentDate = new Date(Year, Month - 1, dayNumber);
 
-           if (spanElements.length > 0) {
-               spanElements[0].classList.add('cle_');
-           }
-       }
-   });
+            if (currentDate.getTime() === today.getTime()) {
+                spanElements[0].classList.add('cle_');
+            }
+        }
+    });
 
 }
 

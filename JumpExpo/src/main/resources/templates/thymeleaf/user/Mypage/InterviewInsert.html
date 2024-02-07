@@ -11,27 +11,30 @@
   <div class="user_Sc_box">
     <input type="hidden" name="UserCode" th:value="${userCode}" id="">
     <div class="sc_title">
-      <label for="ti">제목</label>
-      <input type="text" name="ScTitle" maxlength="25" id="ti" />
+      <label for="ti"></label>
+      <input type="text" style="border-bottom: 1px solid #ccc;" placeholder="제목" name="ScTitle" maxlength="25" id="ti" />
     </div>
-    <div class="sc_Sday">
-      <label for="sc_s">시작</label>
-      <input type="date"  name="ScStart" id="sc_s" />
-      <input type="time" name="StartTime"  />
-    </div>
-    <div class="sc_Eday">
-      <label for="sc_e">종료</label>
-      <input type="date" name="ScEnd" id="sc_e" />
-      <input type="time" name="EndTime" />
+    <div class="ds">
+      <div class="sc_Sday">
+        <label for="sc_s"></label>
+        <input type="date"  name="ScStart" id="sc_s" />
+        <input type="time" style="width: 122px;" class="ti" name="StartTime"  />
+      </div>
+      <div class="sss">→</div>
+      <div class="sc_Eday">
+        <label for="sc_e"></label>
+        <input type="date" name="ScEnd" id="sc_e" />
+        <input type="time" style="width: 122px;" class="ti" name="EndTime" />
+      </div>
     </div>
     <div class="sc_etc">
-      <label for="sc_etc_">메모</label>
+      <label for="sc_etc_"></label>
       <textarea
               name="ScNot"
               id="sc_etc_"
               cols="30"
               rows="10"
-              placeholder="최대 200글자"
+              placeholder="메모"
               maxlength="200"
       ></textarea>
     </div>

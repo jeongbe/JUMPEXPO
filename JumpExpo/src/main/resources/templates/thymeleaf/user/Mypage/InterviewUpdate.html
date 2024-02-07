@@ -11,32 +11,35 @@
   <div class="user_Sc_box">
     <input type="hidden" name="UserCode" th:value="${userCode}" id="">
     <div class="sc_title">
-      <label for="ti">제목</label>
-      <input type="text" name="ScTitle" th:value="${getScData.sc_title}" maxlength="25" id="ti" />
+      <label for="ti"></label>
+      <input type="text" style="border-bottom: 1px solid #ccc;" name="ScTitle" placeholder="제목" th:value="${getScData.sc_title}" maxlength="25" id="ti" />
     </div>
-    <div class="sc_Sday">
-      <label for="sc_s">시작</label>
-      <input type="date"  th:value="${getScData.sc_start}" name="ScStart" id="sc_s" />
-      <input type="time" th:value="${getScData.start_time}" name="StartTime"  />
-    </div>
-    <div class="sc_Eday">
-      <label for="sc_e">종료</label>
-      <input type="date" name="ScEnd" th:value="${getScData.sc_end}" id="sc_e" />
-      <input type="time" name="EndTime" th:value="${getScData.end_time}" />
+    <div class="ds">
+      <div class="sc_Sday">
+        <label for="sc_s"></label>
+        <input type="date"  th:value="${getScData.sc_start}" name="ScStart" id="sc_s" />
+        <input type="time" style="width: 122px;" th:value="${getScData.start_time}" name="StartTime"  />
+      </div>
+      <div class="sss">→</div>
+      <div class="sc_Eday">
+        <label for="sc_e"></label>
+        <input type="date" name="ScEnd" th:value="${getScData.sc_end}" id="sc_e" />
+        <input type="time" style="width: 122px;" name="EndTime" th:value="${getScData.end_time}" />
+      </div>
     </div>
     <div class="sc_etc">
-      <label for="sc_etc_" >메모</label>
+      <label for="sc_etc_" ></label>
       <textarea
               th:text="${getScData.sc_not}"
               name="ScNot"
               id="sc_etc_"
               cols="30"
               rows="10"
-              placeholder="최대 200글자"
+              placeholder="메모"
               maxlength="200"
       ></textarea>
     </div>
-    <div class="sc_btn_box">
+    <div class="sc_btn_box2">
       <button type="button" onclick="submitAndClose()">수정하기</button>
       <button type="button" onclick="deleteSchedule()">삭제하기</button>
     </div>

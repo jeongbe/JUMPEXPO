@@ -139,6 +139,8 @@ height:1500px;
 
 .sch{
     cursor:pointer;
+    position: relative;
+    top: 10px;
 }
 
 #calendar{

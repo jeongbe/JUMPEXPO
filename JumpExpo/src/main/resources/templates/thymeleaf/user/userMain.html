@@ -103,7 +103,7 @@
             <p class="imp_tit2">2024년 1월</p>
             <div class="ddd">
                 <div class="line fq"></div>
-                <div class="expos" th:each="list : ${expolist}">
+                <div class="expos" style="cursor:pointer;" th:each="list : ${expolist}" th:onclick="'javascript:location.href=&quot;/users/expo/info/' + ${list.expo_code}+ '/'+ ${list.expo_cate} + '&quot;'">
                     <div class="expo_img">
                         <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
                     </div>
@@ -113,10 +113,10 @@
                             <p  th:text="${list.expo_start}">시작일</p>
                             <p  th:text="${list.expo_end}">종료일</p>
                         </div>
-                        <p  th:text="${list.expo_add}">장소</p>
+                        <p class="expo_days"  th:text="${list.expo_add}">장소</p>
                     </div>
                 </div>
-                <div class="line2"></div>
+<!--                <div class="line2"></div>-->
 
                 <div class="line"></div>
             </div>
@@ -129,8 +129,8 @@
         <div class="list_">
             <div class="ann_list_box tts">
                 <div class="h">
-                    <p>공지</p>
-                    <p><a href="/users/show/nt">+</a></p>
+                    <p class="h_title">공지</p>
+                    <p><a class="pl" href="/users/show/nt">+</a></p>
                 </div>
                 <div class="a_list" th:each="list2 : ${noList}">
                     <ul class="main_ul">
@@ -141,12 +141,12 @@
             </div>
             <div class="ann_list_box">
                 <div class="h">
-                    <p>Q&A</p>
-                    <p><a href="/users/show/qu">+</a></p>
+                    <p class="h_title">Q&A</p>
+                    <p><a class="pl" href="/users/show/qu">+</a></p>
                 </div>
                 <div class="a_list" th:each="list3 : ${qnaList}">
                     <ul class="main_ul">
-                        <li th:text="${list3.qu_title}">qn 이름1</li>
+                        <li th:text="${list3.qu_title}" th:onclick="'javascript:location.href=&quot;/users/show/qu/' + ${list3.qu_num} + '&quot;'">qn 이름1</li>
                         <span th:text="${list3.qu_date}">날짜</span>
                     </ul>
                 </div>

@@ -175,6 +175,6 @@ public interface SchInsetExpoRepository extends JpaRepository<ScheduleInsert, In
             "    (MONTH(expo_start) = MONTH(CURDATE()) AND expo_start >= CURDATE()) OR\n" +
             "    (MONTH(expo_start) > MONTH(CURDATE()))\n" +
             "ORDER BY expo_start\n" +
-            "LIMIT 3;\n", nativeQuery = true)
+            "LIMIT 4;\n", nativeQuery = true)
     public List<ScheduleInsert> getMainExpoList();
 }

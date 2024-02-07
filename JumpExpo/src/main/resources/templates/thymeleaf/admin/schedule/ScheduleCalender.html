@@ -131,7 +131,7 @@ function generateCalendar(year, month) {
             var isSunday = index2 === 0; // 일요일 확인
             var isSaturday = index2 === 6; // 토요일 확인
             var cellStyle =
-                'border: solid 1px black; width:150px; height:130px;';
+                'border: solid 1px black; width:150px; height:130px; position:relative;';
             if (isSunday) {
                 cellStyle += 'color: red;';
             } else if (isSaturday) {
@@ -144,7 +144,7 @@ function generateCalendar(year, month) {
             ) {
                 calendarDay++;
                 html +=
-                    '<span style="display: flex; padding: 10px; position: relative; bottom: 40px; font-size:20px;">' +
+                    '<span style="display: flex; padding: 10px; position: absolute; bottom: 85px; font-size:20px;">' +
                     calendarDay +
                     '</span>';
 

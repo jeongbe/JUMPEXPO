@@ -24,7 +24,7 @@ body {
 }
 
 .dd {
-    width: 1100px;
+    width: 1554px;
 }
 
 .imp_expo div p {
@@ -32,7 +32,7 @@ body {
 }
 
 .imp_tit {
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
     /* background-color: aqua; */
     text-align: center;
@@ -42,11 +42,13 @@ body {
     /* background-color: antiquewhite; */
     text-align: center;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .line {
-    width: 950px;
+    width: 1373px;
     border: 2px solid #374658;
+    margin-top: 20px;
 }
 
 .ddd {
@@ -65,15 +67,17 @@ body {
     height: auto;
     /* align-items: center; */
     /* justify-content: center; */
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .expo_img > img {
-    margin-top: 10px;
-    margin-left: 10px;
+    /* margin-top: 10px; */
+    /* margin-left: 10px; */
     background-color: antiquewhite;
-    width: 130px;
-    height: 70px;
+    width: 180px;
+    height: 85px;
+    position: relative;
+    top: 10px;
 }
 
 .expo_img {
@@ -84,13 +88,17 @@ body {
 }
 
 .expo_info_ {
-    font-size: 15px;
-    margin-top: 10px;
-    margin-left: 20px;
+    font-size: 22px;
+    /* margin-top: 10px; */
+    /* margin-left: 20px; */
+    position: relative;
+    left: 60px;
+    top: 10px;
 }
 
 .expo_days {
     display: flex;
+    font-size: 18px;
 }
 
 .line2 {
@@ -116,8 +124,8 @@ body {
 
 .more_expo > button {
     background-color: white;
-    width: 190px;
-    height: 40px;
+    width: 220px;
+    height: 55px;
     font-size: 19px;
     font-weight: bold;
     border: 3px solid #374658;
@@ -166,6 +174,7 @@ body {
     padding-right: 0px;
     border-bottom: 1px solid #ccc;
     padding-top: 5px;
+    cursor:pointer;
 }
 
 ul.main_ul:nth-child(1) {
@@ -185,4 +194,14 @@ ul > span {
 }
 .bac {
 margin-top:60px;
+}
+
+.h_title{
+    position: relative;
+    top: 8px;
+    left: 10px;
+}
+
+.pl{
+    color:#374658;
 }

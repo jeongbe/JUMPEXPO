@@ -24,6 +24,7 @@ table {
 /*컨텐츠 공통사항*/
 .contents div {
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .contents>div:nth-of-type(2) {
@@ -139,6 +140,7 @@ tr {
     background-color: white;
     margin-top: 5px;
     font-size: 40px;
+    margin-bottom: 10px;
 }
 
 .MonthDown{
@@ -155,8 +157,9 @@ tr {
 }
 
 .YearText{
-    color: #374658;
+    color: #808080;
     width: 100px;
+    margin-right: 10px;
 }
 
 .MonthText{
@@ -205,8 +208,8 @@ tr {
     width: 30px;
     border-radius: 50%;
     height: 30px;
-     text-align: center;
-/*    padding-left: 10px;*/
+    text-align: center;
+    justify-content: center;
 
     margin-left: 10px;
     flex-direction: column;
@@ -219,8 +222,11 @@ span#day6 {}
 }
 
 .sch {
-    color:#808080;
-    margin-left:10px;
+    color: #444444;
+    padding: 5px;
+    background-color: pink;
+    position: relative;
+    top: 15px;
 }
 
 .cle_{
@@ -233,4 +239,12 @@ span#day6 {}
 }
 .YearText::after{
     content: '년';
+}
+
+.td_c .sch:nth-child(3){
+    background-color:antiquewhite;
+}
+
+.sdf {
+    height: 20px;
 }
