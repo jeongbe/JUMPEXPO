@@ -23,6 +23,7 @@
             <div class="header_right">
                 <!-- 유저 모델이 존재하는 경우 -->
                 <th:block th:if="${users ne null}">
+                    <p th:text="${users.user_name}"></p>
                     <a th:href="@{/users/myPage}">
                         <div class="mypage" style="margin-right:40px;">
                             <img src="/static/images/mypage_icon.png" alt="마이페이지이미지" style="width:30px; height:30px;" onmouseover="this.src='/static/images/mypage_hover.png'">
