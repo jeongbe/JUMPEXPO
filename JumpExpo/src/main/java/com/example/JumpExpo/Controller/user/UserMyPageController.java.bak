@@ -553,9 +553,7 @@ public class UserMyPageController {
     //2024.01.24 박은채
     //유저 채용 신청 내역
     @GetMapping("/mypage/employ/apply")
-    public String emAccept(Model model,@RequestParam(value="page", defaultValue="0")int page,
-                           @RequestParam(value = "serch",required = false)String serch,@RequestParam(name = "date_start", defaultValue = "0") String dateStart ,
-                           @RequestParam(name = "date_end", defaultValue = "0") String dateEnd) {
+    public String emAccept(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // 현재 인증된 사용자의 사용자명을 가져옵니다.
         String username = authentication.getName();
@@ -564,23 +562,16 @@ public class UserMyPageController {
 
         model.addAttribute("userCode", users.getUser_code());
 
-        log.info("시작날" + dateStart);
-        log.info("끝날" + dateEnd);
-
-        Page<UserEmployApplyList> applyList = null;
-
-
-        //검색어 있을때
-        if(serch != null && dateStart != null && dateEnd != null){
-//            applyList = expoService.getSerchRecList(page,serch,dateStart,dateEnd);
-            applyList = expoService.getSearchEmpList(page,users.getUser_code(),serch,dateStart,dateEnd);
-            log.info(applyList.toString());
-        }else {
-            applyList = expoService.getEmpList(page,users.getUser_code());
-        }
+        //applyemploy da
+//        ArrayList<ApplyEmploy> applyUser = applyEmployRepository.UserApplyList(users.getUser_code());
+//        PeremApplyUser peremApplyUser = peremApplyRepository.findById(users.getUser_code()).orElse(null);
+        ArrayList<UserEmployApplyList> applyList = userEmployApplyListRepository.applyList(users.getUser_code());
+        log.info(applyList.toString());
 
         model.addAttribute("apply", applyList);
-        model.addAttribute("TotalPage",applyList.getTotalPages());
+//        model.addAttribute("perem", peremApplyUser);
+
+
 
         return "user/MyPage/UserEmployAccept";
     }

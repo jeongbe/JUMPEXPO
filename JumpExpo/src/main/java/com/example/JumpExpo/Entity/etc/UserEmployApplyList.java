@@ -44,4 +44,8 @@ public class UserEmployApplyList {
 
     @Column
     int com_code;
+
+//    @Column(name = "p.pem_date")
+//    @Temporal(TemporalType.DATE)
+//    Date pem_date;
 }

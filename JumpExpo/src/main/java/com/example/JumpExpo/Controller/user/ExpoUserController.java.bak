@@ -164,16 +164,16 @@ public class ExpoUserController {
         //검색어 있을때
         if(serch != null && dateStart != null && dateEnd != null){
             AllList = expoService.getSerchRecList(page,serch,dateStart,dateEnd);
-//            log.info(AllList.toString());
+            log.info(AllList.toString());
         }else {
             AllList = expoService.getUserRecList(page);
         }
 
         model.addAttribute("AllList",AllList);
-//        log.info(AllList.toString());
+        log.info(AllList.toString());
 
         model.addAttribute("TotalPage",AllList.getTotalPages());
-//        log.info("페이지 수"+AllList.getTotalPages());
+        log.info("페이지 수"+AllList.getTotalPages());
 
 
         return "user/expo/ExpoRecList";
