@@ -42,22 +42,9 @@
 
     <!-- side 끝 -->
     <div class="s_header" th:replace="~{user/side/review/reviewSide :: reviewSide}"></div>
-    <!-- <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div> -->
-    <!-- footer 끝 -->
+
 </main>
 <script  th:inline="javascript">
-    <!--    // header script-->
-        $(document).ready(function () {
-    <!--        //**** 마우스오버  ****//-->
-            //서브메뉴 숨기고 시작
-            $(".subMenu").hide();
-    <!--        // 마우스 오버-->
-            $(".mainMenu, .subMenu").mouseover(function () {
-                $(".subMenu").stop().slideDown(500);
-            }).mouseout(function () {
-                $(".subMenu").stop().slideUp(500);
-            });
-        });
 
     function goBack(){
         window.history.back();
@@ -107,6 +94,15 @@
         background-color: #374658;
         top:300px;
     }
+    .subMenu{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    background:#ECECEC;
+    position:absolute;
+    z-index: 1;
+    top: 100px;
+  }
 </style>
 </body>
 

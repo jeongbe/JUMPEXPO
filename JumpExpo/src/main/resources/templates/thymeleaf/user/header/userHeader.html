@@ -22,7 +22,7 @@
             </nav>
             <div class="header_right">
                 <!-- 유저 모델이 존재하는 경우 -->
-                <p th:text="${users.user_name}" class="username_text"></p>
+                <span th:text="${users.user_name}" class="username_text"></span>
                 <th:block th:if="${users ne null}">
                     <a th:href="@{/users/myPage}">
                         <div class="mypage" style="margin-right:40px;">

@@ -167,7 +167,14 @@ input[type='date'] {
             margin-top: 20px;
         margin-left: 20px;
 }
+.expo-info-box {
+    display: flex;
+    cursor: pointer;
+}
 
+.expo-info-box:hover {
+    opacity: 0.7;
+}
 
 .period-box2 {
     display: flex;

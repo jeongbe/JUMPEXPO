@@ -24,7 +24,7 @@
                 <a href="#">고객센터</a>
             </nav>
             <div class="header_right">
-                <p th:text="${company.com_name}" class="comname_text"></p>
+                <span th:text="${company.com_name}" class="comname_text"></span>
                 <th:block th:if="${company ne null}">
                     <a th:href="@{/com/myPage}">
                         <div class="mypage" style="margin-right:40px;">

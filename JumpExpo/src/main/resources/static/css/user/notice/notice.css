@@ -44,10 +44,10 @@
  .con_search{
     position: absolute;
     top: 110px;
-    left:-50px;
+    left: -70px;
   }
   .search {
-    width: 70px;
+    width: 100px;
     height: 36px;
     text-align: center;
     border: 2px solid #ccc;
@@ -55,12 +55,12 @@
   .con_search input[type=text]{
     border: 2px solid #ccc;
     box-sizing:border-box;
-    width: 600px;
+    width: 690px;
     height: 36px;
   }
   .con_search button {
     border: 2px solid #ccc;
-    width: 110px;
+    width: 120px;
     height: 36px;
     color: #fff;
     background-color: #374658;

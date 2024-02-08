@@ -186,6 +186,11 @@ input[type='date'] {
 .expo-info-box {
     margin-top: 20px;
     display: flex;
+    cursor: pointer;
+}
+
+.expo-info-box:hover {
+    opacity: 0.7;
 }
 
 .cont-img {
