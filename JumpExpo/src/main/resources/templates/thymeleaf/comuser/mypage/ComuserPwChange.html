@@ -68,7 +68,6 @@
     </content>
     <div class="sidefooter" th:replace="~{comuser/Side/Mypage/MyPageSide_6 :: MyPageSide_6}"></div>
 
-    <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </main>
 <script th:if="${param.error}" type="text/javascript">
     alert('비밀번호를 다시 확인하세요.');
@@ -87,7 +86,16 @@
         });
     });
 </script>
-
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+<style>
+    footer {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      top:820px;
+      background-color: #374658;
+    }
+</style>
 
 
 </body>

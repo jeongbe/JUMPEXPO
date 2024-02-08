@@ -111,7 +111,6 @@
         </div>
     </content>
     <div class="sidefooter" th:replace="~{comuser/Side/Mypage/MyPageSide_5 :: MyPageSide_5}"></div>
-    <div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
 </main>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -168,5 +167,15 @@
 
 }
 </script>
+<div class="s_header" th:replace="~{comuser/footer/comFooter :: comFooter}"></div>
+<style>
+    footer {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      top:1200px;
+      background-color: #374658;
+    }
+</style>
 </body>
 </html>
