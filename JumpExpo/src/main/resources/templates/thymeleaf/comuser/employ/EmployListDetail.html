@@ -92,6 +92,7 @@
             </div>
         </div>
     </div>
+    <div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
 <!--    JavaScript 코드 내에서 변수를 초기화 < th:inline="javascript"-->
     <script th:inline="javascript">
 
@@ -111,8 +112,23 @@
 
     </script>
 
-    </script>
+<!--    <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>-->
+<!--    <style>-->
+<!--        html, body{height: 100%}-->
+<!--        .body_data {-->
+<!--         height:auto;-->
+<!--        min-height: 100%;-->
+<!--        padding-bottom: 100px;-->
+<!--        }-->
+<!--        footer {-->
+<!--            width: 100%;-->
+<!--            height: 100px;-->
+<!--           position: relative;-->
+<!--            transform: translateY(-100%);-->
+<!--            background-color: #374658;-->
+<!--            top:100px;-->
+<!--        }-->
+<!--    </style>-->
+</body>
 
-    </body>
-<div class="sidefooter" th:replace="~{user/side/employSide :: employSide}"></div>
 </html>

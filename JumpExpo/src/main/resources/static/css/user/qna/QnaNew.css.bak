@@ -74,7 +74,7 @@ left:110px;
     background-color: #374658;
     position: absolute;
     left: 730px;
-    top: 630px;
+    top: 600px;
     cursor: pointer;
   }
 

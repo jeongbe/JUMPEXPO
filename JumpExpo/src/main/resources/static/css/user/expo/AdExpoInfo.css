@@ -230,3 +230,16 @@ margin-left:20px;
   .expo_explanation > p > img{
   width: 920px;
   }
+
+ .listss{
+    border: 2px solid #ccc;
+    width: 110px;
+    height: 30px;
+    color: #fff;
+    background-color: #374658;
+    position: relative;
+    top: 18px;
+    left: 400px;
+    bottom: 0px;
+    cursor: pointer;
+  }
