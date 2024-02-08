@@ -14,7 +14,7 @@
             display: flex;
             list-style: none;
             padding: 0;
-             margin-top: 300px;
+             margin-top: 170px;
             margin-left: 330px;
         }
 
@@ -263,5 +263,15 @@ let total_page = document.querySelector('.total_page').textContent;
 
 
 </script>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<style>
+    footer {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      top:1250px;
+      background-color: #374658;
+    }
+</style>
 </body>
 </html>

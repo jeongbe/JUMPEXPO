@@ -66,3 +66,33 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.body {
+    width: 920px;
+    margin: 0 auto;
+    /* border: 1px solid #000; */
+    height: 500px;
+    position: relative;
+    left: 80px;
+    top: 100px;
+}
+.contents {
+    position: absolute;
+    top: 140px;
+    right: 90px;
+    width: 920px;
+    height: 200px;
+    padding: 0;
+    margin: 10px 0;
+}
+.body_title_right {
+   position: absolute;
+       top: 100px;
+       right: 80px;
+       font-weight:700;
+       font-size:15px;
+   }
+   .body_title_right img {
+          position: absolute;
+          left: -26px;
+          top: 2px;
+      }

@@ -52,78 +52,78 @@
         }
     </style>
 </head>
-
+<body>
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
 
 <div class="container" style="width:920px;">
-        <div class="title-box">
-            <div class="body_title">
-                <span>마이</span>
-                <span>리뷰</span>
-            </div>
-
-            <div class="body_title_right">
-                <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 마이 리뷰
-            </div>
+    <div class="title-box">
+        <div class="body_title">
+            <span>마이</span>
+            <span>리뷰</span>
         </div>
 
-
-            <!-- 주요내용 -->
-            <div class="contents">
-                <div class="select-box">
-                    <form>
-<!--                        수정 -> 기간 해줘야함-->
-                        <div class="Period-box r_Per">
-                            <p>기간 선택</p>
-                            <div class="btns r_btns">
-                                <button type="button">1개월</button>
-                                <button type="button">3개월</button>
-                                <button type="button">6개월</button>
-                            </div>
-                            <div class="r_date">
-                                <span><input type="date" class="d1" name="date_start" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
-                                <span><input type="date" class="d2" name="date_end" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
-                            </div>
-                            <div class="r_search_box">
-                                <button type="submit" class="S_btn r_s_btn">검색</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-                <div class="content" >
-                    <form>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>박람회</th>
-                                <th>등록일</th>
-                                <th>조회수</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr class="expo-info" th:each="list,iterStat : ${UserReList}">
-                                <td th:text="${iterStat.index + 1}"></td>
-                                <td style="cursor:pointer" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/read/' + ${list.re_num} + '&quot;'"></td>
-                                <td th:utext="${list.expo_title}"></td>
-                                <td th:utext="${list.re_date}"></td>
-                                <td th:text="${list.re_cnt}">조회수</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-                <nav aria-label="Page navigation example" class="pageBtn">
-                    <ul class="pagination">
-                    </ul>
-                </nav>
-            <span style="display:none;" class="total_page" th:text="${totalPage}"></span>
+        <div class="body_title_right">
+            <img src="/static/images/home.png" alt="홈 아이콘" style="width: 20px;"> > 내 정보 > 마이 리뷰
         </div>
+    </div>
 
-    <div class="side" th:replace="~{user/side/mypage/MyPageSide7 :: MyPageSide7}"></div>
+
+    <!-- 주요내용 -->
+    <div class="contents">
+        <div class="select-box">
+            <form>
+                <!--                        수정 -> 기간 해줘야함-->
+                <div class="Period-box r_Per">
+                    <p>기간 선택</p>
+                    <div class="btns r_btns">
+                        <button type="button">1개월</button>
+                        <button type="button">3개월</button>
+                        <button type="button">6개월</button>
+                    </div>
+                    <div class="r_date">
+                        <span><input type="date" class="d1" name="date_start" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
+                        <span><input type="date" class="d2" name="date_end" th:value="${T(java.time.LocalDate).now()}" id="" /></span>
+                    </div>
+                    <div class="r_search_box">
+                        <button type="submit" class="S_btn r_s_btn">검색</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="content" >
+        <form>
+            <table>
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>박람회</th>
+                    <th>등록일</th>
+                    <th>조회수</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr class="expo-info" th:each="list,iterStat : ${UserReList}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td style="cursor:pointer" class="expo-name" th:text="${list.re_title}" th:onclick="'javascript:location.href=&quot;/users/review/read/' + ${list.re_num} + '&quot;'"></td>
+                    <td th:utext="${list.expo_title}"></td>
+                    <td th:utext="${list.re_date}"></td>
+                    <td th:text="${list.re_cnt}">조회수</td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <nav aria-label="Page navigation example" class="pageBtn">
+        <ul class="pagination">
+        </ul>
+    </nav>
+    <span style="display:none;" class="total_page" th:text="${totalPage}"></span>
+</div>
+
+<div class="side" th:replace="~{user/side/mypage/MyPageSide7 :: MyPageSide7}"></div>
 
 <script th:inline="javascript">
 
@@ -218,6 +218,17 @@
     });
 
 </script>
-</div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<style>
+    footer {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      top:1000px;
+      background-color: #374658;
+    }
+</style>
+</body>
+
 
 </html>

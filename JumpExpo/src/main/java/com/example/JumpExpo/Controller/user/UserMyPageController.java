@@ -401,6 +401,12 @@ public class UserMyPageController {
     // 마이페이지 리뷰 작성 페이지
     @GetMapping("/review/{user_code}/{expo_code}")
     public String UserReview(Model model,@PathVariable("user_code") int userCode,@PathVariable("expo_code") int expoCode){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
+
         log.info(String.valueOf(userCode));
         log.info(String.valueOf(expoCode));
 

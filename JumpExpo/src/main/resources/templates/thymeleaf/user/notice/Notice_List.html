@@ -41,9 +41,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="list : ${NoticeList}">
+            <tr th:each="list,iterStat : ${NoticeList}">
 
-                <td th:text="${list.not_code}"></td>
+                <td th:text="${iterStat.index + 1}">1</td>
                 <td>
                     <a th:href="@{/users/show/nt/{notCode}(notCode=${list.not_code})}" th:text="${list.not_title}"></a>
                 </td>
@@ -147,4 +147,14 @@
 </script>
 </body>
 <div class="s_header" th:replace="~{user/side/noticeSide :: noticeSide}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<style>
+    footer {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      top:820px;
+      background-color: #374658;
+    }
+</style>
 </html>

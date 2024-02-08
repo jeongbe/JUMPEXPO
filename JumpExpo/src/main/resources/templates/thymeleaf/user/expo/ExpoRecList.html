@@ -13,8 +13,8 @@
             display: flex;
             list-style: none;
             padding: 0;
-             margin-top: 300px;
-            margin-left: 330px;
+             margin-top: 170px;
+            margin-left: 300px;
         }
         .pagination li {
             margin: 0 3px;
@@ -117,14 +117,14 @@
         </div>
     </div>
 
-    <div class="content" th:each="list : ${AllList}">
+    <div class="content" th:each="list : ${AllList}" th:onclick="'javascript:location.href=&quot;/users/expo/info/' + ${list.expo_code} +'/' + ${list.expo_cate} + '&quot;'">
         <div class="expo-info-box" >
             <div class="cont-img">
                 <img th:src="@{'http://192.168.2.3/images/a/' + ${list.expo_image}}" alt="" />
             </div>
             <div class="expo-info">
                 <span>예정행사</span>
-                <p class="expo-name" th:text="${list.expo_title}" th:onclick="'javascript:location.href=&quot;/users/expo/info/' + ${list.expo_code} +'/' + ${list.expo_cate} + '&quot;'">2024 예일 박람회</p>
+                <p class="expo-name" th:text="${list.expo_title}">2024 예일 박람회</p>
                 <div class="period-box2">
                     <p th:text="${list.expo_start}">2024-01-10</p>
                     <p th:text="${list.expo_end}">2024-01-10</p>
@@ -253,5 +253,15 @@ document.querySelectorAll('.btns button').forEach(function(button) {
 
 
 </script>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<style>
+    footer {
+      width: 100%;
+      height: 100px;
+      position: absolute;
+      top:1370px;
+      background-color: #374658;
+    }
+</style>
 </body>
 </html>

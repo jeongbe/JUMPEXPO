@@ -7,7 +7,7 @@
     <title>박람회 정보</title>
 </head>
 <div class="s_header" th:replace="~{user/header/userHeader :: userHeader}"></div>
-<div class="s_header" th:replace="~{user/side/expo/expoSide_2 :: expoSide_2}"></div>
+<div class="s_header" th:replace="~{user/side/expo/expoSide_1 :: expoSide_1}"></div>
 
 <body>
     <div class="container" style="width:920px;">
@@ -146,19 +146,12 @@
 </script>
     <div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
     <style>
-        html, body{height: 100%}
-        .container {
-         height:auto;
-        min-height: 100%;
-        padding-bottom: 100px;
-        }
         footer {
-            width: 100%;
-            height: 100px;
-           position: relative;
-        	transform: translateY(-100%);
-            background-color: #374658;
-            top:100px;
+          width: 100%;
+          height: 100px;
+          position: absolute;
+          top:1370px;
+          background-color: #374658;
         }
     </style>
 </body>

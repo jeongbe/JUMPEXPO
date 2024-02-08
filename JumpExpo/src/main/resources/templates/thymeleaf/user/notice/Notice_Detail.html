@@ -34,6 +34,23 @@
     <!-- 목록으로돌아가기 -->
     <button class="list"><a href="/users/show/nt" style="color:#fff; text-decoration:none;">목록</a></button>
 </div>
-<div class="s_header" th:replace="~{user/side/noticeSide :: noticeSide}"></div>
+<div class="side" th:replace="~{user/side/noticeSide :: noticeSide}"></div>
+<div class="s_header" th:replace="~{user/footer/userFooter :: userFooter}"></div>
+<style>
+    html, body{height: 100%}
+    .detail_wrap {
+     height:auto;
+    min-height: 100%;
+    padding-bottom: 100px;
+    }
+    footer {
+        width: 100%;
+        height: 100px;
+       position: relative;
+        transform: translateY(-100%);
+        background-color: #374658;
+        top:1000px;
+    }
+</style>
 </body>
 </html>

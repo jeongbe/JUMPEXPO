@@ -213,14 +213,15 @@
 .btn_box button:last-child {
 margin-left:20px;
 }
+
  .list {
     border: 2px solid #ccc;
     width: 110px;
     height: 30px;
     color: #fff;
     background-color: #374658;
-    position: absolute;
-    /* top: 1070px; */
+    /* position: absolute; */
+    top: 1008px;
     left: 400px;
     bottom: 0px;
     cursor: pointer;
