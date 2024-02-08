@@ -179,7 +179,7 @@ public class ExpoService {
     //2024.01.27 정정빈
     //기업 박람회 신청 마이페이지 리스트
     public Page<ComExpoApp> getComEAppList(int page, int comCode){
-        Pageable pageable = PageRequest.of(page,4);
+        Pageable pageable = PageRequest.of(page,6);
         return this.comExpoAppRepository.getComExpoAppList(pageable,comCode);
     }
 
