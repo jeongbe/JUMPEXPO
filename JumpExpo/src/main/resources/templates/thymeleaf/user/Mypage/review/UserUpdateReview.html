@@ -34,11 +34,11 @@
             <!-- 주요내용 -->
             <div class="contents">
 <!--                 method="post" th:action="@{/users/review/up/{renum}(renum=${reDate.re_num})}"-->
-                <form  enctype="multipart/form-data" action="/users/re/up" method="post">
+                <form  enctype="multipart/form-data" th:action="@{/users/re/up}" method="post">
                     <div class="container_">
                         <div class="r_title_box">
                             <p th:value="${reDate.expo_title}">예일 박람회</p>
-                            <button class="r_btn" type="submit">수정완료</button>
+                            <button class="r_btn" type="button">수정완료</button>
                         </div>
                         <div class="r_title">
                             <p class="r1" >제목</p>

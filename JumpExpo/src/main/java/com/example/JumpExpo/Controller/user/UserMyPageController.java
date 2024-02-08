@@ -510,7 +510,11 @@ public class UserMyPageController {
     //마이 리뷰 수정하기 페이지
     @GetMapping("/review/up/{re_num}")
     public String UserReviewUpDate(Model model, @PathVariable("re_num") int reNum){
-
+	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 현재 인증된 사용자의 사용자명을 가져옵니다.
+        String username = authentication.getName();
+        Users users = userReository.finduser(username);
+        model.addAttribute("users", users);
 
 
         UserReview reDate = userReviewRepository.findById(reNum).orElse(null);

@@ -134,14 +134,14 @@ public class ExpoService {
     //2024.01.18 정정빈
     // 유저 박람회 신청 내역
     public Page<ScheduleInsert> getUserAppExpoList(int page,int userCode){
-        Pageable pageable = PageRequest.of(page,6);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.UserAppExpoList(pageable,userCode);
     }
 
     //2024.01.18 정정빈
     // 유저 박람회 신청 내역 검색
     public Page<ScheduleInsert> getUserAppExpoListSearch(int page,int userCode,String search,String StartDate,String EndDate){
-        Pageable pageable = PageRequest.of(page,6);
+        Pageable pageable = PageRequest.of(page,4);
         return this.schInsetExpoRepository.UserAppExpoListSerch(pageable,userCode,search,StartDate,EndDate);
     }
 
